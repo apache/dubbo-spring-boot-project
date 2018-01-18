@@ -1,0 +1,71 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.alibaba.boot</groupId>
+    <artifactId>dubbo-spring-boot-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Dubbo Spring Boot Project</name>
+    <description>Dubbo Spring Boot Project</description>
+    <url>https://github.com/dubbo/dubbo-spring-boot-project</url>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
+
+    <modules>
+        <module>dubbo-spring-boot-parent</module>
+        <module>dubbo-spring-boot-autoconfigure</module>
+        <module>dubbo-spring-boot-starter</module>
+        <module>dubbo-spring-boot-samples</module>
+        <module>dubbo-spring-boot-actuator</module>
+    </modules>
+
+
+    <organization>
+        <name>Alibaba Group.</name>
+        <url>http://www.alibabagroup.com/en/global/home</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/dubbo/dubbo-spring-boot-project</url>
+        <connection>scm:git:git:////github.com/dubbo/dubbo-spring-boot-project.git</connection>
+        <developerConnection>scm:git:ssh://git@//github.com/dubbo/dubbo-spring-boot-project.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/dubbo/dubbo-spring-boot-project/issues</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Dubbo User Mailling List</name>
+            <subscribe>dubbo+subscribe@googlegroups.com</subscribe>
+            <unsubscribe>dubbo+unsubscribe@googlegroups.com</unsubscribe>
+            <post>dubbo@googlegroups.com</post>
+            <archive>http://groups.google.com/group/dubbo</archive>
+        </mailingList>
+        <mailingList>
+            <name>Dubbo Developer Mailling List</name>
+            <subscribe>dubbo-developers+subscribe@googlegroups.com</subscribe>
+            <unsubscribe>dubbo-developers+unsubscribe@googlegroups.com</unsubscribe>
+            <post>dubbo-developers@googlegroups.com</post>
+            <archive>http://groups.google.com/group/dubbo-developers</archive>
+        </mailingList>
+    </mailingLists>
+    <developers>
+        <developer>
+            <id>dubbo.io</id>
+            <name>The Dubbo Project Contributors</name>
+            <email>dubbo@googlegroups.com</email>
+            <url>http://dubbo.io</url>
+            <organization>The Dubbo Project</organization>
+            <organizationUrl>http://dubbo.io</organizationUrl>
+        </developer>
+    </developers>
+
+</project>
