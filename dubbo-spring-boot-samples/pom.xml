@@ -11,8 +11,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-samples</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Dubbo Spring Boot Samples</name>
     <description>Dubbo Spring Boot Samples</description>
+    <modules>
+        <module>dubbo-spring-boot-sample-provider</module>
+    </modules>
 
 </project>

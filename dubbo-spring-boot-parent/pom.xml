@@ -16,11 +16,6 @@
     <name>Dubbo Spring Boot Parent</name>
     <description>Dubbo Spring Boot Parent</description>
 
-    <organization>
-        <name>Pivotal Software, Inc.</name>
-        <url>http://www.spring.io</url>
-    </organization>
-
     <properties>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
