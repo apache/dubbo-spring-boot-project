@@ -16,6 +16,7 @@
     <description>Dubbo Spring Boot Samples</description>
     <modules>
         <module>dubbo-spring-boot-sample-provider</module>
+        <module>dubbo-spring-boot-sample-consumer</module>
     </modules>
 
 </project>

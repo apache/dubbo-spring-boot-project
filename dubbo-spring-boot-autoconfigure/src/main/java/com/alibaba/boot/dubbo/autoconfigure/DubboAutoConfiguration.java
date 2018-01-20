@@ -38,7 +38,7 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration.PREFIX_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.*;
 import static java.util.Collections.emptySet;
 
 /**
@@ -54,29 +54,10 @@ import static java.util.Collections.emptySet;
  * @since 1.0.0
  */
 @Configuration
-@ConditionalOnProperty(prefix = PREFIX_PROPERTY_NAME, name = "enabled", matchIfMissing = true, havingValue = "true")
+@ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
 @EnableConfigurationProperties(value = {DubboScanProperties.class, DubboConfigProperties.class})
 public class DubboAutoConfiguration {
-
-    /**
-     * The prefix of property name
-     */
-    public static final String PREFIX_PROPERTY_NAME = "dubbo";
-
-    /**
-     * The property name of base packages to scan
-     * <p>
-     * The value is "dubbo.scan.packages"
-     */
-    public static final String PACKAGES_TO_SCAN_PROPERTY_NAME = DubboScanProperties.PREFIX + "." + "basePackages";
-
-    /**
-     * The property name of Dubbo Config
-     * <p>
-     * The value is "dubbo.config.multiple"
-     */
-    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = DubboConfigProperties.PREFIX + "." + "multiple";
 
     /**
      * Single Dubbo Config Configuration
@@ -107,12 +88,12 @@ public class DubboAutoConfiguration {
      *
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
-    @ConditionalOnProperty(name = PACKAGES_TO_SCAN_PROPERTY_NAME)
+    @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
     @Autowired
     @Bean
     public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
         RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment);
-        Set<String> packagesToScan = resolver.getProperty(PACKAGES_TO_SCAN_PROPERTY_NAME, Set.class, emptySet());
+        Set<String> packagesToScan = resolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
     }
 

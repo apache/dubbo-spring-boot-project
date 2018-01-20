@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.autoconfigure.DubboScanProperties.PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SCAN_PREFIX;
 
 
 /**
@@ -32,13 +32,8 @@ import static com.alibaba.boot.dubbo.autoconfigure.DubboScanProperties.PREFIX;
  * @see ConfigurationProperties
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = PREFIX)
+@ConfigurationProperties(prefix = DUBBO_SCAN_PREFIX)
 public class DubboScanProperties {
-
-    /**
-     * The prefix of property name for Dubbo scan
-     */
-    public static final String PREFIX = DubboAutoConfiguration.PREFIX_PROPERTY_NAME + "." + "scan";
 
     /**
      * The basePackages to scan , the multiple-value is delimited by comma

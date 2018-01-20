@@ -14,33 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.autoconfigure;
+package com.alibaba.boot.dubbo.demo.consumer.bootstrap;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Dubbo Config {@link ConfigurationProperties Properties} with prefix "dubbo.config"
+ * Dubbo Consumer Demo
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see ConfigurationProperties
+ * @see com.alibaba.dubbo.demo.DemoService
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = DUBBO_CONFIG_PREFIX)
-public class DubboConfigProperties {
+@SpringBootApplication(scanBasePackages = "com.alibaba.boot.dubbo.demo.consumer.controller")
+public class DubboConsumerDemo {
 
-    /**
-     * The property name of Dubbo Config that indicates multiple properties binding or not.
-     */
-    private boolean multiple = false;
+    public static void main(String[] args) {
 
-    public boolean isMultiple() {
-        return multiple;
+        SpringApplication.run(DubboConsumerDemo.class,args);
+
     }
 
-    public void setMultiple(boolean multiple) {
-        this.multiple = multiple;
-    }
 }

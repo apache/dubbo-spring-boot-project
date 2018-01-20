@@ -14,33 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.autoconfigure;
+package com.alibaba.boot.dubbo.demo.consumer.controller;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
-
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.demo.DemoService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Dubbo Config {@link ConfigurationProperties Properties} with prefix "dubbo.config"
+ * Demo Consumer Controller (REST)
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see ConfigurationProperties
+ * @see
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = DUBBO_CONFIG_PREFIX)
-public class DubboConfigProperties {
+@RestController
+public class DemoConsumerController {
 
-    /**
-     * The property name of Dubbo Config that indicates multiple properties binding or not.
-     */
-    private boolean multiple = false;
+    @Reference(version = "1.0.0",
+            application = "${dubbo.application.id}",
+            url = "dubbo://localhost:12345")
+    private DemoService demoService;
 
-    public boolean isMultiple() {
-        return multiple;
+    @RequestMapping("/sayHello")
+    public String sayHello(@RequestParam String name) {
+        return demoService.sayHello(name);
     }
 
-    public void setMultiple(boolean multiple) {
-        this.multiple = multiple;
-    }
 }

@@ -14,33 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.autoconfigure;
+package com.alibaba.boot.dubbo.context.event;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
-
+import com.alibaba.dubbo.common.utils.ConfigUtils;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
- * Dubbo Config {@link ConfigurationProperties Properties} with prefix "dubbo.config"
+ * {@ConfigUtils Legacy Dubbo Config} {@link ApplicationListener} on {@link ApplicationEnvironmentPreparedEvent}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see ConfigurationProperties
+ * @see ConfigUtils
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = DUBBO_CONFIG_PREFIX)
-public class DubboConfigProperties {
+public class LegacyDubboConfigApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
-    /**
-     * The property name of Dubbo Config that indicates multiple properties binding or not.
-     */
-    private boolean multiple = false;
+    @Override
+    public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
 
-    public boolean isMultiple() {
-        return multiple;
-    }
+        ConfigurableEnvironment configurableEnvironment = event.getEnvironment();
 
-    public void setMultiple(boolean multiple) {
-        this.multiple = multiple;
     }
 }

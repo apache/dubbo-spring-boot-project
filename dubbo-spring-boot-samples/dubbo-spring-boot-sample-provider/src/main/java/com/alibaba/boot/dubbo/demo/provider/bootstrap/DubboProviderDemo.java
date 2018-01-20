@@ -14,26 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.demo.provider;
+package com.alibaba.boot.dubbo.demo.provider.bootstrap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-
 /**
- * Dubbo Provider Bootstrap(not web)
+ * Dubbo Provider Demo
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see com.alibaba.dubbo.demo.DemoService
  * @since 1.0.0
  */
 @SpringBootApplication
-public class DubboProviderBootstrap {
+public class DubboProviderDemo {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        SpringApplication.run(DubboProviderBootstrap.class,args);
+        SpringApplication.run(DubboProviderDemo.class,args);
 
     }
 

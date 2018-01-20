@@ -21,7 +21,7 @@ import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfigBindi
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
-import static com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration.PREFIX_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
 
 
 /**
@@ -32,7 +32,7 @@ import static com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration.PREFIX
  * @see EnableDubboConfigBinding
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = PREFIX_PROPERTY_NAME)
+@ConfigurationProperties(prefix = DUBBO_PREFIX)
 public class SingleDubboConfigBindingProperties {
 
     /**
