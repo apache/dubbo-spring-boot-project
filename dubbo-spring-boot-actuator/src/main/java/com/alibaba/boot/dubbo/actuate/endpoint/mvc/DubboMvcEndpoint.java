@@ -41,7 +41,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration.PREFIX_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
@@ -133,7 +133,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
                 Map<String, Object> map = (Map<String, Object>) value;
                 for (Map.Entry<String, Object> e : map.entrySet()) {
 
-                    if (e.getKey().startsWith(PREFIX_PROPERTY_NAME + ".")) {
+                    if (e.getKey().startsWith(DUBBO_PREFIX + ".")) {
                         properties.put(e.getKey(), e.getValue());
                     }
 
