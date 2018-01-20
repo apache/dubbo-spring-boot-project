@@ -42,19 +42,19 @@ public abstract class EnvironmentUtils {
         return Collections.unmodifiableMap(doExtraProperties(environment));
     }
 
-    /**
-     * Gets {@link PropertySource} Map , the {@link PropertySource#getName()} as key
-     *
-     * @param environment {@link ConfigurableEnvironment}
-     * @return Read-only Map
-     */
-    public static Map<String, PropertySource<?>> getPropertySources(ConfigurableEnvironment environment) {
-        return Collections.unmodifiableMap(doGetPropertySources(environment));
-    }
+//    /**
+//     * Gets {@link PropertySource} Map , the {@link PropertySource#getName()} as key
+//     *
+//     * @param environment {@link ConfigurableEnvironment}
+//     * @return Read-only Map
+//     */
+//    public static Map<String, PropertySource<?>> getPropertySources(ConfigurableEnvironment environment) {
+//        return Collections.unmodifiableMap(doGetPropertySources(environment));
+//    }
 
     private static Map<String, Object> doExtraProperties(ConfigurableEnvironment environment) {
 
-        Map<String, Object> properties = new LinkedHashMap<>();
+        Map<String, Object> properties = new LinkedHashMap<>(); // orderly
 
         Map<String, PropertySource<?>> map = doGetPropertySources(environment);
 

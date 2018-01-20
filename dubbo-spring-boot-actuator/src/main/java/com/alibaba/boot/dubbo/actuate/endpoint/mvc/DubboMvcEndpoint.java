@@ -19,12 +19,14 @@ package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import org.springframework.beans.BeansException;
-import org.springframework.boot.actuate.endpoint.EnvironmentEndpoint;
 import org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter;
 import org.springframework.boot.actuate.endpoint.mvc.HypermediaDisabled;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,9 +41,8 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
@@ -52,15 +53,14 @@ import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
  * @see
  * @since 1.0.0
  */
-public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationContextAware {
+public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationContextAware, EnvironmentAware {
 
     private ApplicationContext applicationContext;
 
-    private final EnvironmentEndpoint environmentEndpoint;
+    private ConfigurableEnvironment environment;
 
-    public DubboMvcEndpoint(DubboEndpoint dubboEndpoint, EnvironmentEndpoint environmentEndpoint) {
+    public DubboMvcEndpoint(DubboEndpoint dubboEndpoint) {
         super(dubboEndpoint);
-        this.environmentEndpoint = environmentEndpoint;
     }
 
     @RequestMapping(value = "/services", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -121,28 +121,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     @HypermediaDisabled
     public Object properties() {
 
-        Map<String, Object> envResult = environmentEndpoint.invoke();
-
-        Map<String, Object> properties = new TreeMap<>();
-
-        for (Map.Entry<String, Object> entry : envResult.entrySet()) {
-
-            Object value = entry.getValue();
-
-            if (value instanceof Map) {
-                Map<String, Object> map = (Map<String, Object>) value;
-                for (Map.Entry<String, Object> e : map.entrySet()) {
-
-                    if (e.getKey().startsWith(DUBBO_PREFIX + ".")) {
-                        properties.put(e.getKey(), e.getValue());
-                    }
-
-                }
-            }
-
-        }
-
-        return properties;
+        return filterDubboProperties(environment);
 
     }
 
@@ -192,4 +171,10 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         this.applicationContext = applicationContext;
     }
 
+    @Override
+    public void setEnvironment(Environment environment) {
+        if (environment instanceof ConfigurableEnvironment) {
+            this.environment = (ConfigurableEnvironment) environment;
+        }
+    }
 }

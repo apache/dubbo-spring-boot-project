@@ -34,7 +34,7 @@ import java.util.Map;
 public class DubboEndpoint extends AbstractEndpoint<Map<String, Object>> {
 
     public DubboEndpoint() {
-        super("dubbo", true, true);
+        super("dubbo", true, false);
     }
 
     @Override

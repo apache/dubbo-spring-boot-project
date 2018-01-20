@@ -16,9 +16,10 @@
  */
 package com.alibaba.boot.dubbo.autoconfigure;
 
+import com.alibaba.dubbo.common.utils.ConfigUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.*;
 
 
 /**
@@ -32,9 +33,15 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 public class DubboConfigProperties {
 
     /**
-     * The property name of Dubbo Config that indicates multiple properties binding or not.
+     * Indicates multiple properties binding from externalized configuration or not.
      */
-    private boolean multiple = false;
+    private boolean multiple = DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE;
+
+    /**
+     * Indicates override {@link ConfigUtils#getProperties() Dubbo config properties} from externalized configuration
+     * or not.
+     */
+    private boolean orverride = DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
 
     public boolean isMultiple() {
         return multiple;
@@ -42,5 +49,13 @@ public class DubboConfigProperties {
 
     public void setMultiple(boolean multiple) {
         this.multiple = multiple;
+    }
+
+    public boolean isOrverride() {
+        return orverride;
+    }
+
+    public void setOrverride(boolean orverride) {
+        this.orverride = orverride;
     }
 }

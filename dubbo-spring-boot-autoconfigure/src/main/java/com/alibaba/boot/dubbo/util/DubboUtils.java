@@ -16,6 +16,13 @@
  */
 package com.alibaba.boot.dubbo.util;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 /**
  * The utilities class for Dubbo
  *
@@ -48,14 +55,57 @@ public abstract class DubboUtils {
     /**
      * The property name of base packages to scan
      * <p>
-     * The value is "dubbo.scan.packages"
+     * The default value is empty set.
      */
     public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "basePackages";
 
     /**
-     * The property name of Dubbo Config
+     * The property name of multiple properties binding from externalized configuration
      * <p>
-     * The value is "dubbo.config.multiple"
+     * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
      */
-    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + "." + "multiple";
+    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "multiple";
+
+    /**
+     * The default value of multiple properties binding from externalized configuration
+     */
+    public static final boolean DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE = false;
+
+    /**
+     * The property name of override Dubbo config
+     * <p>
+     * The default value is {@link #DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE}
+     */
+    public static final String OVERRIDE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "override";
+
+    /**
+     * The default property value of  override Dubbo config
+     */
+    public static final boolean DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE = true;
+
+    /**
+     * Filters Dubbo Properties from {@link ConfigurableEnvironment}
+     *
+     * @param environment {@link ConfigurableEnvironment}
+     * @return Read-only SortedMap
+     */
+    public static SortedMap<String, Object> filterDubboProperties(ConfigurableEnvironment environment) {
+
+        SortedMap<String, Object> dubboProperties = new TreeMap<>();
+
+        Map<String, Object> properties = EnvironmentUtils.extractProperties(environment);
+
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
+            String propertyName = entry.getKey();
+
+            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)) {
+                dubboProperties.put(propertyName, entry.getValue());
+            }
+
+        }
+
+        return Collections.unmodifiableSortedMap(dubboProperties);
+
+    }
+
 }

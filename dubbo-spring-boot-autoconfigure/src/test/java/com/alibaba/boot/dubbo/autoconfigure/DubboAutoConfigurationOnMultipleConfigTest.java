@@ -53,7 +53,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
                 "dubbo.providers.provider1.host=127.0.0.1",
                 "dubbo.consumers.consumer1.client=netty",
                 "dubbo.config.multiple=true",
-                "dubbo.scan.packages=com.alibaba.boot.dubbo, com.alibaba.boot.dubbo.condition"
+                "dubbo.scan.basePackages=com.alibaba.boot.dubbo, com.alibaba.boot.dubbo.condition"
         }
 )
 @SpringApplicationConfiguration(
