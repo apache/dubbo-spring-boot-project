@@ -17,10 +17,15 @@
 package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
+import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter;
-import org.springframework.boot.actuate.endpoint.mvc.HypermediaDisabled;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -28,6 +33,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,14 +41,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.net.URL;
+import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
+import static com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor.BEAN_NAME;
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
@@ -55,6 +64,8 @@ import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
  */
 public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationContextAware, EnvironmentAware {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     private ApplicationContext applicationContext;
 
     private ConfigurableEnvironment environment;
@@ -63,10 +74,36 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         super(dubboEndpoint);
     }
 
+    @RequestMapping(value = "/references", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map<String, Map<String, Object>> references() {
+
+        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
+
+        Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap
+                = resolveInjectedElementReferenceBeanMap();
+
+        for (Map.Entry<InjectionMetadata.InjectedElement, ReferenceBean<?>> entry :
+                injectedElementReferenceBeanMap.entrySet()) {
+
+            InjectionMetadata.InjectedElement injectedElement = entry.getKey();
+
+            ReferenceBean<?> referenceBean = entry.getValue();
+
+            Map<String, Object> beanMetadata = resolveBeanMetadata(referenceBean);
+            beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
+
+            referencesMetadata.put(String.valueOf(injectedElement.getMember()), beanMetadata);
+
+        }
+
+        return referencesMetadata;
+
+    }
+
     @RequestMapping(value = "/services", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    @HypermediaDisabled
-    public Object services() {
+    public Map<String, Map<String, Object>> services() {
 
         Map<String, ServiceBean> serviceBeansMap = beansOfTypeIncludingAncestors(applicationContext, ServiceBean.class);
 
@@ -78,7 +115,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
             ServiceBean serviceBean = entry.getValue();
 
-            Map<String, Object> serviceBeanMetadata = resolveServiceBeanMetadata(serviceBean);
+            Map<String, Object> serviceBeanMetadata = resolveBeanMetadata(serviceBean);
 
             Object service = resolveServiceBean(serviceBeanName, serviceBean);
 
@@ -92,6 +129,181 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         }
 
         return servicesMetadata;
+
+    }
+
+
+    @RequestMapping(value = "/properties", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public SortedMap<String, Object> properties() {
+
+        return filterDubboProperties(environment);
+
+    }
+
+
+    /**
+     * Resolves the {@link Collection} of {@link InjectionMetadata.InjectedElement} that were annotated by {@link Reference}
+     * from all Spring Beans.
+     *
+     * @return non-null {@link Collection}
+     * TODO Reactors ReferenceAnnotationBeanPostProcessor to expose those info
+     */
+    private Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> resolveInjectedElementReferenceBeanMap() {
+
+        Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap = new LinkedHashMap<>();
+
+        final ReferenceAnnotationBeanPostProcessor processor =
+                applicationContext.getBean(BEAN_NAME, ReferenceAnnotationBeanPostProcessor.class);
+
+        ConcurrentMap<String, InjectionMetadata> injectionMetadataCache =
+                getFieldValue(processor, "injectionMetadataCache", ConcurrentMap.class);
+
+        ConcurrentMap<String, ReferenceBean<?>> referenceBeansCache =
+                getFieldValue(processor, "referenceBeansCache", ConcurrentMap.class);
+
+        for (InjectionMetadata metadata : injectionMetadataCache.values()) {
+
+            Set<InjectionMetadata.InjectedElement> checkedElements =
+                    getFieldValue(metadata, "checkedElements", Set.class);
+
+            Collection<InjectionMetadata.InjectedElement> injectedElements =
+                    getFieldValue(metadata, "injectedElements", Collection.class);
+
+            Collection<InjectionMetadata.InjectedElement> actualInjectedElements =
+                    checkedElements != null ? checkedElements : injectedElements;
+
+            for (InjectionMetadata.InjectedElement injectedElement : actualInjectedElements) {
+
+                ReferenceBean<?> referenceBean = resolveReferenceBean(injectedElement, referenceBeansCache);
+
+                injectedElementReferenceBeanMap.put(injectedElement, referenceBean);
+
+            }
+        }
+
+        return injectedElementReferenceBeanMap;
+
+    }
+
+    private ReferenceBean<?> resolveReferenceBean(InjectionMetadata.InjectedElement injectedElement,
+                                                  ConcurrentMap<String, ReferenceBean<?>> referenceBeansCache) {
+
+        // Member is Field or Method annotated @Reference
+        Member member = injectedElement.getMember();
+
+        Class<?> beanClass = null;
+
+        Reference reference = getFieldValue(injectedElement, "reference", Reference.class);
+
+        if (member instanceof Field) {
+
+            Field field = (Field) member;
+
+            beanClass = field.getType();
+
+        } else if (member instanceof Method) {
+
+            Method method = (Method) member;
+
+            beanClass = ((Method) member).getReturnType();
+
+        } else {
+
+            if (logger.isWarnEnabled()) {
+                logger.warn("What's wrong with Member? Member should not be Field or Method");
+            }
+
+            throw new IllegalStateException("What's wrong with Member? Member should not be Field or Method");
+
+        }
+
+        String referenceBeanCacheKey = generateReferenceBeanCacheKey(reference, beanClass);
+
+        return referenceBeansCache.get(referenceBeanCacheKey);
+
+    }
+
+
+    /**
+     * Original implementation :
+     *
+     * @see ReferenceAnnotationBeanPostProcessor#generateReferenceBeanCacheKey(Reference, java.lang.Class)
+     */
+    private static String generateReferenceBeanCacheKey(Reference reference, Class<?> beanClass) {
+
+        String interfaceName = resolveInterfaceName(reference, beanClass);
+
+        String key = reference.group() + "/" + interfaceName + ":" + reference.version();
+
+        return key;
+
+    }
+
+    /**
+     * Original implementation:
+     *
+     * @see ReferenceAnnotationBeanPostProcessor#resolveInterfaceName(Reference, java.lang.Class)
+     */
+    private static String resolveInterfaceName(Reference reference, Class<?> beanClass)
+            throws IllegalStateException {
+
+        String interfaceName;
+        if (!"".equals(reference.interfaceName())) {
+            interfaceName = reference.interfaceName();
+        } else if (!void.class.equals(reference.interfaceClass())) {
+            interfaceName = reference.interfaceClass().getName();
+        } else if (beanClass.isInterface()) {
+            interfaceName = beanClass.getName();
+        } else {
+            throw new IllegalStateException(
+                    "The @Reference undefined interfaceClass or interfaceName, and the property type "
+                            + beanClass.getName() + " is not a interface.");
+        }
+
+        return interfaceName;
+
+    }
+
+
+    private <T> T getFieldValue(Object object, String fieldName, Class<T> fieldType) {
+
+        Field field = ReflectionUtils.findField(object.getClass(), fieldName, fieldType);
+
+        ReflectionUtils.makeAccessible(field);
+
+        return (T) ReflectionUtils.getField(field, object);
+
+    }
+
+    private Map<String, Object> resolveBeanMetadata(final Object bean) {
+
+        final Map<String, Object> beanMetadata = new LinkedHashMap<>();
+
+        try {
+
+            BeanInfo beanInfo = Introspector.getBeanInfo(bean.getClass());
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+
+            for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+
+                Method readMethod = propertyDescriptor.getReadMethod();
+
+                if (readMethod != null && isSimpleType(propertyDescriptor.getPropertyType())) {
+
+                    String name = Introspector.decapitalize(propertyDescriptor.getName());
+                    Object value = readMethod.invoke(bean);
+
+                    beanMetadata.put(name, value);
+                }
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return beanMetadata;
 
     }
 
@@ -116,55 +328,16 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     }
 
 
-    @RequestMapping(value = "/properties", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    @HypermediaDisabled
-    public Object properties() {
-
-        return filterDubboProperties(environment);
-
-    }
-
-    private Map<String, Object> resolveServiceBeanMetadata(final ServiceBean serviceBean) {
-
-        final Map<String, Object> serviceBeanMetadata = new LinkedHashMap<>();
-
-        try {
-
-            BeanInfo beanInfo = Introspector.getBeanInfo(serviceBean.getClass());
-            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-
-            for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-
-                Method readMethod = propertyDescriptor.getReadMethod();
-
-                if (readMethod != null && isSimpleType(propertyDescriptor.getPropertyType())) {
-
-                    String name = Introspector.decapitalize(propertyDescriptor.getName());
-                    Object value = readMethod.invoke(serviceBean);
-
-                    serviceBeanMetadata.put(name, value);
-                }
-
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return serviceBeanMetadata;
-
-    }
-
     private static boolean isSimpleType(Class<?> type) {
         return isPrimitiveOrWrapper(type)
                 || type == String.class
                 || type == BigDecimal.class
                 || type == BigInteger.class
                 || type == Date.class
+                || type == URL.class
+                || type == Class.class
                 ;
     }
-
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
