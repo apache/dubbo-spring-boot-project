@@ -52,6 +52,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.*;
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 import static com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor.BEAN_NAME;
 import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegistries;
@@ -78,7 +79,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     }
 
 
-    @RequestMapping(value = "/shutdown", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = DUBBO_SHUTDOWN_ENDPOINT_URI, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public DeferredResult shutdown() throws Exception {
 
@@ -123,7 +124,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     }
 
-    @RequestMapping(value = "/configs", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = DUBBO_CONFIGS_ENDPOINT_URI, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Map<String, Map<String, Map<String, Object>>> configs() {
 
@@ -144,34 +145,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     }
 
 
-    @RequestMapping(value = "/references", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Map<String, Map<String, Object>> references() {
-
-        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
-
-        Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap
-                = resolveInjectedElementReferenceBeanMap();
-
-        for (Map.Entry<InjectionMetadata.InjectedElement, ReferenceBean<?>> entry :
-                injectedElementReferenceBeanMap.entrySet()) {
-
-            InjectionMetadata.InjectedElement injectedElement = entry.getKey();
-
-            ReferenceBean<?> referenceBean = entry.getValue();
-
-            Map<String, Object> beanMetadata = resolveBeanMetadata(referenceBean);
-            beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
-
-            referencesMetadata.put(String.valueOf(injectedElement.getMember()), beanMetadata);
-
-        }
-
-        return referencesMetadata;
-
-    }
-
-    @RequestMapping(value = "/services", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = DUBBO_SERVICES_ENDPOINT_URI, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Map<String, Map<String, Object>> services() {
 
@@ -202,8 +176,34 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     }
 
+    @RequestMapping(value = DUBBO_REFERENCES_ENDPOINT_URI, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map<String, Map<String, Object>> references() {
 
-    @RequestMapping(value = "/properties", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
+
+        Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap
+                = resolveInjectedElementReferenceBeanMap();
+
+        for (Map.Entry<InjectionMetadata.InjectedElement, ReferenceBean<?>> entry :
+                injectedElementReferenceBeanMap.entrySet()) {
+
+            InjectionMetadata.InjectedElement injectedElement = entry.getKey();
+
+            ReferenceBean<?> referenceBean = entry.getValue();
+
+            Map<String, Object> beanMetadata = resolveBeanMetadata(referenceBean);
+            beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
+
+            referencesMetadata.put(String.valueOf(injectedElement.getMember()), beanMetadata);
+
+        }
+
+        return referencesMetadata;
+
+    }
+
+    @RequestMapping(value = DUBBO_PROPERTIES_ENDPOINT_URI, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public SortedMap<String, Object> properties() {
 
