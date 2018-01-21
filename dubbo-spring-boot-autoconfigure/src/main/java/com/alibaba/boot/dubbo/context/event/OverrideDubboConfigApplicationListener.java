@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 
@@ -39,13 +39,17 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.*;
  * @see ConfigUtils
  * @since 1.0.0
  */
-public class OverrideDubboConfigApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent>
-        , Ordered {
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+@Order // LOWEST_PRECEDENCE Make sure last execution
+public class OverrideDubboConfigApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
+
+        /**
+         * Gets Logger After LoggingSystem configuration ready
+         * @see LoggingApplicationListener
+         */
+        final Logger logger = LoggerFactory.getLogger(getClass());
 
         ConfigurableEnvironment environment = event.getEnvironment();
 
@@ -76,8 +80,4 @@ public class OverrideDubboConfigApplicationListener implements ApplicationListen
 
     }
 
-    @Override
-    public int getOrder() { // Make sure last execution
-        return LOWEST_PRECEDENCE;
-    }
 }
