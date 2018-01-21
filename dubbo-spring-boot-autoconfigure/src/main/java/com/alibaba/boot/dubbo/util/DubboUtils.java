@@ -33,6 +33,12 @@ import java.util.TreeMap;
 public abstract class DubboUtils {
 
     /**
+     * line separator
+     */
+    public final static String LINE_SEPARATOR = System.getProperty("line.separator");
+
+
+    /**
      * The separator of property name
      */
     public static final String PROPERTY_NAME_SEPARATOR = ".";
@@ -82,6 +88,32 @@ public abstract class DubboUtils {
      * The default property value of  override Dubbo config
      */
     public static final boolean DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE = true;
+
+
+    /**
+     * The github URL of Dubbo Spring Boot
+     */
+    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/dubbo/dubbo-spring-boot-project";
+
+    /**
+     * The git URL of Dubbo Spring Boot
+     */
+    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/dubbo/dubbo-spring-boot-project.git";
+
+    /**
+     * The issues of Dubbo Spring Boot
+     */
+    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/dubbo/dubbo-spring-boot-project/issues";
+
+    /**
+     * The github URL of Dubbo
+     */
+    public static final String DUBBO_GITHUB_URL = "https://github.com/alibaba/dubbo";
+
+    /**
+     * The google group URL of Dubbo
+     */
+    public static final String DUBBO_GOOGLE_GROUP_URL = "http://groups.google.com/group/dubbo";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}

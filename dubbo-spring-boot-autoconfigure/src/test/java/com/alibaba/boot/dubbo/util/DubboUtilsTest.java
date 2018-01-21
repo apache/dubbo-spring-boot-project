@@ -48,6 +48,14 @@ public class DubboUtilsTest {
 
         Assert.assertEquals("dubbo.config.override", OVERRIDE_CONFIG_PROPERTY_NAME);
 
+        Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project", DUBBO_SPRING_BOOT_GITHUB_URL);
+        Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project.git", DUBBO_SPRING_BOOT_GIT_URL);
+        Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project/issues", DUBBO_SPRING_BOOT_ISSUES_URL);
+
+        Assert.assertEquals("https://github.com/alibaba/dubbo", DUBBO_GITHUB_URL);
+
+        Assert.assertEquals("http://groups.google.com/group/dubbo", DUBBO_GOOGLE_GROUP_URL);
+
         Assert.assertFalse(DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE);
 
         Assert.assertTrue(DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE);
