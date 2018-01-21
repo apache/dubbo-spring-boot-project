@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
+import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
@@ -73,6 +74,28 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     public DubboMvcEndpoint(DubboEndpoint dubboEndpoint) {
         super(dubboEndpoint);
     }
+
+
+    @RequestMapping(value = "/configs", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map<String, Map<String, Map<String, Object>>> configs() {
+
+        Map<String, Map<String, Map<String, Object>>> configsMap = new LinkedHashMap<>();
+
+        addDubboConfigBeans(ApplicationConfig.class, configsMap);
+        addDubboConfigBeans(ConsumerConfig.class, configsMap);
+        addDubboConfigBeans(MethodConfig.class, configsMap);
+        addDubboConfigBeans(ModuleConfig.class, configsMap);
+        addDubboConfigBeans(MonitorConfig.class, configsMap);
+        addDubboConfigBeans(ProtocolConfig.class, configsMap);
+        addDubboConfigBeans(ProviderConfig.class, configsMap);
+        addDubboConfigBeans(ReferenceConfig.class, configsMap);
+        addDubboConfigBeans(RegistryConfig.class, configsMap);
+        addDubboConfigBeans(ServiceConfig.class, configsMap);
+
+        return configsMap;
+    }
+
 
     @RequestMapping(value = "/references", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -138,6 +161,29 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     public SortedMap<String, Object> properties() {
 
         return filterDubboProperties(environment);
+
+    }
+
+
+    private void addDubboConfigBeans(Class<? extends AbstractConfig> dubboConfigClass,
+                                     Map<String, Map<String, Map<String, Object>>> configsMap) {
+
+        Map<String, ? extends AbstractConfig> dubboConfigBeans = beansOfTypeIncludingAncestors(applicationContext, dubboConfigClass);
+
+        String name = dubboConfigClass.getSimpleName();
+
+        Map<String, Map<String, Object>> beansMetadata = new TreeMap<>();
+
+        for (Map.Entry<String, ? extends AbstractConfig> entry : dubboConfigBeans.entrySet()) {
+
+            String beanName = entry.getKey();
+            AbstractConfig configBean = entry.getValue();
+            Map<String, Object> configBeanMeta = resolveBeanMetadata(configBean);
+            beansMetadata.put(beanName, configBeanMeta);
+
+        }
+
+        configsMap.put(name, beansMetadata);
 
     }
 
