@@ -38,6 +38,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -53,6 +54,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 import static com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor.BEAN_NAME;
+import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegistries;
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
@@ -75,6 +77,51 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         super(dubboEndpoint);
     }
 
+
+    @RequestMapping(value = "/shutdown", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public DeferredResult shutdown() throws Exception {
+
+        DeferredResult result = new DeferredResult();
+
+        Map<String, Object> shutdownCountData = new LinkedHashMap<>();
+
+        // registries
+        int registriesCount = getRegistries().size();
+
+        // protocols
+        int protocolsCount = getProtocolConfigsBeanMap().size();
+
+        ProtocolConfig.destroyAll();
+        shutdownCountData.put("registries", registriesCount);
+        shutdownCountData.put("protocols", protocolsCount);
+
+        // Service Beans
+        Map<String, ServiceBean> serviceBeansMap = getServiceBeansMap();
+        if (!serviceBeansMap.isEmpty()) {
+            for (ServiceBean serviceBean : serviceBeansMap.values()) {
+                serviceBean.destroy();
+            }
+        }
+        shutdownCountData.put("services", serviceBeansMap.size());
+
+        // Reference Beans
+        ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
+
+        int referencesCount = beanPostProcessor.getReferenceBeans().size();
+
+        beanPostProcessor.destroy();
+
+        shutdownCountData.put("references", referencesCount);
+
+        // Set Result to complete
+        Map<String, Object> shutdownData = new TreeMap<>();
+        shutdownData.put("shutdown.count", shutdownCountData);
+        result.setResult(shutdownData);
+
+        return result;
+
+    }
 
     @RequestMapping(value = "/configs", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -128,7 +175,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
     @ResponseBody
     public Map<String, Map<String, Object>> services() {
 
-        Map<String, ServiceBean> serviceBeansMap = beansOfTypeIncludingAncestors(applicationContext, ServiceBean.class);
+        Map<String, ServiceBean> serviceBeansMap = getServiceBeansMap();
 
         Map<String, Map<String, Object>> servicesMetadata = new LinkedHashMap<>(serviceBeansMap.size());
 
@@ -164,6 +211,22 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        if (environment instanceof ConfigurableEnvironment) {
+            this.environment = (ConfigurableEnvironment) environment;
+        }
+    }
+
+    private Map<String, ServiceBean> getServiceBeansMap() {
+        return beansOfTypeIncludingAncestors(applicationContext, ServiceBean.class);
+    }
+
 
     private void addDubboConfigBeans(Class<? extends AbstractConfig> dubboConfigClass,
                                      Map<String, Map<String, Map<String, Object>>> configsMap) {
@@ -187,6 +250,9 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     }
 
+    private ReferenceAnnotationBeanPostProcessor getReferenceAnnotationBeanPostProcessor() {
+        return applicationContext.getBean(BEAN_NAME, ReferenceAnnotationBeanPostProcessor.class);
+    }
 
     /**
      * Resolves the {@link Collection} of {@link InjectionMetadata.InjectedElement} that were annotated by {@link Reference}
@@ -199,8 +265,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
         Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap = new LinkedHashMap<>();
 
-        final ReferenceAnnotationBeanPostProcessor processor =
-                applicationContext.getBean(BEAN_NAME, ReferenceAnnotationBeanPostProcessor.class);
+        final ReferenceAnnotationBeanPostProcessor processor = getReferenceAnnotationBeanPostProcessor();
 
         ConcurrentMap<String, InjectionMetadata> injectionMetadataCache =
                 getFieldValue(processor, "injectionMetadataCache", ConcurrentMap.class);
@@ -385,15 +450,10 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
                 ;
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+
+    private Map<String, ProtocolConfig> getProtocolConfigsBeanMap() {
+        return beansOfTypeIncludingAncestors(applicationContext, ProtocolConfig.class);
     }
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        if (environment instanceof ConfigurableEnvironment) {
-            this.environment = (ConfigurableEnvironment) environment;
-        }
-    }
+
 }
