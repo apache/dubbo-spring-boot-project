@@ -190,9 +190,9 @@ Externalized Configuration is a core feature of Spring Boot , Dubbo Spring Boot 
 In most use scenarios , "Single Dubbo Config Bean Bindings" is enough , because a Dubbo application only requires single Bean of `*Config` (e.g `ApplicationConfig`). You add properties in `application.properties` to configure Dubbo's `*Config` Beans that you want , be like this :
 
 ```properties
-dubbo.application.name=foo
-dubbo.application.owner=bar
-dubbo.registry.address=10.20.153.10:9090
+dubbo.application.name = foo
+dubbo.application.owner = bar
+dubbo.registry.address = 10.20.153.10:9090
 ```
 
 There are two Spring Beans will be initialized when Spring `ApplicatonContext` is ready, their Bean types are `ApplicationConfig` and `RegistryConfig`.
@@ -222,7 +222,7 @@ private ApplicationConfig application;
 If you'd like to identify this `ApplicationConfig` Bean , you could add **"id"** property:
 
 ```properties
-dubbo.application.id=application-bean-id
+dubbo.application.id = application-bean-id
 ```
 
 
@@ -315,11 +315,11 @@ dubbo.applications.application1.name = dubbo-demo-application
 dubbo.applications.application2.name = dubbo-demo-application2
 dubbo.modules.module1.name = dubbo-demo-module
 dubbo.registries.registry1.address = zookeeper://192.168.99.100:32770
-dubbo.protocols.protocol1.name=dubbo
-dubbo.protocols.protocol1.port=20880
-dubbo.monitors.monitor1.address=zookeeper://127.0.0.1:32770
-dubbo.providers.provider1.host=127.0.0.1
-dubbo.consumers.consumer1.client=netty
+dubbo.protocols.protocol1.name = dubbo
+dubbo.protocols.protocol1.port = 20880
+dubbo.monitors.monitor1.address = zookeeper://127.0.0.1:32770
+dubbo.providers.provider1.host = 127.0.0.1
+dubbo.consumers.consumer1.client = netty
 ```
 
 
