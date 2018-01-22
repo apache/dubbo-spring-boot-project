@@ -71,7 +71,7 @@ public class DubboProviderDemo {
 
 last , configures `application.properties` :
 
-```proper
+```properties
 # Spring boot application
 spring.application.name = dubbo-provider-demo
 server.port = 9090
