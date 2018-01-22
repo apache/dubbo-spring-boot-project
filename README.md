@@ -268,16 +268,291 @@ endpoints.dubbo.enabled = true
 
 
 
-Actuator endpoint `dubbo` supports Spring Web MVC Endpoints :
+Actuator endpoint `dubbo` supports Spring Web MVC Endpoints : 
 
-| URI                 | Description                         |
-| ------------------- | ----------------------------------- |
-| `/dubbo`            | Exposes Dubbo's meta data           |
-| `/dubbo/properties` | Exposes all Dubbo's Properties      |
-| `/dubbo/services`   | Exposes all Dubbo's `ServiceBean`   |
-| `/dubbo/references` | Exposes all Dubbo's `ReferenceBean` |
-| `/dubbo/configs`    | Exposes all Dubbo's `*Config`       |
-| `/dubbo/shutdown`   | Shutdown Dubbo services             |
+| URI                 | HTTP Method | Description                         | Content Type       |
+| ------------------- | ----------- | ----------------------------------- | ------------------ |
+| `/dubbo`            | `GET`       | Exposes Dubbo's meta data           | `application/json` |
+| `/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
+| `/dubbo/services`   | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
+| `/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
+| `/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
+| `/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
+
+
+
+##### Endpoint : `/dubbo`
+
+`/dubbo` exposes Dubbo's meta data : 
+
+```json
+{
+  "timestamp": 1516623290166,
+  "versions": {
+    "dubbo-spring-boot": "1.0.0"
+    "dubbo": "2.5.9"
+  },
+  "urls": {
+    "dubbo": "https://github.com/alibaba/dubbo",
+    "google-group": "http://groups.google.com/group/dubbo",
+    "github": "https://github.com/dubbo/dubbo-spring-boot-project",
+    "issues": "https://github.com/dubbo/dubbo-spring-boot-project/issues",
+    "git": "https://github.com/dubbo/dubbo-spring-boot-project.git"
+  },
+  "endpoints": { // endpoints
+    "shutdown": "/shutdown",
+    "configs": "/configs",
+    "services": "/services",
+    "references": "/references",
+    "properties": "/properties"
+  }
+}
+```
+
+
+
+
+
+##### Endpoint : `/dubbo/properties`
+
+`/dubbo/properties` exposes all Dubbo's Properties from Spring Boot Externalized Configuration (a.k.a `PropertySources`) : 
+
+```json
+{
+  "dubbo.application.id": "dubbo-provider-demo",
+  "dubbo.application.name": "dubbo-provider-demo",
+  "dubbo.application.qos-enable": "false",
+  "dubbo.application.qos-port": "33333",
+  "dubbo.protocol.id": "dubbo",
+  "dubbo.protocol.name": "dubbo",
+  "dubbo.protocol.port": "12345",
+  "dubbo.registry.address": "N/A",
+  "dubbo.registry.id": "my-registry",
+  "dubbo.scan.basePackages": "com.alibaba.boot.dubbo.demo.provider.service"
+}
+```
+
+The structure of JSON is simple Key-Value format , the key is property name as and the value is property value.
+
+
+
+
+
+##### Endpoint : `/dubbo/services`
+
+`/dubbo/services` exposes all Dubbo's `ServiceBean` that are declared via `<dubbo:service/>` or `@Service`  present in Spring `ApplicationContext` :
+
+```json
+{
+  "ServiceBean@com.alibaba.dubbo.demo.DemoService#defaultDemoService": {
+    "accesslog": null,
+    "actives": null,
+    "cache": null,
+    "callbacks": null,
+    "class": "com.alibaba.dubbo.config.spring.ServiceBean",
+    "cluster": null,
+    "connections": null,
+    "delay": null,
+    "document": null,
+    "executes": null,
+    "export": null,
+    "exported": true,
+    "filter": "",
+    "generic": "false",
+    "group": null,
+    "id": "com.alibaba.dubbo.demo.DemoService",
+    "interface": "com.alibaba.dubbo.demo.DemoService",
+    "interfaceClass": "com.alibaba.dubbo.demo.DemoService",
+    "layer": null,
+    "listener": "",
+    "loadbalance": null,
+    "local": null,
+    "merger": null,
+    "mock": null,
+    "onconnect": null,
+    "ondisconnect": null,
+    "owner": null,
+    "path": "com.alibaba.dubbo.demo.DemoService",
+    "proxy": null,
+    "retries": null,
+    "scope": null,
+    "sent": null,
+    "stub": null,
+    "timeout": null,
+    "token": null,
+    "unexported": false,
+    "uniqueServiceName": "com.alibaba.dubbo.demo.DemoService:1.0.0",
+    "validation": null,
+    "version": "1.0.0",
+    "warmup": null,
+    "weight": null,
+    "serviceClass": "com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService"
+  }
+}
+```
+
+The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose value.
+
+
+
+##### Endpoint : `/dubbo/references`
+
+`/dubbo/references` exposes all Dubbo's `ReferenceBean` that are declared via `@Reference` annotating on `Field` or `Method  ` :
+
+```json
+{
+  "private com.alibaba.dubbo.demo.DemoService com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController.demoService": {
+    "actives": null,
+    "cache": null,
+    "callbacks": null,
+    "class": "com.alibaba.dubbo.config.spring.ReferenceBean",
+    "client": null,
+    "cluster": null,
+    "connections": null,
+    "filter": "",
+    "generic": null,
+    "group": null,
+    "id": "com.alibaba.dubbo.demo.DemoService",
+    "interface": "com.alibaba.dubbo.demo.DemoService",
+    "interfaceClass": "com.alibaba.dubbo.demo.DemoService",
+    "layer": null,
+    "lazy": null,
+    "listener": "",
+    "loadbalance": null,
+    "local": null,
+    "merger": null,
+    "mock": null,
+    "objectType": "com.alibaba.dubbo.demo.DemoService",
+    "onconnect": null,
+    "ondisconnect": null,
+    "owner": null,
+    "protocol": null,
+    "proxy": null,
+    "reconnect": null,
+    "retries": null,
+    "scope": null,
+    "sent": null,
+    "singleton": true,
+    "sticky": null,
+    "stub": null,
+    "stubevent": null,
+    "timeout": null,
+    "uniqueServiceName": "com.alibaba.dubbo.demo.DemoService:1.0.0",
+    "url": "dubbo://localhost:12345",
+    "validation": null,
+    "version": "1.0.0",
+    "invoker": {
+      "class": "com.alibaba.dubbo.common.bytecode.proxy0"
+    }
+  }
+}
+```
+
+The key is the string presentation of `@Reference` `Field` or `Method  `   , `ReferenceBean`'s properties compose value.
+
+
+
+##### Endpoint : `/dubbo/configs`
+
+ `/dubbo/configs` exposes all Dubbo's `*Config` :
+
+```json
+{
+  "ApplicationConfig": {
+    "dubbo-consumer-demo": {
+      "architecture": null,
+      "class": "com.alibaba.dubbo.config.ApplicationConfig",
+      "compiler": null,
+      "dumpDirectory": null,
+      "environment": null,
+      "id": "dubbo-consumer-demo",
+      "logger": null,
+      "name": "dubbo-consumer-demo",
+      "organization": null,
+      "owner": null,
+      "version": null
+    }
+  },
+  "ConsumerConfig": {
+    
+  },
+  "MethodConfig": {
+    
+  },
+  "ModuleConfig": {
+    
+  },
+  "MonitorConfig": {
+    
+  },
+  "ProtocolConfig": {
+    "dubbo": {
+      "accepts": null,
+      "accesslog": null,
+      "buffer": null,
+      "charset": null,
+      "class": "com.alibaba.dubbo.config.ProtocolConfig",
+      "client": null,
+      "codec": null,
+      "contextpath": null,
+      "dispatcher": null,
+      "dispather": null,
+      "exchanger": null,
+      "heartbeat": null,
+      "host": null,
+      "id": "dubbo",
+      "iothreads": null,
+      "name": "dubbo",
+      "networker": null,
+      "path": null,
+      "payload": null,
+      "port": 12345,
+      "prompt": null,
+      "queues": null,
+      "serialization": null,
+      "server": null,
+      "status": null,
+      "telnet": null,
+      "threadpool": null,
+      "threads": null,
+      "transporter": null
+    }
+  },
+  "ProviderConfig": {
+    
+  },
+  "ReferenceConfig": {
+    
+  },
+  "RegistryConfig": {
+    
+  },
+  "ServiceConfig": {
+    
+  }
+}
+```
+
+The key is the simple name of Dubbo `*Config`  Class , the value is`*Config` Beans' Name-Properties Map.
+
+
+
+##### Endpoint : `/dubbo/shutdown`
+
+`/dubbo/shutdown` shutdowns Dubbo's components including registries, protocols, services and references :
+
+```json
+{
+    "shutdown.count": {
+        "registries": 0,
+        "protocols": 1,
+        "services": 0,
+        "references": 1
+    }
+}
+```
+
+"shutdown.count" means the count of shutdown of Dubbo's components , and the value indicates how many components have been shutdown.
 
 
 
