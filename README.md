@@ -272,9 +272,9 @@ Actuator endpoint `dubbo` supports Spring Web MVC Endpoints :
 
 | URI                 | Description                         |
 | ------------------- | ----------------------------------- |
-| ` /dubbo`           | Exposes Dubbo's meta data           |
+| `/dubbo`            | Exposes Dubbo's meta data           |
 | `/dubbo/properties` | Exposes all Dubbo's Properties      |
-| ` /dubbo/services`  | Exposes all Dubbo's `ServiceBean`   |
+| `/dubbo/services`   | Exposes all Dubbo's `ServiceBean`   |
 | `/dubbo/references` | Exposes all Dubbo's `ReferenceBean` |
 | `/dubbo/configs`    | Exposes all Dubbo's `*Config`       |
 | `/dubbo/shutdown`   | Shutdown Dubbo services             |
