@@ -191,7 +191,7 @@ Having trouble with Dubbo Spring Boot? We’d like to help!
 
 ## Building from Source
 
-If you want to try out thr lastest features of Dubbo Spring Boot , it can be easily built with the [maven wrapper](https://github.com/takari/maven-wrapper). Your JDK is 1.7 or above.
+If you want to try out thr latest features of Dubbo Spring Boot , it can be easily built with the [maven wrapper](https://github.com/takari/maven-wrapper). Your JDK is 1.7 or above.
 
 ```
 $ ./mvnw clean install
