@@ -16,7 +16,7 @@ If you don't know about Dubbo , please take a few minutes to learn http://dubbo.
 
 Usually , There are two usage scenarios for Dubbo applications , one is Dubbo service(s) provider , another is Dubbo service(s) consumer, thus let's get a quick start on them.
 
-First of all , we suppose an interface as Dubbo PRC API that  a service provider exports and a service client consumes : 
+First of all , we suppose an interface as Dubbo RPC API that  a service provider exports and a service client consumes : 
 
 ```java
 public interface DemoService {
