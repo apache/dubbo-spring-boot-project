@@ -81,9 +81,9 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     @RequestMapping(value = DUBBO_SHUTDOWN_ENDPOINT_URI, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public DeferredResult shutdown() throws Exception {
+    public DeferredResult<Map<String, Object>> shutdown() throws Exception {
 
-        DeferredResult result = new DeferredResult();
+        DeferredResult<Map<String, Object>> result = new DeferredResult<Map<String, Object>>();
 
         Map<String, Object> shutdownCountData = new LinkedHashMap<>();
 
@@ -100,7 +100,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         // Service Beans
         Map<String, ServiceBean> serviceBeansMap = getServiceBeansMap();
         if (!serviceBeansMap.isEmpty()) {
-            for (ServiceBean serviceBean : serviceBeansMap.values()) {
+            for (ServiceBean<?> serviceBean : serviceBeansMap.values()) {
                 serviceBean.destroy();
             }
         }
@@ -109,7 +109,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         // Reference Beans
         ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
 
-        int referencesCount = beanPostProcessor.getReferenceBeans().size();
+        int referencesCount = beanPostProcessor.getOrder();
 
         beanPostProcessor.destroy();
 
@@ -157,7 +157,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
             String serviceBeanName = entry.getKey();
 
-            ServiceBean serviceBean = entry.getValue();
+            ServiceBean<?> serviceBean = entry.getValue();
 
             Map<String, Object> serviceBeanMetadata = resolveBeanMetadata(serviceBean);
 
@@ -418,7 +418,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
     }
 
-    private Object resolveServiceBean(String serviceBeanName, ServiceBean serviceBean) {
+    private Object resolveServiceBean(String serviceBeanName, ServiceBean<?> serviceBean) {
 
         int index = serviceBeanName.indexOf("#");
 

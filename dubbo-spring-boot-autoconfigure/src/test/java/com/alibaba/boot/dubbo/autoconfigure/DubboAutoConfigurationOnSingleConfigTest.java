@@ -23,8 +23,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
@@ -49,10 +49,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
                 "dubbo.consumer.client=netty"
         }
 )
-@SpringApplicationConfiguration(
-        classes = {DubboAutoConfiguration.class}
+@EnableConfigurationProperties(
+        value = {DubboAutoConfiguration.class}
 )
-@IntegrationTest
+@SpringBootTest
 public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Autowired
@@ -81,18 +81,6 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Autowired
     private DubboAutoConfiguration.SingleDubboConfigConfiguration singleDubboConfigConfiguration;
-
-    @Autowired
-    private Environment environment;
-
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Autowired(required = false)
-    private ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor;
-
-    @Autowired
-    private ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor;
 
     @Autowired
     private DubboScanProperties dubboScanProperties;

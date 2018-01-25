@@ -22,14 +22,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
@@ -56,10 +54,10 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
                 "dubbo.scan.basePackages=com.alibaba.boot.dubbo, com.alibaba.boot.dubbo.condition"
         }
 )
-@SpringApplicationConfiguration(
-        classes = {DubboAutoConfiguration.class}
+@EnableConfigurationProperties(
+        value = {DubboAutoConfiguration.class}
 )
-@IntegrationTest
+@SpringBootTest
 public class DubboAutoConfigurationOnMultipleConfigTest {
 
     @Autowired
@@ -67,9 +65,6 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
 
     @Autowired(required = false)
     private DubboAutoConfiguration.SingleDubboConfigConfiguration singleDubboConfigConfiguration;
-
-    @Autowired
-    private Environment environment;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -122,27 +117,6 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     @Autowired
     @Qualifier("consumer1")
     private ConsumerConfig consumer;
-
-    @Autowired
-    private Map<String, ApplicationConfig> applications = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, ModuleConfig> modules = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, RegistryConfig> registries = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, ProtocolConfig> protocols = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, MonitorConfig> monitors = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, ProviderConfig> providers = new LinkedHashMap<>();
-
-    @Autowired
-    private Map<String, ConsumerConfig> consumers = new LinkedHashMap<>();
 
     @Autowired
     private DubboScanProperties dubboScanProperties;
