@@ -16,6 +16,7 @@
  */
 package com.alibaba.boot.dubbo.demo.provider.bootstrap;
 
+import com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -23,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Dubbo Provider Demo
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see com.alibaba.dubbo.demo.DemoService
+ * @see DefaultDemoService
  * @since 1.0.0
  */
 @SpringBootApplication

@@ -4,7 +4,7 @@
 
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <packaging>pom</packaging>
 

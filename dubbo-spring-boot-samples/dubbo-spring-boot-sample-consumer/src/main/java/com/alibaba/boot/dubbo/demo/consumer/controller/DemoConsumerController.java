@@ -15,9 +15,8 @@
  * limitations under the License.
  */
 package com.alibaba.boot.dubbo.demo.consumer.controller;
-
+import com.alibaba.boot.dubbo.demo.consumer.DemoService;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.demo.DemoService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

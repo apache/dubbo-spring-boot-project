@@ -16,8 +16,8 @@
  */
 package com.alibaba.boot.dubbo.demo.provider.service;
 
+import com.alibaba.boot.dubbo.demo.consumer.DemoService;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.dubbo.demo.DemoService;
 
 /**
  * Default {@link DemoService}
