@@ -17,12 +17,10 @@
 
 
     <dependencies>
-
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <!-- Dubbo -->
@@ -33,10 +31,13 @@
 
         <dependency>
             <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-actuator</artifactId>
             <version>${project.version}</version>
         </dependency>
-
     </dependencies>
-
 </project>
