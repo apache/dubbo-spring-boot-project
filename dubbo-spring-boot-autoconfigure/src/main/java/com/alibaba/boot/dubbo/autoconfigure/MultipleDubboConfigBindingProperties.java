@@ -28,7 +28,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
 
 
 /**
- * Multiple Dubbo Config Binding{@link ConfigurationProperties Properties} with prefix "dubbo."
+ * Multiple Dubbo Config Binding {@link ConfigurationProperties Properties} with prefix "dubbo."
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ConfigurationProperties
