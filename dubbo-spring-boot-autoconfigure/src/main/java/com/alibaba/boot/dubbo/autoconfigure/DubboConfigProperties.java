@@ -41,7 +41,7 @@ public class DubboConfigProperties {
      * Indicates override {@link ConfigUtils#getProperties() Dubbo config properties} from externalized configuration
      * or not.
      */
-    private boolean orverride = DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
+    private boolean override = DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
 
     public boolean isMultiple() {
         return multiple;
@@ -51,11 +51,11 @@ public class DubboConfigProperties {
         this.multiple = multiple;
     }
 
-    public boolean isOrverride() {
-        return orverride;
+    public boolean isOverride() {
+        return override;
     }
 
-    public void setOrverride(boolean orverride) {
-        this.orverride = orverride;
+    public void setOverride(boolean override) {
+        this.override = override;
     }
 }
