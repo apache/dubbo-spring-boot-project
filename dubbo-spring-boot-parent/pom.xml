@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-project</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -23,7 +23,10 @@
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <dubbo.version>2.6.1</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
-
+        <dubbo.version>2.5.9</dubbo.version>
+        <zkclient.version>0.2</zkclient.version>
+        <zookeeper.version>3.4.9</zookeeper.version>
+        <curator-framework.version>2.12.0</curator-framework.version>
         <version.maven-gpg-plugin>1.5</version.maven-gpg-plugin>
     </properties>
 
@@ -58,6 +61,12 @@
 
             <!-- ZK -->
             <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
                 <version>${zkclient.version}</version>
@@ -75,6 +84,12 @@
                         <groupId>org.slf4j</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator-framework.version}</version>
             </dependency>
 
         </dependencies>

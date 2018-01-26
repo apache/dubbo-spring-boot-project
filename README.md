@@ -356,7 +356,7 @@ $ ./mvnw clean install
 <dependency>
   <groupId>com.alibaba.boot</groupId>
   <artifactId>dubbo-spring-boot-starter</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>${revision}</version>
 </dependency>
 ```
 
@@ -489,7 +489,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
 
 ```json
 {
-  "ServiceBean@com.alibaba.dubbo.demo.DemoService#defaultDemoService": {
+  "ServiceBean@com.alibaba.boot.dubbo.demo.api.DemoService#defaultDemoService": {
     "accesslog": null,
     "actives": null,
     "cache": null,
@@ -505,9 +505,9 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "filter": "",
     "generic": "false",
     "group": null,
-    "id": "com.alibaba.dubbo.demo.DemoService",
-    "interface": "com.alibaba.dubbo.demo.DemoService",
-    "interfaceClass": "com.alibaba.dubbo.demo.DemoService",
+    "id": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "interface": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "interfaceClass": "com.alibaba.boot.dubbo.demo.api.DemoService",
     "layer": null,
     "listener": "",
     "loadbalance": null,
@@ -517,7 +517,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "onconnect": null,
     "ondisconnect": null,
     "owner": null,
-    "path": "com.alibaba.dubbo.demo.DemoService",
+    "path": "com.alibaba.boot.dubbo.demo.api.DemoService",
     "proxy": null,
     "retries": null,
     "scope": null,
@@ -526,7 +526,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "timeout": null,
     "token": null,
     "unexported": false,
-    "uniqueServiceName": "com.alibaba.dubbo.demo.DemoService:1.0.0",
+    "uniqueServiceName": "com.alibaba.boot.dubbo.demo.api.DemoService:1.0.0",
     "validation": null,
     "version": "1.0.0",
     "warmup": null,
@@ -546,7 +546,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
 
 ```json
 {
-  "private com.alibaba.dubbo.demo.DemoService com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController.demoService": {
+  "private com.alibaba.boot.dubbo.demo.api.DemoService com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController.demoService": {
     "actives": null,
     "cache": null,
     "callbacks": null,
@@ -557,9 +557,9 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "filter": "",
     "generic": null,
     "group": null,
-    "id": "com.alibaba.dubbo.demo.DemoService",
-    "interface": "com.alibaba.dubbo.demo.DemoService",
-    "interfaceClass": "com.alibaba.dubbo.demo.DemoService",
+    "id": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "interface": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "interfaceClass": "com.alibaba.boot.dubbo.demo.api.DemoService",
     "layer": null,
     "lazy": null,
     "listener": "",
@@ -567,7 +567,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "local": null,
     "merger": null,
     "mock": null,
-    "objectType": "com.alibaba.dubbo.demo.DemoService",
+    "objectType": "com.alibaba.boot.dubbo.demo.api.DemoService",
     "onconnect": null,
     "ondisconnect": null,
     "owner": null,
@@ -582,7 +582,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "stub": null,
     "stubevent": null,
     "timeout": null,
-    "uniqueServiceName": "com.alibaba.dubbo.demo.DemoService:1.0.0",
+    "uniqueServiceName": "com.alibaba.boot.dubbo.demo.api.DemoService:1.0.0",
     "url": "dubbo://localhost:12345",
     "validation": null,
     "version": "1.0.0",

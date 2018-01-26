@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>dubbo-spring-boot-parent</artifactId>
         <groupId>com.alibaba.boot</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>dubbo-spring-boot-parent</artifactId>
+        <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -17,6 +17,7 @@
     <modules>
         <module>dubbo-spring-boot-sample-provider</module>
         <module>dubbo-spring-boot-sample-consumer</module>
+        <module>dubbo-spring-boot-sample-api</module>
     </modules>
 
     <dependencies>
@@ -27,29 +28,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo-demo-api</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

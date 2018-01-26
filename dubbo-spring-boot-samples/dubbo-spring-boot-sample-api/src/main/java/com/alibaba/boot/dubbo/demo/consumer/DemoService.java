@@ -1,4 +1,4 @@
-/*
+package com.alibaba.boot.dubbo.demo.consumer;/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -14,26 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.demo.consumer.bootstrap;
-
-import com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Dubbo Consumer Demo
+ * Demo Service interface
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see DemoConsumerController
  * @since 1.0.0
  */
-@SpringBootApplication(scanBasePackages = "com.alibaba.boot.dubbo.demo.consumer.controller")
-public class DubboConsumerDemo {
+public interface DemoService {
 
-    public static void main(String[] args) {
-
-        SpringApplication.run(DubboConsumerDemo.class,args);
-
-    }
+    String sayHello(String name);
 
 }
