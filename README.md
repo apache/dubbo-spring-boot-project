@@ -356,7 +356,7 @@ $ ./mvnw clean install
 <dependency>
   <groupId>com.alibaba.boot</groupId>
   <artifactId>dubbo-spring-boot-starter</artifactId>
-  <version>${revision}</version>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
