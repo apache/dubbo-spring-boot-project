@@ -717,4 +717,15 @@ The samples project of Dubbo Spring Boot that includes two parts:
 
 #### [Dubbo Provider Sample](dubbo-spring-boot-samples/dubbo-spring-boot-sample-provider)
 
+
+
+Dubbo Service will be exported on localhost with port `12345`.
+
+
+
 #### [Dubbo Consumer Sample](dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer)
+
+
+
+Dubbo Service will be cosumed at Spring WebMVC `Controller` , please visit http://localhost:8080/sayHello?name=HelloWorld after sample launch.
+
