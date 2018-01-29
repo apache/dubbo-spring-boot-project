@@ -17,8 +17,12 @@
 package com.alibaba.boot.dubbo.demo.provider.bootstrap;
 
 import com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Dubbo Provider Demo
@@ -28,12 +32,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0.0
  */
 @SpringBootApplication
-public class DubboProviderDemo {
+public class DubboProviderDemo implements DisposableBean {
+    private static final CountDownLatch latch = new CountDownLatch(1);
+    private static ConfigurableApplicationContext context;
 
-    public static void main(String[] args) {
-
-        SpringApplication.run(DubboProviderDemo.class,args);
-
+    public static void main(String[] args) throws InterruptedException {
+        context = SpringApplication.run(DubboProviderDemo.class, args);
+        latch.await();
     }
 
+    @Override
+    public void destroy() {
+        latch.countDown();
+        context.close();
+    }
 }
