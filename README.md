@@ -350,25 +350,6 @@ $ ./mvnw clean install
 ```
 
 
-
-## Getting From Maven Repository
-
-
-
-**Important Notes:** Work in-process , coming soon...
-
-
-
-```xml
-<dependency>
-  <groupId>com.alibaba.boot</groupId>
-  <artifactId>dubbo-spring-boot-starter</artifactId>
-  <version>${revision}</version>
-</dependency>
-```
-
-
-
 ## Modules
 
 There are some modules in Dubbo Spring Boot Project  , let's take a look at below overview :
