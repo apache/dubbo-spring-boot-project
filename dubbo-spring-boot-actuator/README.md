@@ -322,7 +322,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
 }
 ```
 
-The key is the string presentation of `@Reference` `Field` or `Method  `   , `ReferenceBean`'s properties compose value.
+The key is the string presentation of `@Reference` `Field` or `Method  `  , `ReferenceBean`'s properties compose value.
 
 
 
@@ -460,7 +460,7 @@ management.health.dubbo.status.defaults = memory,load
 
 
 
-`management.health.dubbo.status.extras` is used to override the [ [`StatusChecker`'s defaults](#Defaults)](#Defaults) , the multiple-values is delimited by comma :
+`management.health.dubbo.status.extras` is used to override the [ [`StatusChecker`'s defaults]](#statuschecker-defaults) , the multiple-values is delimited by comma :
 
 ```properties
 management.health.dubbo.status.extras = load,threadpool
