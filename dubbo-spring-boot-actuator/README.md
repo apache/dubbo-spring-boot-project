@@ -1,4 +1,4 @@
-# [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator)
+# Dubbo Spring Boot Production-Ready
 
 `dubbo-spring-boot-actuator` provides production-ready features (e.g. [health checks](#health-checks),  [endpoints](#endpoints), and [externalized configuration](#externalized-configuration)).
 
