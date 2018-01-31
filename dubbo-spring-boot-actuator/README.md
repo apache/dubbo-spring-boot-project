@@ -1,16 +1,16 @@
 # [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator)
 
-`dubbo-spring-boot-actuator` provides production-ready features (e.g. [health checks](#Health Checks),  [endpoints](#Endpoints), and [externalized configuration](#Externalized Configuration)).
+`dubbo-spring-boot-actuator` provides production-ready features (e.g. [health checks](#health-checks),  [endpoints](#endpoints), and [externalized configuration](##externalized-configuration)).
 
 
 
 ## Content
 
-1. [Main Content](../)
-2. [Integrate with Maven](#Integrate with Maven)
-3. [Health Checks](#Health Checks)
-4. [Endpoints](#Endpoints)
-5. [Externalized Configuration](#Externalized Configuration)
+1. [Main Content](https://github.com/dubbo/dubbo-spring-boot-project)
+2. [Integrate with Maven](#integrate-with-maven)
+3. [Health Checks](#health-checks)
+4. [Endpoints](#endpoints)
+5. [Externalized Configuration](#externalized-configuration)
 
 
 
@@ -102,7 +102,7 @@ In [samples](../dubbo-spring-boot-samples/) , `/health`  MVC Endpoints are expos
 
  `memory`, `load`,  `threadpool` and `server` are Dubbo's build-in `StatusChecker`s in above example. Dubbo allows the application to extend `StatusChecker`'s SPI. 
 
-Default , `memory` and `load` will be added into Dubbo's `HealthIndicator` , it could be overridden by externalized configuration [`StatusChecker`'s defaults](#`StatusChecker` Defaults).
+Default , `memory` and `load` will be added into Dubbo's `HealthIndicator` , it could be overridden by externalized configuration [`StatusChecker`'s defaults](#statuschecker-defaults).
 
 
 
