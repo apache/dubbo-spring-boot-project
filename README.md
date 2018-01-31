@@ -16,6 +16,21 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by add
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
+If your project failed to resolve the dependency, try to add the following repository:
+```xml
+<repositories>
+    <repository>
+        <id>sonatype-nexus-snapshots</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+```
 
 ## Getting Started
 
