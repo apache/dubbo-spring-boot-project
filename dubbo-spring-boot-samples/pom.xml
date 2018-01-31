@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -31,4 +31,15 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
