@@ -20,6 +20,7 @@ import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpoint;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration;
+import org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -34,7 +35,7 @@ import org.springframework.context.annotation.Bean;
  * @since 1.0.0
  */
 @ManagementContextConfiguration
-@ConditionalOnClass(Service.class)
+@ConditionalOnClass({Service.class, EndpointMvcAdapter.class})
 @ConditionalOnWebApplication
 public class DubboMvcEndpointManagementContextConfiguration {
 

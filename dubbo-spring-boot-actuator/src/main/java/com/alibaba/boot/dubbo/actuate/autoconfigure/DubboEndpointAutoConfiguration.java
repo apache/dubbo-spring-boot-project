@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0.0
  */
 @Configuration
-@ConditionalOnClass(Service.class)
+@ConditionalOnClass({Service.class, Endpoint.class})
 public class DubboEndpointAutoConfiguration {
 
     @Bean
