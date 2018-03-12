@@ -23,7 +23,7 @@ You can introduce the latest `dubbo-spring-boot-autoconfigure` to your project 
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
