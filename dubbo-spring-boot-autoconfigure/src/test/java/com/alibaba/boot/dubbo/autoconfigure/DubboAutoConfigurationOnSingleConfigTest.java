@@ -92,43 +92,6 @@ public class DubboAutoConfigurationOnSingleConfigTest {
     @Autowired
     private ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor;
 
-    @Autowired
-    private DubboScanProperties dubboScanProperties;
-
-    @Autowired
-    private DubboConfigProperties dubboConfigProperties;
-
-    @Autowired
-    private SingleDubboConfigBindingProperties singleDubboConfigBindingProperties;
-
-
-    @Test
-    public void testDubboScanProperties() {
-
-        Assert.assertTrue(dubboScanProperties.getBasePackages().isEmpty());
-
-    }
-
-    @Test
-    public void testDubboConfigProperties() {
-
-        Assert.assertFalse(dubboConfigProperties.isMultiple());
-
-    }
-
-    @Test
-    public void testSingleDubboConfigBindingProperties() {
-
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getApplication());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getConsumer());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getModule());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getMonitor());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getProtocol());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getProvider());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getRegistry());
-
-    }
-
     @Test
     public void testApplicationConfig() {
 

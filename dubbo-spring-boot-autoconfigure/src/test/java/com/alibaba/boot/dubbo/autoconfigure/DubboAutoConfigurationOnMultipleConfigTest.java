@@ -42,13 +42,13 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource(
         properties = {
-                "dubbo.applications.application1.name = dubbo-demo-application",
+                "dubbo.applications.application1.NAME = dubbo-demo-application",
                 "dubbo.applications.application2.name = dubbo-demo-application2",
                 "dubbo.modules.module1.name = dubbo-demo-module",
                 "dubbo.registries.registry1.address = zookeeper://192.168.99.100:32770",
                 "dubbo.protocols.protocol1.name=dubbo",
-                "dubbo.protocols.protocol1.port=20880",
-                "dubbo.monitors.monitor1.address=zookeeper://127.0.0.1:32770",
+                "dubbo.protocols.protocol1.pORt=20880",
+                "dubbo.monitors.monitor1.Address=zookeeper://127.0.0.1:32770",
                 "dubbo.providers.provider1.host=127.0.0.1",
                 "dubbo.consumers.consumer1.client=netty",
                 "dubbo.config.multiple=true",
@@ -142,81 +142,21 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     @Autowired
     private Map<String, ConsumerConfig> consumers = new LinkedHashMap<>();
 
-    @Autowired
-    private DubboScanProperties dubboScanProperties;
-
-    @Autowired
-    private DubboConfigProperties dubboConfigProperties;
-
-    @Autowired
-    private MultipleDubboConfigBindingProperties multipleDubboConfigBindingProperties;
-
-    @Test
-    public void testDubboScanProperties() {
-
-        Assert.assertFalse(dubboScanProperties.getBasePackages().isEmpty());
-
-    }
-
-    @Test
-    public void testDubboConfigProperties() {
-
-        Assert.assertTrue(dubboConfigProperties.isMultiple());
-
-    }
-
     @Test
     public void testMultipleDubboConfigBindingProperties() {
 
-        /**
-         * Multiple {@link ApplicationConfig}
-         */
-        Map<String, ApplicationConfig> applications = multipleDubboConfigBindingProperties.getApplications();
 
         Assert.assertEquals(2, applications.size());
-
-        applications = multipleDubboConfigBindingProperties.getApplications();
-        Assert.assertEquals(2, applications.size());
-
-        /**
-         * Multiple {@link ModuleConfig}
-         */
-        Map<String, ModuleConfig> modules = multipleDubboConfigBindingProperties.getModules();
 
         Assert.assertEquals(1, modules.size());
 
-        /**
-         * Multiple {@link RegistryConfig}
-         */
-        Map<String, RegistryConfig> registries = multipleDubboConfigBindingProperties.getRegistries();
-
         Assert.assertEquals(1, registries.size());
-
-        /**
-         * Multiple {@link ProtocolConfig}
-         */
-        Map<String, ProtocolConfig> protocols = multipleDubboConfigBindingProperties.getProtocols();
 
         Assert.assertEquals(1, protocols.size());
 
-        /**
-         * Multiple {@link MonitorConfig}
-         */
-        Map<String, MonitorConfig> monitors = multipleDubboConfigBindingProperties.getMonitors();
-
         Assert.assertEquals(1, monitors.size());
 
-        /**
-         * Multiple {@link ProviderConfig}
-         */
-        Map<String, ProviderConfig> providers = multipleDubboConfigBindingProperties.getProviders();
-
         Assert.assertEquals(1, providers.size());
-
-        /**
-         * Multiple {@link ConsumerConfig}
-         */
-        Map<String, ConsumerConfig> consumers = multipleDubboConfigBindingProperties.getConsumers();
 
         Assert.assertEquals(1, consumers.size());
 
@@ -230,9 +170,6 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
          */
         Map<String, ApplicationConfig> applications = beansOfTypeIncludingAncestors(applicationContext, ApplicationConfig.class);
 
-        Assert.assertEquals(2, applications.size());
-
-        applications = multipleDubboConfigBindingProperties.getApplications();
         Assert.assertEquals(2, applications.size());
 
         /**
