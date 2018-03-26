@@ -24,8 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -49,13 +48,12 @@ import java.util.Map;
         "management.health.dubbo.status.defaults = memory",
         "management.health.dubbo.status.extras = load,threadpool"
 })
-@SpringApplicationConfiguration(
+@SpringBootTest(
         classes = {
                 DubboHealthIndicator.class,
                 DubboHealthIndicatorTest.class
         }
 )
-@IntegrationTest
 @EnableConfigurationProperties(DubboHealthIndicatorProperties.class)
 @EnableDubboConfig
 public class DubboHealthIndicatorTest {

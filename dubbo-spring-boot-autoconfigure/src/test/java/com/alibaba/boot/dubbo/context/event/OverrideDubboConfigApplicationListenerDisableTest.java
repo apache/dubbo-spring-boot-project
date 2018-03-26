@@ -21,8 +21,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -43,10 +42,9 @@ import java.util.Properties;
                 "dubbo.module.name = dubbo-demo-module",
         }
 )
-@SpringApplicationConfiguration(
+@SpringBootTest(
         classes = {OverrideDubboConfigApplicationListener.class}
 )
-@IntegrationTest
 public class OverrideDubboConfigApplicationListenerDisableTest {
 
     @BeforeClass

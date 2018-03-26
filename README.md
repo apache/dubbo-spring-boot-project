@@ -54,7 +54,7 @@ If your project failed to resolve the dependency, try to add the following repos
 | versions | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
 | `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1`  | 1.7 + | `1.3.0.RELEASE` + | `2.5.11` + |
+| `0.1.1`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
 
 
 
