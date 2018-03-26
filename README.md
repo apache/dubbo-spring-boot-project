@@ -1,9 +1,9 @@
 # Dubbo Spring Boot Project
 
-[Dubbo](https://github.com/alibaba/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more , it aslo provides 
+[Dubbo](https://github.com/alibaba/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides
 
-* [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g.annotation-driven, auto configuration, externalized configuration).
-* [production-ready features](dubbo-spring-boot-actuator) (e.g.security, health checks, externalized configuration).
+* [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
+* [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
 
 
@@ -11,16 +11,24 @@
 
 
 
+## Versions
 
+For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
 
+* `0.2.x` is a main stream release version for Spring Boot 2.x
+
+* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
+
+  ​
 
 ## Integrate with Maven
+
 You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
@@ -38,6 +46,15 @@ If your project failed to resolve the dependency, try to add the following repos
     </repository>
 </repositories>
 ```
+
+
+
+## Dependencies
+
+| versions | Java  | Spring Boot       | Dubbo      |
+| -------- | ----- | ----------------- | ---------- |
+| `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
+| `0.1.1`  | 1.7 + | `1.3.0.RELEASE` + | `2.5.11` + |
 
 
 
