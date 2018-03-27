@@ -14,6 +14,18 @@
 
 
 
+
+## Versions
+
+For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot 2.x and 1.x once release : 
+
+* `0.2.x` is a main stream release version for Spring Boot 2.x
+
+* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
+
+  ​
+
+
 ## Integrate with Maven
 
 You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
@@ -172,8 +184,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "1.0.0"
-    "dubbo": "2.5.9"
+    "dubbo-spring-boot": "0.2.0"
+    "dubbo": "2.5.11"
   },
   "urls": {
     "dubbo": "https://github.com/alibaba/dubbo",
