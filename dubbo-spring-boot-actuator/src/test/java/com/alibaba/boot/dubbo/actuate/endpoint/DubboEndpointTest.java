@@ -48,15 +48,6 @@ public class DubboEndpointTest {
     private DubboEndpoint dubboEndpoint;
 
     @Test
-    public void testDefaultValue() {
-
-        Assert.assertTrue(dubboEndpoint.isSensitive());
-        Assert.assertFalse(dubboEndpoint.isEnabled());
-        Assert.assertEquals("dubbo", dubboEndpoint.getId());
-
-    }
-
-    @Test
     public void testInvoke() {
 
         Map<String, Object> metadata = dubboEndpoint.invoke();

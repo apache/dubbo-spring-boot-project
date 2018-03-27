@@ -29,8 +29,8 @@ import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.bind.RelaxedDataBinder;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.source.ConfigurationPropertySources;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -87,15 +87,14 @@ public class DubboAutoConfiguration {
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
     @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
-    @ConditionalOnClass(RelaxedPropertyResolver.class)
+    @ConditionalOnClass(ConfigurationPropertySources.class)
     @Bean
     public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
-        RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment);
-        Set<String> packagesToScan = resolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+        Set<String> packagesToScan = environment.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
     }
 
-    @ConditionalOnClass(RelaxedDataBinder.class)
+    @ConditionalOnClass(Binder.class)
     @Bean
     @Scope(scopeName = SCOPE_PROTOTYPE)
     public RelaxedDubboConfigBinder relaxedDubboConfigBinder() {

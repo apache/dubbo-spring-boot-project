@@ -18,13 +18,13 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.util.DubboUtils;
 import com.alibaba.dubbo.common.Version;
-import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
-import org.springframework.boot.actuate.endpoint.Endpoint;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
+import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_ENDPOINT_ID;
 import static com.alibaba.boot.dubbo.util.DubboUtils.*;
 
 /**
@@ -34,24 +34,22 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.*;
  * @see Endpoint
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = "endpoints.dubbo", ignoreUnknownFields = false)
-public class DubboEndpoint extends AbstractEndpoint<Map<String, Object>> {
+@Endpoint(id = DUBBO_ENDPOINT_ID)
+public class DubboEndpoint {
 
-    public static final String DUBBO_SHUTDOWN_ENDPOINT_URI = "/shutdown";
+    public static final String DUBBO_ENDPOINT_ID = "dubbo";
 
-    public static final String DUBBO_CONFIGS_ENDPOINT_URI = "/configs";
+    public static final String DUBBO_SHUTDOWN_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-shutdown";
 
-    public static final String DUBBO_SERVICES_ENDPOINT_URI = "/services";
+    public static final String DUBBO_CONFIGS_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-configs";
 
-    public static final String DUBBO_REFERENCES_ENDPOINT_URI = "/references";
+    public static final String DUBBO_SERVICES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-services";
 
-    public static final String DUBBO_PROPERTIES_ENDPOINT_URI = "/properties";
+    public static final String DUBBO_REFERENCES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-references";
 
-    public DubboEndpoint() {
-        super("dubbo", true, false);
-    }
+    public static final String DUBBO_PROPERTIES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-properties";
 
-    @Override
+    @ReadOperation
     public Map<String, Object> invoke() {
 
         Map<String, Object> metaData = new LinkedHashMap<>();
@@ -69,17 +67,10 @@ public class DubboEndpoint extends AbstractEndpoint<Map<String, Object>> {
         urls.put("issues", DUBBO_SPRING_BOOT_ISSUES_URL);
         urls.put("git", DUBBO_SPRING_BOOT_GIT_URL);
 
-        Map<String, String> endpoints = new LinkedHashMap<>();
-        endpoints.put("shutdown", DUBBO_SHUTDOWN_ENDPOINT_URI);
-        endpoints.put("configs", DUBBO_CONFIGS_ENDPOINT_URI);
-        endpoints.put("services", DUBBO_SERVICES_ENDPOINT_URI);
-        endpoints.put("references", DUBBO_REFERENCES_ENDPOINT_URI);
-        endpoints.put("properties", DUBBO_PROPERTIES_ENDPOINT_URI);
-
         metaData.put("versions", versions);
         metaData.put("urls", urls);
-        metaData.put("endpoints", endpoints);
 
         return metaData;
     }
+
 }

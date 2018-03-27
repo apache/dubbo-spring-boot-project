@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.context.event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 
@@ -47,7 +48,7 @@ public class AwaitingNonWebApplicationListener implements ApplicationListener<Ap
 
         final SpringApplication springApplication = event.getSpringApplication();
 
-        if (springApplication.isWebEnvironment()) {
+        if (!WebApplicationType.NONE.equals(springApplication.getWebApplicationType())) {
             return;
         }
 

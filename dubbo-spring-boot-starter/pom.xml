@@ -46,10 +46,6 @@
             <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>dubbo-spring-boot-actuator</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
     </dependencies>
 </project>

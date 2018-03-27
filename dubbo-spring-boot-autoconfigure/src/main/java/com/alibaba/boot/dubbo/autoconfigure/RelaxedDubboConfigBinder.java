@@ -19,32 +19,54 @@ package com.alibaba.boot.dubbo.autoconfigure;
 import com.alibaba.dubbo.config.AbstractConfig;
 import com.alibaba.dubbo.config.spring.context.properties.AbstractDubboConfigBinder;
 import com.alibaba.dubbo.config.spring.context.properties.DubboConfigBinder;
-import org.springframework.beans.MutablePropertyValues;
-import org.springframework.boot.bind.RelaxedDataBinder;
+import org.springframework.boot.context.properties.bind.BindHandler;
+import org.springframework.boot.context.properties.bind.Bindable;
+import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.bind.handler.IgnoreErrorsBindHandler;
+import org.springframework.boot.context.properties.bind.handler.NoUnboundElementsBindHandler;
+import org.springframework.boot.context.properties.source.ConfigurationPropertySource;
+import org.springframework.boot.context.properties.source.UnboundElementsSourceFilter;
 
-import java.util.Map;
-
-import static com.alibaba.dubbo.config.spring.util.PropertySourcesUtils.getSubProperties;
+import static org.springframework.boot.context.properties.source.ConfigurationPropertySources.from;
 
 /**
  * Spring Boot Relaxed {@link DubboConfigBinder} implementation
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ * @revision 0.2.0
+ * @see org.springframework.boot.context.properties.ConfigurationPropertiesBinder
  * @since 0.1.1
  */
 public class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {
 
     @Override
     public <C extends AbstractConfig> void bind(String prefix, C dubboConfig) {
-        RelaxedDataBinder relaxedDataBinder = new RelaxedDataBinder(dubboConfig);
-        // Set ignored*
-        relaxedDataBinder.setIgnoreInvalidFields(isIgnoreInvalidFields());
-        relaxedDataBinder.setIgnoreUnknownFields(isIgnoreUnknownFields());
-        // Get properties under specified prefix from PropertySources
-        Map<String, String> properties = getSubProperties(getPropertySources(), prefix);
-        // Convert Map to MutablePropertyValues
-        MutablePropertyValues propertyValues = new MutablePropertyValues(properties);
+
+        // Converts ConfigurationPropertySources
+        Iterable<ConfigurationPropertySource> propertySources = from(getPropertySources());
+
+        // Wrap Bindable from DubboConfig instance
+        Bindable<C> bindable = Bindable.ofInstance(dubboConfig);
+
+        Binder binder = new Binder(propertySources);
+
+        // Get BindHandler
+        BindHandler bindHandler = getBindHandler();
+
         // Bind
-        relaxedDataBinder.bind(propertyValues);
+        binder.bind(prefix, bindable, bindHandler);
+
+    }
+
+    private BindHandler getBindHandler() {
+        BindHandler handler = BindHandler.DEFAULT;
+        if (isIgnoreInvalidFields()) {
+            handler = new IgnoreErrorsBindHandler(handler);
+        }
+        if (!isIgnoreUnknownFields()) {
+            UnboundElementsSourceFilter filter = new UnboundElementsSourceFilter();
+            handler = new NoUnboundElementsBindHandler(handler, filter);
+        }
+        return handler;
     }
 }
