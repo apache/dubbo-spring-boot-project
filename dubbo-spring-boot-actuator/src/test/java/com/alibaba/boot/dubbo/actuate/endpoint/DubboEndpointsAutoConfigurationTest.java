@@ -39,11 +39,11 @@ import java.util.SortedMap;
 @SpringBootTest(
         classes = {
                 DubboEndpointsAutoConfiguration.class,
-                DubboEndpointsAutoConfigurationTest.class,
-                DubboEndpointsAutoConfigurationTest.DefaultDemoService.class
+                DubboEndpointsAutoConfigurationTest.class
         },
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
+                "dubbo.service.version = 1.0.0",
                 "dubbo.application.id = my-application",
                 "dubbo.application.name = dubbo-demo-application",
                 "dubbo.module.id = my-module",
@@ -55,7 +55,13 @@ import java.util.SortedMap;
                 "dubbo.protocol.port=20880",
                 "dubbo.provider.id=my-provider",
                 "dubbo.provider.host=127.0.0.1",
-                "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint.mvc"
+                "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint",
+                "management.endpoint.dubbo.enabled = true",
+                "management.endpoint.dubbo-shutdown.enabled = true",
+                "management.endpoint.dubbo-configs.enabled = true",
+                "management.endpoint.dubbo-services.enabled = true",
+                "management.endpoint.dubbo-references.enabled = true",
+                "management.endpoint.dubbo-properties.enabled = true",
         })
 @EnableAutoConfiguration
 public class DubboEndpointsAutoConfigurationTest {
@@ -137,7 +143,7 @@ public class DubboEndpointsAutoConfigurationTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean@com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService#dubboMvcEndpointTest.DefaultDemoService");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean@com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService#dubboEndpointsAutoConfigurationTest.DefaultDemoService");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
@@ -168,12 +174,12 @@ public class DubboEndpointsAutoConfigurationTest {
         Assert.assertEquals("20880", properties.get("dubbo.protocol.port"));
         Assert.assertEquals("my-provider", properties.get("dubbo.provider.id"));
         Assert.assertEquals("127.0.0.1", properties.get("dubbo.provider.host"));
-        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint.mvc", properties.get("dubbo.scan.basePackages"));
+        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint", properties.get("dubbo.scan.basePackages"));
     }
 
 
     @Service(
-            version = "1.0.0",
+            version = "${dubbo.service.version}",
             application = "${dubbo.application.id}",
             protocol = "${dubbo.protocol.id}",
             registry = "${dubbo.registry.id}"

@@ -76,7 +76,7 @@ public class DubboShutdownEndpoint extends AbstractDubboEndpoint {
         shutdownData.put("shutdown.count", shutdownCountData);
 
 
-        return shutdownCountData;
+        return shutdownData;
     }
 
 }
