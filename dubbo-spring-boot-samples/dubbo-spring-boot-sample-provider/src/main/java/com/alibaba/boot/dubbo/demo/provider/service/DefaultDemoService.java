@@ -27,7 +27,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @since 1.0.0
  */
 @Service(
-        version = "1.0.0",
+        version = "${demo.service.version}",
         application = "${dubbo.application.id}",
         protocol = "${dubbo.protocol.id}",
         registry = "${dubbo.registry.id}"
