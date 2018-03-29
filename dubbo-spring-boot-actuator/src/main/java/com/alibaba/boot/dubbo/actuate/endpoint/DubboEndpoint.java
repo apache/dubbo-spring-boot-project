@@ -69,16 +69,8 @@ public class DubboEndpoint extends AbstractEndpoint<Map<String, Object>> {
         urls.put("issues", DUBBO_SPRING_BOOT_ISSUES_URL);
         urls.put("git", DUBBO_SPRING_BOOT_GIT_URL);
 
-        Map<String, String> endpoints = new LinkedHashMap<>();
-        endpoints.put("shutdown", DUBBO_SHUTDOWN_ENDPOINT_URI);
-        endpoints.put("configs", DUBBO_CONFIGS_ENDPOINT_URI);
-        endpoints.put("services", DUBBO_SERVICES_ENDPOINT_URI);
-        endpoints.put("references", DUBBO_REFERENCES_ENDPOINT_URI);
-        endpoints.put("properties", DUBBO_PROPERTIES_ENDPOINT_URI);
-
         metaData.put("versions", versions);
         metaData.put("urls", urls);
-        metaData.put("endpoints", endpoints);
 
         return metaData;
     }

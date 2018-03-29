@@ -1,58 +1,66 @@
 # Dubbo Spring Boot Production-Ready
 
-`dubbo-spring-boot-actuator` provides production-ready features (e.g. [health checks](#health-checks),  [endpoints](#endpoints), and [externalized configuration](#externalized-configuration)).
+`dubbo-spring-boot-actuator` 提供 Production-Ready 特性 (比如 [健康检查](#health-checks),  [OPS 端点](#endpoints), and [外部化配置](#externalized-configuration)).
 
 
 
-## Content
+## 目录
 
-1. [Main Content](https://github.com/dubbo/dubbo-spring-boot-project)
-2. [Integrate with Maven](#integrate-with-maven)
-3. [Health Checks](#health-checks)
-4. [Endpoints](#endpoints)
-5. [Externalized Configuration](#externalized-configuration)
+1. [主目录](https://github.com/dubbo/dubbo-spring-boot-project)
+2. [Maven 整合](#integrate-with-maven)
+3. [健康检查](#health-checks)
+4. [OPS 端点](#endpoints)
+5. [外部化配置](#externalized-configuration)
 
 
 
-## Integrate with Maven
+## Maven 整合
 
-You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
+### 稳定版本
+
+`dubbo-spring-boot-actuator` 是可选模块，它不应该独立存在，需要与 `dubbo-spring-boot-starter` 并存方可工作正常。您可以直接增加到
+应用工程的 pom.xml 文件：
+
+
 ```xml
-<dependency>
-    <groupId>com.alibaba.boot</groupId>
-    <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.1.1</version>
-</dependency>
+<dependencies>
+
+    ...
+
+    <!-- 功能特性 -->
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+
+    <!-- Production-Ready 特性 -->
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-actuator</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+
+     ...
+
+</dependencies>
 ```
-If your project failed to resolve the dependency, try to add the following repository:
-```xml
-<repositories>
-    <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-</repositories>
-```
+
+### 开发版本
+
+如果你需要尝试最新 `dubbo-spring-boot-actuator` 的特性，您可以自将[开发分支](../tree/0.1.x) 手动 Maven install 到本地 Maven 仓库。
 
 
+## 健康检查
 
-## Health Checks
-
-`dubbo-spring-boot-actuator`  supports the standard Spring Boot `HealthIndicator` as a production-ready feature , which will be aggregated into Spring Boot's `Health` and exported on `HealthEndpoint` that works MVC (Spring Web MVC) and JMX (Java Management Extensions) both if they are available.
-
-
-
-### MVC Endpoint : `/health`
+`dubbo-spring-boot-actuator` 实现了标准的 Spring Boot `HealthIndicator` , 它将聚合 Dubbo 相关的健康指标数据到 Spring Boot's `Health`
+ ，并且 暴露在 `HealthEndpoint` ，它能够在 works MVC (Spring Web MVC) and JMX (Java Management Extensions) both if they are available.
 
 
+### Web Endpoint : `/health`
 
-Suppose a Spring Boot Web application did not specify `management.port`, you can access http://localhost:8080/health via Web Client and will get a response with JSON format is like below : 
+
+假设 Spring Boot Web 应用没有指定 `management.port` 属性, 运行后，通过 Web 客户端访问 http://localhost:8080/health，HTTP 相应将会返回一个 JSON 格式的内容，如下所示:
 
 ```json
 {
@@ -96,31 +104,28 @@ Suppose a Spring Boot Web application did not specify `management.port`, you can
 }
 ```
 
-In [samples](../dubbo-spring-boot-samples/) , `/health`  MVC Endpoints are exposed  on http://localhost:9091/health ([provider](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-provider)) and http://localhost:8081/health ([consumer](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer))
 
 
+其中 `memory`, `load`,  `threadpool` and `server` 是 Dubbo 内建的 `StatusChecker`s，并且 Dubbo 允许应用程序扩展 `StatusChecker`'s SPI.
 
- `memory`, `load`,  `threadpool` and `server` are Dubbo's build-in `StatusChecker`s in above example. Dubbo allows the application to extend `StatusChecker`'s SPI. 
-
-Default , `memory` and `load` will be added into Dubbo's `HealthIndicator` , it could be overridden by externalized configuration [`StatusChecker`'s defaults](#statuschecker-defaults).
+默认情况, `memory` and `load` 将被添加到 Dubbo 的 `HealthIndicator` , 可以通过外部化配置覆盖默认值，请参考 [`StatusChecker`'s 默认值](#statuschecker-defaults).
 
 
 
 ### JMX Endpoint : `healthEndpoint`
 
 
-
-`healthEndpoint` is a JMX (Java Management Extensions) Endpoint with ObjectName `org.springframework.boot:type=Endpoint,name=healthEndpoint` , it can be managed by JMX agent ,e.g. JDK tools : `jconsole` and so on.
+`dubbo-spring-boot-actuator` 也将暴露健康检查的 JMX Endpoint，它的 `ObjectName` 为 `org.springframework.boot:type=Endpoint,name=healthEndpoint` ,
+ 开发人员可以通过 JMX 代理工具 ,比如 `jconsole` 等：
 
 ![](JMX_HealthEndpoint.png)
 
 
 
-### Build-in `StatusChecker`s
+### 内建 `StatusChecker`s
 
 
-
- `META-INF/dubbo/internal/com.alibaba.dubbo.common.status.StatusChecker` declares Build-in `StatusChecker`s as follow :
+Dubbo 内建 `StatusChecker` 实现定义在 `META-INF/dubbo/internal/com.alibaba.dubbo.common.status.StatusChecker` 文件中，内容如下 :
 
 ```properties
 registry=com.alibaba.dubbo.registry.status.RegistryStatusChecker
