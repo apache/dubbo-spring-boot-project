@@ -23,14 +23,31 @@ For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 
 
 ## Integrate with Maven
 
-You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
+You can introduce the latest `dubbo-spring-boot-project` to your project by adding the following dependency to your pom.xml
 ```xml
-<dependency>
-    <groupId>com.alibaba.boot</groupId>
-    <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.1</version>
-</dependency>
+<dependencies>
+
+    ...
+
+    <!-- Core Features -->
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+
+    <!-- Production-Ready Features -->
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-actuator</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+
+     ...
+
+</dependencies>
 ```
+
 If your project failed to resolve the dependency, try to add the following repository:
 ```xml
 <repositories>
@@ -82,7 +99,7 @@ Service Provider implements `DemoService` :
 
 ```java
 @Service(
-        version = "1.0.0",
+        version = "${demo.service.version}",
         application = "${dubbo.application.id}",
         protocol = "${dubbo.protocol.id}",
         registry = "${dubbo.registry.id}"
@@ -123,6 +140,9 @@ spring.application.name = dubbo-provider-demo
 server.port = 9090
 management.port = 9091
 
+# Service version
+demo.service.version = 1.0.0
+
 # Base packages to scan Dubbo Components (e.g @Service , @Reference)
 dubbo.scan.basePackages  = com.alibaba.boot.dubbo.demo.provider.service
 
@@ -161,7 +181,7 @@ Service consumer requires Spring Beans to reference `DemoService` :
 @RestController
 public class DemoConsumerController {
 
-    @Reference(version = "1.0.0",
+    @Reference(version = "${demo.service.version}",
             application = "${dubbo.application.id}",
             url = "dubbo://localhost:12345")
     private DemoService demoService;
@@ -201,6 +221,8 @@ spring.application.name = dubbo-consumer-demo
 server.port = 8080
 management.port = 8081
 
+# Service version
+demo.service.version = 1.0.0
 
 # Dubbo Config properties
 ## ApplicationConfig Bean
