@@ -16,7 +16,7 @@ For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 
 
 * `0.2.x` is a main stream release version for Spring Boot 2.x
 
-* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
+* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
 
   ​
 

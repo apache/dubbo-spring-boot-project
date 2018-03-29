@@ -18,7 +18,7 @@
 
 * `0.2.x` 是支持 Spring Boot 2.x 的主要版本（推荐，长期维护）
 
-* [`0.1.x`](tree/0.1.x) 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
+* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
 
 
 ## Maven 整合
