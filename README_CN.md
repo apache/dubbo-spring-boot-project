@@ -54,7 +54,7 @@
 
 ### 开发版本
 
-如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可以自将[开发分支](tree/0.1.x) 手动 Maven install 到本地 Maven 仓库。
+如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可以自将[开发分支](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 手动 Maven install 到本地 Maven 仓库。
 
 
 
