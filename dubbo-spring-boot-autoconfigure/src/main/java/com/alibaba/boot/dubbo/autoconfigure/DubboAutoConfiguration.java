@@ -91,7 +91,7 @@ public class DubboAutoConfiguration {
     @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
     @Autowired
     @Bean
-    public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
+    public static ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
         RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment);
         Set<String> packagesToScan = resolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
