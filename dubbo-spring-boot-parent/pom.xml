@@ -41,6 +41,7 @@
         <zookeeper.version>3.4.9</zookeeper.version>
         <curator-framework.version>2.12.0</curator-framework.version>
         <version.maven-gpg-plugin>1.5</version.maven-gpg-plugin>
+        <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -236,7 +237,7 @@
             <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
-                <version>0.12</version>
+                <version>${apache-rat-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>verify.rat</id>
