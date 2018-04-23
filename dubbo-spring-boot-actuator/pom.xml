@@ -20,7 +20,7 @@
     <parent>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <groupId>com.alibaba.boot</groupId>
-        <version>${revision}</version>
+        <version>0.1.0</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>

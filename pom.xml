@@ -18,19 +18,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
-    <version>${revision}</version>
+    <version>0.1.0</version>
 
     <packaging>pom</packaging>
 
     <name>Dubbo Spring Boot Project</name>
     <description>Dubbo Spring Boot Project</description>
     <url>https://github.com/dubbo/dubbo-spring-boot-project</url>
-
-    <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-    </properties>
 
     <modules>
         <module>dubbo-spring-boot-parent</module>
@@ -83,5 +85,39 @@
             <organizationUrl>http://dubbo.io</organizationUrl>
         </developer>
     </developers>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
