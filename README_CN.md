@@ -11,59 +11,52 @@
 > Dubbo *|ˈdʌbəʊ|* is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
 
-
-## 版本
-
-从现在开始, `dubbo-spring-boot-project` 将在每个发布中发行两个版本 :
-
-* `0.2.x` 是支持 Spring Boot 2.x 的主要版本（推荐，长期维护）
-
-* `0.1.x` 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
+**当前工程是支持 Spring Boot 1.x 的维护工程**
 
 
-## Maven 整合
+## 已发行版本
 
-### 稳定版本
-
-如果你希望使用稳定的 `dubbo-spring-boot-project`，您可以自行将以下 Maven 依赖添加到您的工程 pom.xml：
-
+您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
-<dependencies>
+<dependency>
+    <groupId>com.alibaba.boot</groupId>
+    <artifactId>dubbo-spring-boot-starter</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
 
-    ...
-
-    <!-- 功能特性 -->
-    <dependency>
-        <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
-    </dependency>
-
-    <!-- Production-Ready 特性 -->
-    <dependency>
-        <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-actuator</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
-    </dependency>
-
-     ...
-
-</dependencies>
+如果您的工程遇到了依赖问题, 请尝试添加如下 Maven 参考到工程的 `pom.xml` 文件中：
+```xml
+<repositories>
+    <repository>
+        <id>sonatype-nexus-snapshots</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
 ```
 
 
-### 开发版本
+## 开发版本
 
-如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可以自将[开发分支](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 手动 Maven install 到本地 Maven 仓库。
+### 源代码构建
 
+如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
 
+1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) 
+2. Maven install 当前工程
+> Maven install = `mvn install`
 
-## 依赖关系
+### 依赖关系
 
 | 版本 | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
-| `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2`+ |
 
 
 

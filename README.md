@@ -5,48 +5,23 @@
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
-
-
 > Dubbo *|ˈdʌbəʊ|* is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
-## [中文文档](README.md)
+
+**Current Project is a legacy one for maintaining Spring Boot 1.x**
+
+## [中文说明](README.md)
 
 
-## Versions
+## Released Version
 
-For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
-
-* `0.2.x` is a main stream release version for Spring Boot 2.x
-
-* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
-
-  ​
-
-## Integrate with Maven
-
-You can introduce the latest `dubbo-spring-boot-project` to your project by adding the following dependency to your pom.xml
+You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
-<dependencies>
-
-    ...
-
-    <!-- Core Features -->
-    <dependency>
-        <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
-    </dependency>
-
-    <!-- Production-Ready Features -->
-    <dependency>
-        <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-actuator</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
-    </dependency>
-
-     ...
-
-</dependencies>
+<dependency>
+    <groupId>com.alibaba.boot</groupId>
+    <artifactId>dubbo-spring-boot-starter</artifactId>
+    <version>0.1.0</version>
+</dependency>
 ```
 
 If your project failed to resolve the dependency, try to add the following repository:
@@ -66,14 +41,21 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
+## Developing Version
 
-## Dependencies
+### Build from Source
 
-| versions | Java  | Spring Boot       | Dubbo      |
-| -------- | ----- | ----------------- | ---------- |
-| `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
+If you'd like to attempt to experience latest features, you also can build from source as follow:
 
+1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) in your local repository 
+2. Maven install current project in your local repository.
+> Maven install = `mvn install`
+
+### Dependencies
+
+| versions | Java  | Spring Boot | Dubbo      |
+| -------- | ----- | ----------- | ---------- |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
 
 
 ## Getting Started
