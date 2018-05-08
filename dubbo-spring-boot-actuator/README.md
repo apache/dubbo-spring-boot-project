@@ -14,6 +14,18 @@
 
 
 
+
+## Versions
+
+For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot 2.x and 1.x once release : 
+
+* `0.2.x` is a main stream release version for Spring Boot 2.x
+
+* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
+
+  ​
+
+
 ## Integrate with Maven
 
 You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
@@ -21,7 +33,7 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0-SNAPSHOT</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
@@ -48,11 +60,11 @@ If your project failed to resolve the dependency, try to add the following repos
 
 
 
-### MVC Endpoint : `/health`
+### Web Endpoint : `/health`
 
 
 
-Suppose a Spring Boot Web application did not specify `management.port`, you can access http://localhost:8080/health via Web Client and will get a response with JSON format is like below : 
+Suppose a Spring Boot Web application did not specify `management.server.port`, you can access http://localhost:8080/actuator/health via Web Client and will get a response with JSON format is like below : 
 
 ```json
 {
@@ -96,21 +108,24 @@ Suppose a Spring Boot Web application did not specify `management.port`, you can
 }
 ```
 
-In [samples](../dubbo-spring-boot-samples/) , `/health`  MVC Endpoints are exposed  on http://localhost:9091/health ([provider](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-provider)) and http://localhost:8081/health ([consumer](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer))
+In [samples](../dubbo-spring-boot-samples/) , `/health` Web Endpoints are exposed on http://localhost:8081/health 
+([consumer](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer))
 
 
 
- `memory`, `load`,  `threadpool` and `server` are Dubbo's build-in `StatusChecker`s in above example. Dubbo allows the application to extend `StatusChecker`'s SPI. 
+ `memory`, `load`,  `threadpool` and `server` are Dubbo's build-in `StatusChecker`s in above example. 
+ Dubbo allows the application to extend `StatusChecker`'s SPI. 
 
-Default , `memory` and `load` will be added into Dubbo's `HealthIndicator` , it could be overridden by externalized configuration [`StatusChecker`'s defaults](#statuschecker-defaults).
-
-
-
-### JMX Endpoint : `healthEndpoint`
+Default , `memory` and `load` will be added into Dubbo's `HealthIndicator` , it could be overridden by 
+externalized configuration [`StatusChecker`'s defaults](#statuschecker-defaults).
 
 
 
-`healthEndpoint` is a JMX (Java Management Extensions) Endpoint with ObjectName `org.springframework.boot:type=Endpoint,name=healthEndpoint` , it can be managed by JMX agent ,e.g. JDK tools : `jconsole` and so on.
+### JMX Endpoint : `Health`
+
+
+
+`Health` is a JMX (Java Management Extensions) Endpoint with ObjectName `org.springframework.boot:type=Endpoint,name=Health` , it can be managed by JMX agent ,e.g. JDK tools : `jconsole` and so on.
 
 ![](JMX_HealthEndpoint.png)
 
@@ -142,20 +157,26 @@ The property key that is name of  `StatusChecker` can be a valid value of `manag
 
 
 
-Actuator endpoint `dubbo` supports Spring Web MVC Endpoints : 
+Actuator endpoint `dubbo` supports Actuator Endpoints : 
 
-| URI                 | HTTP Method | Description                         | Content Type       |
-| ------------------- | ----------- | ----------------------------------- | ------------------ |
-| `/dubbo`            | `GET`       | Exposes Dubbo's meta data           | `application/json` |
-| `/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
-| `/dubbo/services`   | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
-| `/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
-| `/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
-| `/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
+| ID       | Enabled          | HTTP URI            | HTTP Method | Description                         | Content Type       |
+| ------------------- | ----------- | ----------------------------------- | ------------------ | ------------------ | ------------------ |
+| `dubbo`    | `true`      | `/actuator/dubbo`            | `GET`       | Exposes Dubbo's meta data           | `application/json` |
+| `dubbo-properties` | `true` | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
+| `dubbo-services` | `false`     | `/dubbo/services`            | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
+| `dubbo-references` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
+| `dubbo-configs` | `true` | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
+| `dubbo-shutdown` | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
 
 
 
-### Endpoint : `/dubbo`
+
+
+### Web Endpoints
+
+
+
+####  `/actuator/dubbo`
 
 `/dubbo` exposes Dubbo's meta data : 
 
@@ -163,8 +184,8 @@ Actuator endpoint `dubbo` supports Spring Web MVC Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "1.0.0"
-    "dubbo": "2.5.9"
+    "dubbo-spring-boot": "0.2.0-SNAPSHOT"
+    "dubbo": "2.6.2"
   },
   "urls": {
     "dubbo": "https://github.com/alibaba/dubbo",
@@ -172,24 +193,15 @@ Actuator endpoint `dubbo` supports Spring Web MVC Endpoints :
     "github": "https://github.com/dubbo/dubbo-spring-boot-project",
     "issues": "https://github.com/dubbo/dubbo-spring-boot-project/issues",
     "git": "https://github.com/dubbo/dubbo-spring-boot-project.git"
-  },
-  "endpoints": {
-    "shutdown": "/shutdown",
-    "configs": "/configs",
-    "services": "/services",
-    "references": "/references",
-    "properties": "/properties"
   }
 }
 ```
 
+### 
 
+#### `/actuator/dubbo/properties`
 
-
-
-### Endpoint : `/dubbo/properties`
-
-`/dubbo/properties` exposes all Dubbo's Properties from Spring Boot Externalized Configuration (a.k.a `PropertySources`) : 
+`/actuator/dubbo/properties` exposes all Dubbo's Properties from Spring Boot Externalized Configuration (a.k.a `PropertySources`) : 
 
 ```json
 {
@@ -212,9 +224,9 @@ The structure of JSON is simple Key-Value format , the key is property name as a
 
 
 
-### Endpoint : `/dubbo/services`
+#### `/actuator/dubbo/services`
 
-`/dubbo/services` exposes all Dubbo's `ServiceBean` that are declared via `<dubbo:service/>` or `@Service`  present in Spring `ApplicationContext` :
+`/actuator/dubbo/services` exposes all Dubbo's `ServiceBean` that are declared via `<dubbo:service/>` or `@Service`  present in Spring `ApplicationContext` :
 
 ```json
 {
@@ -269,9 +281,9 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
 
 
 
-### Endpoint : `/dubbo/references`
+#### `/actuator/dubbo/references`
 
-`/dubbo/references` exposes all Dubbo's `ReferenceBean` that are declared via `@Reference` annotating on `Field` or `Method  ` :
+`/actuator/dubbo/references` exposes all Dubbo's `ReferenceBean` that are declared via `@Reference` annotating on `Field` or `Method  ` :
 
 ```json
 {
@@ -322,13 +334,13 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
 }
 ```
 
-The key is the string presentation of `@Reference` `Field` or `Method  `  , `ReferenceBean`'s properties compose value.
+The key is the string presentation of `@Reference` `Field` or `Method  ` , `ReferenceBean`'s properties compose value.
 
 
 
-### Endpoint : `/dubbo/configs`
+#### `/actuator/dubbo/configs`
 
- `/dubbo/configs` exposes all Dubbo's `*Config` :
+ `/actuator/dubbo/configs` exposes all Dubbo's `*Config` :
 
 ```json
 {
@@ -411,9 +423,9 @@ The key is the simple name of Dubbo `*Config`  Class , the value is`*Config` Bea
 
 
 
-### Endpoint : `/dubbo/shutdown`
+#### `/actuator/dubbo/shutdown`
 
-`/dubbo/shutdown` shutdowns Dubbo's components including registries, protocols, services and references :
+`/actuator/dubbo/shutdown` shutdowns Dubbo's components including registries, protocols, services and references :
 
 ```json
 {
@@ -486,30 +498,15 @@ management.health.dubbo.enabled = false
 
 
 
-Dubbo Spring Boot providers actuator endpoint `dubbo` , however it is disable. If you'd like to enable it , please add following property into externalized configuration :
+Dubbo Spring Boot providers actuator endpoints , however some of them are disable. If you'd like to enable them , please add following properties into externalized configuration :
 
 ```properties
-# Dubbo Endpoint enabled (default value is false)
-endpoints.dubbo.enabled = true
+# Enables Dubbo All Endpoints
+management.endpoint.dubbo.enabled = true
+management.endpoint.dubbo-shutdown.enabled = true
+management.endpoint.dubbo-configs.enabled = true
+management.endpoint.dubbo-services.enabled = true
+management.endpoint.dubbo-references.enabled = true
+management.endpoint.dubbo-properties.enabled = true
 ```
 
-
-
-### Endpoints Sensitive
-
-Dubbo endpoints contain some sensitive information and significant opeations , thus it's sensitive , that means endpoints maybe protected and authorized if security resolved.
-
-
-
-If you consider it's fine to be public , you can add following property into externalized configuration :
-
-```properties
-# Dubbo Endpoint (default value is true)
-endpoints.dubbo.sensitive = false
-```
-
-> If Spring Security were resolved , configure more :
->
-> ```properties
-> management.security.enabled = false
-> ```

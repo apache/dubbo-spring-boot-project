@@ -26,20 +26,21 @@ import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.source.ConfigurationPropertySources;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.*;
 import static java.util.Collections.emptySet;
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 /**
  * Dubbo Auto {@link Configuration}
@@ -56,7 +57,6 @@ import static java.util.Collections.emptySet;
 @Configuration
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
-@EnableConfigurationProperties(value = {DubboScanProperties.class, DubboConfigProperties.class})
 public class DubboAutoConfiguration {
 
     /**
@@ -67,7 +67,6 @@ public class DubboAutoConfiguration {
      */
     @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "false", matchIfMissing = true)
     @EnableDubboConfig
-    @EnableConfigurationProperties(SingleDubboConfigBindingProperties.class)
     protected static class SingleDubboConfigConfiguration {
     }
 
@@ -79,7 +78,6 @@ public class DubboAutoConfiguration {
      */
     @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
     @EnableDubboConfig(multiple = true)
-    @EnableConfigurationProperties(MultipleDubboConfigBindingProperties.class)
     protected static class MultipleDubboConfigConfiguration {
     }
 
@@ -89,12 +87,18 @@ public class DubboAutoConfiguration {
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
     @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
-    @Autowired
+    @ConditionalOnClass(ConfigurationPropertySources.class)
     @Bean
-    public static ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
-        RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment);
-        Set<String> packagesToScan = resolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+    public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
+        Set<String> packagesToScan = environment.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
+    }
+
+    @ConditionalOnClass(Binder.class)
+    @Bean
+    @Scope(scopeName = SCOPE_PROTOTYPE)
+    public RelaxedDubboConfigBinder relaxedDubboConfigBinder() {
+        return new RelaxedDubboConfigBinder();
     }
 
     /**

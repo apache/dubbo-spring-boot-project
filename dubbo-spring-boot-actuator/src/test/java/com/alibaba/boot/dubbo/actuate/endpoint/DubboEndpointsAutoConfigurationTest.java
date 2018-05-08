@@ -14,35 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
+package com.alibaba.boot.dubbo.actuate.endpoint;
 
-import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
-import com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration;
+import com.alibaba.boot.dubbo.actuate.autoconfigure.DubboEndpointsAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.context.request.async.DeferredResult;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 import java.util.SortedMap;
 
 /**
- * {@link DubboMvcEndpoint} Test
+ * {@link DubboEndpointsAutoConfiguration} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see DubboMvcEndpoint
- * @since 1.0.0
+ * @since 0.2.0
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(
+@RunWith(SpringRunner.class)
+@SpringBootTest(
+        classes = {
+                DubboEndpointsAutoConfiguration.class,
+                DubboEndpointsAutoConfigurationTest.class
+        },
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
+                "dubbo.service.version = 1.0.0",
                 "dubbo.application.id = my-application",
                 "dubbo.application.name = dubbo-demo-application",
                 "dubbo.module.id = my-module",
@@ -54,34 +55,40 @@ import java.util.SortedMap;
                 "dubbo.protocol.port=20880",
                 "dubbo.provider.id=my-provider",
                 "dubbo.provider.host=127.0.0.1",
-                "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint.mvc"
-        }
-)
-@SpringApplicationConfiguration(
-        classes = {
-                DubboAutoConfiguration.class,
-                DubboEndpoint.class,
-                DubboMvcEndpointTest.class
-        }
-)
-@IntegrationTest
-public class DubboMvcEndpointTest {
-
-    @Bean
-    public DubboMvcEndpoint dubboMvcEndpoint(DubboEndpoint dubboEndpoint) {
-        return new DubboMvcEndpoint(dubboEndpoint);
-    }
+                "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint",
+                "management.endpoint.dubbo.enabled = true",
+                "management.endpoint.dubbo-shutdown.enabled = true",
+                "management.endpoint.dubbo-configs.enabled = true",
+                "management.endpoint.dubbo-services.enabled = true",
+                "management.endpoint.dubbo-references.enabled = true",
+                "management.endpoint.dubbo-properties.enabled = true",
+        })
+@EnableAutoConfiguration
+public class DubboEndpointsAutoConfigurationTest {
 
     @Autowired
-    private DubboMvcEndpoint dubboMvcEndpoint;
+    private DubboEndpoint dubboEndpoint;
+
+    @Autowired
+    private DubboConfigsMetadataEndpoint dubboConfigsMetadataEndpoint;
+
+    @Autowired
+    private DubboPropertiesEndpoint dubboPropertiesEndpoint;
+
+    @Autowired
+    private DubboReferencesMetadataEndpoint dubboReferencesMetadataEndpoint;
+
+    @Autowired
+    private DubboServicesMetadataEndpoint dubboServicesMetadataEndpoint;
+
+    @Autowired
+    private DubboShutdownEndpoint dubboShutdownEndpoint;
 
 
     @Test
     public void testShutdown() throws Exception {
 
-        DeferredResult result = dubboMvcEndpoint.shutdown();
-
-        Map<String, Object> value = (Map<String, Object>) result.getResult();
+        Map<String, Object> value = dubboShutdownEndpoint.shutdown();
 
         Map<String, Object> shutdownCounts = (Map<String, Object>) value.get("shutdown.count");
 
@@ -95,7 +102,7 @@ public class DubboMvcEndpointTest {
     @Test
     public void testConfigs() {
 
-        Map<String, Map<String, Map<String, Object>>> configsMap = dubboMvcEndpoint.configs();
+        Map<String, Map<String, Map<String, Object>>> configsMap = dubboConfigsMetadataEndpoint.configs();
 
         Map<String, Map<String, Object>> beansMetadata = configsMap.get("ApplicationConfig");
         Assert.assertEquals("dubbo-demo-application", beansMetadata.get("my-application").get("name"));
@@ -132,11 +139,11 @@ public class DubboMvcEndpointTest {
     @Test
     public void testServices() {
 
-        Map<String, Map<String, Object>> services = dubboMvcEndpoint.services();
+        Map<String, Map<String, Object>> services = dubboServicesMetadataEndpoint.services();
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean@com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService#dubboMvcEndpointTest.DefaultDemoService");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboEndpointsAutoConfigurationTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:${dubbo.service.version}");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
@@ -145,7 +152,7 @@ public class DubboMvcEndpointTest {
     @Test
     public void testReferences() {
 
-        Map<String, Map<String, Object>> references = dubboMvcEndpoint.references();
+        Map<String, Map<String, Object>> references = dubboReferencesMetadataEndpoint.references();
 
         Assert.assertTrue(references.isEmpty());
 
@@ -154,7 +161,7 @@ public class DubboMvcEndpointTest {
     @Test
     public void testProperties() {
 
-        SortedMap<String, Object> properties = dubboMvcEndpoint.properties();
+        SortedMap<String, Object> properties = dubboPropertiesEndpoint.properties();
 
         Assert.assertEquals("my-application", properties.get("dubbo.application.id"));
         Assert.assertEquals("dubbo-demo-application", properties.get("dubbo.application.name"));
@@ -167,26 +174,27 @@ public class DubboMvcEndpointTest {
         Assert.assertEquals("20880", properties.get("dubbo.protocol.port"));
         Assert.assertEquals("my-provider", properties.get("dubbo.provider.id"));
         Assert.assertEquals("127.0.0.1", properties.get("dubbo.provider.host"));
-        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint.mvc", properties.get("dubbo.scan.basePackages"));
+        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint", properties.get("dubbo.scan.basePackages"));
     }
 
 
-    @Service(
-            version = "1.0.0",
-            application = "${dubbo.application.id}",
-            protocol = "${dubbo.protocol.id}",
-            registry = "${dubbo.registry.id}"
-    )
-    static class DefaultDemoService implements DemoService {
+@Service(
+        version = "${dubbo.service.version}",
+        application = "${dubbo.application.id}",
+        protocol = "${dubbo.protocol.id}",
+        registry = "${dubbo.registry.id}"
+)
+static class DefaultDemoService implements DemoService {
 
-        public String sayHello(String name) {
-            return "Hello, " + name + " (from Spring Boot)";
-        }
-
+    public String sayHello(String name) {
+        return "Hello, " + name + " (from Spring Boot)";
     }
+
+}
 
     interface DemoService {
         String sayHello(String name);
     }
+
 
 }

@@ -21,9 +21,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 
@@ -36,27 +36,17 @@ import static com.alibaba.dubbo.common.Version.getVersion;
  * @see DubboEndpoint
  * @since 1.0.0
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(
+@RunWith(SpringRunner.class)
+@SpringBootTest(
         classes = {
                 DubboEndpoint.class
         }
 )
-@IntegrationTest
 public class DubboEndpointTest {
 
 
     @Autowired
     private DubboEndpoint dubboEndpoint;
-
-    @Test
-    public void testDefaultValue() {
-
-        Assert.assertTrue(dubboEndpoint.isSensitive());
-        Assert.assertFalse(dubboEndpoint.isEnabled());
-        Assert.assertEquals("dubbo", dubboEndpoint.getId());
-
-    }
 
     @Test
     public void testInvoke() {
@@ -67,11 +57,9 @@ public class DubboEndpointTest {
 
         Map<String, String> versions = (Map<String, String>) metadata.get("versions");
         Map<String, String> urls = (Map<String, String>) metadata.get("urls");
-        Map<String, String> endpoints = (Map<String, String>) metadata.get("endpoints");
 
         Assert.assertFalse(versions.isEmpty());
         Assert.assertFalse(urls.isEmpty());
-        Assert.assertFalse(endpoints.isEmpty());
 
         Assert.assertEquals(getVersion(DubboUtils.class, "1.0.0"), versions.get("dubbo-spring-boot"));
         Assert.assertEquals(getVersion(), versions.get("dubbo"));
@@ -82,15 +70,7 @@ public class DubboEndpointTest {
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project/issues", urls.get("issues"));
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project.git", urls.get("git"));
 
-        Assert.assertEquals("/shutdown", endpoints.get("shutdown"));
-        Assert.assertEquals("/configs", endpoints.get("configs"));
-        Assert.assertEquals("/services", endpoints.get("services"));
-        Assert.assertEquals("/references", endpoints.get("references"));
-        Assert.assertEquals("/properties", endpoints.get("properties"));
-
     }
-
-
 
 
 }

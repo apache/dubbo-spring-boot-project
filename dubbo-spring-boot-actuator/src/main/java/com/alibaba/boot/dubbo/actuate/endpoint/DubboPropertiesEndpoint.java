@@ -14,31 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.actuate.autoconfigure;
+package com.alibaba.boot.dubbo.actuate.endpoint;
 
-import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
-import com.alibaba.dubbo.config.annotation.Service;
-import org.springframework.boot.actuate.endpoint.Endpoint;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
+import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+
+import java.util.SortedMap;
+
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_PROPERTIES_ENDPOINT_ID;
+import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
- * Dubbo {@link Endpoint} Auto Configuration
+ * Dubbo Properties {@link Endpoint}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see DubboEndpoint
  * @since 1.0.0
  */
-@Configuration
-@ConditionalOnClass({Service.class, Endpoint.class})
-public class DubboEndpointAutoConfiguration {
+@Endpoint(id = DUBBO_PROPERTIES_ENDPOINT_ID)
+public class DubboPropertiesEndpoint extends AbstractDubboEndpoint {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public DubboEndpoint dubboEndpoint() {
-        return new DubboEndpoint();
+    @ReadOperation
+    public SortedMap<String, Object> properties() {
+
+        return filterDubboProperties(environment);
+
     }
 
 }

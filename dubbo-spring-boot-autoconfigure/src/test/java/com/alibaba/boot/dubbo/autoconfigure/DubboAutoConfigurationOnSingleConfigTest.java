@@ -23,8 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
@@ -49,10 +48,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
                 "dubbo.consumer.client=netty"
         }
 )
-@SpringApplicationConfiguration(
+@SpringBootTest(
         classes = {DubboAutoConfiguration.class}
 )
-@IntegrationTest
 public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Autowired
@@ -93,43 +91,6 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Autowired
     private ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor;
-
-    @Autowired
-    private DubboScanProperties dubboScanProperties;
-
-    @Autowired
-    private DubboConfigProperties dubboConfigProperties;
-
-    @Autowired
-    private SingleDubboConfigBindingProperties singleDubboConfigBindingProperties;
-
-
-    @Test
-    public void testDubboScanProperties() {
-
-        Assert.assertTrue(dubboScanProperties.getBasePackages().isEmpty());
-
-    }
-
-    @Test
-    public void testDubboConfigProperties() {
-
-        Assert.assertFalse(dubboConfigProperties.isMultiple());
-
-    }
-
-    @Test
-    public void testSingleDubboConfigBindingProperties() {
-
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getApplication());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getConsumer());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getModule());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getMonitor());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getProtocol());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getProvider());
-        Assert.assertNotNull(singleDubboConfigBindingProperties.getRegistry());
-
-    }
 
     @Test
     public void testApplicationConfig() {

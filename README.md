@@ -1,21 +1,18 @@
-# Dubbo Spring Boot Project
+# Dubbo Spring Boot Project 
 
 [Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
-
-
 > Apache Dubbo(incubating) is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
+## [中文说明](README_CN.md)
 
 
+## Released version
 
-
-
-## Integrate with Maven
-You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
+You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <dependency>
     <groupId>com.alibaba.boot</groupId>
@@ -23,6 +20,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by add
     <version>0.1.0</version>
 </dependency>
 ```
+
 If your project failed to resolve the dependency, try to add the following repository:
 ```xml
 <repositories>
@@ -38,6 +36,32 @@ If your project failed to resolve the dependency, try to add the following repos
     </repository>
 </repositories>
 ```
+
+
+## Developing Versions
+
+For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
+
+* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) is a main stream release version for Spring Boot 2.x
+
+* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
+
+
+### Build from Source
+
+If you'd like to attempt to experience latest features, you also can build from source as follow:
+
+1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) in your local repository 
+2. Maven install current project in your local repository.
+> Maven install = `mvn install`
+
+
+### Dependencies
+
+| versions | Java  | Spring Boot | Dubbo      |
+| -------- | ----- | ----------- | ---------- |
+| `0.2.0`  | 1.8+ | `2.0.x` | `2.6.2` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
 
 
 
