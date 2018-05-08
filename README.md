@@ -10,26 +10,18 @@
 
 ## [中文文档](README_CN.md)
 
-## Versions
 
-For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
+## Released version
 
-* `0.2.x` is a main stream release version for Spring Boot 2.x
-
-* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
-
-  ​
-
-## Integrate with Maven
-
-You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
+You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
+
 If your project failed to resolve the dependency, try to add the following repository:
 ```xml
 <repositories>
@@ -47,13 +39,29 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
+## Developing Versions
 
-## Dependencies
+For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
 
-| versions | Java  | Spring Boot       | Dubbo      |
-| -------- | ----- | ----------------- | ---------- |
-| `0.2.0-SNAPSHOT`  | 1.8 + | `2.0.x` | `2.6.2` + |
-| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.x` | `2.6.2` + |
+* `0.2.x` is a main stream release version for Spring Boot 2.x
+
+* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
+
+
+### Build from Source
+
+If you'd like to attempt to experience latest features, you also can build from source as follow:
+
+1. build source from [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release)
+2. build source from current project.
+
+
+### Dependencies
+
+| versions | Java  | Spring Boot | Dubbo      |
+| -------- | ----- | ----------- | ---------- |
+| `0.2.0`  | 1.8 + | `2.0.x` | `2.6.2` + |
+| `0.1.x`  | 1.7 + | `1.5.x` | `2.6.2` + |
 
 
 
