@@ -62,7 +62,7 @@ public class DubboEndpoint {
 
         Map<String, String> urls = new LinkedHashMap<>();
         urls.put("dubbo", DUBBO_GITHUB_URL);
-        urls.put("google-group", DUBBO_GOOGLE_GROUP_URL);
+        urls.put("mailing-list", DUBBO_MAILING_LIST);
         urls.put("github", DUBBO_SPRING_BOOT_GITHUB_URL);
         urls.put("issues", DUBBO_SPRING_BOOT_ISSUES_URL);
         urls.put("git", DUBBO_SPRING_BOOT_GIT_URL);

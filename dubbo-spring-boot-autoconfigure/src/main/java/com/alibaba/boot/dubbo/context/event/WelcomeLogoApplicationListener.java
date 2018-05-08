@@ -73,7 +73,7 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
                 .append(DUBBO_GITHUB_URL)
                 .append(LINE_SEPARATOR)
                 .append(" :: Google group : ")
-                .append(DUBBO_GOOGLE_GROUP_URL)
+                .append(DUBBO_MAILING_LIST)
                 .append(LINE_SEPARATOR)
         ;
 

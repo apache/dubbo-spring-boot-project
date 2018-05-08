@@ -179,7 +179,7 @@ The whole Properties Mapping of "Multiple Dubbo Config Bean Bindings" lists belo
 
 #### Identifying Multiple Dubbo Config Bean
 
-There is a  different wa to identify Multiple Dubbo Config Bean , the configuration pattern is like this :
+There is a  different way to identify Multiple Dubbo Config Bean , the configuration pattern is like this :
 
 `${config-property-prefix}.${config-bean-id}.${property-name} = some value` , let's explain those placehoders : 
 

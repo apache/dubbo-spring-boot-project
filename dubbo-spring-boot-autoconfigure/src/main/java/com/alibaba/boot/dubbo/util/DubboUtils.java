@@ -93,27 +93,27 @@ public abstract class DubboUtils {
     /**
      * The github URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/dubbo/dubbo-spring-boot-project";
+    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project";
 
     /**
      * The git URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/dubbo/dubbo-spring-boot-project.git";
+    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project.git";
 
     /**
      * The issues of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/dubbo/dubbo-spring-boot-project/issues";
+    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project/issues";
 
     /**
      * The github URL of Dubbo
      */
-    public static final String DUBBO_GITHUB_URL = "https://github.com/alibaba/dubbo";
+    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
 
     /**
      * The google group URL of Dubbo
      */
-    public static final String DUBBO_GOOGLE_GROUP_URL = "http://groups.google.com/group/dubbo";
+    public static final String DUBBO_MAILING_LIST = "dev@dubbo.incubator.apache.org";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}
