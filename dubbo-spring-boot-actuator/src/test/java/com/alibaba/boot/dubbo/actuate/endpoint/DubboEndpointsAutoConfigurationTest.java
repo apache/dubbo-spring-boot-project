@@ -143,7 +143,7 @@ public class DubboEndpointsAutoConfigurationTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean@com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService#dubboEndpointsAutoConfigurationTest.DefaultDemoService");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboEndpointsAutoConfigurationTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:${dubbo.service.version}");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
@@ -178,19 +178,19 @@ public class DubboEndpointsAutoConfigurationTest {
     }
 
 
-    @Service(
-            version = "${dubbo.service.version}",
-            application = "${dubbo.application.id}",
-            protocol = "${dubbo.protocol.id}",
-            registry = "${dubbo.registry.id}"
-    )
-    static class DefaultDemoService implements DemoService {
+@Service(
+        version = "${dubbo.service.version}",
+        application = "${dubbo.application.id}",
+        protocol = "${dubbo.protocol.id}",
+        registry = "${dubbo.registry.id}"
+)
+static class DefaultDemoService implements DemoService {
 
-        public String sayHello(String name) {
-            return "Hello, " + name + " (from Spring Boot)";
-        }
-
+    public String sayHello(String name) {
+        return "Hello, " + name + " (from Spring Boot)";
     }
+
+}
 
     interface DemoService {
         String sayHello(String name);
