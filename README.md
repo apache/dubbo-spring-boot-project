@@ -8,7 +8,7 @@
 
 > Dubbo *|ˈdʌbəʊ|* is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
-## [中文文档](README_CN.md)
+## [中文说明](README_CN.md)
 
 
 ## Released version
@@ -61,8 +61,8 @@ If you'd like to attempt to experience latest features, you also can build from 
 
 | versions | Java  | Spring Boot | Dubbo      |
 | -------- | ----- | ----------- | ---------- |
-| `0.2.0`  | 1.8 + | `2.0.x` | `2.6.2` + |
-| `0.1.x`  | 1.7 + | `1.5.x` | `2.6.2` + |
+| `0.2.0`  | 1.8+ | `2.0.x` | `2.6.2` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
 
 
 

@@ -50,7 +50,6 @@
 * [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
 
 
-
 ### 源代码构建
 
 如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
