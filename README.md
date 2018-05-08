@@ -27,7 +27,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by add
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.0-SNAPSHOT</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
@@ -52,8 +52,8 @@ If your project failed to resolve the dependency, try to add the following repos
 
 | versions | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
-| `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
+| `0.2.0-SNAPSHOT`  | 1.8 + | `2.0.x` | `2.6.2` + |
+| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.x` | `2.6.2` + |
 
 
 

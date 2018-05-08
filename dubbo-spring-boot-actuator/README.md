@@ -33,7 +33,7 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.0-SNAPSHOT</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
@@ -184,8 +184,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "0.2.0"
-    "dubbo": "2.5.11"
+    "dubbo-spring-boot": "0.2.0-SNAPSHOT"
+    "dubbo": "2.6.2"
   },
   "urls": {
     "dubbo": "https://github.com/alibaba/dubbo",
