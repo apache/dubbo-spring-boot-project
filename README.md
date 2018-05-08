@@ -43,7 +43,7 @@ If your project failed to resolve the dependency, try to add the following repos
 
 For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
 
-* `0.2.x` is a main stream release version for Spring Boot 2.x
+* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) is a main stream release version for Spring Boot 2.x
 
 * [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
 
@@ -52,8 +52,9 @@ For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 
 
 If you'd like to attempt to experience latest features, you also can build from source as follow:
 
-1. build source from [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release)
-2. build source from current project.
+1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) in your local repository 
+2. Maven install current project in your local repository.
+> Maven install = `mvn install`
 
 
 ### Dependencies
