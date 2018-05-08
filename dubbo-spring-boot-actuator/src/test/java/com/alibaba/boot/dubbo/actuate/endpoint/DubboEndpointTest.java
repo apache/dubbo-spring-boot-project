@@ -65,11 +65,9 @@ public class DubboEndpointTest {
 
         Map<String, String> versions = (Map<String, String>) metadata.get("versions");
         Map<String, String> urls = (Map<String, String>) metadata.get("urls");
-        Map<String, String> endpoints = (Map<String, String>) metadata.get("endpoints");
 
         Assert.assertFalse(versions.isEmpty());
         Assert.assertFalse(urls.isEmpty());
-        Assert.assertFalse(endpoints.isEmpty());
 
         Assert.assertEquals(getVersion(DubboUtils.class, "1.0.0"), versions.get("dubbo-spring-boot"));
         Assert.assertEquals(getVersion(), versions.get("dubbo"));
@@ -79,12 +77,6 @@ public class DubboEndpointTest {
         Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project", urls.get("github"));
         Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project/issues", urls.get("issues"));
         Assert.assertEquals("https://github.com/dubbo/dubbo-spring-boot-project.git", urls.get("git"));
-
-        Assert.assertEquals("/shutdown", endpoints.get("shutdown"));
-        Assert.assertEquals("/configs", endpoints.get("configs"));
-        Assert.assertEquals("/services", endpoints.get("services"));
-        Assert.assertEquals("/references", endpoints.get("references"));
-        Assert.assertEquals("/properties", endpoints.get("properties"));
 
     }
 

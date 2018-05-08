@@ -36,14 +36,14 @@
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
     <!-- Production-Ready 特性 -->
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-actuator</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
      ...
@@ -63,7 +63,7 @@
 | 版本 | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
 | `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
+| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
 
 
 

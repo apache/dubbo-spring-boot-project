@@ -34,14 +34,14 @@ You can introduce the latest `dubbo-spring-boot-project` to your project by add
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
     <!-- Production-Ready Features -->
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-actuator</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
      ...
@@ -72,7 +72,7 @@ If your project failed to resolve the dependency, try to add the following repos
 | versions | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
 | `0.2.0`  | 1.8 + | `2.0.0.RELEASE` + | `2.5.11` + |
-| `0.1.1`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
+| `0.1.1-SNAPSHOT`  | 1.7 + | `1.5.10.RELEASE` + | `2.5.11` + |
 
 
 

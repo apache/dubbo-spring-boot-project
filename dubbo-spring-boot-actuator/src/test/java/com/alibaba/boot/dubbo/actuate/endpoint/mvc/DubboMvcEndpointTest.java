@@ -134,7 +134,7 @@ public class DubboMvcEndpointTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean@com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService#dubboMvcEndpointTest.DefaultDemoService");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboMvcEndpointTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService:1.0.0");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
