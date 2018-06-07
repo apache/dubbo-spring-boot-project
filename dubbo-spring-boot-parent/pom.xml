@@ -35,7 +35,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
+        <spring-boot.version>2.0.2.RELEASE</spring-boot.version>
         <dubbo.version>2.6.2</dubbo.version>
         <zkclient.version>0.2</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>

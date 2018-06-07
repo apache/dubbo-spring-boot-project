@@ -54,8 +54,7 @@
 
 如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
 
-1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) 
-2. Maven install 当前工程
+1. Maven install 当前工程
 > Maven install = `mvn install`
 
 ### 依赖关系
