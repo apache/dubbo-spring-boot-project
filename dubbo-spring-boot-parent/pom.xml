@@ -36,7 +36,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
-        <dubbo.version>2.6.2-SNAPSHOT</dubbo.version>
+        <dubbo.version>2.6.2</dubbo.version>
         <zkclient.version>0.2</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <curator-framework.version>2.12.0</curator-framework.version>
