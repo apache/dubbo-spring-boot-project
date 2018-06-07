@@ -51,8 +51,7 @@ For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 
 
 If you'd like to attempt to experience latest features, you also can build from source as follow:
 
-1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) in your local repository 
-2. Maven install current project in your local repository.
+1. Maven install current project in your local repository.
 > Maven install = `mvn install`
 
 
