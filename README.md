@@ -66,7 +66,7 @@ If you'd like to attempt to experience latest features, you also can build from 
 
 ## Getting Started
 
-If you don't know about Dubbo, please take a few minutes to learn http://dubbo.io/. After that  you could dive deep into dubbo [user guide](http://dubbo.io/books/dubbo-user-book-en/).
+If you don't know about Dubbo, please take a few minutes to learn http://dubbo.io/. After that  you could dive deep into dubbo [user guide](http://dubbo.apache.org/books/dubbo-user-book-en/).
 
 Usually, There are two usage scenarios for Dubbo applications, one is Dubbo service(s) provider, another is Dubbo service(s) consumer, thus let's get a quick start on them.
 
