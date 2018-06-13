@@ -68,7 +68,7 @@
 
 ## 快速开始
 
-如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.io/ 。了解后，如果你期望更深入的探讨，可以移步[用户手册](http://dubbo.io/books/dubbo-user-book/)。
+如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.apache.org/ 。了解后，如果你期望更深入的探讨，可以移步[用户手册](http://dubbo.apache.org/books/dubbo-user-book/)。
 
 通常情况 , Dubbo 应用有两种使用场景 , 其一为 Dubbo 服务提供方 , 另外一个是 Dubbo 服务消费方，当然也允许两者混合，下面我们一起快速开始！
 
