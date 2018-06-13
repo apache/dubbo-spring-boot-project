@@ -65,7 +65,6 @@ public class DubboAutoConfiguration {
      * @see EnableDubboConfig
      * @see DubboConfigConfiguration.Single
      */
-    @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "false", matchIfMissing = true)
     @EnableDubboConfig
     protected static class SingleDubboConfigConfiguration {
     }
