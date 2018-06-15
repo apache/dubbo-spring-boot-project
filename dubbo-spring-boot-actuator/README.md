@@ -21,7 +21,7 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
