@@ -42,6 +42,7 @@
         <curator-framework.version>2.12.0</curator-framework.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
+        <maven_jacoco_version>0.8.1</maven_jacoco_version>
     </properties>
 
     <dependencyManagement>
@@ -249,6 +250,29 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven_jacoco_version}</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>jacocoArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
                 <version>${apache-rat-plugin.version}</version>
@@ -275,10 +299,12 @@
                                 <exclude>.codecov.yml</exclude>
                                 <exclude>.travis.yml</exclude>
                                 <exclude>README.md</exclude>
+                                <exclude>README_CN.md</exclude>
                                 <exclude>**/codestyle/*</exclude>
                                 <exclude>**/*.factories</exclude>
                                 <exclude>**/*.provides</exclude>
                                 <exclude>**/*.properties</exclude>
+                                <exclude>**/*.json</exclude>
                             </excludes>
                         </configuration>
                     </execution>
