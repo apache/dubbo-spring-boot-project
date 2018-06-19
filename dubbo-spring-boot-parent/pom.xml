@@ -43,6 +43,8 @@
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
         <maven_jacoco_version>0.8.1</maven_jacoco_version>
+        <maven_javadoc_version>3.0.1</maven_javadoc_version>
+        <maven_surefire_version>2.22.0</maven_surefire_version>
     </properties>
 
     <dependencyManagement>
@@ -236,6 +238,11 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven_surefire_version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
