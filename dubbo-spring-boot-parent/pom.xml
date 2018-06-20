@@ -33,13 +33,25 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.0.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
         <dubbo.version>2.6.2</dubbo.version>
         <zkclient.version>0.2</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <curator-framework.version>2.12.0</curator-framework.version>
+        <!-- Build args -->
+        <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
+            -Djava.net.preferIPv4Stack=true
+        </argline>
+
+        <!-- Maven plugins -->
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-jacoco-plugin.version>0.8.1</maven-jacoco-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
         <maven_jacoco_version>0.8.1</maven_jacoco_version>
@@ -193,6 +205,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
                 <configuration>
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
@@ -201,18 +214,51 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
+                        <manifestEntries>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <parameters>true</parameters>
+                    <compilerArgument>-proc:none</compilerArgument>
+                    <fork>true</fork>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                    <encoding>${file.encoding}</encoding>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven-jacoco-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>jacocoArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -225,7 +271,7 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.7,)</version>
+                                    <version>[1.8,)</version>
                                 </requireJavaVersion>
                                 <requireProperty>
                                     <property>project.name</property>
@@ -247,6 +293,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -292,8 +339,19 @@
                         </goals>
                         <configuration>
                             <excludes>
+                                <exclude>**/*.versionsBackup</exclude>
                                 <exclude>**/.idea/</exclude>
                                 <exclude>**/*.iml</exclude>
+                                <exclude>**/*.txt</exclude>
+                                <exclude>**/*.load</exclude>
+                                <exclude>**/*.flex</exclude>
+                                <exclude>**/*.fc</exclude>
+                                <exclude>**/*.javascript</exclude>
+                                <exclude>**/*.properties</exclude>
+                                <exclude>**/*.thrift</exclude>
+                                <exclude>**/*.sh</exclude>
+                                <exclude>**/*.bat</exclude>
+                                <exclude>**/*.md</exclude>
                                 <exclude>.git/</exclude>
                                 <exclude>.gitignore</exclude>
                                 <!-- ASF jenkins box puts the Maven repo in our root directory. -->
@@ -303,11 +361,15 @@
                                 <exclude>**/.project</exclude>
                                 <exclude>**/target/**</exclude>
                                 <exclude>**/*.log</exclude>
+                                <exclude>CODE_OF_CONDUCT.md</exclude>
                                 <exclude>.codecov.yml</exclude>
                                 <exclude>.travis.yml</exclude>
+                                <exclude>PULL_REQUEST_TEMPLATE.md</exclude>
+                                <exclude>CONTRIBUTING.md</exclude>
                                 <exclude>README.md</exclude>
                                 <exclude>README_CN.md</exclude>
                                 <exclude>**/codestyle/*</exclude>
+                                <exclude>**/resources/META-INF/**</exclude>
                                 <exclude>**/*.factories</exclude>
                                 <exclude>**/*.provides</exclude>
                                 <exclude>**/*.properties</exclude>

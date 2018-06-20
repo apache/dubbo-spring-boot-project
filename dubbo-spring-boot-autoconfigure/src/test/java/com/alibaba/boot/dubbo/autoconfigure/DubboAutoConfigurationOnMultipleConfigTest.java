@@ -266,10 +266,9 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
         Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
-    @Ignore
     @Test
     public void testSingleDubboConfigConfiguration() {
-        Assert.assertNull(singleDubboConfigConfiguration);
+        Assert.assertNotNull(singleDubboConfigConfiguration);
     }
 
 
