@@ -23,7 +23,10 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-
+    <properties>
+        <maven_javadoc_version>3.0.1</maven_javadoc_version>
+        <maven_surefire_version>2.19.1</maven_surefire_version>
+    </properties>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
     <version>0.2.0</version>
@@ -50,7 +53,8 @@
     <scm>
         <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
         <connection>scm:git:git:////github.com/apache/incubator-dubbo-spring-boot-project.git</connection>
-        <developerConnection>scm:git:ssh://git@//github.com/apache/incubator-dubbo-spring-boot-project.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@//github.com/apache/incubator-dubbo-spring-boot-project.git
+        </developerConnection>
     </scm>
 
     <issueManagement>
@@ -95,6 +99,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven_javadoc_version}</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -120,5 +125,22 @@
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <check/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
