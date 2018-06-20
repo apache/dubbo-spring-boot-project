@@ -308,8 +308,19 @@
                         </goals>
                         <configuration>
                             <excludes>
+                                <exclude>**/*.versionsBackup</exclude>
                                 <exclude>**/.idea/</exclude>
                                 <exclude>**/*.iml</exclude>
+                                <exclude>**/*.txt</exclude>
+                                <exclude>**/*.load</exclude>
+                                <exclude>**/*.flex</exclude>
+                                <exclude>**/*.fc</exclude>
+                                <exclude>**/*.javascript</exclude>
+                                <exclude>**/*.properties</exclude>
+                                <exclude>**/*.thrift</exclude>
+                                <exclude>**/*.sh</exclude>
+                                <exclude>**/*.bat</exclude>
+                                <exclude>**/*.md</exclude>
                                 <exclude>.git/</exclude>
                                 <exclude>.gitignore</exclude>
                                 <!-- ASF jenkins box puts the Maven repo in our root directory. -->
@@ -319,13 +330,14 @@
                                 <exclude>**/.project</exclude>
                                 <exclude>**/target/**</exclude>
                                 <exclude>**/*.log</exclude>
+                                <exclude>CODE_OF_CONDUCT.md</exclude>
                                 <exclude>.codecov.yml</exclude>
                                 <exclude>.travis.yml</exclude>
+                                <exclude>PULL_REQUEST_TEMPLATE.md</exclude>
+                                <exclude>CONTRIBUTING.md</exclude>
                                 <exclude>README.md</exclude>
                                 <exclude>**/codestyle/*</exclude>
-                                <exclude>**/*.factories</exclude>
-                                <exclude>**/*.provides</exclude>
-                                <exclude>**/*.properties</exclude>
+                                <exclude>**/resources/META-INF/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
