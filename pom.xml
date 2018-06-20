@@ -23,7 +23,10 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-
+    <properties>
+        <maven_javadoc_version>3.0.1</maven_javadoc_version>
+        <maven_surefire_version>2.19.1</maven_surefire_version>
+    </properties>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
     <version>0.2.0</version>
@@ -95,6 +98,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven_javadoc_version}</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>

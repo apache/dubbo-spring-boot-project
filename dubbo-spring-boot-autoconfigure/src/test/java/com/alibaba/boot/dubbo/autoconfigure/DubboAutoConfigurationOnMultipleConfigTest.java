@@ -17,7 +17,9 @@
 package com.alibaba.boot.dubbo.autoconfigure;
 
 import com.alibaba.dubbo.config.*;
+
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -264,6 +266,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
         Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
+    @Ignore
     @Test
     public void testSingleDubboConfigConfiguration() {
         Assert.assertNull(singleDubboConfigConfiguration);
