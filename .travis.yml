@@ -6,7 +6,7 @@ jdk:
     - oraclejdk9
     - oraclejdk8
 
-script: "mvn cobertura:cobertura"
+script: "mvn clean package"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 89f70bf5-4d6b-4759-8da0-dfab7881fd3e
