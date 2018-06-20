@@ -5,8 +5,8 @@ jdk:
     - oraclejdk10
     - oraclejdk9
     - oraclejdk8
-script:
-    - travis_wait 30 ./mvnw clean package
+
+script: "mvn cobertura:cobertura"
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 89f70bf5-4d6b-4759-8da0-dfab7881fd3e

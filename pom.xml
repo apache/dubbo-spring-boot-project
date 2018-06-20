@@ -53,7 +53,8 @@
     <scm>
         <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
         <connection>scm:git:git:////github.com/apache/incubator-dubbo-spring-boot-project.git</connection>
-        <developerConnection>scm:git:ssh://git@//github.com/apache/incubator-dubbo-spring-boot-project.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@//github.com/apache/incubator-dubbo-spring-boot-project.git
+        </developerConnection>
     </scm>
 
     <issueManagement>
@@ -124,5 +125,22 @@
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <check/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
