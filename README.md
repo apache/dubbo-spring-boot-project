@@ -23,7 +23,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
