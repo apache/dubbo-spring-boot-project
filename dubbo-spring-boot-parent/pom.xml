@@ -429,6 +429,7 @@
                                 <exclude>**/.project</exclude>
                                 <exclude>**/target/**</exclude>
                                 <exclude>**/*.log</exclude>
+                                <exclude>pom.xml</exclude>
                                 <exclude>CODE_OF_CONDUCT.md</exclude>
                                 <exclude>.codecov.yml</exclude>
                                 <exclude>.travis.yml</exclude>
@@ -462,5 +463,5 @@
             </plugin>
         </plugins>
     </build>
-
+  
 </project>
