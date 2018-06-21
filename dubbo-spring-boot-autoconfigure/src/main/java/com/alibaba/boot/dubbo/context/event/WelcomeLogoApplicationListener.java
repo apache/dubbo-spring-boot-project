@@ -31,7 +31,7 @@ import static com.alibaba.dubbo.qos.server.DubboLogo.dubbo;
  * Dubbo Welcome Logo {@link ApplicationListener}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
+ * @see ApplicationListener
  * @since 1.0.0
  */
 @Order(LoggingApplicationListener.DEFAULT_ORDER + 1)

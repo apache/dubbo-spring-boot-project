@@ -63,7 +63,7 @@ import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
  * {@link MvcEndpoint} to expose Dubbo Metadata
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
+ * @see MvcEndpoint
  * @since 1.0.0
  */
 public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationContextAware, EnvironmentAware {

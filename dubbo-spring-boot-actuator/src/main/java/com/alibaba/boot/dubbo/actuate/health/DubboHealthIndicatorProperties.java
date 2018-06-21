@@ -53,7 +53,6 @@ public class DubboHealthIndicatorProperties {
 
     /**
      * The nested class for {@link StatusChecker}'s names
-     * <p>
      * <pre>
      * registry=com.alibaba.dubbo.registry.status.RegistryStatusChecker
      * spring=com.alibaba.dubbo.config.spring.status.SpringStatusChecker
