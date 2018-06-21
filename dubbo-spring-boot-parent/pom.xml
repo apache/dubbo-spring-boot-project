@@ -46,6 +46,7 @@
         <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
             -Djava.net.preferIPv4Stack=true
         </argline>
+        <arguments/>
 
         <!-- Maven plugins -->
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
@@ -54,6 +55,8 @@
         <maven-jacoco-plugin.version>0.8.1</maven-jacoco-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -198,6 +201,31 @@
     </pluginRepositories>
 
     <build>
+        <!-- Used for packaging NOTICE & LICENSE to each sub-module jar-->
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>../</directory>
+                <targetPath>META-INF/</targetPath>
+                <filtering>false</filtering>
+                <includes>
+                    <include>NOTICE</include>
+                    <include>LICENSE</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../../</directory>
+                <targetPath>META-INF/</targetPath>
+                <filtering>false</filtering>
+                <includes>
+                    <include>NOTICE</include>
+                    <include>LICENSE</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -296,6 +324,77 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <forkMode>once</forkMode>
+                    <argLine>${argline} ${jacocoArgLine}</argLine>
+                    <systemProperties>
+                        <!-- common shared -->
+                        <property>
+                            <name>transporter</name>
+                            <value>${transporter}</value>
+                        </property>
+                        <property>
+                            <name>serialization</name>
+                            <value>${serialization}</value>
+                        </property>
+                        <!-- server side -->
+                        <property>
+                            <name>port</name>
+                            <value>${port}</value>
+                        </property>
+                        <property>
+                            <name>threadpool</name>
+                            <value>${threadpool}</value>
+                        </property>
+                        <property>
+                            <name>threads</name>
+                            <value>${threads}</value>
+                        </property>
+                        <property>
+                            <name>iothreads</name>
+                            <value>${iothreads}</value>
+                        </property>
+                        <!-- client side -->
+                        <property>
+                            <name>server</name>
+                            <value>${server}</value>
+                        </property>
+                        <property>
+                            <name>timeout</name>
+                            <value>${timeout}</value>
+                        </property>
+                        <property>
+                            <name>length</name>
+                            <value>${length}</value>
+                        </property>
+                        <property>
+                            <name>connections</name>
+                            <value>${connections}</value>
+                        </property>
+                        <property>
+                            <name>base</name>
+                            <value>${base}</value>
+                        </property>
+                        <property>
+                            <name>concurrent</name>
+                            <value>${concurrent}</value>
+                        </property>
+                        <property>
+                            <name>runs</name>
+                            <value>${runs}</value>
+                        </property>
+                        <property>
+                            <name>onerror</name>
+                            <value>${onerror}</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
                 <version>${apache-rat-plugin.version}</version>
@@ -348,6 +447,20 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                    <arguments>${arguments}</arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
 </project>

@@ -31,10 +31,9 @@ import static org.springframework.boot.context.properties.source.ConfigurationPr
 
 /**
  * Spring Boot Relaxed {@link DubboConfigBinder} implementation
+ * see org.springframework.boot.context.properties.ConfigurationPropertiesBinder
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @revision 0.2.0
- * @see org.springframework.boot.context.properties.ConfigurationPropertiesBinder
  * @since 0.1.1
  */
 public class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {

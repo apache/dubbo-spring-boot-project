@@ -70,9 +70,9 @@ public class DubboAutoConfiguration {
     }
 
     /**
-     * Multiple Dubbo Config Configuration , equals {@link EnableDubboConfig#multiple()} == <code>true</code>
+     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
      *
-     * @see EnableDubboConfig#multiple()
+     * @see EnableDubboConfig
      * @see DubboConfigConfiguration.Multiple
      */
     @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
@@ -83,6 +83,7 @@ public class DubboAutoConfiguration {
     /**
      * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
      *
+     * @param environment {@link Environment} Bean
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
     @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
