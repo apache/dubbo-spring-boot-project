@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.context.event;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
+import com.alibaba.dubbo.config.AbstractConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -32,7 +33,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.*;
 /**
  * {@link ApplicationListener} to override the dubbo properties from {@link Environment}into
  * {@link ConfigUtils#getProperties() Dubbo Config}.
- * {@ConfigUtils Dubbo Config} on {@link ApplicationEnvironmentPreparedEvent}.
+ * {@link AbstractConfig Dubbo Config} on {@link ApplicationEnvironmentPreparedEvent}.
  * <p>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
