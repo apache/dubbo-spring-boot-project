@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
 [![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
-![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/incubator-dubbo-spring-boot-project.svg)
+![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
 
 [Dubbo](https://github.com/alibaba/dubbo) Spring Boot 工程致力于简化 Dubbo RPC 框架在
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
