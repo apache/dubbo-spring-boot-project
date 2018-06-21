@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Demo Consumer Controller (REST)
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
+ * @see RestController
  * @since 1.0.0
  */
 @RestController

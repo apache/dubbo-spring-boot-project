@@ -20,6 +20,7 @@ import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
@@ -42,7 +43,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
 /**
- * Abstract Dubbo {@link @Endpoint}
+ * Abstract Dubbo {@link Endpoint @Endpoint}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.2.0
