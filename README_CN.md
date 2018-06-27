@@ -121,7 +121,7 @@ public class DubboProviderDemo {
     public static void main(String[] args) {
 
         new SpringApplicationBuilder(DubboProviderDemo.class)
-                .web(false) // 非 Web 应用
+                .web(WebApplicationType.NONE) // 非 Web 应用
                 .run(args);
 
     }
