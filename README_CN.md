@@ -291,5 +291,5 @@ Dubbo 服务将会通过 localhost 的 `12345` 端口暴露服务，并且提供
 Dubbo 服务将被 Spring WebMVC `Controller` 消费，并且提供 JMX 以及 Web Endpoints 端口：
 
 * 示例 `Controller` : http://localhost:8080/sayHello?name=HelloWorld
-* [健康检查](dubbo-spring-boot-actuator#health-checks) : http://localhost:8081/health
-* [Dubbo Endpoints](dubbo-spring-boot-actuator#endpoints) : http://localhost:8081/dubbo
+* [健康检查](dubbo-spring-boot-actuator#health-checks) : http://localhost:8081/actuator/health
+* [Dubbo Endpoints](dubbo-spring-boot-actuator#endpoints) : http://localhost:8081/actuator/dubbo
