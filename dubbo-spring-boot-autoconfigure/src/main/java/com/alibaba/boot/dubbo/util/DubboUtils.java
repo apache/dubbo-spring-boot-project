@@ -130,7 +130,7 @@ public abstract class DubboUtils {
             String propertyName = entry.getKey();
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)) {
-                dubboProperties.put(propertyName, entry.getValue());
+                dubboProperties.put(propertyName, entry.getValue().toString());
             }
 
         }
