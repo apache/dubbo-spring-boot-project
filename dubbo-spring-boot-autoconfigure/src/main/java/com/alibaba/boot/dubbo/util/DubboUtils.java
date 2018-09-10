@@ -128,7 +128,8 @@ public abstract class DubboUtils {
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String propertyName = entry.getKey();
 
-            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR) && entry.getValue() != null) {
+            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
+                && entry.getValue() != null) {
                 dubboProperties.put(propertyName, entry.getValue().toString());
             }
 
