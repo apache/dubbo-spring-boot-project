@@ -73,7 +73,7 @@ public abstract class EnvironmentUtils {
                 for (String propertyName : propertyNames) {
 
                     if (!properties.containsKey(propertyName)) { // put If absent
-                        properties.put(propertyName, propertySource.getProperty(propertyName).toString());
+                        properties.put(propertyName, propertySource.getProperty(propertyName));
                     }
 
                 }

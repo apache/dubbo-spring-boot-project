@@ -16,12 +16,11 @@
  */
 package com.alibaba.boot.dubbo.util;
 
-import org.springframework.core.env.ConfigurableEnvironment;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * The utilities class for Dubbo
@@ -129,7 +128,7 @@ public abstract class DubboUtils {
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String propertyName = entry.getKey();
 
-            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)) {
+            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR) && entry.getValue() != null) {
                 dubboProperties.put(propertyName, entry.getValue().toString());
             }
 
