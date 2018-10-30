@@ -259,8 +259,8 @@ Dubbo Spring Boot 采用多 Maven 模块工程 , 模块如下：
 [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator) 提供 Production-Ready 特性：
 
 * [健康检查](dubbo-spring-boot-actuator#health-checks)
-* [控制断点](dubbo-spring-boot-actuator#endpoints)
-* [外部化配置](dubbo-spring-boot-actuator#externalized-configuration))
+* [控制端点](dubbo-spring-boot-actuator#endpoints)
+* [外部化配置](dubbo-spring-boot-actuator#externalized-configuration)
 
 
 ### [dubbo-spring-boot-starter](dubbo-spring-boot-starter)
