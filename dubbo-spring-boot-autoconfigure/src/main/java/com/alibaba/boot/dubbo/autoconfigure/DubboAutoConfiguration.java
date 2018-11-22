@@ -31,12 +31,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.context.properties.source.ConfigurationPropertySources;
-import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringValueResolver;
 
 import java.util.Set;
 
@@ -59,19 +57,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @Configuration
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
-public class DubboAutoConfiguration implements EmbeddedValueResolverAware {
-
-    private StringValueResolver stringValueResolver;
-
-    public String resolveStringValue(String name) {
-        name = "${" + name + "}";
-        return stringValueResolver.resolveStringValue(name);
-    }
-
-    @Override
-    public void setEmbeddedValueResolver(StringValueResolver stringValueResolver) {
-        this.stringValueResolver = stringValueResolver;
-    }
+public class DubboAutoConfiguration {
 
     /**
      * Single Dubbo Config Configuration
