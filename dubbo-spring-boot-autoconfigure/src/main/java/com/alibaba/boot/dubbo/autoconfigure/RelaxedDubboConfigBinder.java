@@ -47,7 +47,7 @@ public class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {
         // Wrap Bindable from DubboConfig instance
         Bindable<C> bindable = Bindable.ofInstance(dubboConfig);
 
-        Binder binder = new Binder(propertySources);
+        Binder binder = new Binder(propertySources, new PropertySourcesPlaceholdersResolver(getPropertySources()));
 
         // Get BindHandler
         BindHandler bindHandler = getBindHandler();
