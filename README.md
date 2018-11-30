@@ -306,6 +306,6 @@ Dubbo Service will be exported on localhost with port `12345`.
 Dubbo Service will be consumed at Spring WebMVC `Controller`.
 
 * Demo `Controller`: http://localhost:8080/sayHello?name=HelloWorld
-* [Health Checks](dubbo-spring-boot-actuator#health-checks): http://localhost:8081/health
-* [Dubbo Endpoint](dubbo-spring-boot-actuator#endpoints): http://localhost:8081/dubbo
+* [Health Checks](dubbo-spring-boot-actuator#health-checks): http://localhost:8081/actuator/health
+* [Dubbo Endpoint](dubbo-spring-boot-actuator#endpoints): http://localhost:8081/actuator/dubbo
 
