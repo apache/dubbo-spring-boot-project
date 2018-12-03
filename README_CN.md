@@ -28,6 +28,19 @@
     <artifactId>dubbo-spring-boot-starter</artifactId>
     <version>0.2.0</version>
 </dependency>
+
+<!-- Dubbo -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>dubbo</artifactId>
+    <version>2.6.5</version>
+</dependency>
+<!-- Spring Context Extras -->
+<dependency>
+    <groupId>com.alibaba.spring</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>1.0.2</version>
+</dependency>
 ```
 
 如果您的工程遇到了依赖问题, 请尝试添加如下 Maven 参考到工程的 `pom.xml` 文件中：
