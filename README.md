@@ -1,5 +1,11 @@
 # Dubbo Spring Boot Project 
 
+[![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
+[![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
+[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
+![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
+
 [Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
@@ -17,7 +23,20 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
+</dependency>
+
+<!-- Dubbo -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>dubbo</artifactId>
+    <version>2.6.5</version>
+</dependency>
+<!-- Spring Context Extras -->
+<dependency>
+    <groupId>com.alibaba.spring</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -66,7 +85,7 @@ If you'd like to attempt to experience latest features, you also can build from 
 
 ## Getting Started
 
-If you don't know about Dubbo, please take a few minutes to learn http://dubbo.io/. After that  you could dive deep into dubbo [user guide](http://dubbo.io/books/dubbo-user-book-en/).
+If you don't know about Dubbo, please take a few minutes to learn http://dubbo.apache.org/. After that  you could dive deep into dubbo [user guide](http://dubbo.apache.org/books/dubbo-user-book-en/).
 
 Usually, There are two usage scenarios for Dubbo applications, one is Dubbo service(s) provider, another is Dubbo service(s) consumer, thus let's get a quick start on them.
 
@@ -300,6 +319,6 @@ Dubbo Service will be exported on localhost with port `12345`.
 Dubbo Service will be consumed at Spring WebMVC `Controller`.
 
 * Demo `Controller`: http://localhost:8080/sayHello?name=HelloWorld
-* [Health Checks](dubbo-spring-boot-actuator#health-checks): http://localhost:8081/health
-* [Dubbo Endpoint](dubbo-spring-boot-actuator#endpoints): http://localhost:8081/dubbo
+* [Health Checks](dubbo-spring-boot-actuator#health-checks): http://localhost:8081/actuator/health
+* [Dubbo Endpoint](dubbo-spring-boot-actuator#endpoints): http://localhost:8081/actuator/dubbo
 

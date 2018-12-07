@@ -31,7 +31,7 @@ import static com.alibaba.dubbo.qos.server.DubboLogo.dubbo;
  * Dubbo Welcome Logo {@link ApplicationListener}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
+ * @see ApplicationListener
  * @since 1.0.0
  */
 @Order(LoggingApplicationListener.DEFAULT_ORDER + 1)
@@ -65,7 +65,6 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
         bannerTextBuilder
                 .append(LINE_SEPARATOR)
                 .append(LINE_SEPARATOR)
-                .append(dubbo)
                 .append(" :: Dubbo Spring Boot (v").append(Version.getVersion(getClass(), "1.0.0")).append(") : ")
                 .append(DUBBO_SPRING_BOOT_GITHUB_URL)
                 .append(LINE_SEPARATOR)

@@ -1,5 +1,11 @@
 # Dubbo Spring Boot 工程
 
+[![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
+[![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
+[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
+![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
+
 [Dubbo](https://github.com/alibaba/dubbo) Spring Boot 工程致力于简化 Dubbo RPC 框架在
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
 
@@ -20,7 +26,20 @@
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
+</dependency>
+
+<!-- Dubbo -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>dubbo</artifactId>
+    <version>2.6.5</version>
+</dependency>
+<!-- Spring Context Extras -->
+<dependency>
+    <groupId>com.alibaba.spring</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -68,7 +87,7 @@
 
 ## 快速开始
 
-如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.io/ 。了解后，如果你期望更深入的探讨，可以移步[用户手册](http://dubbo.io/books/dubbo-user-book/)。
+如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.apache.org/ 。了解后，如果你期望更深入的探讨，可以移步[用户手册](http://dubbo.apache.org/books/dubbo-user-book/)。
 
 通常情况 , Dubbo 应用有两种使用场景 , 其一为 Dubbo 服务提供方 , 另外一个是 Dubbo 服务消费方，当然也允许两者混合，下面我们一起快速开始！
 
@@ -285,5 +304,5 @@ Dubbo 服务将会通过 localhost 的 `12345` 端口暴露服务，并且提供
 Dubbo 服务将被 Spring WebMVC `Controller` 消费，并且提供 JMX 以及 Web Endpoints 端口：
 
 * 示例 `Controller` : http://localhost:8080/sayHello?name=HelloWorld
-* [健康检查](dubbo-spring-boot-actuator#health-checks) : http://localhost:8081/health
-* [Dubbo Endpoints](dubbo-spring-boot-actuator#endpoints) : http://localhost:8081/dubbo
+* [健康检查](dubbo-spring-boot-actuator#health-checks) : http://localhost:8081/actuator/health
+* [Dubbo Endpoints](dubbo-spring-boot-actuator#endpoints) : http://localhost:8081/actuator/dubbo
