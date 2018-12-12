@@ -26,7 +26,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-sample-provider</artifactId>
-    <name>Dubbo Spring Boot Sample : Provider </name>
+    <name>Dubbo Spring Boot Sample : Provider</name>
 
     <dependencies>
 
@@ -51,6 +51,11 @@
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-actuator</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
         </dependency>
 
         <dependency>
