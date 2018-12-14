@@ -30,6 +30,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -67,7 +68,9 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         MutablePropertySources propertySources = environment.getPropertySources();
         Map<String, Object> defaultProperties = createDefaultProperties(environment);
-        addOrReplace(propertySources, defaultProperties);
+        if (!CollectionUtils.isEmpty(defaultProperties)) {
+            addOrReplace(propertySources, defaultProperties);
+        }
     }
 
     @Override
@@ -83,7 +86,10 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
 
     private void setDubboApplicationNameProperty(Environment environment, Map<String, Object> defaultProperties) {
         String springApplicationName = environment.getProperty(SPRING_APPLICATION_NAME_PROPERTY);
-        defaultProperties.put(DUBBO_APPLICATION_NAME_PROPERTY, springApplicationName);
+        if (StringUtils.hasLength(springApplicationName)
+                && !environment.containsProperty(DUBBO_APPLICATION_NAME_PROPERTY)) {
+            defaultProperties.put(DUBBO_APPLICATION_NAME_PROPERTY, springApplicationName);
+        }
     }
 
     /**
