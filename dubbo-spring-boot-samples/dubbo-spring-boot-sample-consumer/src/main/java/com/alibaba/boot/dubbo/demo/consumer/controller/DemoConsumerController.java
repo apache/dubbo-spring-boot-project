@@ -15,8 +15,10 @@
  * limitations under the License.
  */
 package com.alibaba.boot.dubbo.demo.consumer.controller;
+
 import com.alibaba.boot.dubbo.demo.consumer.DemoService;
 import com.alibaba.dubbo.config.annotation.Reference;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +34,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoConsumerController {
 
     @Reference(version = "${demo.service.version}",
-            application = "${dubbo.application.id}",
             url = "dubbo://localhost:12345")
     private DemoService demoService;
 
