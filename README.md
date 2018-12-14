@@ -17,11 +17,21 @@
 
 You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
-<dependency>
-    <groupId>com.alibaba.boot</groupId>
-    <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
-</dependency>
+<dependencies>
+
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>[2.6.5,)</version>
+    </dependency>
+    
+</dependencies>
 ```
 
 If your project failed to resolve the dependency, try to add the following repository:
