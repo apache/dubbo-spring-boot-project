@@ -119,26 +119,4 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
             propertySources.addLast(target);
         }
     }
-
-    /**
-     * Process "defaultProperties" {@link PropertySource}
-     *
-     * @param defaultPropertySource {@link MapPropertySource}
-     */
-    private void processDefaultProperties(MapPropertySource defaultPropertySource) {
-        setDubboApplicationNameProperty(defaultPropertySource);
-    }
-
-    private void setDubboApplicationNameProperty(MapPropertySource defaultPropertySource) {
-        String springApplicationName = (String) defaultPropertySource.getProperty(SPRING_APPLICATION_NAME_PROPERTY);
-        if (StringUtils.hasLength(springApplicationName)) {
-            setPropertyIfAbsent(defaultPropertySource, DUBBO_APPLICATION_NAME_PROPERTY, springApplicationName);
-        }
-    }
-
-    private void setPropertyIfAbsent(MapPropertySource propertySource, String propertyName, Object propertyValue) {
-        if (!propertySource.containsProperty(propertyName)) {
-            propertySource.getSource().put(propertyName, propertyValue);
-        }
-    }
 }
