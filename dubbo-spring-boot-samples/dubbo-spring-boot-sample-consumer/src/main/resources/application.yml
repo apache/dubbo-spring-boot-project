@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: dubbo-consumer-demo
+
+server:
+  port: 8080
+
+management:
+  port: 8081
+  security:
+    enabled: false
+
+dubbo:
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 12345
+
+---
+spring:
+  profiles: prod
+
+endpoints:
+  dubbo:
+    enabled: false
+
+management:
+  health:
+    dubbo:
+      status:
+        defaults: memory
