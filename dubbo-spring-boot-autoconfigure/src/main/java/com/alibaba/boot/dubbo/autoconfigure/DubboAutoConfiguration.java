@@ -86,7 +86,7 @@ public class DubboAutoConfiguration {
     /**
      * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
      *
-     * @param environment {@link Environment}
+     * @param environment {@link Environment} Bean
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
     @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)

@@ -42,7 +42,6 @@
         <zkclient.version>0.2</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <curator-framework.version>2.12.0</curator-framework.version>
-
         <alibaba-spring-context-support.version>1.0.2</alibaba-spring-context-support.version>
 
         <!-- Build args -->
@@ -474,4 +473,5 @@
             </plugin>
         </plugins>
     </build>
+  
 </project>

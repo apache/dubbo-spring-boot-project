@@ -32,6 +32,7 @@ import org.springframework.context.annotation.Bean;
  * Dubbo {@link MvcEndpoint} {@link ManagementContextConfiguration}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ * @see ManagementContextConfiguration
  * @since 1.0.0
  */
 @ManagementContextConfiguration

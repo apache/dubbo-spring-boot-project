@@ -10,7 +10,7 @@
 
 **Current Project is a legacy one for maintaining Spring Boot 1.x**
 
-## [中文说明](README.md)
+## [中文说明](README_CN.md)
 
 
 ## Released Version

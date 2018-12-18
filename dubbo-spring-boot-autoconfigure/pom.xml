@@ -20,6 +20,7 @@
     <parent>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
+
         <version>0.1.2-SNAPSHOT</version>
         <relativePath>../dubbo-spring-boot-parent</relativePath>
     </parent>
