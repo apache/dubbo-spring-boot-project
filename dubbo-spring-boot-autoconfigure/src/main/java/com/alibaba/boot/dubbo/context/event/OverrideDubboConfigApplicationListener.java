@@ -17,7 +17,6 @@
 package com.alibaba.boot.dubbo.context.event;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
-
 import com.alibaba.dubbo.config.AbstractConfig;
 
 import org.slf4j.Logger;
@@ -31,6 +30,7 @@ import org.springframework.core.env.Environment;
 import java.util.SortedMap;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.OVERRIDE_CONFIG_PROPERTY_NAME;
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
@@ -57,8 +57,8 @@ public class OverrideDubboConfigApplicationListener implements ApplicationListen
 
         ConfigurableEnvironment environment = event.getEnvironment();
 
-        boolean override = environment.getProperty(OVERRIDE_CONFIG_PROPERTY_NAME, boolean.class,
-                DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE);
+        boolean override = environment.getProperty(DUBBO_CONFIG_PREFIX + OVERRIDE_CONFIG_PROPERTY_NAME,
+                boolean.class, DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE);
 
         if (override) {
 

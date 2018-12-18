@@ -39,7 +39,6 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link DubboUtils} Test
- *Ø
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DubboUtils
  * @since 1.0.0
@@ -49,17 +48,17 @@ public class DubboUtilsTest {
     @Test
     public void testConstants() {
 
-        Assert.assertEquals("dubbo", DUBBO_PREFIX);
+        Assert.assertEquals("dubbo.", DUBBO_PREFIX);
 
-        Assert.assertEquals("dubbo.scan", DUBBO_SCAN_PREFIX);
+        Assert.assertEquals("dubbo.scan.", DUBBO_SCAN_PREFIX);
 
-        Assert.assertEquals("dubbo.scan.base-packages", BASE_PACKAGES_PROPERTY_NAME);
+        Assert.assertEquals("dubbo.scan.base-packages", DUBBO_SCAN_PREFIX + BASE_PACKAGES_PROPERTY_NAME);
 
-        Assert.assertEquals("dubbo.config", DUBBO_CONFIG_PREFIX);
+        Assert.assertEquals("dubbo.config.", DUBBO_CONFIG_PREFIX);
 
-        Assert.assertEquals("dubbo.config.multiple", MULTIPLE_CONFIG_PROPERTY_NAME);
+        Assert.assertEquals("dubbo.config.multiple", DUBBO_CONFIG_PREFIX + MULTIPLE_CONFIG_PROPERTY_NAME);
 
-        Assert.assertEquals("dubbo.config.override", OVERRIDE_CONFIG_PROPERTY_NAME);
+        Assert.assertEquals("dubbo.config.override", DUBBO_CONFIG_PREFIX + OVERRIDE_CONFIG_PROPERTY_NAME);
 
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project", DUBBO_SPRING_BOOT_GITHUB_URL);
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project.git", DUBBO_SPRING_BOOT_GIT_URL);
@@ -81,13 +80,13 @@ public class DubboUtilsTest {
 
         MockEnvironment environment = new MockEnvironment();
         environment.setProperty("message", "Hello,World");
-        environment.setProperty(MULTIPLE_CONFIG_PROPERTY_NAME, "true");
-        environment.setProperty(OVERRIDE_CONFIG_PROPERTY_NAME, "true");
+        environment.setProperty(DUBBO_CONFIG_PREFIX + MULTIPLE_CONFIG_PROPERTY_NAME, "true");
+        environment.setProperty(DUBBO_CONFIG_PREFIX + OVERRIDE_CONFIG_PROPERTY_NAME, "true");
 
         SortedMap<String, Object> dubboProperties = filterDubboProperties(environment);
 
-        Assert.assertEquals("true",dubboProperties.get(MULTIPLE_CONFIG_PROPERTY_NAME));
-        Assert.assertEquals("true",dubboProperties.get(OVERRIDE_CONFIG_PROPERTY_NAME));
+        Assert.assertEquals("true", dubboProperties.get(DUBBO_CONFIG_PREFIX + MULTIPLE_CONFIG_PROPERTY_NAME));
+        Assert.assertEquals("true", dubboProperties.get(DUBBO_CONFIG_PREFIX + OVERRIDE_CONFIG_PROPERTY_NAME));
 
     }
 
