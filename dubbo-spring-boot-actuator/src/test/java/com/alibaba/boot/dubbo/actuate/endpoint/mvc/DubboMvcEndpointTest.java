@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Service;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -134,7 +135,7 @@ public class DubboMvcEndpointTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboMvcEndpointTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService:1.0.0");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpointTest$DemoService:1.0.0");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 

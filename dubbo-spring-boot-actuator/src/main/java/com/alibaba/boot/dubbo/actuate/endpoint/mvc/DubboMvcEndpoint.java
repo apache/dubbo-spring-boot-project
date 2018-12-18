@@ -17,11 +17,22 @@
 package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
-import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.AbstractConfig;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ConsumerConfig;
+import com.alibaba.dubbo.config.MethodConfig;
+import com.alibaba.dubbo.config.ModuleConfig;
+import com.alibaba.dubbo.config.MonitorConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
+import com.alibaba.dubbo.config.ProviderConfig;
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.dubbo.config.ServiceConfig;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -49,10 +60,20 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentMap;
 
-import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.*;
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_CONFIGS_ENDPOINT_URI;
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_PROPERTIES_ENDPOINT_URI;
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_REFERENCES_ENDPOINT_URI;
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_SERVICES_ENDPOINT_URI;
+import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_SHUTDOWN_ENDPOINT_URI;
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 import static com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor.BEAN_NAME;
 import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegistries;
@@ -182,8 +203,18 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
 
         Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
 
-        Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap
-                = resolveInjectedElementReferenceBeanMap();
+        ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
+
+        referencesMetadata.putAll(buildReferencesMetadata(beanPostProcessor.getInjectedFieldReferenceBeanMap()));
+        referencesMetadata.putAll(buildReferencesMetadata(beanPostProcessor.getInjectedMethodReferenceBeanMap()));
+
+        return referencesMetadata;
+    }
+
+
+    private Map<String, Map<String, Object>> buildReferencesMetadata(
+            Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap) {
+        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
 
         for (Map.Entry<InjectionMetadata.InjectedElement, ReferenceBean<?>> entry :
                 injectedElementReferenceBeanMap.entrySet()) {
@@ -200,7 +231,6 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
         }
 
         return referencesMetadata;
-
     }
 
     @RequestMapping(value = DUBBO_PROPERTIES_ENDPOINT_URI, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -271,7 +301,7 @@ public class DubboMvcEndpoint extends EndpointMvcAdapter implements ApplicationC
                 getFieldValue(processor, "injectionMetadataCache", ConcurrentMap.class);
 
         ConcurrentMap<String, ReferenceBean<?>> referenceBeansCache =
-                getFieldValue(processor, "referenceBeansCache", ConcurrentMap.class);
+                getFieldValue(processor, "referenceBeanCache", ConcurrentMap.class);
 
         for (InjectionMetadata metadata : injectionMetadataCache.values()) {
 
