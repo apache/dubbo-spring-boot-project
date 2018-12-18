@@ -22,7 +22,20 @@ import org.springframework.mock.env.MockEnvironment;
 
 import java.util.SortedMap;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static com.alibaba.boot.dubbo.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SCAN_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GIT_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_ISSUES_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.OVERRIDE_CONFIG_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link DubboUtils} Test
@@ -40,7 +53,7 @@ public class DubboUtilsTest {
 
         Assert.assertEquals("dubbo.scan", DUBBO_SCAN_PREFIX);
 
-        Assert.assertEquals("dubbo.scan.basePackages", BASE_PACKAGES_PROPERTY_NAME);
+        Assert.assertEquals("dubbo.scan.base-packages", BASE_PACKAGES_PROPERTY_NAME);
 
         Assert.assertEquals("dubbo.config", DUBBO_CONFIG_PREFIX);
 

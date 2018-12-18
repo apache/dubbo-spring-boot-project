@@ -19,6 +19,10 @@ package com.alibaba.boot.dubbo.demo.provider.service;
 import com.alibaba.boot.dubbo.demo.consumer.DemoService;
 import com.alibaba.dubbo.config.annotation.Service;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
+
 /**
  * Default {@link DemoService}
  *
@@ -28,14 +32,15 @@ import com.alibaba.dubbo.config.annotation.Service;
  */
 @Service(
         version = "${demo.service.version}",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
+        protocol = {"dubbo", "rest"},
         registry = "${dubbo.registry.id}"
 )
+@Path("demo")
 public class DefaultDemoService implements DemoService {
 
-    public String sayHello(String name) {
+    @GET
+    @Path("/say-hello")
+    public String sayHello(@QueryParam("name") String name) {
         return "Hello, " + name + " (from Spring Boot)";
     }
-
 }

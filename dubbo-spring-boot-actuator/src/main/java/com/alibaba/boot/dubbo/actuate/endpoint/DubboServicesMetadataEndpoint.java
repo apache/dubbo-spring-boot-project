@@ -18,6 +18,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.config.spring.ServiceBean;
+
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
@@ -30,7 +31,7 @@ import java.util.Map;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.2.0
  */
-@Endpoint(id = "dubbo-services")
+@Endpoint(id = "dubboServices")
 public class DubboServicesMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

@@ -16,11 +16,12 @@
  */
 package com.alibaba.boot.dubbo.util;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * The utilities class for Dubbo
@@ -61,7 +62,7 @@ public abstract class DubboUtils {
      * <p>
      * The default value is empty set.
      */
-    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "basePackages";
+    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "base-packages";
 
     /**
      * The property name of multiple properties binding from externalized configuration

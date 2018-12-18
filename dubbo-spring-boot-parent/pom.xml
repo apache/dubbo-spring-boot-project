@@ -37,8 +37,8 @@
         <java.target.version>1.8</java.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
-        <dubbo.version>2.6.2</dubbo.version>
+        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <dubbo.version>2.6.5</dubbo.version>
         <zkclient.version>0.2</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <curator-framework.version>2.12.0</curator-framework.version>
@@ -57,6 +57,7 @@
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <alibaba-spring-context-support.version>1.0.2</alibaba-spring-context-support.version>
     </properties>
 
     <dependencyManagement>
@@ -90,6 +91,13 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- Alibaba Spring Context extension -->
+            <dependency>
+                <groupId>com.alibaba.spring</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${alibaba-spring-context-support.version}</version>
             </dependency>
 
             <!-- ZK -->
@@ -416,6 +424,8 @@
                                 <exclude>**/*.fc</exclude>
                                 <exclude>**/*.javascript</exclude>
                                 <exclude>**/*.properties</exclude>
+                                <exclude>**/*.yml</exclude>
+                                <exclude>**/*.yaml</exclude>
                                 <exclude>**/*.thrift</exclude>
                                 <exclude>**/*.sh</exclude>
                                 <exclude>**/*.bat</exclude>

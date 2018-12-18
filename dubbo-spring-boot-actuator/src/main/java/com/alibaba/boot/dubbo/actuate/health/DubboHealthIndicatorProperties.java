@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.actuate.health;
 
 import com.alibaba.dubbo.common.status.StatusChecker;
+
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -53,7 +54,6 @@ public class DubboHealthIndicatorProperties {
 
     /**
      * The nested class for {@link StatusChecker}'s names
-     * <p>
      * <pre>
      * registry=com.alibaba.dubbo.registry.status.RegistryStatusChecker
      * spring=com.alibaba.dubbo.config.spring.status.SpringStatusChecker

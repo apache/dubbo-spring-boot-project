@@ -17,8 +17,9 @@
 package com.alibaba.boot.dubbo.demo.consumer.bootstrap;
 
 import com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController;
-import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Dubbo Consumer Demo
@@ -31,9 +32,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DubboConsumerDemo {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(DubboConsumerDemo.class,args);
-
+        new SpringApplicationBuilder(DubboConsumerDemo.class)
+                .profiles("prod")
+                .run(args);
     }
-
 }

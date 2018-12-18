@@ -54,6 +54,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
             <version>${project.version}</version>
