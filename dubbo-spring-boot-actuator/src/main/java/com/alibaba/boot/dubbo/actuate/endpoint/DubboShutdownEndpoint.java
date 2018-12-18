@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 
@@ -34,7 +35,7 @@ import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegi
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.2.0
  */
-@Endpoint(id = "dubbo-shutdown")
+@Endpoint(id = "dubboShutdown")
 public class DubboShutdownEndpoint extends AbstractDubboEndpoint {
 
 

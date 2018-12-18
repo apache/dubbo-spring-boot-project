@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+
 import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
@@ -32,7 +33,7 @@ import java.util.Map;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
-@Endpoint(id = "dubbo-references")
+@Endpoint(id = "dubboReferences")
 public class DubboReferencesMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation
