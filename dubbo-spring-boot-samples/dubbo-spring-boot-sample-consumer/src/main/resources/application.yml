@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: dubbo-consumer-demo
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+
+dubbo:
+  application:
+    logger: slf4j
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 12345
+
+---
+spring:
+  profiles: prod
+
+endpoints:
+  dubbo:
+    enabled: true
+
+management:
+  health:
+    dubbo:
+      status:
+        defaults: memory
+  endpoints:
+    web:
+      exposure:
+        include: "*"
