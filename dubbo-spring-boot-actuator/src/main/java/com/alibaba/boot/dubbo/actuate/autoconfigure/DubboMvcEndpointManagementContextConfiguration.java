@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.autoconfigure;
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpoint;
 import com.alibaba.dubbo.config.annotation.Service;
+
 import org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration;
 import org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;

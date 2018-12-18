@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint.mvc;
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Service;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

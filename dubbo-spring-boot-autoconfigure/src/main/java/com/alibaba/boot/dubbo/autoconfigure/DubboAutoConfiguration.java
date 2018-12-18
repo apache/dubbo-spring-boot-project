@@ -26,6 +26,7 @@ import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -38,7 +39,9 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static com.alibaba.boot.dubbo.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
 import static java.util.Collections.emptySet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 

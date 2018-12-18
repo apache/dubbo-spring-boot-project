@@ -18,24 +18,32 @@
 
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
-<dependency>
-    <groupId>com.alibaba.boot</groupId>
-    <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.1.1</version>
-</dependency>
+<dependencies>
 
-<!-- Dubbo -->
-<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>dubbo</artifactId>
-    <version>2.6.5</version>
-</dependency>
-<!-- Spring Context Extras -->
-<dependency>
-    <groupId>com.alibaba.spring</groupId>
-    <artifactId>spring-context-support</artifactId>
-    <version>1.0.2</version>
-</dependency>
+    ...
+    
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Dubbo -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>2.6.5</version>
+    </dependency>
+    <!-- Spring Context Extras -->
+    <dependency>
+        <groupId>com.alibaba.spring</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>1.0.2</version>
+    </dependency>
+    
+    ...
+    
+</dependencies>
 ```
 
 如果您的工程遇到了依赖问题, 请尝试添加如下 Maven 参考到工程的 `pom.xml` 文件中：
@@ -61,15 +69,14 @@
 
 如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
 
-1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) 
-2. Maven install 当前工程
+1. Maven install 当前工程
 > Maven install = `mvn install`
 
 ### 依赖关系
 
 | 版本 | Java  | Spring Boot       | Dubbo      |
 | -------- | ----- | ----------------- | ---------- |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2`+ |
+| `0.1.x`  | 1.7+ | `1.5.x` | `2.6.x`+ |
 
 
 

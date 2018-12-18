@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.actuate.health;
 
 import com.alibaba.dubbo.common.status.StatusChecker;
+
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

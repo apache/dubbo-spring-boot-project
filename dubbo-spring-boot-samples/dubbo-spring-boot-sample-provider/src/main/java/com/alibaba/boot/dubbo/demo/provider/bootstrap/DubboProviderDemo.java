@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.demo.provider.bootstrap;
 
 import com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -31,11 +32,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class DubboProviderDemo {
 
     public static void main(String[] args) {
-
         new SpringApplicationBuilder(DubboProviderDemo.class)
+                .profiles("prod")
                 .web(false)
                 .run(args);
-
     }
-
 }
