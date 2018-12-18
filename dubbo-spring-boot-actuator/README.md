@@ -195,7 +195,7 @@ Actuator endpoint `dubbo` supports Spring Web MVC Endpoints :
   "dubbo.protocol.port": "12345",
   "dubbo.registry.address": "N/A",
   "dubbo.registry.id": "my-registry",
-  "dubbo.scan.basePackages": "com.alibaba.boot.dubbo.demo.provider.service"
+  "dubbo.scan.base-packages": "com.alibaba.boot.dubbo.demo.provider.service"
 }
 ```
 

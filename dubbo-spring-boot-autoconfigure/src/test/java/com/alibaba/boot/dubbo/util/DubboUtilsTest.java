@@ -27,7 +27,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.DEFAULT_MULTIPLE_CONFIG_PRO
 import static com.alibaba.boot.dubbo.util.DubboUtils.DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GOOGLE_GROUP_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SCAN_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
@@ -39,7 +39,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link DubboUtils} Test
- *
+ *Ø
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DubboUtils
  * @since 1.0.0
@@ -67,7 +67,7 @@ public class DubboUtilsTest {
 
         Assert.assertEquals("https://github.com/apache/incubator-dubbo", DUBBO_GITHUB_URL);
 
-        Assert.assertEquals("dev@dubbo.incubator.apache.org", DUBBO_GOOGLE_GROUP_URL);
+        Assert.assertEquals("dev@dubbo.incubator.apache.org", DUBBO_MAILING_LIST);
 
         Assert.assertFalse(DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE);
 

@@ -54,7 +54,7 @@ import java.util.SortedMap;
                 "dubbo.protocol.port=20880",
                 "dubbo.provider.id=my-provider",
                 "dubbo.provider.host=127.0.0.1",
-                "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint.mvc"
+                "dubbo.scan.base-packages=com.alibaba.boot.dubbo.actuate.endpoint.mvc"
         }
 )
 @SpringBootTest(
@@ -166,7 +166,7 @@ public class DubboMvcEndpointTest {
         Assert.assertEquals("20880", properties.get("dubbo.protocol.port"));
         Assert.assertEquals("my-provider", properties.get("dubbo.provider.id"));
         Assert.assertEquals("127.0.0.1", properties.get("dubbo.provider.host"));
-        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint.mvc", properties.get("dubbo.scan.basePackages"));
+        Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint.mvc", properties.get("dubbo.scan.base-packages"));
     }
 
 
