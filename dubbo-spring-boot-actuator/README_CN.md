@@ -31,14 +31,14 @@
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>0.1.2</version>
     </dependency>
 
     <!-- Production-Ready 特性 -->
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-actuator</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>0.1.2</version>
     </dependency>
 
      ...
