@@ -18,6 +18,8 @@ package com.alibaba.boot.dubbo.actuate.autoconfigure;
 
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.dubbo.config.annotation.Service;
+
+import org.springframework.boot.actuate.condition.ConditionalOnEnabledEndpoint;
 import org.springframework.boot.actuate.endpoint.Endpoint;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -37,6 +39,7 @@ public class DubboEndpointAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    @ConditionalOnEnabledEndpoint(value = "dubbo", enabledByDefault = false)
     public DubboEndpoint dubboEndpoint() {
         return new DubboEndpoint();
     }

@@ -27,7 +27,6 @@ import java.util.TreeMap;
  * The utilities class for Dubbo
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
  * @since 1.0.0
  */
 public abstract class DubboUtils {
@@ -63,7 +62,7 @@ public abstract class DubboUtils {
      * <p>
      * The default value is empty set.
      */
-    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "basePackages";
+    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "base-packages";
 
     /**
      * The property name of multiple properties binding from externalized configuration
@@ -93,27 +92,27 @@ public abstract class DubboUtils {
     /**
      * The github URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/dubbo/dubbo-spring-boot-project";
+    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project";
 
     /**
      * The git URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/dubbo/dubbo-spring-boot-project.git";
+    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project.git";
 
     /**
      * The issues of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/dubbo/dubbo-spring-boot-project/issues";
+    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project/issues";
 
     /**
      * The github URL of Dubbo
      */
-    public static final String DUBBO_GITHUB_URL = "https://github.com/alibaba/dubbo";
+    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
 
     /**
      * The google group URL of Dubbo
      */
-    public static final String DUBBO_GOOGLE_GROUP_URL = "http://groups.google.com/group/dubbo";
+    public static final String DUBBO_GOOGLE_GROUP_URL = "dev@dubbo.incubator.apache.org";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}

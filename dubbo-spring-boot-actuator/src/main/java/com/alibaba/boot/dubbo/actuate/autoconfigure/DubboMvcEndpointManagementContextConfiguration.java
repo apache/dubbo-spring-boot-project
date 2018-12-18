@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.autoconfigure;
 import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
 import com.alibaba.boot.dubbo.actuate.endpoint.mvc.DubboMvcEndpoint;
 import com.alibaba.dubbo.config.annotation.Service;
+
 import org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration;
 import org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;
@@ -31,7 +32,6 @@ import org.springframework.context.annotation.Bean;
  * Dubbo {@link MvcEndpoint} {@link ManagementContextConfiguration}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see
  * @since 1.0.0
  */
 @ManagementContextConfiguration

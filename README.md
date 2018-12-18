@@ -19,17 +19,28 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <dependencies>
 
+    ...
+    
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.2</version>
+        <version>0.1.2-SNAPSHOT</version>
     </dependency>
 
+    <!-- Dubbo -->
     <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>dubbo</artifactId>
-        <version>[2.6.5,)</version>
+        <version>2.6.5</version>
     </dependency>
+    <!-- Spring Context Extras -->
+    <dependency>
+        <groupId>com.alibaba.spring</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>1.0.2</version>
+    </dependency>
+    
+    ...
     
 </dependencies>
 ```
@@ -57,8 +68,7 @@ If your project failed to resolve the dependency, try to add the following repos
 
 If you'd like to attempt to experience latest features, you also can build from source as follow:
 
-1. Maven install [dubbo 2.6.2-SNAPSHOT](https://github.com/apache/incubator-dubbo/tree/2.6.2-release) in your local repository 
-2. Maven install current project in your local repository.
+1. Maven install current project in your local repository.
 > Maven install = `mvn install`
 
 ### Dependencies
