@@ -17,9 +17,6 @@
 package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.actuate.autoconfigure.DubboEndpointsAutoConfiguration;
-import com.alibaba.boot.dubbo.actuate.endpoint.metadata.DubboConfigsMetadata;
-import com.alibaba.boot.dubbo.actuate.endpoint.metadata.DubboReferencesMetadata;
-import com.alibaba.boot.dubbo.actuate.endpoint.metadata.DubboServicesMetadata;
 import com.alibaba.dubbo.config.annotation.Service;
 
 import org.junit.Assert;
@@ -74,19 +71,19 @@ public class DubboEndpointsAutoConfigurationTest {
     private DubboEndpoint dubboEndpoint;
 
     @Autowired
-    private DubboConfigsMetadata dubboConfigsMetadataEndpoint;
+    private DubboConfigsMetadataEndpoint dubboConfigsMetadataEndpoint;
 
     @Autowired
     private DubboPropertiesEndpoint dubboPropertiesEndpoint;
 
     @Autowired
-    private DubboReferencesMetadata dubboReferencesMetadataEndpoint;
+    private DubboReferencesMetadataEndpoint dubboReferencesMetadataEndpoint;
 
     @Autowired
-    private DubboServicesMetadata dubboServicesMetadataEndpoint;
+    private DubboServicesMetadataEndpoint dubboServicesMetadataEndpoint;
 
     @Autowired
-    private DubboShutdownMetadata dubboShutdownEndpoint;
+    private DubboShutdownEndpoint dubboShutdownEndpoint;
 
 
     @Test
@@ -147,7 +144,7 @@ public class DubboEndpointsAutoConfigurationTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboEndpointsAutoConfigurationTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:${dubbo.service.version}");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:1.0.0");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
