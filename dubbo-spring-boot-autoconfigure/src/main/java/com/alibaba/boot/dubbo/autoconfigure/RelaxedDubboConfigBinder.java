@@ -19,13 +19,16 @@ package com.alibaba.boot.dubbo.autoconfigure;
 import com.alibaba.dubbo.config.AbstractConfig;
 import com.alibaba.dubbo.config.spring.context.properties.AbstractDubboConfigBinder;
 import com.alibaba.dubbo.config.spring.context.properties.DubboConfigBinder;
+
 import org.springframework.boot.context.properties.bind.BindHandler;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.bind.PropertySourcesPlaceholdersResolver;
 import org.springframework.boot.context.properties.bind.handler.IgnoreErrorsBindHandler;
 import org.springframework.boot.context.properties.bind.handler.NoUnboundElementsBindHandler;
 import org.springframework.boot.context.properties.source.ConfigurationPropertySource;
 import org.springframework.boot.context.properties.source.UnboundElementsSourceFilter;
+import org.springframework.core.env.PropertySource;
 
 import static org.springframework.boot.context.properties.source.ConfigurationPropertySources.from;
 
@@ -41,13 +44,15 @@ public class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {
     @Override
     public <C extends AbstractConfig> void bind(String prefix, C dubboConfig) {
 
+        Iterable<PropertySource<?>> propertySources = getPropertySources();
+
         // Converts ConfigurationPropertySources
-        Iterable<ConfigurationPropertySource> propertySources = from(getPropertySources());
+        Iterable<ConfigurationPropertySource> configurationPropertySources = from(propertySources);
 
         // Wrap Bindable from DubboConfig instance
         Bindable<C> bindable = Bindable.ofInstance(dubboConfig);
 
-        Binder binder = new Binder(propertySources);
+        Binder binder = new Binder(configurationPropertySources, new PropertySourcesPlaceholdersResolver(propertySources));
 
         // Get BindHandler
         BindHandler bindHandler = getBindHandler();

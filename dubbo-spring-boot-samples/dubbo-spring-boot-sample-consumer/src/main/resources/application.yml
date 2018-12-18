@@ -11,6 +11,7 @@ management:
 
 dubbo:
   application:
+    id: ${spring.application.name}
     logger: slf4j
   protocol:
     id: dubbo
