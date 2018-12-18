@@ -45,31 +45,31 @@ public abstract class DubboUtils {
     /**
      * The prefix of property name of Dubbo
      */
-    public static final String DUBBO_PREFIX = "dubbo";
+    public static final String DUBBO_PREFIX = "dubbo" + PROPERTY_NAME_SEPARATOR;
 
     /**
      * The prefix of property name for Dubbo scan
      */
-    public static final String DUBBO_SCAN_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "scan";
+    public static final String DUBBO_SCAN_PREFIX = DUBBO_PREFIX + "scan" + PROPERTY_NAME_SEPARATOR;
 
     /**
      * The prefix of property name for Dubbo Config.ØØ
      */
-    public static final String DUBBO_CONFIG_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "config";
+    public static final String DUBBO_CONFIG_PREFIX = DUBBO_PREFIX + "config" + PROPERTY_NAME_SEPARATOR;
 
     /**
      * The property name of base packages to scan
      * <p>
      * The default value is empty set.
      */
-    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "base-packages";
+    public static final String BASE_PACKAGES_PROPERTY_NAME = "base-packages";
 
     /**
      * The property name of multiple properties binding from externalized configuration
      * <p>
      * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
      */
-    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "multiple";
+    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = "multiple";
 
     /**
      * The default value of multiple properties binding from externalized configuration
@@ -81,7 +81,7 @@ public abstract class DubboUtils {
      * <p>
      * The default value is {@link #DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE}
      */
-    public static final String OVERRIDE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "override";
+    public static final String OVERRIDE_CONFIG_PROPERTY_NAME = "override";
 
     /**
      * The default property value of  override Dubbo config
@@ -129,7 +129,7 @@ public abstract class DubboUtils {
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String propertyName = entry.getKey();
 
-            if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)) {
+            if (propertyName.startsWith(DUBBO_PREFIX)) {
                 dubboProperties.put(propertyName, entry.getValue());
             }
 

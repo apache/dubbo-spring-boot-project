@@ -40,7 +40,9 @@ import org.springframework.core.env.Environment;
 import java.util.Set;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SCAN_PREFIX;
 import static com.alibaba.boot.dubbo.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
 import static java.util.Collections.emptySet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
@@ -78,7 +80,7 @@ public class DubboAutoConfiguration {
      * @see EnableDubboConfig
      * @see DubboConfigConfiguration.Multiple
      */
-    @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
+    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
     @EnableDubboConfig(multiple = true)
     protected static class MultipleDubboConfigConfiguration {
     }
@@ -89,11 +91,11 @@ public class DubboAutoConfiguration {
      * @param environment {@link Environment} Bean
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
-    @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
+    @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
     @ConditionalOnClass(RelaxedPropertyResolver.class)
     @Bean
     public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(Environment environment) {
-        RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment);
+        RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment, DUBBO_SCAN_PREFIX);
         Set<String> packagesToScan = resolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
     }
