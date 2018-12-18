@@ -150,7 +150,7 @@ management.port = 9091
 demo.service.version = 1.0.0
 
 # Base packages to scan Dubbo Components (e.g @Service , @Reference)
-dubbo.scan.basePackages  = com.alibaba.boot.dubbo.demo.provider.service
+dubbo.scan.base-packages  = com.alibaba.boot.dubbo.demo.provider.service
 
 # Dubbo Config properties
 ## ApplicationConfig Bean

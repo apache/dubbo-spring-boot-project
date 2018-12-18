@@ -26,7 +26,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
 
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GOOGLE_GROUP_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
 import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
 import static com.alibaba.boot.dubbo.util.DubboUtils.LINE_SEPARATOR;
 
@@ -74,8 +74,8 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
                 .append(" :: Dubbo (v").append(Version.getVersion()).append(") : ")
                 .append(DUBBO_GITHUB_URL)
                 .append(LINE_SEPARATOR)
-                .append(" :: Google group : ")
-                .append(DUBBO_GOOGLE_GROUP_URL)
+                .append(" :: Mailing List : ")
+                .append(DUBBO_MAILING_LIST)
                 .append(LINE_SEPARATOR)
         ;
 

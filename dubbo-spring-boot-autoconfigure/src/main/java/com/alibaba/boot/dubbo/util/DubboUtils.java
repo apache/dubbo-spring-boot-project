@@ -110,9 +110,9 @@ public abstract class DubboUtils {
     public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
 
     /**
-     * The google group URL of Dubbo
+     * The dubbo mailing List
      */
-    public static final String DUBBO_GOOGLE_GROUP_URL = "dev@dubbo.incubator.apache.org";
+    public static final String DUBBO_MAILING_LIST = "dev@dubbo.incubator.apache.org";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}
