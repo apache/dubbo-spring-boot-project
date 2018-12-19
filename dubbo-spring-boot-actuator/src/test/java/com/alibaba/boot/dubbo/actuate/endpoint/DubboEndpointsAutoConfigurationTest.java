@@ -33,7 +33,7 @@ import java.util.SortedMap;
 /**
  * {@link DubboEndpointsAutoConfiguration} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 0.2.0
  */
 @RunWith(SpringRunner.class)

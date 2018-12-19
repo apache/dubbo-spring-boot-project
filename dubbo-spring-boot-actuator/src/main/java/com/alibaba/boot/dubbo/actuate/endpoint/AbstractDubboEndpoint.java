@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+
 import org.springframework.beans.BeansException;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.context.ApplicationContext;
@@ -45,7 +46,7 @@ import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 /**
  * Abstract Dubbo {@link Endpoint @Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 0.2.0
  */
 public abstract class AbstractDubboEndpoint implements ApplicationContextAware, EnvironmentAware {

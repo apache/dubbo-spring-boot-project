@@ -26,7 +26,6 @@ import java.util.TreeMap;
 /**
  * The utilities class for Dubbo
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 public abstract class DubboUtils {
@@ -130,7 +129,7 @@ public abstract class DubboUtils {
             String propertyName = entry.getKey();
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
-                && entry.getValue() != null) {
+                    && entry.getValue() != null) {
                 dubboProperties.put(propertyName, entry.getValue().toString());
             }
 

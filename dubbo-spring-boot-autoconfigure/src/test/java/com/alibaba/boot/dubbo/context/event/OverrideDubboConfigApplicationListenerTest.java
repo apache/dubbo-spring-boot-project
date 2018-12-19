@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.context.event;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +31,7 @@ import java.util.Properties;
 /**
  * {@link OverrideDubboConfigApplicationListener} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see OverrideDubboConfigApplicationListener
  * @since 1.0.0
  */
