@@ -19,7 +19,6 @@ package com.alibaba.boot.dubbo.demo.consumer;
 /**
  * Demo Service interface
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 public interface DemoService {

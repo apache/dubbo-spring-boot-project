@@ -30,7 +30,7 @@ import static com.alibaba.boot.dubbo.actuate.health.DubboHealthIndicatorProperti
 /**
  * Dubbo {@link HealthIndicator} Properties
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see HealthIndicator
  * @since 1.0.0
  */

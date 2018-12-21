@@ -43,7 +43,6 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 /**
  * {@link DubboAutoConfiguration} Test On multiple Dubbo Configuration
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)

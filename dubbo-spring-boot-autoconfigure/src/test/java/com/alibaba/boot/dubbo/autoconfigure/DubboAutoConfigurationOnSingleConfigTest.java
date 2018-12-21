@@ -16,9 +16,16 @@
  */
 package com.alibaba.boot.dubbo.autoconfigure;
 
-import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ConsumerConfig;
+import com.alibaba.dubbo.config.ModuleConfig;
+import com.alibaba.dubbo.config.MonitorConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
+import com.alibaba.dubbo.config.ProviderConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 import com.alibaba.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +39,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * {@link DubboAutoConfiguration} Test On single Dubbo Configuration
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)

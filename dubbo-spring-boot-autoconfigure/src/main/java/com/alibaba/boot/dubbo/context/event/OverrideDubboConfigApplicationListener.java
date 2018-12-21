@@ -39,7 +39,6 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
  * {@link ConfigUtils#getProperties() Dubbo Config}.
  * {@link AbstractConfig Dubbo Config} on {@link ApplicationEnvironmentPreparedEvent}.
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ConfigUtils
  * @since 1.0.0
  */

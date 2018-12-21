@@ -36,7 +36,6 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Awaiting Non-Web Spring Boot {@link ApplicationListener}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.1.1
  */
 public class AwaitingNonWebApplicationListener implements SmartApplicationListener {
@@ -53,6 +52,10 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
     private final Lock lock = new ReentrantLock();
 
     private final Condition condition = lock.newCondition();
+
+    private static <T> T[] of(T... values) {
+        return values;
+    }
 
     @Override
     public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
@@ -144,9 +147,5 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         } finally {
             lock.unlock();
         }
-    }
-
-    private static <T> T[] of(T... values) {
-        return values;
     }
 }

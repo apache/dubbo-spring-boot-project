@@ -50,7 +50,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 /**
  * Dubbo Auto {@link Configuration}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ApplicationConfig
  * @see Service
  * @see Reference
@@ -63,27 +62,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
 public class DubboAutoConfiguration {
-
-    /**
-     * Single Dubbo Config Configuration
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Single
-     */
-    @EnableDubboConfig
-    protected static class SingleDubboConfigConfiguration {
-    }
-
-    /**
-     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Multiple
-     */
-    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
-    @EnableDubboConfig(multiple = true)
-    protected static class MultipleDubboConfigConfiguration {
-    }
 
     /**
      * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
@@ -116,6 +94,27 @@ public class DubboAutoConfiguration {
     @Bean(name = ReferenceAnnotationBeanPostProcessor.BEAN_NAME)
     public ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor() {
         return new ReferenceAnnotationBeanPostProcessor();
+    }
+
+    /**
+     * Single Dubbo Config Configuration
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Single
+     */
+    @EnableDubboConfig
+    protected static class SingleDubboConfigConfiguration {
+    }
+
+    /**
+     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Multiple
+     */
+    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
+    @EnableDubboConfig(multiple = true)
+    protected static class MultipleDubboConfigConfiguration {
     }
 
 }

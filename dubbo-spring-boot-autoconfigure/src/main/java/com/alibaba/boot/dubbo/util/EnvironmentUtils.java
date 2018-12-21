@@ -16,7 +16,12 @@
  */
 package com.alibaba.boot.dubbo.util;
 
-import org.springframework.core.env.*;
+import org.springframework.core.env.CompositePropertySource;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySource;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
@@ -26,7 +31,6 @@ import java.util.Map;
 /**
  * The utilities class for {@link Environment}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see Environment
  * @since 1.0.0
  */

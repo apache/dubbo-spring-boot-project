@@ -22,7 +22,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 /**
  * Default {@link DemoService}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DemoService
  * @since 1.0.0
  */
