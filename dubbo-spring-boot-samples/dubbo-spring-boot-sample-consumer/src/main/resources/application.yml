@@ -1,7 +1,9 @@
 spring:
   application:
     name: dubbo-consumer-demo
-
+demo:
+  service:
+    version: 1.0.0
 server:
   port: 8080
 
