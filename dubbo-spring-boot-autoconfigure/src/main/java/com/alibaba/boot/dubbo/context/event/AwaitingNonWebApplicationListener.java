@@ -45,13 +45,13 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
     private static final Class<? extends ApplicationEvent>[] SUPPORTED_APPLICATION_EVENTS =
             of(ApplicationReadyEvent.class, ContextClosedEvent.class);
 
-    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
     private static final AtomicBoolean awaited = new AtomicBoolean(false);
 
     private final Lock lock = new ReentrantLock();
 
     private final Condition condition = lock.newCondition();
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     private static <T> T[] of(T... values) {
         return values;
@@ -89,6 +89,17 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
             return;
         }
 
+        await();
+
+    }
+
+    protected void onContextClosedEvent(ContextClosedEvent event) {
+        release();
+        shutdown();
+    }
+
+    protected void await() {
+
         // has been waited, return immediately
         if (awaited.get()) {
             return;
@@ -97,29 +108,21 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                await();
-            }
-        });
-    }
-
-    protected void onContextClosedEvent(ContextClosedEvent event) {
-        release();
-    }
-
-    protected void await() {
-        executeMutually(new Runnable() {
-            @Override
-            public void run() {
-                while (!awaited.get()) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info(" [Dubbo] Current Spring Boot Application is await...");
+                executeMutually(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (!awaited.get()) {
+                            if (logger.isInfoEnabled()) {
+                                logger.info(" [Dubbo] Current Spring Boot Application is await...");
+                            }
+                            try {
+                                condition.await();
+                            } catch (InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                            }
+                        }
                     }
-                    try {
-                        condition.await();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
+                });
             }
         });
     }
@@ -133,11 +136,16 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
                         logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
                     }
                     condition.signalAll();
-                    // Shutdown executorService
-                    executorService.shutdown();
                 }
             }
         });
+    }
+
+    private void shutdown() {
+        if (!executorService.isShutdown()) {
+            // Shutdown executorService
+            executorService.shutdown();
+        }
     }
 
     private void executeMutually(Runnable runnable) {
@@ -147,5 +155,9 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         } finally {
             lock.unlock();
         }
+    }
+
+    static AtomicBoolean getAwaited() {
+        return awaited;
     }
 }
