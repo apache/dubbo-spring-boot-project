@@ -39,8 +39,6 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link DubboUtils} Test
- * Ø
- *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DubboUtils
  * @since 1.0.0
