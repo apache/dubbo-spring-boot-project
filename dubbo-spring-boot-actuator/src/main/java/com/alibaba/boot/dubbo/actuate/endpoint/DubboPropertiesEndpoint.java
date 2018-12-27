@@ -29,7 +29,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
  *
  * @since 1.0.0
  */
-@Endpoint(id = "dubboProperties")
+@Endpoint(id = "dubboproperties")
 public class DubboPropertiesEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

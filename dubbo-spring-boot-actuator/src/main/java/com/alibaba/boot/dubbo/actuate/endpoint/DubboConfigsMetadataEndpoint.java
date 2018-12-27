@@ -43,7 +43,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
  *
  * @since 0.2.0
  */
-@Endpoint(id = "dubboConfigs")
+@Endpoint(id = "dubboconfigs")
 public class DubboConfigsMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation
