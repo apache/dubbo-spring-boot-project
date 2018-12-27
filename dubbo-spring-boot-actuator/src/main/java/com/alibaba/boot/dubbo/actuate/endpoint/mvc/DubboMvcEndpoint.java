@@ -83,7 +83,7 @@ import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 /**
  * {@link MvcEndpoint} to expose Dubbo Metadata
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see MvcEndpoint
  * @since 1.0.0
  */

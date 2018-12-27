@@ -33,7 +33,6 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.LINE_SEPARATOR;
 /**
  * Dubbo Welcome Logo {@link ApplicationListener}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ApplicationListener
  * @since 1.0.0
  */

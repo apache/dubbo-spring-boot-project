@@ -26,7 +26,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * {@link WelcomeLogoApplicationListener} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see WelcomeLogoApplicationListener
  * @since 1.0.0
  */

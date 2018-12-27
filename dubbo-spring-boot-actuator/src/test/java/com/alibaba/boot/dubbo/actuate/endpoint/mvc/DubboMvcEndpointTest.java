@@ -36,7 +36,7 @@ import java.util.SortedMap;
 /**
  * {@link DubboMvcEndpoint} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see DubboMvcEndpoint
  * @since 1.0.0
  */

@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.util.DubboUtils;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ import static com.alibaba.dubbo.common.Version.getVersion;
 /**
  * {@link DubboEndpoint} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see DubboEndpoint
  * @since 1.0.0
  */

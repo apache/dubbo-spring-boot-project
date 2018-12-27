@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.autoconfigure;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +31,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * {@link RelaxedDubboConfigBinder} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.1.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)

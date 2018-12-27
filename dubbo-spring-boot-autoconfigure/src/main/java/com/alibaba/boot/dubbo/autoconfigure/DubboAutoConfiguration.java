@@ -50,7 +50,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 /**
  * Dubbo Auto {@link Configuration}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ApplicationConfig
  * @see Service
  * @see Reference
@@ -117,5 +116,4 @@ public class DubboAutoConfiguration {
     public ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor() {
         return new ReferenceAnnotationBeanPostProcessor();
     }
-
 }

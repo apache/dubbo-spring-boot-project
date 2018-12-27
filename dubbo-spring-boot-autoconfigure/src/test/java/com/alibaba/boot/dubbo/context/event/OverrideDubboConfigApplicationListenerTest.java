@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.context.event;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +31,6 @@ import java.util.Properties;
 /**
  * {@link OverrideDubboConfigApplicationListener} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see OverrideDubboConfigApplicationListener
  * @since 1.0.0
  */
@@ -57,9 +57,9 @@ public class OverrideDubboConfigApplicationListenerTest {
 
         Properties properties = ConfigUtils.getProperties();
 
-        Assert.assertEquals("dubbo-demo-application",properties.get("dubbo.application.name"));
-        Assert.assertEquals("dubbo-demo-module",properties.get("dubbo.module.name"));
-        Assert.assertEquals("zookeeper://192.168.99.100:32770",properties.get("dubbo.registry.address"));
+        Assert.assertEquals("dubbo-demo-application", properties.get("dubbo.application.name"));
+        Assert.assertEquals("dubbo-demo-module", properties.get("dubbo.module.name"));
+        Assert.assertEquals("zookeeper://192.168.99.100:32770", properties.get("dubbo.registry.address"));
 
     }
 

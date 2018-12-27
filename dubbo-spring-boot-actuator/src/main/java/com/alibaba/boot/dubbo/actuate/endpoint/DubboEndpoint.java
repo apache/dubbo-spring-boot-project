@@ -18,6 +18,7 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.util.DubboUtils;
 import com.alibaba.dubbo.common.Version;
+
 import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
 import org.springframework.boot.actuate.endpoint.Endpoint;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,12 +26,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GIT_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_ISSUES_URL;
 
 /**
  * Actuator {@link Endpoint} to expose Dubbo Meta Data
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see Endpoint
  * @since 1.0.0
  */

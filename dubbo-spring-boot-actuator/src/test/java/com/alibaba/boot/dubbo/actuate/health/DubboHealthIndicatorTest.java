@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.actuate.health;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +34,7 @@ import java.util.Map;
 /**
  * {@link DubboHealthIndicator} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see DubboHealthIndicator
  * @since 1.0.0
  */

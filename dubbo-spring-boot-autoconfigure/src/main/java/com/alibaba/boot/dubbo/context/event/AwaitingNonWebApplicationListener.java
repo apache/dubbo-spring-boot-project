@@ -20,30 +20,68 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.context.event.SmartApplicationListener;
+import org.springframework.util.ObjectUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Awaiting Non-Web Spring Boot {@link ApplicationListener}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.1.1
  */
-public class AwaitingNonWebApplicationListener implements ApplicationListener<ApplicationReadyEvent> {
+public class AwaitingNonWebApplicationListener implements SmartApplicationListener {
 
     private static final Logger logger = LoggerFactory.getLogger(AwaitingNonWebApplicationListener.class);
 
-    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
-    private static final AtomicBoolean shutdownHookRegistered = new AtomicBoolean(false);
+    private static final Class<? extends ApplicationEvent>[] SUPPORTED_APPLICATION_EVENTS =
+            of(ApplicationReadyEvent.class, ContextClosedEvent.class);
 
     private static final AtomicBoolean awaited = new AtomicBoolean(false);
 
+    private final Lock lock = new ReentrantLock();
+
+    private final Condition condition = lock.newCondition();
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    private static <T> T[] of(T... values) {
+        return values;
+    }
+
     @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
+    public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
+        return ObjectUtils.containsElement(SUPPORTED_APPLICATION_EVENTS, eventType);
+    }
+
+    @Override
+    public boolean supportsSourceType(Class<?> sourceType) {
+        return true;
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationEvent event) {
+        if (event instanceof ApplicationReadyEvent) {
+            onApplicationReadyEvent((ApplicationReadyEvent) event);
+        } else if (event instanceof ContextClosedEvent) {
+            onContextClosedEvent((ContextClosedEvent) event);
+        }
+    }
+
+    @Override
+    public int getOrder() {
+        return LOWEST_PRECEDENCE;
+    }
+
+    protected void onApplicationReadyEvent(ApplicationReadyEvent event) {
 
         final SpringApplication springApplication = event.getSpringApplication();
 
@@ -51,46 +89,75 @@ public class AwaitingNonWebApplicationListener implements ApplicationListener<Ap
             return;
         }
 
+        await();
+
+    }
+
+    protected void onContextClosedEvent(ContextClosedEvent event) {
+        release();
+        shutdown();
+    }
+
+    protected void await() {
+
+        // has been waited, return immediately
+        if (awaited.get()) {
+            return;
+        }
+
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-
-                synchronized (springApplication) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info(" [Dubbo] Current Spring Boot Application is await...");
-                    }
-                    while (!awaited.get()) {
-                        try {
-                            springApplication.wait();
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
+                executeMutually(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (!awaited.get()) {
+                            if (logger.isInfoEnabled()) {
+                                logger.info(" [Dubbo] Current Spring Boot Application is await...");
+                            }
+                            try {
+                                condition.await();
+                            } catch (InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                            }
                         }
                     }
+                });
+            }
+        });
+    }
+
+    protected void release() {
+        executeMutually(new Runnable() {
+            @Override
+            public void run() {
+                while (awaited.compareAndSet(false, true)) {
+                    if (logger.isInfoEnabled()) {
+                        logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
+                    }
+                    condition.signalAll();
                 }
             }
         });
+    }
 
-        // register ShutdownHook
-        if (shutdownHookRegistered.compareAndSet(false, true)) {
-            registerShutdownHook(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    synchronized (springApplication) {
-                        if (awaited.compareAndSet(false, true)) {
-                            springApplication.notifyAll();
-                            if (logger.isInfoEnabled()) {
-                                logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
-                            }
-                            // Shutdown executorService
-                            executorService.shutdown();
-                        }
-                    }
-                }
-            }));
+    private void shutdown() {
+        if (!executorService.isShutdown()) {
+            // Shutdown executorService
+            executorService.shutdown();
         }
     }
 
-    private void registerShutdownHook(Thread thread) {
-        Runtime.getRuntime().addShutdownHook(thread);
+    private void executeMutually(Runnable runnable) {
+        try {
+            lock.lock();
+            runnable.run();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    static AtomicBoolean getAwaited() {
+        return awaited;
     }
 }

@@ -24,7 +24,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 /**
  * Dubbo Consumer Demo
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DemoConsumerController
  * @since 1.0.0
  */

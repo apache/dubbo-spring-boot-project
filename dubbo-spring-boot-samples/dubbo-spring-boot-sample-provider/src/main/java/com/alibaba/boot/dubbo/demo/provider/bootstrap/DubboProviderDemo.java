@@ -24,7 +24,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 /**
  * Dubbo Provider Demo
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see DefaultDemoService
  * @since 1.0.0
  */

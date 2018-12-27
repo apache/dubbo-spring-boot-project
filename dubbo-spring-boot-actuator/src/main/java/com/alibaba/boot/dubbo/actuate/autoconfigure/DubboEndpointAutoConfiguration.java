@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Dubbo {@link Endpoint} Auto Configuration
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+
  * @see DubboEndpoint
  * @since 1.0.0
  */
