@@ -39,7 +39,6 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link DubboUtils} Test
- *
  * @see DubboUtils
  * @since 1.0.0
  */

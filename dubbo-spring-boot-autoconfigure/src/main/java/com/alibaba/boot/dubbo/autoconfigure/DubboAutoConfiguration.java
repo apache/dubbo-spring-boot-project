@@ -64,6 +64,27 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 public class DubboAutoConfiguration {
 
     /**
+     * Single Dubbo Config Configuration
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Single
+     */
+    @EnableDubboConfig
+    protected static class SingleDubboConfigConfiguration {
+    }
+
+    /**
+     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Multiple
+     */
+    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
+    @EnableDubboConfig(multiple = true)
+    protected static class MultipleDubboConfigConfiguration {
+    }
+
+    /**
      * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
      *
      * @param environment {@link Environment} Bean
