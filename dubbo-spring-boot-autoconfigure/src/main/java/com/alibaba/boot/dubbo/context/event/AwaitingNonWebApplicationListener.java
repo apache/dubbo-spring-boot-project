@@ -46,17 +46,26 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
     private static final Class<? extends ApplicationEvent>[] SUPPORTED_APPLICATION_EVENTS =
             of(ApplicationReadyEvent.class, ContextClosedEvent.class);
 
-    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
     private static final AtomicBoolean awaited = new AtomicBoolean(false);
 
     private final Lock lock = new ReentrantLock();
 
     private final Condition condition = lock.newCondition();
 
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     @Override
     public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
         return ObjectUtils.containsElement(SUPPORTED_APPLICATION_EVENTS, eventType);
+    }
+
+    @Override
+    public boolean supportsSourceType(Class<?> sourceType) {
+        return true;
+    }
+
+    private static <T> T[] of(T... values) {
+        return values;
     }
 
     @Override
@@ -68,6 +77,11 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         }
     }
 
+    @Override
+    public int getOrder() {
+        return LOWEST_PRECEDENCE;
+    }
+
     protected void onApplicationReadyEvent(ApplicationReadyEvent event) {
 
         final SpringApplication springApplication = event.getSpringApplication();
@@ -76,55 +90,52 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
             return;
         }
 
+        await();
+
+    }
+
+    protected void onContextClosedEvent(ContextClosedEvent event) {
+        release();
+        shutdown();
+    }
+
+    protected void await() {
+
         // has been waited, return immediately
         if (awaited.get()) {
             return;
         }
 
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                await();
-            }
-        });
-    }
-
-    protected void onContextClosedEvent(ContextClosedEvent event) {
-        release();
-    }
-
-    protected void await() {
-        executeMutually(new Runnable() {
-            @Override
-            public void run() {
-                while (!awaited.get()) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info(" [Dubbo] Current Spring Boot Application is await...");
-                    }
-                    try {
-                        condition.await();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
+        executorService.execute(() -> executeMutually(() -> {
+            while (!awaited.get()) {
+                if (logger.isInfoEnabled()) {
+                    logger.info(" [Dubbo] Current Spring Boot Application is await...");
+                }
+                try {
+                    condition.await();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
-        });
+        }));
     }
 
     protected void release() {
-        executeMutually(new Runnable() {
-            @Override
-            public void run() {
-                while (awaited.compareAndSet(false, true)) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
-                    }
-                    condition.signalAll();
-                    // Shutdown executorService
-                    executorService.shutdown();
+        executeMutually(() -> {
+            while (awaited.compareAndSet(false, true)) {
+                if (logger.isInfoEnabled()) {
+                    logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
                 }
+                condition.signalAll();
             }
         });
+    }
+
+    private void shutdown() {
+        if (!executorService.isShutdown()) {
+            // Shutdown executorService
+            executorService.shutdown();
+        }
     }
 
     private void executeMutually(Runnable runnable) {
@@ -136,7 +147,7 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         }
     }
 
-    private static <T> T[] of(T... values) {
-        return values;
+    static AtomicBoolean getAwaited() {
+        return awaited;
     }
 }
