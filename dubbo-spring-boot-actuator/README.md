@@ -23,7 +23,7 @@ For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot
 
 * `0.1.x` is a legacy version for maintaining Spring Boot 1.x
 
-  ​
+
 
 
 ## Integrate with Maven
