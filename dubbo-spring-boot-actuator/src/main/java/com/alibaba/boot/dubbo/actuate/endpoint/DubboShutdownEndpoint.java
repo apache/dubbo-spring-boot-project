@@ -32,10 +32,9 @@ import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegi
 /**
  * Dubbo Shutdown
  *
- *
  * @since 0.2.0
  */
-@Endpoint(id = "dubboShutdown")
+@Endpoint(id = "dubboshutdown")
 public class DubboShutdownEndpoint extends AbstractDubboEndpoint {
 
 

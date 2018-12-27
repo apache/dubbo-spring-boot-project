@@ -33,7 +33,7 @@ import java.util.Map;
  *
  * @since 1.0.0
  */
-@Endpoint(id = "dubboReferences")
+@Endpoint(id = "dubboreferences")
 public class DubboReferencesMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation
