@@ -26,6 +26,7 @@ import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -38,14 +39,15 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static com.alibaba.boot.dubbo.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
+import static com.alibaba.boot.dubbo.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
 import static java.util.Collections.emptySet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 /**
  * Dubbo Auto {@link Configuration}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ApplicationConfig
  * @see Service
  * @see Reference
@@ -58,27 +60,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
 public class DubboAutoConfiguration {
-
-    /**
-     * Single Dubbo Config Configuration
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Single
-     */
-    @EnableDubboConfig
-    protected static class SingleDubboConfigConfiguration {
-    }
-
-    /**
-     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Multiple
-     */
-    @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
-    @EnableDubboConfig(multiple = true)
-    protected static class MultipleDubboConfigConfiguration {
-    }
 
     /**
      * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
@@ -110,6 +91,27 @@ public class DubboAutoConfiguration {
     @Bean(name = ReferenceAnnotationBeanPostProcessor.BEAN_NAME)
     public ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor() {
         return new ReferenceAnnotationBeanPostProcessor();
+    }
+
+    /**
+     * Single Dubbo Config Configuration
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Single
+     */
+    @EnableDubboConfig
+    protected static class SingleDubboConfigConfiguration {
+    }
+
+    /**
+     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
+     *
+     * @see EnableDubboConfig
+     * @see DubboConfigConfiguration.Multiple
+     */
+    @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
+    @EnableDubboConfig(multiple = true)
+    protected static class MultipleDubboConfigConfiguration {
     }
 
 }

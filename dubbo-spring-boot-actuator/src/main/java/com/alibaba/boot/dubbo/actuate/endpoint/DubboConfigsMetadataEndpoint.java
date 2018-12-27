@@ -40,7 +40,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 /**
  * Dubbo Configs Metadata {@link Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 0.2.0
  */
 @Endpoint(id = "dubboConfigs")

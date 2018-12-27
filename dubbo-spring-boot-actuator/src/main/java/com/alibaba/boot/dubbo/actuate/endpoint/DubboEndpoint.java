@@ -34,7 +34,7 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_ISSUES_UR
 /**
  * Actuator {@link Endpoint} to expose Dubbo Meta Data
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see Endpoint
  * @since 1.0.0
  */

@@ -32,7 +32,7 @@ import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegi
 /**
  * Dubbo Shutdown
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 0.2.0
  */
 @Endpoint(id = "dubboShutdown")
