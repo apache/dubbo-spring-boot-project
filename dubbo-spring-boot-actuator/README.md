@@ -23,7 +23,7 @@ For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot
 
 * `0.1.x` is a legacy version for maintaining Spring Boot 1.x
 
-  ​
+
 
 
 ## Integrate with Maven
@@ -503,10 +503,10 @@ Dubbo Spring Boot providers actuator endpoints , however some of them are disabl
 ```properties
 # Enables Dubbo All Endpoints
 management.endpoint.dubbo.enabled = true
-management.endpoint.dubboShutdown.enabled = true
-management.endpoint.dubboConfigs.enabled = true
-management.endpoint.dubboServices.enabled = true
-management.endpoint.dubboReferences.enabled = true
-management.endpoint.dubboProperties.enabled = true
+management.endpoint.dubboshutdown.enabled = true
+management.endpoint.dubboconfigs.enabled = true
+management.endpoint.dubboservices.enabled = true
+management.endpoint.dubboreferences.enabled = true
+management.endpoint.dubboproperties.enabled = true
 ```
 

@@ -26,10 +26,10 @@ import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 /**
  * Dubbo Properties {@link Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 1.0.0
  */
-@Endpoint(id = "dubboProperties")
+@Endpoint(id = "dubboproperties")
 public class DubboPropertiesEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

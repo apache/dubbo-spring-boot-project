@@ -30,10 +30,10 @@ import java.util.Map;
 /**
  * Dubbo {@link Reference} Metadata {@link Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 1.0.0
  */
-@Endpoint(id = "dubboReferences")
+@Endpoint(id = "dubboreferences")
 public class DubboReferencesMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

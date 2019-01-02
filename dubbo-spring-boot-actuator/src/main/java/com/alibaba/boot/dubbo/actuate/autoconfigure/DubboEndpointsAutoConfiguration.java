@@ -16,7 +16,13 @@
  */
 package com.alibaba.boot.dubbo.actuate.autoconfigure;
 
-import com.alibaba.boot.dubbo.actuate.endpoint.*;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboConfigsMetadataEndpoint;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboPropertiesEndpoint;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboReferencesMetadataEndpoint;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboServicesMetadataEndpoint;
+import com.alibaba.boot.dubbo.actuate.endpoint.DubboShutdownEndpoint;
+
 import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnEnabledEndpoint;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,7 +33,7 @@ import org.springframework.context.annotation.PropertySource;
 /**
  * Dubbo {@link Endpoint} Auto-{@link Configuration}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see Endpoint
  * @see Configuration
  * @since 0.2.0

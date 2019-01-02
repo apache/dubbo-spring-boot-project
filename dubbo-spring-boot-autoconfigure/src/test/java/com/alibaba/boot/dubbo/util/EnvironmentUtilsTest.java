@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * {@link EnvironmentUtils} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see EnvironmentUtils
  * @since 1.0.0
  */
