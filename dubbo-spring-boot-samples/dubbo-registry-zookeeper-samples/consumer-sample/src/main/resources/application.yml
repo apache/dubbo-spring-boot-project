@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: dubbo-registry-zookeeper-consumer-sample
+
+demo:
+  service:
+    version: 1.0.0
+
+embedded:
+  zookeeper:
+    port: 2181
+
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:${embedded.zookeeper.port}
