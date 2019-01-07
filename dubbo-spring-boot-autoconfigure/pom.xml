@@ -27,8 +27,8 @@
 
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <name>Dubbo Spring Boot AutoConfigure</name>
-    <description>Dubbo Spring Boot AutoConfigure</description>
+    <name>Dubbo Spring Boot Auto-Configure</name>
+    <description>Dubbo Spring Boot Auto-Configure</description>
 
 
     <dependencies>
