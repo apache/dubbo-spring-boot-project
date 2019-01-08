@@ -43,7 +43,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 /**
  * {@link DubboAutoConfiguration} Test On multiple Dubbo Configuration
  *
- *
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -153,7 +153,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     public void testMultipleDubboConfigBindingProperties() {
 
 
-        Assert.assertEquals(3, applications.size());
+        Assert.assertEquals(2, applications.size());
 
         Assert.assertEquals(1, modules.size());
 
@@ -177,7 +177,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
          */
         Map<String, ApplicationConfig> applications = beansOfTypeIncludingAncestors(applicationContext, ApplicationConfig.class);
 
-        Assert.assertEquals(3, applications.size());
+        Assert.assertEquals(2, applications.size());
 
         /**
          * Multiple {@link ModuleConfig}
