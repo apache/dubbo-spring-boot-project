@@ -25,14 +25,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.alibaba.boot.samples</groupId>
     <artifactId>dubbo-spring-boot-samples</artifactId>
     <packaging>pom</packaging>
     <name>Dubbo Spring Boot Samples</name>
     <description>Dubbo Spring Boot Samples</description>
+
     <modules>
-        <module>dubbo-spring-boot-sample-provider</module>
-        <module>dubbo-spring-boot-sample-consumer</module>
-        <module>dubbo-spring-boot-sample-api</module>
+        <module>sample-api</module>
+        <module>auto-configure-samples</module>
+        <module>externalized-configuration-samples</module>
+        <module>dubbo-registry-nacos-samples</module>
+        <module>dubbo-registry-zookeeper-samples</module>
     </modules>
 
     <dependencies>
