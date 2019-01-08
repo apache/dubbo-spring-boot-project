@@ -51,7 +51,9 @@ public class DubboDefaultPropertiesEnvironmentPostProcessorTest {
         MutablePropertySources propertySources = environment.getPropertySources();
         // Nothing to change
         PropertySource defaultPropertySource = propertySources.get("defaultProperties");
-        Assert.assertNull(defaultPropertySource);
+        Assert.assertNotNull(defaultPropertySource);
+        Assert.assertEquals("true", defaultPropertySource.getProperty("dubbo.config.multiple"));
+        Assert.assertEquals("false", defaultPropertySource.getProperty("dubbo.application.qos-enable"));
 
         // Case 2 :  Only set property "spring.application.name"
         environment.setProperty("spring.application.name", "demo-dubbo-application");
@@ -67,7 +69,7 @@ public class DubboDefaultPropertiesEnvironmentPostProcessorTest {
         environment.setProperty("dubbo.application.name", "demo-dubbo-application");
         instance.postProcessEnvironment(environment, springApplication);
         defaultPropertySource = propertySources.get("defaultProperties");
-        Assert.assertNull(defaultPropertySource);
+        Assert.assertNotNull(defaultPropertySource);
         dubboApplicationName = environment.getProperty("dubbo.application.name");
         Assert.assertEquals("demo-dubbo-application", dubboApplicationName);
 
@@ -81,5 +83,15 @@ public class DubboDefaultPropertiesEnvironmentPostProcessorTest {
         defaultPropertySource = propertySources.get("defaultProperties");
         dubboApplicationName = defaultPropertySource.getProperty("dubbo.application.name");
         Assert.assertEquals("demo-dubbo-application", dubboApplicationName);
+
+        // Case 5 : Rest dubbo.config.multiple and dubbo.application.qos-enable
+        environment = new MockEnvironment();
+        propertySources = environment.getPropertySources();
+        propertySources.addLast(new MapPropertySource("defaultProperties", new HashMap<String, Object>()));
+        environment.setProperty("dubbo.config.multiple", "false");
+        environment.setProperty("dubbo.application.qos-enable", "true");
+        instance.postProcessEnvironment(environment, springApplication);
+        Assert.assertEquals("false", environment.getProperty("dubbo.config.multiple"));
+        Assert.assertEquals("true", environment.getProperty("dubbo.application.qos-enable"));
     }
 }
