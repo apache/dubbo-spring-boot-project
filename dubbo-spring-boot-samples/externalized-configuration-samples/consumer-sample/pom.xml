@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.alibaba.boot.samples</groupId>
         <artifactId>dubbo-spring-boot-externalized-configuration-samples</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
