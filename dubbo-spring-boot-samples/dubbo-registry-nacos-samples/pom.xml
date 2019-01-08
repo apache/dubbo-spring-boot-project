@@ -14,40 +14,25 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-parent</artifactId>
+        <groupId>com.alibaba.boot.samples</groupId>
+        <artifactId>dubbo-spring-boot-samples</artifactId>
         <version>0.2.1-SNAPSHOT</version>
-        <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.alibaba.boot.samples</groupId>
-    <artifactId>dubbo-spring-boot-samples</artifactId>
+    <artifactId>dubbo-spring-boot-registry-nacos-samples</artifactId>
+    <name>Dubbo Spring Boot Samples : Registry Nacos</name>
+    <description>Dubbo Spring Boot Registry Nacos Samples</description>
     <packaging>pom</packaging>
-    <name>Dubbo Spring Boot Samples</name>
-    <description>Dubbo Spring Boot Samples</description>
 
     <modules>
-        <module>sample-api</module>
-        <module>auto-configure-samples</module>
-        <module>externalized-configuration-samples</module>
-        <module>dubbo-registry-nacos-samples</module>
-        <module>dubbo-registry-zookeeper-samples</module>
+        <module>consumer-sample</module>
+        <module>provider-sample</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

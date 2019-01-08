@@ -39,7 +39,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * {@link DubboAutoConfiguration} Test On single Dubbo Configuration
  *
- *
  * @since 1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -151,7 +150,7 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Test
     public void testMultipleDubboConfigConfiguration() {
-        Assert.assertNull(multipleDubboConfigConfiguration);
+        Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
     @Test
@@ -161,7 +160,7 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Test
     public void testServiceAnnotationBeanPostProcessor() {
-        Assert.assertNull(multipleDubboConfigConfiguration);
+        Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
 }
