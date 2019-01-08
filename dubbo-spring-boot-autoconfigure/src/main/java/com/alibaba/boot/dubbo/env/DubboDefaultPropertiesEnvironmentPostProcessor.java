@@ -64,6 +64,16 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
      */
     private static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
 
+    /**
+     * The property name of {@link EnableDubboConfig#multiple() @EnableDubboConfig.multiple()}
+     */
+    private static final String DUBBO_CONFIG_MULTIPLE_PROPERTY = "dubbo.config.multiple";
+
+    /**
+     * The property name of {@link ApplicationConfig#getQosEnable() application's QOS enable}
+     */
+    private static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         MutablePropertySources propertySources = environment.getPropertySources();
@@ -81,6 +91,8 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
     private Map<String, Object> createDefaultProperties(ConfigurableEnvironment environment) {
         Map<String, Object> defaultProperties = new HashMap<String, Object>();
         setDubboApplicationNameProperty(environment, defaultProperties);
+        setDubboConfigMultipleProperty(defaultProperties);
+        setDubboApplicationQosEnableProperty(defaultProperties);
         return defaultProperties;
     }
 
@@ -90,6 +102,14 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
                 && !environment.containsProperty(DUBBO_APPLICATION_NAME_PROPERTY)) {
             defaultProperties.put(DUBBO_APPLICATION_NAME_PROPERTY, springApplicationName);
         }
+    }
+
+    private void setDubboConfigMultipleProperty(Map<String, Object> defaultProperties) {
+        defaultProperties.put(DUBBO_CONFIG_MULTIPLE_PROPERTY, Boolean.TRUE.toString());
+    }
+
+    private void setDubboApplicationQosEnableProperty(Map<String, Object> defaultProperties) {
+        defaultProperties.put(DUBBO_APPLICATION_QOS_ENABLE_PROPERTY, Boolean.FALSE.toString());
     }
 
     /**
