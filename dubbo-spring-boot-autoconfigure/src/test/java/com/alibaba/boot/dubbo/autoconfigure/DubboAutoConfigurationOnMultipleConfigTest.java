@@ -153,7 +153,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     public void testMultipleDubboConfigBindingProperties() {
 
 
-        Assert.assertEquals(2, applications.size());
+        Assert.assertEquals(3, applications.size());
 
         Assert.assertEquals(1, modules.size());
 
@@ -177,7 +177,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
          */
         Map<String, ApplicationConfig> applications = beansOfTypeIncludingAncestors(applicationContext, ApplicationConfig.class);
 
-        Assert.assertEquals(2, applications.size());
+        Assert.assertEquals(3, applications.size());
 
         /**
          * Multiple {@link ModuleConfig}
