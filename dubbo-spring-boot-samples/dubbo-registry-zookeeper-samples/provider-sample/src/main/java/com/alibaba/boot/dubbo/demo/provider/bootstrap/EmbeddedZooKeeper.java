@@ -33,11 +33,11 @@ import java.util.UUID;
 
 /**
  * from: https://github.com/spring-projects/spring-xd/blob/v1.3.1.RELEASE/spring-xd-dirt/src/main/java/org/springframework/xd/dirt/zookeeper/ZooKeeperUtils.java
- *
+ * <p>
  * Helper class to start an embedded instance of standalone (non clustered) ZooKeeper.
- *
+ * <p>
  * NOTE: at least an external standalone server (if not an ensemble) are recommended, even for
- * {@link org.springframework.xd.dirt.server.singlenode.SingleNodeApplication}
+ * org.springframework.xd.dirt.server.singlenode.SingleNodeApplication
  *
  * @author Patrick Peralta
  * @author Mark Fisher
@@ -92,7 +92,7 @@ public class EmbeddedZooKeeper implements SmartLifecycle {
     /**
      * Construct an EmbeddedZooKeeper with the provided port.
      *
-     * @param clientPort  port for ZooKeeper server to bind to
+     * @param clientPort port for ZooKeeper server to bind to
      */
     public EmbeddedZooKeeper(int clientPort, boolean daemon) {
         this.clientPort = clientPort;
@@ -178,9 +178,7 @@ public class EmbeddedZooKeeper implements SmartLifecycle {
                 Method shutdown = ZooKeeperServerMain.class.getDeclaredMethod("shutdown");
                 shutdown.setAccessible(true);
                 shutdown.invoke(zkServer);
-            }
-
-            catch (Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
@@ -190,8 +188,7 @@ public class EmbeddedZooKeeper implements SmartLifecycle {
             try {
                 zkServerThread.join(5000);
                 zkServerThread = null;
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 logger.warn("Interrupted while waiting for embedded ZooKeeper to exit");
                 // abandoning zk thread
@@ -242,12 +239,10 @@ public class EmbeddedZooKeeper implements SmartLifecycle {
                 configuration.readFrom(quorumPeerConfig);
 
                 zkServer.runFromConfig(configuration);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (errorHandler != null) {
                     errorHandler.handleError(e);
-                }
-                else {
+                } else {
                     logger.error("Exception running embedded ZooKeeper", e);
                 }
             }
