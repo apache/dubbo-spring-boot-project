@@ -150,7 +150,7 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Test
     public void testMultipleDubboConfigConfiguration() {
-        Assert.assertNull(multipleDubboConfigConfiguration);
+        Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
     @Test
@@ -160,7 +160,7 @@ public class DubboAutoConfigurationOnSingleConfigTest {
 
     @Test
     public void testServiceAnnotationBeanPostProcessor() {
-        Assert.assertNull(multipleDubboConfigConfiguration);
+        Assert.assertNotNull(multipleDubboConfigConfiguration);
     }
 
 }
