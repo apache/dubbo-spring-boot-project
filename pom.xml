@@ -39,10 +39,11 @@
 
     <modules>
         <module>dubbo-spring-boot-parent</module>
+        <module>dubbo-spring-boot-distribution</module>
         <module>dubbo-spring-boot-autoconfigure</module>
         <module>dubbo-spring-boot-starter</module>
-        <module>dubbo-spring-boot-samples</module>
         <module>dubbo-spring-boot-actuator</module>
+        <module>dubbo-spring-boot-samples</module>
     </modules>
 
     <organization>
