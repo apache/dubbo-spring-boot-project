@@ -67,7 +67,7 @@ public class DubboUtilsTest {
 
         Assert.assertEquals("https://github.com/apache/incubator-dubbo", DUBBO_GITHUB_URL);
 
-        Assert.assertEquals("dev@dubbo.incubator.apache.org", DUBBO_MAILING_LIST);
+        Assert.assertEquals("dev@dubbo.apache.org", DUBBO_MAILING_LIST);
 
         Assert.assertFalse(DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE);
 
