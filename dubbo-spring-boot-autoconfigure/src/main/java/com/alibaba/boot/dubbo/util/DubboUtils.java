@@ -111,7 +111,7 @@ public abstract class DubboUtils {
     /**
      * The google group URL of Dubbo
      */
-    public static final String DUBBO_MAILING_LIST = "dev@dubbo.incubator.apache.org";
+    public static final String DUBBO_MAILING_LIST = "dev@dubbo.apache.org";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}
