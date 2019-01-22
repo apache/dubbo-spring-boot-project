@@ -2,8 +2,7 @@ language: java
 sudo: false # faster builds
 
 jdk:
-    - openjdk10
-    - openjdk9
+    - openjdk11
     - oraclejdk8
 
 script: "mvn clean package"
