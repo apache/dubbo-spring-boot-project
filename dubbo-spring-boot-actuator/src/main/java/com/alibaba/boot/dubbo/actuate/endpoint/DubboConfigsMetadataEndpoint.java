@@ -16,7 +16,18 @@
  */
 package com.alibaba.boot.dubbo.actuate.endpoint;
 
-import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.AbstractConfig;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ConsumerConfig;
+import com.alibaba.dubbo.config.MethodConfig;
+import com.alibaba.dubbo.config.ModuleConfig;
+import com.alibaba.dubbo.config.MonitorConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
+import com.alibaba.dubbo.config.ProviderConfig;
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.dubbo.config.ServiceConfig;
+
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
@@ -29,10 +40,10 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 /**
  * Dubbo Configs Metadata {@link Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 0.2.0
  */
-@Endpoint(id = "dubbo-configs")
+@Endpoint(id = "dubboconfigs")
 public class DubboConfigsMetadataEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

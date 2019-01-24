@@ -23,7 +23,7 @@ For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot
 
 * `0.1.x` is a legacy version for maintaining Spring Boot 1.x
 
-  ​
+
 
 
 ## Integrate with Maven
@@ -33,7 +33,7 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>com.alibaba.boot</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
 </dependency>
 ```
 If your project failed to resolve the dependency, try to add the following repository:
@@ -162,11 +162,11 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 | ID       | Enabled          | HTTP URI            | HTTP Method | Description                         | Content Type       |
 | ------------------- | ----------- | ----------------------------------- | ------------------ | ------------------ | ------------------ |
 | `dubbo`    | `true`      | `/actuator/dubbo`            | `GET`       | Exposes Dubbo's meta data           | `application/json` |
-| `dubbo-properties` | `true` | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
-| `dubbo-services` | `false`     | `/dubbo/services`            | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
-| `dubbo-references` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
-| `dubbo-configs` | `true` | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
-| `dubbo-shutdown` | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
+| `dubboProperties` | `true` | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
+| `dubboServices` | `false`     | `/dubbo/services`            | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
+| `dubboReferences` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
+| `dubboConfigs` | `true` | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
+| `dubboShutdown` | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
 
 
 
@@ -184,7 +184,7 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "0.2.0"
+    "dubbo-spring-boot": "0.2.0",
     "dubbo": "2.6.2"
   },
   "urls": {
@@ -503,10 +503,10 @@ Dubbo Spring Boot providers actuator endpoints , however some of them are disabl
 ```properties
 # Enables Dubbo All Endpoints
 management.endpoint.dubbo.enabled = true
-management.endpoint.dubbo-shutdown.enabled = true
-management.endpoint.dubbo-configs.enabled = true
-management.endpoint.dubbo-services.enabled = true
-management.endpoint.dubbo-references.enabled = true
-management.endpoint.dubbo-properties.enabled = true
+management.endpoint.dubboshutdown.enabled = true
+management.endpoint.dubboconfigs.enabled = true
+management.endpoint.dubboservices.enabled = true
+management.endpoint.dubboreferences.enabled = true
+management.endpoint.dubboproperties.enabled = true
 ```
 

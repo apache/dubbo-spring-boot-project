@@ -18,36 +18,28 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.util.DubboUtils;
 import com.alibaba.dubbo.common.Version;
+
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_ENDPOINT_ID;
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GIT_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_ISSUES_URL;
 
 /**
  * Actuator {@link Endpoint} to expose Dubbo Meta Data
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see Endpoint
  * @since 1.0.0
  */
-@Endpoint(id = DUBBO_ENDPOINT_ID)
+@Endpoint(id = "dubbo")
 public class DubboEndpoint {
-
-    public static final String DUBBO_ENDPOINT_ID = "dubbo";
-
-    public static final String DUBBO_SHUTDOWN_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-shutdown";
-
-    public static final String DUBBO_CONFIGS_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-configs";
-
-    public static final String DUBBO_SERVICES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-services";
-
-    public static final String DUBBO_REFERENCES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-references";
-
-    public static final String DUBBO_PROPERTIES_ENDPOINT_ID = DUBBO_ENDPOINT_ID + "-properties";
 
     @ReadOperation
     public Map<String, Object> invoke() {

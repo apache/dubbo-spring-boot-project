@@ -18,21 +18,26 @@ package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.actuate.autoconfigure.DubboEndpointsAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 import java.util.SortedMap;
+import java.util.function.Supplier;
 
 /**
  * {@link DubboEndpointsAutoConfiguration} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.2.0
  */
 @RunWith(SpringRunner.class)
@@ -57,11 +62,12 @@ import java.util.SortedMap;
                 "dubbo.provider.host=127.0.0.1",
                 "dubbo.scan.basePackages=com.alibaba.boot.dubbo.actuate.endpoint",
                 "management.endpoint.dubbo.enabled = true",
-                "management.endpoint.dubbo-shutdown.enabled = true",
-                "management.endpoint.dubbo-configs.enabled = true",
-                "management.endpoint.dubbo-services.enabled = true",
-                "management.endpoint.dubbo-references.enabled = true",
-                "management.endpoint.dubbo-properties.enabled = true",
+                "management.endpoint.dubboshutdown.enabled = true",
+                "management.endpoint.dubboconfigs.enabled = true",
+                "management.endpoint.dubboservices.enabled = true",
+                "management.endpoint.dubboreferences.enabled = true",
+                "management.endpoint.dubboproperties.enabled = true",
+                "management.endpoints.web.exposure.include = *",
         })
 @EnableAutoConfiguration
 public class DubboEndpointsAutoConfigurationTest {
@@ -84,6 +90,13 @@ public class DubboEndpointsAutoConfigurationTest {
     @Autowired
     private DubboShutdownEndpoint dubboShutdownEndpoint;
 
+    private RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Value("http://127.0.0.1:${local.management.port}${management.endpoints.web.base-path:/actuator}")
+    private String actuatorBaseURL;
 
     @Test
     public void testShutdown() throws Exception {
@@ -143,7 +156,7 @@ public class DubboEndpointsAutoConfigurationTest {
 
         Assert.assertEquals(1, services.size());
 
-        Map<String, Object> demoServiceMeta = services.get("ServiceBean:dubboEndpointsAutoConfigurationTest.DefaultDemoService:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:${dubbo.service.version}");
+        Map<String, Object> demoServiceMeta = services.get("ServiceBean:com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpointsAutoConfigurationTest$DemoService:1.0.0");
 
         Assert.assertEquals("1.0.0", demoServiceMeta.get("version"));
 
@@ -177,20 +190,35 @@ public class DubboEndpointsAutoConfigurationTest {
         Assert.assertEquals("com.alibaba.boot.dubbo.actuate.endpoint", properties.get("dubbo.scan.basePackages"));
     }
 
-
-@Service(
-        version = "${dubbo.service.version}",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
-        registry = "${dubbo.registry.id}"
-)
-static class DefaultDemoService implements DemoService {
-
-    public String sayHello(String name) {
-        return "Hello, " + name + " (from Spring Boot)";
+    @Test
+    public void testHttpEndpoints() throws JsonProcessingException {
+//        testHttpEndpoint("/dubbo", dubboEndpoint::invoke);
+        testHttpEndpoint("/dubbo/configs", dubboConfigsMetadataEndpoint::configs);
+        testHttpEndpoint("/dubbo/services", dubboServicesMetadataEndpoint::services);
+        testHttpEndpoint("/dubbo/references", dubboReferencesMetadataEndpoint::references);
+        testHttpEndpoint("/dubbo/properties", dubboPropertiesEndpoint::properties);
     }
 
-}
+    private void testHttpEndpoint(String actuatorURI, Supplier<Map> resultsSupplier) throws JsonProcessingException {
+        String actuatorURL = actuatorBaseURL + actuatorURI;
+        String response = restTemplate.getForObject(actuatorURL, String.class);
+        Assert.assertEquals(objectMapper.writeValueAsString(resultsSupplier.get()), response);
+    }
+
+
+    @Service(
+            version = "${dubbo.service.version}",
+            application = "${dubbo.application.id}",
+            protocol = "${dubbo.protocol.id}",
+            registry = "${dubbo.registry.id}"
+    )
+    static class DefaultDemoService implements DemoService {
+
+        public String sayHello(String name) {
+            return "Hello, " + name + " (from Spring Boot)";
+        }
+
+    }
 
     interface DemoService {
         String sayHello(String name);

@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-project</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -37,11 +37,10 @@
         <java.target.version>1.8</java.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
-        <dubbo.version>2.6.2</dubbo.version>
-        <zkclient.version>0.2</zkclient.version>
-        <zookeeper.version>3.4.9</zookeeper.version>
-        <curator-framework.version>2.12.0</curator-framework.version>
+        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <dubbo.version>2.6.5</dubbo.version>
+        <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>
+        <nacos-client.version>0.6.2</nacos-client.version>
         <!-- Build args -->
         <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
             -Djava.net.preferIPv4Stack=true
@@ -52,21 +51,30 @@
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-        <maven-jacoco-plugin.version>0.8.1</maven-jacoco-plugin.version>
+        <maven-jacoco-plugin.version>0.8.2</maven-jacoco-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <alibaba-spring-context-support.version>1.0.2</alibaba-spring-context-support.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Dubbo dependencies -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo-dependencies-bom</artifactId>
+                <version>${dubbo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -92,47 +100,18 @@
                 </exclusions>
             </dependency>
 
-            <!-- ZK -->
+            <!-- Dubbo Nacos registry dependency -->
             <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo-registry-nacos.version}</version>
             </dependency>
 
+            <!-- Keep latest Nacos client version -->
             <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${zkclient.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>slf4j-api</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>log4j</artifactId>
-                        <groupId>log4j</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>slf4j-log4j12</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-framework</artifactId>
-                <version>${curator-framework.version}</version>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
             </dependency>
 
         </dependencies>
@@ -416,6 +395,8 @@
                                 <exclude>**/*.fc</exclude>
                                 <exclude>**/*.javascript</exclude>
                                 <exclude>**/*.properties</exclude>
+                                <exclude>**/*.yml</exclude>
+                                <exclude>**/*.yaml</exclude>
                                 <exclude>**/*.thrift</exclude>
                                 <exclude>**/*.sh</exclude>
                                 <exclude>**/*.bat</exclude>

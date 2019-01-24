@@ -17,6 +17,7 @@
 package com.alibaba.boot.dubbo.context.event;
 
 import com.alibaba.dubbo.common.Version;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -24,22 +25,31 @@ import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
-import static com.alibaba.dubbo.qos.server.DubboLogo.dubbo;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_MAILING_LIST;
+import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_SPRING_BOOT_GITHUB_URL;
+import static com.alibaba.boot.dubbo.util.DubboUtils.LINE_SEPARATOR;
 
 /**
  * Dubbo Welcome Logo {@link ApplicationListener}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see ApplicationListener
  * @since 1.0.0
  */
 @Order(LoggingApplicationListener.DEFAULT_ORDER + 1)
 public class WelcomeLogoApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
+    private static AtomicBoolean processed = new AtomicBoolean(false);
 
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
+
+        // Skip if processed before, prevent duplicated execution in Hierarchical ApplicationContext
+        if (processed.get()) {
+            return;
+        }
 
         /**
          * Gets Logger After LoggingSystem configuration ready
@@ -55,8 +65,9 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
             System.out.print(bannerText);
         }
 
+        // mark processed to be true
+        processed.compareAndSet(false, true);
     }
-
 
     String buildBannerText() {
 
@@ -71,7 +82,7 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
                 .append(" :: Dubbo (v").append(Version.getVersion()).append(") : ")
                 .append(DUBBO_GITHUB_URL)
                 .append(LINE_SEPARATOR)
-                .append(" :: Google group : ")
+                .append(" :: Discuss group : ")
                 .append(DUBBO_MAILING_LIST)
                 .append(LINE_SEPARATOR)
         ;

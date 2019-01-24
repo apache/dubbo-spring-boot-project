@@ -1090,8 +1090,8 @@
     },
     {
       "sourceType": "com.alibaba.boot.dubbo.autoconfigure.DubboScanProperties",
-      "name": "dubbo.scan.basePackages",
-      "description": "The basePackages to scan , the multiple-value is delimited by comma\n\n @see EnableDubbo#scanBasePackages()",
+      "name": "dubbo.scan.base-packages",
+      "description": "The base-packages to scan , the multiple-value is delimited by comma\n\n @see EnableDubbo#scanBasePackages()",
       "type": "java.util.Set<java.lang.String>"
     }
   ]

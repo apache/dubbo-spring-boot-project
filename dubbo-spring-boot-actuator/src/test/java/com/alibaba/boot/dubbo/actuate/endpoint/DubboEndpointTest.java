@@ -17,12 +17,12 @@
 package com.alibaba.boot.dubbo.actuate.endpoint;
 
 import com.alibaba.boot.dubbo.util.DubboUtils;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
@@ -32,7 +32,7 @@ import static com.alibaba.dubbo.common.Version.getVersion;
 /**
  * {@link DubboEndpoint} Test
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see DubboEndpoint
  * @since 1.0.0
  */
@@ -65,7 +65,7 @@ public class DubboEndpointTest {
         Assert.assertEquals(getVersion(), versions.get("dubbo"));
 
         Assert.assertEquals("https://github.com/apache/incubator-dubbo", urls.get("dubbo"));
-        Assert.assertEquals("dev@dubbo.incubator.apache.org", urls.get("mailing-list"));
+        Assert.assertEquals("dev@dubbo.apache.org", urls.get("mailing-list"));
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project", urls.get("github"));
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project/issues", urls.get("issues"));
         Assert.assertEquals("https://github.com/apache/incubator-dubbo-spring-boot-project.git", urls.get("git"));

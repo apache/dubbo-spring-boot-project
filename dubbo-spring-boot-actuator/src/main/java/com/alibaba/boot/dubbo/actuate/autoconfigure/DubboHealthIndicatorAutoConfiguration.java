@@ -19,6 +19,7 @@ package com.alibaba.boot.dubbo.actuate.autoconfigure;
 import com.alibaba.boot.dubbo.actuate.health.DubboHealthIndicator;
 import com.alibaba.boot.dubbo.actuate.health.DubboHealthIndicatorProperties;
 import com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration;
+
 import org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.health.ConditionalOnEnabledHealthIndicator;
 import org.springframework.boot.actuate.health.HealthIndicator;
@@ -33,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Dubbo {@link DubboHealthIndicator} Auto Configuration
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see HealthIndicator
  * @since 1.0.0
  */

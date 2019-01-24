@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -36,24 +36,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Dubbo -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- ZK -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

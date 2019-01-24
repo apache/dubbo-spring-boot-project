@@ -21,16 +21,15 @@ import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
 import java.util.SortedMap;
 
-import static com.alibaba.boot.dubbo.actuate.endpoint.DubboEndpoint.DUBBO_PROPERTIES_ENDPOINT_ID;
 import static com.alibaba.boot.dubbo.util.DubboUtils.filterDubboProperties;
 
 /**
  * Dubbo Properties {@link Endpoint}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @since 1.0.0
  */
-@Endpoint(id = DUBBO_PROPERTIES_ENDPOINT_ID)
+@Endpoint(id = "dubboproperties")
 public class DubboPropertiesEndpoint extends AbstractDubboEndpoint {
 
     @ReadOperation

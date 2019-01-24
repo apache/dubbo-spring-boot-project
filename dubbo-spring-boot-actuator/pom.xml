@@ -20,7 +20,7 @@
     <parent>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <groupId>com.alibaba.boot</groupId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -31,15 +31,6 @@
     <description>Dubbo Spring Boot Actuator</description>
 
     <dependencies>
-
-        <!-- Compile -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

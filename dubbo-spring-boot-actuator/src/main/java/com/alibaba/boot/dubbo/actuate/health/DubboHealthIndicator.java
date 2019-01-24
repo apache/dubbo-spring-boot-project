@@ -20,6 +20,7 @@ import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.common.status.StatusChecker;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ProviderConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
@@ -37,7 +38,7 @@ import static com.alibaba.dubbo.common.extension.ExtensionLoader.getExtensionLoa
 /**
  * Dubbo {@link HealthIndicator}
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ *
  * @see HealthIndicator
  * @since 1.0.0
  */

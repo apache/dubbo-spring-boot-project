@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: dubbo-externalized-configuration-consumer-sample
+
+demo:
+  service:
+    version: 1.0.0
+    url: dubbo://localhost:12345

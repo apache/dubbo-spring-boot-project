@@ -16,16 +16,16 @@
  */
 package com.alibaba.boot.dubbo.util;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * The utilities class for Dubbo
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 public abstract class DubboUtils {
@@ -61,7 +61,7 @@ public abstract class DubboUtils {
      * <p>
      * The default value is empty set.
      */
-    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "basePackages";
+    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "base-packages";
 
     /**
      * The property name of multiple properties binding from externalized configuration
@@ -111,7 +111,7 @@ public abstract class DubboUtils {
     /**
      * The google group URL of Dubbo
      */
-    public static final String DUBBO_MAILING_LIST = "dev@dubbo.incubator.apache.org";
+    public static final String DUBBO_MAILING_LIST = "dev@dubbo.apache.org";
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}
@@ -129,7 +129,7 @@ public abstract class DubboUtils {
             String propertyName = entry.getKey();
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
-                && entry.getValue() != null) {
+                    && entry.getValue() != null) {
                 dubboProperties.put(propertyName, entry.getValue().toString());
             }
 
