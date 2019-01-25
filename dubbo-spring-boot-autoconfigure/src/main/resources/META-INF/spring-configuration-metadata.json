@@ -93,19 +93,19 @@
       "type": "java.lang.String"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.applications",
       "description": "Multiple {@link ApplicationConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.ApplicationConfig>"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.DubboConfigProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboConfigProperties",
       "name": "dubbo.config.multiple",
       "description": "Indicates multiple properties binding from externalized configuration or not.",
       "type": "java.lang.Boolean"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.DubboConfigProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboConfigProperties",
       "name": "dubbo.config.override",
       "description": "Indicates override {@link ConfigUtils#getProperties() Dubbo config properties} from externalized configuration\n or not.",
       "type": "java.lang.Boolean"
@@ -320,7 +320,7 @@
       "type": "java.lang.String"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.consumers",
       "description": "Multiple {@link ConsumerConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.ConsumerConfig>"
@@ -371,7 +371,7 @@
       "type": "java.lang.String"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.modules",
       "description": "Multiple {@link ModuleConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.ModuleConfig>"
@@ -422,7 +422,7 @@
       "type": "java.lang.String"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.monitors",
       "description": "Multiple {@link MonitorConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.MonitorConfig>"
@@ -587,7 +587,7 @@
       "type": "java.lang.String"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.protocols",
       "description": "Multiple {@link ProtocolConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.ProtocolConfig>"
@@ -958,13 +958,13 @@
       "type": "java.lang.Integer"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.providers",
       "description": "Multiple {@link ProviderConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.ProviderConfig>"
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.MultipleDubboConfigBindingProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
       "name": "dubbo.registries",
       "description": "Multiple {@link RegistryConfig} property",
       "type": "java.util.Map<java.lang.String,com.alibaba.dubbo.config.RegistryConfig>"
@@ -1089,7 +1089,7 @@
       "deprecation": {}
     },
     {
-      "sourceType": "com.alibaba.boot.dubbo.autoconfigure.DubboScanProperties",
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboScanProperties",
       "name": "dubbo.scan.base-packages",
       "description": "The base-packages to scan , the multiple-value is delimited by comma\n\n @see EnableDubbo#scanBasePackages()",
       "type": "java.util.Set<java.lang.String>"

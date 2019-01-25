@@ -155,7 +155,7 @@ management.port = 9091
 demo.service.version = 1.0.0
 
 # Base packages to scan Dubbo Components (e.g @Service , @Reference)
-dubbo.scan.basePackages  = com.alibaba.boot.dubbo.demo.provider.service
+dubbo.scan.basePackages  = org.apache.dubbo.spring.boot.demo.provider.service
 
 # Dubbo Config properties
 ## ApplicationConfig Bean
@@ -203,7 +203,7 @@ public class DemoConsumerController {
 2. 编写 Spring Boot 引导程序（Web 应用） :
 
 ```java
-@SpringBootApplication(scanBasePackages = "com.alibaba.boot.dubbo.demo.consumer.controller")
+@SpringBootApplication(scanBasePackages = "org.apache.dubbo.spring.boot.demo.consumer.controller")
 public class DubboConsumerDemo {
 
     public static void main(String[] args) {
