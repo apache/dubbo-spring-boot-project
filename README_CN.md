@@ -23,32 +23,75 @@
 
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
-<dependency>
-    <groupId>org.apache.dubbo</groupId>
-    <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.2.1</version>
-</dependency>
+<properties>
+    <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+    <dubbo.version>2.7.0-SNAPSHT</dubbo.version>
+</properties>
+    
+<dependencyManagement>
+    <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
 
-<!-- Dubbo -->
-<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>dubbo</artifactId>
-    <version>2.6.5</version>
-</dependency>
-<!-- Spring Context Extras -->
-<dependency>
-    <groupId>com.alibaba.spring</groupId>
-    <artifactId>spring-context-support</artifactId>
-    <version>1.0.2</version>
-</dependency>
+        <!-- Aapche Dubbo  -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-bom</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <!-- Dubbo Spring Boot Starter -->
+    <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 如果您的工程遇到了依赖问题, 请尝试添加如下 Maven 参考到工程的 `pom.xml` 文件中：
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -60,13 +103,6 @@
 ```
 
 
-## 开发版本
-
-从现在开始, `dubbo-spring-boot-project` 将在每个发布中发行两个版本 :
-
-* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) 是支持 Spring Boot 2.x 的主要版本（推荐，长期维护）
-
-* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
 
 
 ### 源代码构建
@@ -76,12 +112,6 @@
 1. Maven install 当前工程
 > Maven install = `mvn install`
 
-### 依赖关系
-
-| 版本 | Java  | Spring Boot       | Dubbo      |
-| -------- | ----- | ----------------- | ---------- |
-| `0.2.0`  | 1.8+ | `2.0.x` | `2.6.2`+ |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2`+ |
 
 
 

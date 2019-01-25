@@ -22,7 +22,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.6.5</dubbo.version>
+    <dubbo.version>2.7.0-SNAPSHT</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -35,14 +35,34 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-    
-        <!-- Dubbo dependencies -->
+
+        <!-- Aapche Dubbo  -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
             <version>${dubbo.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -52,16 +72,12 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    
     <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>dubbo</artifactId>
-        <version>${dubbo.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-all</artifactId>
     </dependency>
 </dependencies>
 ```
@@ -70,8 +86,9 @@ If your project failed to resolve the dependency, try to add the following repos
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -83,13 +100,6 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
-## Developing Versions
-
-For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
-
-* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) is a main stream release version for Spring Boot 2.x
-
-* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
 
 
 ### Build from Source
@@ -99,13 +109,6 @@ If you'd like to attempt to experience latest features, you also can build from 
 1. Maven install current project in your local repository.
 > Maven install = `mvn install`
 
-
-### Dependencies
-
-| versions | Java  | Spring Boot | Dubbo      |
-| -------- | ----- | ----------- | ---------- |
-| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.2` + |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
 
 
 
