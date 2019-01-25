@@ -1,4 +1,4 @@
-# Dubbo Spring Boot Project 
+# Apache Dubbo Spring Boot Project 
 
 [![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
@@ -50,7 +50,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 <dependencies>
     <!-- Dubbo Spring Boot Starter -->
     <dependency>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
         <version>0.2.1-SNAPSHOT</version>
     </dependency>
@@ -257,7 +257,7 @@ $ ./mvnw clean install
 
 ## Modules
 
-There are some modules in Dubbo Spring Boot Project, let's take a look at below overview:
+There are some modules in Apache Dubbo Spring Boot Project, let's take a look at below overview:
 
 
 

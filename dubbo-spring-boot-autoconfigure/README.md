@@ -21,7 +21,7 @@ You can introduce the latest `dubbo-spring-boot-autoconfigure` to your project 
 
 ```xml
 <dependency>
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <version>0.2.1</version>
 </dependency>

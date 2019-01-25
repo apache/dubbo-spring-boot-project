@@ -18,7 +18,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
@@ -27,8 +27,8 @@
 
     <artifactId>dubbo-spring-boot-distribution</artifactId>
     <packaging>pom</packaging>
-    <name>Dubbo Spring Boot Distribution</name>
-    <description>Dubbo Spring Boot Distribution</description>
+    <name>Apache Dubbo Spring Boot Distribution</name>
+    <description>Apache Dubbo Spring Boot Distribution</description>
 
 
     <dependencies>

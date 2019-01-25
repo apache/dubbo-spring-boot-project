@@ -29,14 +29,14 @@
 
     <!-- 功能特性 -->
     <dependency>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
         <version>0.2.1</version>
     </dependency>
 
     <!-- Production-Ready 特性 -->
     <dependency>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-actuator</artifactId>
         <version>0.2.1</version>
     </dependency>
@@ -258,7 +258,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "version": "1.0.0",
     "warmup": null,
     "weight": null,
-    "serviceClass": "com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService"
+    "serviceClass": "DefaultDemoService"
   }
 }
 ```

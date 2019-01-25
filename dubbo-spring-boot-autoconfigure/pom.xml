@@ -18,7 +18,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
@@ -27,8 +27,8 @@
 
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <name>Dubbo Spring Boot Auto-Configure</name>
-    <description>Dubbo Spring Boot Auto-Configure</description>
+    <name>Apache Dubbo Spring Boot Auto-Configure</name>
+    <description>Apache Dubbo Spring Boot Auto-Configure</description>
 
 
     <dependencies>
@@ -54,15 +54,9 @@
 
         <!-- Dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Alibaba Spring Context extension -->
-        <dependency>
-            <groupId>com.alibaba.spring</groupId>
-            <artifactId>spring-context-support</artifactId>
         </dependency>
 
         <!-- Test Dependencies -->

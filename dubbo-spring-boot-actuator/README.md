@@ -31,7 +31,7 @@ For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot
 You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
 ```xml
 <dependency>
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
     <version>0.2.1</version>
 </dependency>
@@ -272,7 +272,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "version": "1.0.0",
     "warmup": null,
     "weight": null,
-    "serviceClass": "com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService"
+    "serviceClass": "DefaultDemoService"
   }
 }
 ```

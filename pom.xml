@@ -24,20 +24,20 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
     <version>${revision}</version>
 
     <packaging>pom</packaging>
 
-    <name>Dubbo Spring Boot Project</name>
-    <description>Dubbo Spring Boot Project</description>
+    <name>Apache Dubbo Spring Boot Project</name>
+    <description>Apache Dubbo Spring Boot Project</description>
     <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
 
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>0.2.1</revision>
+        <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
     <modules>

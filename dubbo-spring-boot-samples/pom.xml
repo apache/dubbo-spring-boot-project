@@ -18,24 +18,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.alibaba.boot.samples</groupId>
+    <groupId>org.apache.dubbo.samples</groupId>
     <artifactId>dubbo-spring-boot-samples</artifactId>
     <packaging>pom</packaging>
-    <name>Dubbo Spring Boot Samples</name>
-    <description>Dubbo Spring Boot Samples</description>
+    <name>Apache Dubbo Spring Boot Samples</name>
+    <description>Apache Dubbo Spring Boot Samples</description>
 
     <modules>
         <module>sample-api</module>
         <module>auto-configure-samples</module>
         <module>externalized-configuration-samples</module>
-        <module>dubbo-registry-nacos-samples</module>
         <module>dubbo-registry-zookeeper-samples</module>
     </modules>
 

@@ -18,7 +18,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot.samples</groupId>
+        <groupId>org.apache.dubbo.samples</groupId>
         <artifactId>dubbo-spring-boot-samples</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -26,8 +26,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-auto-configure-samples</artifactId>
-    <name>Dubbo Spring Boot Samples : Auto-Configure</name>
-    <description>Dubbo Spring Boot Auto-Configure Samples</description>
+    <name>Apache Dubbo Spring Boot Samples : Auto-Configure</name>
+    <description>Apache Dubbo Spring Boot Auto-Configure Samples</description>
     <packaging>pom</packaging>
 
     <modules>
