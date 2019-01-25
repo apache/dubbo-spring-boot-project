@@ -18,7 +18,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-project</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -28,8 +28,8 @@
 
     <artifactId>dubbo-spring-boot-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Dubbo Spring Boot Parent</name>
-    <description>Dubbo Spring Boot Parent</description>
+    <name>Apache Dubbo Spring Boot Parent</name>
+    <description>Apache Dubbo Spring Boot Parent</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -38,7 +38,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-        <dubbo.version>2.6.5</dubbo.version>
+        <dubbo.version>2.7.0-SNAPSHOT</dubbo.version>
         <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>
         <nacos-client.version>0.6.2</nacos-client.version>
         <!-- Build args -->
@@ -56,7 +56,6 @@
         <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-        <alibaba-spring-context-support.version>1.0.2</alibaba-spring-context-support.version>
     </properties>
 
     <dependencyManagement>
@@ -70,18 +69,17 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Dubbo dependencies -->
+            <!-- Aapche Dubbo  -->
             <dependency>
-                <groupId>com.alibaba</groupId>
+                <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-dependencies-bom</artifactId>
                 <version>${dubbo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!-- Dubbo -->
             <dependency>
-                <groupId>com.alibaba</groupId>
+                <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
                 <exclusions>
@@ -100,20 +98,6 @@
                 </exclusions>
             </dependency>
 
-            <!-- Dubbo Nacos registry dependency -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo-registry-nacos</artifactId>
-                <version>${dubbo-registry-nacos.version}</version>
-            </dependency>
-
-            <!-- Keep latest Nacos client version -->
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos-client.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -127,6 +111,19 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <repository>
+            <id>apache.snapshots.https</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>spring-milestone</id>
             <name>Spring Milestone</name>

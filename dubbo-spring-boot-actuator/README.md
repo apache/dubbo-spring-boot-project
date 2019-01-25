@@ -31,7 +31,7 @@ For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot
 You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
 ```xml
 <dependency>
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
     <version>0.2.1</version>
 </dependency>
@@ -214,7 +214,7 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
   "dubbo.protocol.port": "12345",
   "dubbo.registry.address": "N/A",
   "dubbo.registry.id": "my-registry",
-  "dubbo.scan.basePackages": "com.alibaba.boot.dubbo.demo.provider.service"
+  "dubbo.scan.basePackages": "org.apache.dubbo.spring.boot.demo.provider.service"
 }
 ```
 
@@ -230,7 +230,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
 
 ```json
 {
-  "ServiceBean@com.alibaba.boot.dubbo.demo.api.DemoService#defaultDemoService": {
+  "ServiceBean@org.apache.dubbo.spring.boot.demo.api.DemoService#defaultDemoService": {
     "accesslog": null,
     "actives": null,
     "cache": null,
@@ -246,9 +246,9 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "filter": "",
     "generic": "false",
     "group": null,
-    "id": "com.alibaba.boot.dubbo.demo.api.DemoService",
-    "interface": "com.alibaba.boot.dubbo.demo.api.DemoService",
-    "interfaceClass": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "id": "org.apache.dubbo.spring.boot.demo.api.DemoService",
+    "interface": "org.apache.dubbo.spring.boot.demo.api.DemoService",
+    "interfaceClass": "org.apache.dubbo.spring.boot.demo.api.DemoService",
     "layer": null,
     "listener": "",
     "loadbalance": null,
@@ -258,7 +258,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "onconnect": null,
     "ondisconnect": null,
     "owner": null,
-    "path": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "path": "org.apache.dubbo.spring.boot.demo.api.DemoService",
     "proxy": null,
     "retries": null,
     "scope": null,
@@ -267,12 +267,12 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "timeout": null,
     "token": null,
     "unexported": false,
-    "uniqueServiceName": "com.alibaba.boot.dubbo.demo.api.DemoService:1.0.0",
+    "uniqueServiceName": "org.apache.dubbo.spring.boot.demo.api.DemoService:1.0.0",
     "validation": null,
     "version": "1.0.0",
     "warmup": null,
     "weight": null,
-    "serviceClass": "com.alibaba.boot.dubbo.demo.provider.service.DefaultDemoService"
+    "serviceClass": "DefaultDemoService"
   }
 }
 ```
@@ -287,7 +287,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
 
 ```json
 {
-  "private com.alibaba.boot.dubbo.demo.api.DemoService com.alibaba.boot.dubbo.demo.consumer.controller.DemoConsumerController.demoService": {
+  "private org.apache.dubbo.spring.boot.demo.api.DemoService org.apache.dubbo.spring.boot.demo.consumer.controller.DemoConsumerController.demoService": {
     "actives": null,
     "cache": null,
     "callbacks": null,
@@ -298,9 +298,9 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "filter": "",
     "generic": null,
     "group": null,
-    "id": "com.alibaba.boot.dubbo.demo.api.DemoService",
-    "interface": "com.alibaba.boot.dubbo.demo.api.DemoService",
-    "interfaceClass": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "id": "org.apache.dubbo.spring.boot.demo.api.DemoService",
+    "interface": "org.apache.dubbo.spring.boot.demo.api.DemoService",
+    "interfaceClass": "org.apache.dubbo.spring.boot.demo.api.DemoService",
     "layer": null,
     "lazy": null,
     "listener": "",
@@ -308,7 +308,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "local": null,
     "merger": null,
     "mock": null,
-    "objectType": "com.alibaba.boot.dubbo.demo.api.DemoService",
+    "objectType": "org.apache.dubbo.spring.boot.demo.api.DemoService",
     "onconnect": null,
     "ondisconnect": null,
     "owner": null,
@@ -323,7 +323,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "stub": null,
     "stubevent": null,
     "timeout": null,
-    "uniqueServiceName": "com.alibaba.boot.dubbo.demo.api.DemoService:1.0.0",
+    "uniqueServiceName": "org.apache.dubbo.spring.boot.demo.api.DemoService:1.0.0",
     "url": "dubbo://localhost:12345",
     "validation": null,
     "version": "1.0.0",
