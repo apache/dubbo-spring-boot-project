@@ -238,9 +238,9 @@ More details, please refer to [Samples](dubbo-spring-boot-samples).
 
 Having trouble with Dubbo Spring Boot? We’d like to help!
 
-- If you are upgrading, read the [release notes](https://github.com/dubbo/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
-- Ask a question - You can join [ours google groups](https://groups.google.com/group/dubbo), or subscribe [Dubbo User Mailling List](mailto:dubbo+subscribe@googlegroups.com).
-- Report bugs at [github.com/dubbo/dubbo-spring-boot-project/issues](https://github.com/dubbo/dubbo-spring-boot-project/issues).
+- If you are upgrading, read the [release notes](https://github.com/apache/incubator-dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
+- Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dev-subscribe@dubbo.apache.org).
+- Report bugs at [issues](https://github.com/apache/incubator-dubbo-spring-boot-project/issues).
 
 
 
