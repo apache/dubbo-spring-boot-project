@@ -52,7 +52,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>0.2.1</version>
     </dependency>
     <dependency>
         <groupId>com.alibaba</groupId>
@@ -104,8 +104,8 @@ If you'd like to attempt to experience latest features, you also can build from 
 
 | versions | Java  | Spring Boot | Dubbo      |
 | -------- | ----- | ----------- | ---------- |
-| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.2` + |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
+| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.5` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.5` + |
 
 
 
