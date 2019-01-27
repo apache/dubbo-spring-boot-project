@@ -39,9 +39,7 @@ public class DubboRegistryNacosConsumerBootstrap {
 
     @Bean
     public ApplicationRunner runner() {
-        return args -> {
-            logger.info(demoService.sayHello("mercyblitz"));
-        };
+        return args -> logger.info(demoService.sayHello("mercyblitz"));
     }
 
     public static void main(String[] args) {
