@@ -18,31 +18,49 @@
 
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
-<dependencies>
+<properties>
+    <spring-boot.version>1.5.18.RELEASE</spring-boot.version>
+    <dubbo.version>2.6.5</dubbo.version>
+</properties>
 
-    ...
+<dependencyManagement>
+    <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
     
+        <!-- Dubbo dependencies -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo-dependencies-bom</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <!-- Dubbo Spring Boot Starter -->
     <dependency>
         <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.1.2</version>
+        <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
+        <version>0.2.1</version>
     </dependency>
-
-    <!-- Dubbo -->
     <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>dubbo</artifactId>
-        <version>2.6.5</version>
+        <version>${dubbo.version}</version>
     </dependency>
-    <!-- Spring Context Extras -->
     <dependency>
-        <groupId>com.alibaba.spring</groupId>
-        <artifactId>spring-context-support</artifactId>
-        <version>1.0.2</version>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
     </dependency>
-    
-    ...
-    
 </dependencies>
 ```
 
