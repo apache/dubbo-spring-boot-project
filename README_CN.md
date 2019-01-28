@@ -50,7 +50,7 @@
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-        <version>0.2.1</version>
+        <version>0.1.2</version>
     </dependency>
     <dependency>
         <groupId>com.alibaba</groupId>
