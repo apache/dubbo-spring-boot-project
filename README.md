@@ -51,8 +51,8 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <!-- Dubbo Spring Boot Starter -->
     <dependency>
         <groupId>com.alibaba.boot</groupId>
-        <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-        <version>0.2.1</version>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.2.1.RELEASE</version>
     </dependency>
     <dependency>
         <groupId>com.alibaba</groupId>
