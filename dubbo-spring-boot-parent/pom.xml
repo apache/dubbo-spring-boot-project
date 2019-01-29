@@ -37,10 +37,8 @@
         <java.target.version>1.8</java.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-        <dubbo.version>2.7.0-SNAPSHOT</dubbo.version>
-        <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>
-        <nacos-client.version>0.6.2</nacos-client.version>
+        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+        <dubbo.version>2.7.0</dubbo.version>
         <!-- Build args -->
         <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
             -Djava.net.preferIPv4Stack=true

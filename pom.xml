@@ -37,7 +37,7 @@
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>1.0.0-SNAPSHOT</revision>
+        <revision>2.7.0</revision>
     </properties>
 
     <modules>
@@ -120,6 +120,31 @@
                                 <phase>verify</phase>
                                 <goals>
                                     <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <version>1.1.0</version>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>flatten</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>flatten</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>flatten.clean</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>clean</goal>
                                 </goals>
                             </execution>
                         </executions>
