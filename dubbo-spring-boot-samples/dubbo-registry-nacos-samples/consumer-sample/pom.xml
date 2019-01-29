@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Dubbo -->
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.alibaba.boot.samples</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Netty -->

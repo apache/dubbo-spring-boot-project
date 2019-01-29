@@ -218,8 +218,8 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                         <manifestEntries>
-                            <Specification-Version>${project.version}</Specification-Version>
-                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Specification-Version>${revision}</Specification-Version>
+                            <Implementation-Version>${revision}</Implementation-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
