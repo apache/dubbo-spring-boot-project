@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
     </dependencies>

@@ -42,3 +42,6 @@ target
 # system ignore
 .DS_Store
 Thumbs.db
+
+# Maven ignore
+.flattened-pom.xml
