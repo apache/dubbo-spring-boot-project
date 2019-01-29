@@ -49,7 +49,7 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>com.alibaba.boot.samples</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
             <version>${revision}</version>
         </dependency>

@@ -59,7 +59,7 @@
 
         <!-- Dubbo autoconfigure -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
             <version>${revision}</version>
         </dependency>
