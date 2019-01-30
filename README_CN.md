@@ -23,24 +23,50 @@
 
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
-<dependency>
-    <groupId>com.alibaba.boot</groupId>
-    <artifactId>dubbo-spring-boot-starter</artifactId>
-    <version>0.2.1</version>
-</dependency>
+<properties>
+    <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+    <dubbo.version>2.6.5</dubbo.version>
+</properties>
+    
+<dependencyManagement>
+    <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    
+        <!-- Dubbo dependencies -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo-dependencies-bom</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 
-<!-- Dubbo -->
-<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>dubbo</artifactId>
-    <version>2.6.5</version>
-</dependency>
-<!-- Spring Context Extras -->
-<dependency>
-    <groupId>com.alibaba.spring</groupId>
-    <artifactId>spring-context-support</artifactId>
-    <version>1.0.2</version>
-</dependency>
+<dependencies>
+    <!-- Dubbo Spring Boot Starter -->
+    <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>0.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>${dubbo.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 如果您的工程遇到了依赖问题, 请尝试添加如下 Maven 参考到工程的 `pom.xml` 文件中：
@@ -78,10 +104,10 @@
 
 ### 依赖关系
 
-| 版本 | Java  | Spring Boot       | Dubbo      |
-| -------- | ----- | ----------------- | ---------- |
-| `0.2.0`  | 1.8+ | `2.0.x` | `2.6.2`+ |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2`+ |
+| versions | Java  | Spring Boot | Dubbo      |
+| -------- | ----- | ----------- | ---------- |
+| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.5` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.5` + |
 
 
 
@@ -251,9 +277,9 @@ dubbo.protocol.port = 12345
 
 如果您在使用 Dubbo Spring Boot 中遇到任何问题或者有什么建议? 我们非常需要您的支持!
 
-- 如果您需要升级版本，请提前阅读[发布公告](https://github.com/dubbo/dubbo-spring-boot-project/releases)，了解最新的特性和问题修复。
-- 如果您遇到任何问题 ，您可以加入官方 [Google 讨论组](https://groups.google.com/group/dubbo) , 或者订阅 [Dubbo 用户邮件列表](mailto:dubbo+subscribe@googlegroups.com)。
-- 问题反馈，您可以在 [issues](https://github.com/dubbo/dubbo-spring-boot-project/issues) 提出您遇到的使用问题。
+- 如果您需要升级版本，请提前阅读[发布公告](https://github.com/apache/incubator-dubbo-spring-boot-project/releases)，了解最新的特性和问题修复。
+- 如果您遇到任何问题 ，您可以订阅 [Dubbo 用户邮件列表](mailto:mailto:dev-subscribe@dubbo.apache.org)。
+- 问题反馈，您可以在 [issues](https://github.com/apache/incubator-dubbo-spring-boot-project/issues) 提出您遇到的使用问题。
 
 
 
@@ -290,19 +316,10 @@ Dubbo Spring Boot 采用多 Maven 模块工程 , 模块如下：
 
 ### [dubbo-spring-boot-samples](dubbo-spring-boot-samples)
 
-The samples project of Dubbo Spring Boot that includes two parts:
-[dubbo-spring-boot-samples](dubbo-spring-boot-samples) 为 Dubbo Spring Boot 示例工程，包括：
+示例工程包含以下项目:
 
-
-#### [Dubbo 服务提供方示例](dubbo-spring-boot-samples/dubbo-spring-boot-sample-provider)
-
-Dubbo 服务将会通过 localhost 的 `12345` 端口暴露服务，并且提供 JMX Endpoints。
-
-
-#### [Dubbo 服务消费方示例](dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer)
-
-Dubbo 服务将被 Spring WebMVC `Controller` 消费，并且提供 JMX 以及 Web Endpoints 端口：
-
-* 示例 `Controller` : http://localhost:8080/sayHello?name=HelloWorld
-* [健康检查](dubbo-spring-boot-actuator#health-checks) : http://localhost:8081/actuator/health
-* [Dubbo Endpoints](dubbo-spring-boot-actuator#endpoints) : http://localhost:8081/actuator/dubbo
+- [自动装配示例](dubbo-spring-boot-samples/auto-configure-samples)
+- [外部化示例](dubbo-spring-boot-samples/externalized-configuration-samples)
+- [整合 Zookeeper 示例](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [整合 Nacos 示例](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+- [示例 API](dubbo-spring-boot-samples/sample-api)

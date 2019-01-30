@@ -52,7 +52,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>0.2.1.RELEASE</version>
     </dependency>
     <dependency>
         <groupId>com.alibaba</groupId>
@@ -104,8 +104,8 @@ If you'd like to attempt to experience latest features, you also can build from 
 
 | versions | Java  | Spring Boot | Dubbo      |
 | -------- | ----- | ----------- | ---------- |
-| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.2` + |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.2` + |
+| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.5` + |
+| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.5` + |
 
 
 
@@ -238,9 +238,9 @@ More details, please refer to [Samples](dubbo-spring-boot-samples).
 
 Having trouble with Dubbo Spring Boot? We’d like to help!
 
-- If you are upgrading, read the [release notes](https://github.com/dubbo/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
-- Ask a question - You can join [ours google groups](https://groups.google.com/group/dubbo), or subscribe [Dubbo User Mailling List](mailto:dubbo+subscribe@googlegroups.com).
-- Report bugs at [github.com/dubbo/dubbo-spring-boot-project/issues](https://github.com/dubbo/dubbo-spring-boot-project/issues).
+- If you are upgrading, read the [release notes](https://github.com/apache/incubator-dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
+- Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dev-subscribe@dubbo.apache.org).
+- Report bugs at [issues](https://github.com/apache/incubator-dubbo-spring-boot-project/issues).
 
 
 
