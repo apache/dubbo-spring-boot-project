@@ -16,65 +16,28 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
-import org.apache.dubbo.config.spring.ServiceBean;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.AbstractDubboMetadata;
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboShutdownMetadata;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
-
-import static org.apache.dubbo.registry.support.AbstractRegistryFactory.getRegistries;
 
 /**
  * Dubbo Shutdown
  *
- * @since 0.2.0
+ * @since 2.7.0
  */
 @Endpoint(id = "dubboshutdown")
-public class DubboShutdownEndpoint extends AbstractDubboEndpoint {
+public class DubboShutdownEndpoint extends AbstractDubboMetadata {
 
+    @Autowired
+    private DubboShutdownMetadata dubboShutdownMetadata;
 
     @WriteOperation
     public Map<String, Object> shutdown() throws Exception {
-
-        Map<String, Object> shutdownCountData = new LinkedHashMap<>();
-
-        // registries
-        int registriesCount = getRegistries().size();
-
-        // protocols
-        int protocolsCount = getProtocolConfigsBeanMap().size();
-
-        shutdownCountData.put("registries", registriesCount);
-        shutdownCountData.put("protocols", protocolsCount);
-
-        // Service Beans
-        Map<String, ServiceBean> serviceBeansMap = getServiceBeansMap();
-        if (!serviceBeansMap.isEmpty()) {
-            for (ServiceBean serviceBean : serviceBeansMap.values()) {
-                serviceBean.destroy();
-            }
-        }
-        shutdownCountData.put("services", serviceBeansMap.size());
-
-        // Reference Beans
-        ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
-
-        int referencesCount = beanPostProcessor.getReferenceBeans().size();
-
-        beanPostProcessor.destroy();
-
-        shutdownCountData.put("references", referencesCount);
-
-        // Set Result to complete
-        Map<String, Object> shutdownData = new TreeMap<>();
-        shutdownData.put("shutdown.count", shutdownCountData);
-
-
-        return shutdownData;
+        return dubboShutdownMetadata.shutdown();
     }
 
 }

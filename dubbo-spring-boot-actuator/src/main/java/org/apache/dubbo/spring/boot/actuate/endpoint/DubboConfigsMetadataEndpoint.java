@@ -16,74 +16,27 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
-import org.apache.dubbo.config.AbstractConfig;
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.ConsumerConfig;
-import org.apache.dubbo.config.MethodConfig;
-import org.apache.dubbo.config.ModuleConfig;
-import org.apache.dubbo.config.MonitorConfig;
-import org.apache.dubbo.config.ProtocolConfig;
-import org.apache.dubbo.config.ProviderConfig;
-import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.config.RegistryConfig;
-import org.apache.dubbo.config.ServiceConfig;
-
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.AbstractDubboMetadata;
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboConfigsMetadata;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
-
-import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 
 /**
  * Dubbo Configs Metadata {@link Endpoint}
  *
- * @since 0.2.0
+ * @since 2.7.0
  */
 @Endpoint(id = "dubboconfigs")
-public class DubboConfigsMetadataEndpoint extends AbstractDubboEndpoint {
+public class DubboConfigsMetadataEndpoint extends AbstractDubboMetadata {
+
+    @Autowired
+    private DubboConfigsMetadata dubboConfigsMetadata;
 
     @ReadOperation
     public Map<String, Map<String, Map<String, Object>>> configs() {
-
-        Map<String, Map<String, Map<String, Object>>> configsMap = new LinkedHashMap<>();
-
-        addDubboConfigBeans(ApplicationConfig.class, configsMap);
-        addDubboConfigBeans(ConsumerConfig.class, configsMap);
-        addDubboConfigBeans(MethodConfig.class, configsMap);
-        addDubboConfigBeans(ModuleConfig.class, configsMap);
-        addDubboConfigBeans(MonitorConfig.class, configsMap);
-        addDubboConfigBeans(ProtocolConfig.class, configsMap);
-        addDubboConfigBeans(ProviderConfig.class, configsMap);
-        addDubboConfigBeans(ReferenceConfig.class, configsMap);
-        addDubboConfigBeans(RegistryConfig.class, configsMap);
-        addDubboConfigBeans(ServiceConfig.class, configsMap);
-
-        return configsMap;
-
-    }
-
-    private void addDubboConfigBeans(Class<? extends AbstractConfig> dubboConfigClass,
-                                     Map<String, Map<String, Map<String, Object>>> configsMap) {
-
-        Map<String, ? extends AbstractConfig> dubboConfigBeans = beansOfTypeIncludingAncestors(applicationContext, dubboConfigClass);
-
-        String name = dubboConfigClass.getSimpleName();
-
-        Map<String, Map<String, Object>> beansMetadata = new TreeMap<>();
-
-        for (Map.Entry<String, ? extends AbstractConfig> entry : dubboConfigBeans.entrySet()) {
-
-            String beanName = entry.getKey();
-            AbstractConfig configBean = entry.getValue();
-            Map<String, Object> configBeanMeta = resolveBeanMetadata(configBean);
-            beansMetadata.put(beanName, configBeanMeta);
-
-        }
-
-        configsMap.put(name, beansMetadata);
-
+        return dubboConfigsMetadata.configs();
     }
 }

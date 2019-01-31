@@ -18,7 +18,6 @@ package org.apache.dubbo.spring.boot.demo.consumer.bootstrap;
 
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -29,7 +28,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * Dubbo Auto Configuration Consumer Bootstrap
  *
- * @since 1.0.0
+ * @since 2.7.0
  */
 @EnableAutoConfiguration
 public class DubboAutoConfigurationConsumerBootstrap {
