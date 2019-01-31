@@ -26,18 +26,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubbo-spring-boot-legacy</artifactId>
+    <artifactId>dubbo-spring-boot-compatible</artifactId>
     <packaging>pom</packaging>
     <name>Apache Dubbo Spring Boot :: Compatible</name>
     <description>Apache Dubbo Spring Boot Compatible for Spring Boot 1.x</description>
+
+    <properties>
+        <spring-boot.version>1.5.19.RELEASE</spring-boot.version>
+    </properties>
 
     <modules>
         <module>autoconfigure</module>
         <module>actuator</module>
     </modules>
-
-    <properties>
-        <spring-boot.version>1.5.19.RELEASE</spring-boot.version>
-    </properties>
 
 </project>
