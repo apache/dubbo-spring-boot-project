@@ -122,16 +122,16 @@ externalized configuration [`StatusChecker`'s defaults](#statuschecker-defaults)
 
 
 
- `META-INF/dubbo/internal/com.alibaba.dubbo.common.status.StatusChecker` declares Build-in `StatusChecker`s as follow :
+ `META-INF/dubbo/internal/org.apache.dubbo.common.status.StatusChecker` declares Build-in `StatusChecker`s as follow :
 
 ```properties
-registry=com.alibaba.dubbo.registry.status.RegistryStatusChecker
-spring=com.alibaba.dubbo.config.spring.status.SpringStatusChecker
-datasource=com.alibaba.dubbo.config.spring.status.DataSourceStatusChecker
-memory=com.alibaba.dubbo.common.status.support.MemoryStatusChecker
-load=com.alibaba.dubbo.common.status.support.LoadStatusChecker
-server=com.alibaba.dubbo.rpc.protocol.dubbo.status.ServerStatusChecker
-threadpool=com.alibaba.dubbo.rpc.protocol.dubbo.status.ThreadPoolStatusChecker
+registry=org.apache.dubbo.registry.status.RegistryStatusChecker
+spring=org.apache.dubbo.config.spring.status.SpringStatusChecker
+datasource=org.apache.dubbo.config.spring.status.DataSourceStatusChecker
+memory=org.apache.dubbo.common.status.support.MemoryStatusChecker
+load=org.apache.dubbo.common.status.support.LoadStatusChecker
+server=org.apache.dubbo.rpc.protocol.dubbo.status.ServerStatusChecker
+threadpool=org.apache.dubbo.rpc.protocol.dubbo.status.ThreadPoolStatusChecker
 ```
 
 
@@ -175,11 +175,11 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
     "dubbo": "2.7.0"
   },
   "urls": {
-    "dubbo": "https://github.com/alibaba/dubbo",
-    "google-group": "http://groups.google.com/group/dubbo",
-    "github": "https://github.com/dubbo/dubbo-spring-boot-project",
-    "issues": "https://github.com/dubbo/dubbo-spring-boot-project/issues",
-    "git": "https://github.com/dubbo/dubbo-spring-boot-project.git"
+    "dubbo": "https://github.com/apache/incubator-dubbo/",
+    "google-group": "dev@dubbo.apache.org",
+    "github": "https://github.com/apache/incubator-dubbo-spring-boot-project",
+    "issues": "https://github.com/apache/incubator-dubbo-spring-boot-project/issues",
+    "git": "https://github.com/apache/incubator-dubbo-spring-boot-project.git"
   }
 }
 ```
@@ -222,7 +222,7 @@ The structure of JSON is simple Key-Value format , the key is property name as a
     "actives": null,
     "cache": null,
     "callbacks": null,
-    "class": "com.alibaba.dubbo.config.spring.ServiceBean",
+    "class": "org.apache.dubbo.config.spring.ServiceBean",
     "cluster": null,
     "connections": null,
     "delay": null,
@@ -278,7 +278,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "actives": null,
     "cache": null,
     "callbacks": null,
-    "class": "com.alibaba.dubbo.config.spring.ReferenceBean",
+    "class": "org.apache.dubbo.config.spring.ReferenceBean",
     "client": null,
     "cluster": null,
     "connections": null,
@@ -315,7 +315,7 @@ The key is the Bean name of `ServiceBean` , `ServiceBean`'s properties compose v
     "validation": null,
     "version": "1.0.0",
     "invoker": {
-      "class": "com.alibaba.dubbo.common.bytecode.proxy0"
+      "class": "org.apache.dubbo.common.bytecode.proxy0"
     }
   }
 }
@@ -334,7 +334,7 @@ The key is the string presentation of `@Reference` `Field` or `Method  ` , `Refe
   "ApplicationConfig": {
     "dubbo-consumer-demo": {
       "architecture": null,
-      "class": "com.alibaba.dubbo.config.ApplicationConfig",
+      "class": "org.apache.dubbo.config.ApplicationConfig",
       "compiler": null,
       "dumpDirectory": null,
       "environment": null,
@@ -364,7 +364,7 @@ The key is the string presentation of `@Reference` `Field` or `Method  ` , `Refe
       "accesslog": null,
       "buffer": null,
       "charset": null,
-      "class": "com.alibaba.dubbo.config.ProtocolConfig",
+      "class": "org.apache.dubbo.config.ProtocolConfig",
       "client": null,
       "codec": null,
       "contextpath": null,
