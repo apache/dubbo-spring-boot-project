@@ -15,17 +15,6 @@
 
 
 
-## Versions
-
-For now, `dubbo-spring-boot-actuator` will separate two versions for Spring Boot 2.x and 1.x once release : 
-
-* `0.2.x` is a main stream release version for Spring Boot 2.x
-
-* `0.1.x` is a legacy version for maintaining Spring Boot 1.x
-
-
-
-
 ## Integrate with Maven
 
 You can introduce the latest `dubbo-spring-boot-actuator` to your project by adding the following dependency to your pom.xml
@@ -33,15 +22,17 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>0.2.1</version>
+    <version>2.7.0</version>
 </dependency>
 ```
+
 If your project failed to resolve the dependency, try to add the following repository:
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -108,10 +99,6 @@ Suppose a Spring Boot Web application did not specify `management.server.port`, 
 }
 ```
 
-In [samples](../dubbo-spring-boot-samples/) , `/health` Web Endpoints are exposed on http://localhost:8081/health 
-([consumer](../dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer))
-
-
 
  `memory`, `load`,  `threadpool` and `server` are Dubbo's build-in `StatusChecker`s in above example. 
  Dubbo allows the application to extend `StatusChecker`'s SPI. 
@@ -162,11 +149,11 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 | ID       | Enabled          | HTTP URI            | HTTP Method | Description                         | Content Type       |
 | ------------------- | ----------- | ----------------------------------- | ------------------ | ------------------ | ------------------ |
 | `dubbo`    | `true`      | `/actuator/dubbo`            | `GET`       | Exposes Dubbo's meta data           | `application/json` |
-| `dubboProperties` | `true` | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
-| `dubboServices` | `false`     | `/dubbo/services`            | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
-| `dubboReferences` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
-| `dubboConfigs` | `true` | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
-| `dubboShutdown` | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
+| `dubboproperties` | `true` | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      | `application/json` |
+| `dubboservices` | `false`     | `/dubbo/services`            | `GET`       | Exposes all Dubbo's `ServiceBean`   | `application/json` |
+| `dubboreferences` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` | `application/json` |
+| `dubboconfigs` | `true` | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       | `application/json` |
+| `dubboshutdown` | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             | `application/json` |
 
 
 
@@ -184,8 +171,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "0.2.0",
-    "dubbo": "2.6.2"
+    "dubbo-spring-boot": "2.7.0",
+    "dubbo": "2.7.0"
   },
   "urls": {
     "dubbo": "https://github.com/alibaba/dubbo",
