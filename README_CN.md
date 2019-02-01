@@ -2,19 +2,16 @@
 
 [![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
-![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
 
-[Dubbo](https://github.com/alibaba/dubbo) Spring Boot 工程致力于简化 Dubbo RPC 框架在
+[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ (incubating)是一款高性能Java RPC框架。
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
 
 * [自动装配](dubbo-spring-boot-autoconfigure) (比如： 注解驱动, 自动装配等).
 * [Production-Ready](dubbo-spring-boot-actuator) (比如： 安全, 健康检查, 外部化配置等).
 
+> Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
 
-
-> Dubbo *|ˈdʌbəʊ|* is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
 ## [English README](README_CN.md)
 
@@ -173,7 +170,7 @@ public interface DemoService {
     ```properties
     # Spring boot application
     spring.application.name=dubbo-auto-configuration-provider-demo
-    # Base packages to scan Dubbo Component: @com.alibaba.dubbo.config.annotation.Service
+    # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
     dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
 
     # Dubbo Application
