@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -27,11 +28,18 @@
 
     <artifactId>dubbo-spring-boot-actuator</artifactId>
     <packaging>jar</packaging>
-    <name>Apache Dubbo Spring Boot Actuator</name>
+    <name>Apache Dubbo Spring Boot :: Actuator</name>
     <description>Apache Dubbo Spring Boot Actuator</description>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-actuator-compatible</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

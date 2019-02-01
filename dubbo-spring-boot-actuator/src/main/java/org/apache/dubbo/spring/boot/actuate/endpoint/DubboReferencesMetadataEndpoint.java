@@ -17,57 +17,27 @@
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.config.spring.ReferenceBean;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-
-import org.springframework.beans.factory.annotation.InjectionMetadata;
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.AbstractDubboMetadata;
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboReferencesMetadata;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * Dubbo {@link Reference} Metadata {@link Endpoint}
  *
- * @since 1.0.0
+ * @since 2.7.0
  */
 @Endpoint(id = "dubboreferences")
-public class DubboReferencesMetadataEndpoint extends AbstractDubboEndpoint {
+public class DubboReferencesMetadataEndpoint extends AbstractDubboMetadata {
+
+    @Autowired
+    private DubboReferencesMetadata dubboReferencesMetadata;
 
     @ReadOperation
     public Map<String, Map<String, Object>> references() {
-
-        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
-
-        ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
-
-        referencesMetadata.putAll(buildReferencesMetadata(beanPostProcessor.getInjectedFieldReferenceBeanMap()));
-        referencesMetadata.putAll(buildReferencesMetadata(beanPostProcessor.getInjectedMethodReferenceBeanMap()));
-
-        return referencesMetadata;
-
+        return dubboReferencesMetadata.references();
     }
-
-    private Map<String, Map<String, Object>> buildReferencesMetadata(
-            Map<InjectionMetadata.InjectedElement, ReferenceBean<?>> injectedElementReferenceBeanMap) {
-        Map<String, Map<String, Object>> referencesMetadata = new LinkedHashMap<>();
-
-        for (Map.Entry<InjectionMetadata.InjectedElement, ReferenceBean<?>> entry :
-                injectedElementReferenceBeanMap.entrySet()) {
-
-            InjectionMetadata.InjectedElement injectedElement = entry.getKey();
-
-            ReferenceBean<?> referenceBean = entry.getValue();
-
-            Map<String, Object> beanMetadata = resolveBeanMetadata(referenceBean);
-            beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
-
-            referencesMetadata.put(String.valueOf(injectedElement.getMember()), beanMetadata);
-
-        }
-
-        return referencesMetadata;
-    }
-
 }

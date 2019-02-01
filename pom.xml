@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -45,8 +46,9 @@
         <module>dubbo-spring-boot-distribution</module>
         <module>dubbo-spring-boot-autoconfigure</module>
         <module>dubbo-spring-boot-starter</module>
-        <module>dubbo-spring-boot-samples</module>
         <module>dubbo-spring-boot-actuator</module>
+        <module>dubbo-spring-boot-compatible</module>
+        <module>dubbo-spring-boot-samples</module>
     </modules>
 
     <organization>
