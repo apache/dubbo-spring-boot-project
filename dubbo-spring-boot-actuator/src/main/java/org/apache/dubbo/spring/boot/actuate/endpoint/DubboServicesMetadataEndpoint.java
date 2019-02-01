@@ -17,70 +17,27 @@
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
 import org.apache.dubbo.config.annotation.Service;
-import org.apache.dubbo.config.spring.ServiceBean;
-
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.AbstractDubboMetadata;
+import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboServicesMetadata;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * Dubbo {@link Service} Metadata {@link Endpoint}
  *
- * @since 0.2.0
+ * @since 2.7.0
  */
 @Endpoint(id = "dubboservices")
-public class DubboServicesMetadataEndpoint extends AbstractDubboEndpoint {
+public class DubboServicesMetadataEndpoint extends AbstractDubboMetadata {
+
+    @Autowired
+    private DubboServicesMetadata dubboServicesMetadata;
 
     @ReadOperation
     public Map<String, Map<String, Object>> services() {
-
-        Map<String, ServiceBean> serviceBeansMap = getServiceBeansMap();
-
-        Map<String, Map<String, Object>> servicesMetadata = new LinkedHashMap<>(serviceBeansMap.size());
-
-        for (Map.Entry<String, ServiceBean> entry : serviceBeansMap.entrySet()) {
-
-            String serviceBeanName = entry.getKey();
-
-            ServiceBean serviceBean = entry.getValue();
-
-            Map<String, Object> serviceBeanMetadata = resolveBeanMetadata(serviceBean);
-
-            Object service = resolveServiceBean(serviceBeanName, serviceBean);
-
-            if (service != null) {
-                // Add Service implementation class
-                serviceBeanMetadata.put("serviceClass", service.getClass().getName());
-            }
-
-            servicesMetadata.put(serviceBeanName, serviceBeanMetadata);
-
-        }
-
-        return servicesMetadata;
-
+        return dubboServicesMetadata.services();
     }
-
-    private Object resolveServiceBean(String serviceBeanName, ServiceBean serviceBean) {
-
-        int index = serviceBeanName.indexOf("#");
-
-        if (index > -1) {
-
-            Class<?> interfaceClass = serviceBean.getInterfaceClass();
-
-            String serviceName = serviceBeanName.substring(index + 1);
-
-            if (applicationContext.containsBean(serviceName)) {
-                return applicationContext.getBean(serviceName, interfaceClass);
-            }
-
-        }
-
-        return null;
-
-    }
-
 }

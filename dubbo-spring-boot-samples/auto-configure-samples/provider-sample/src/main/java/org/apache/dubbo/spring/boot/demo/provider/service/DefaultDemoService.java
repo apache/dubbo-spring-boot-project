@@ -18,14 +18,13 @@ package org.apache.dubbo.spring.boot.demo.provider.service;
 
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
-
 import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Default {@link DemoService}
  *
  * @see DemoService
- * @since 1.0.0
+ * @since 2.7.0
  */
 @Service(version = "1.0.0")
 public class DefaultDemoService implements DemoService {

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -27,11 +28,19 @@
 
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <name>Apache Dubbo Spring Boot Auto-Configure</name>
+    <name>Apache Dubbo Spring Boot :: Auto-Configure</name>
     <description>Apache Dubbo Spring Boot Auto-Configure</description>
 
 
     <dependencies>
+
+        <!-- Spring Boot Auto-Configuration -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-autoconfigure-compatible</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

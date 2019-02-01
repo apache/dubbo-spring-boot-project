@@ -19,7 +19,7 @@ package org.apache.dubbo.spring.boot.demo.consumer;
 /**
  * Demo Service interface
  *
- * @since 1.0.0
+ * @since 2.7.0
  */
 public interface DemoService {
 

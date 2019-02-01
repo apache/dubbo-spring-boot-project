@@ -17,11 +17,11 @@
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
 import org.apache.dubbo.spring.boot.util.DubboUtils;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -30,22 +30,23 @@ import java.util.Map;
 import static org.apache.dubbo.common.Version.getVersion;
 
 /**
- * {@link DubboEndpoint} Test
+ * {@link DubboMetadataEndpoint} Test
  *
- * @see DubboEndpoint
- * @since 1.0.0
+ * @see DubboMetadataEndpoint
+ * @since 2.7.0
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         classes = {
-                DubboEndpoint.class
+                DubboMetadataEndpoint.class
         }
 )
+@EnableAutoConfiguration
 public class DubboEndpointTest {
 
 
     @Autowired
-    private DubboEndpoint dubboEndpoint;
+    private DubboMetadataEndpoint dubboEndpoint;
 
     @Test
     public void testInvoke() {
