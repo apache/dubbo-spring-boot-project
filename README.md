@@ -2,16 +2,14 @@
 
 [![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
-![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
 
 [Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
-> Apache Dubbo(incubating) is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
+> Apache Dubbo (incubating) |ˈdʌbəʊ| is a high-performance, light weight, java based RPC framework. Dubbo offers three key functionalities, which include interface based remote call, fault tolerance & load balancing, and automatic service registration & discovery.
 
 ## [中文说明](README_CN.md)
 
@@ -167,7 +165,7 @@ public interface DemoService {
     ```properties
     # Spring boot application
     spring.application.name=dubbo-auto-configuration-provider-demo
-    # Base packages to scan Dubbo Component: @com.alibaba.dubbo.config.annotation.Service
+    # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
     dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
 
     # Dubbo Application
