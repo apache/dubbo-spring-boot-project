@@ -50,7 +50,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
  * @see ReferenceAnnotationBeanPostProcessor
  * @since 2.7.0
  */
-@ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true)
+@ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", havingValue = "true", matchIfMissing = true)
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
 public class DubboAutoConfiguration {

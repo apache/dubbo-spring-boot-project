@@ -36,7 +36,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 /**
  * Dubbo Relaxed Binding Auto-{@link Configuration} for Spring Boot 1.x
  */
-@ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true)
+@ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass(name = "org.springframework.boot.bind.RelaxedPropertyResolver")
 @Configuration
 public class DubboRelaxedBindingAutoConfiguration {

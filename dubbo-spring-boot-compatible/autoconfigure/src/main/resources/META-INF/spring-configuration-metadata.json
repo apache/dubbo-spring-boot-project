@@ -3,6 +3,11 @@
   "groups": [],
   "properties": [
     {
+      "name": "dubbo.enabled",
+      "defaultValue": "true",
+      "type": "java.lang.Boolean"
+    },
+    {
       "sourceType": "org.apache.dubbo.config.ApplicationConfig",
       "name": "dubbo.application.architecture",
       "type": "java.lang.String"
