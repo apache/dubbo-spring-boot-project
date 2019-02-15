@@ -34,7 +34,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
             <scope>import</scope>
         </dependency>
 
-        <!-- Aapche Dubbo  -->
+        <!-- Apache Dubbo  -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
