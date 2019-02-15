@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +19,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot.samples</groupId>
+        <groupId>org.apache.dubbo.samples</groupId>
         <artifactId>dubbo-spring-boot-registry-zookeeper-samples</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -26,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-registry-zookeeper-provider-sample</artifactId>
-    <name>Dubbo Spring Boot Samples : Registry Zookeeper :: Provider Sample</name>
+    <name>Apache Dubbo Spring Boot :: Samples : Registry Zookeeper :: Provider Sample</name>
 
     <dependencies>
 
@@ -37,21 +38,21 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba.boot</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>org.apache.dubbo.samples</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Zookeeper -->
@@ -63,6 +64,11 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
         </dependency>
 
     </dependencies>

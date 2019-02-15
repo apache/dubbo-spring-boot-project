@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,8 +19,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
-        <groupId>com.alibaba.boot</groupId>
         <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
@@ -27,11 +28,18 @@
 
     <artifactId>dubbo-spring-boot-actuator</artifactId>
     <packaging>jar</packaging>
-    <name>Dubbo Spring Boot Actuator</name>
-    <description>Dubbo Spring Boot Actuator</description>
+    <name>Apache Dubbo Spring Boot :: Actuator</name>
+    <description>Apache Dubbo Spring Boot Actuator</description>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-actuator-compatible</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -59,14 +67,14 @@
 
         <!-- Dubbo autoconfigure -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <optional>true</optional>
         </dependency>
