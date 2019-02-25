@@ -61,7 +61,7 @@ public class DubboRelaxedBinding2AutoConfiguration {
             }
         };
         ConfigurationPropertySources.attach(propertyResolver);
-        return propertyResolver;
+        return new DelegatingPropertyResolver(propertyResolver);
     }
 
     @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = DubboConfigBinder.class)
