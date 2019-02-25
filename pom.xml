@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -19,25 +20,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <groupId>org.apache</groupId>
+        <artifactId>apache</artifactId>
+        <version>19</version>
     </parent>
 
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-project</artifactId>
     <version>${revision}</version>
 
     <packaging>pom</packaging>
 
-    <name>Dubbo Spring Boot Project</name>
-    <description>Dubbo Spring Boot Project</description>
+    <name>Apache Dubbo Spring Boot Project</name>
+    <description>Apache Dubbo Spring Boot Project</description>
     <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
 
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>0.2.1</revision>
+        <revision>2.7.0</revision>
     </properties>
 
     <modules>
@@ -45,8 +46,9 @@
         <module>dubbo-spring-boot-distribution</module>
         <module>dubbo-spring-boot-autoconfigure</module>
         <module>dubbo-spring-boot-starter</module>
-        <module>dubbo-spring-boot-samples</module>
         <module>dubbo-spring-boot-actuator</module>
+        <module>dubbo-spring-boot-compatible</module>
+        <module>dubbo-spring-boot-samples</module>
     </modules>
 
     <organization>
@@ -156,5 +158,35 @@
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

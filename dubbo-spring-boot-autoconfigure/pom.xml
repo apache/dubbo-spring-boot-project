@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +19,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
@@ -27,11 +28,19 @@
 
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <name>Dubbo Spring Boot Auto-Configure</name>
-    <description>Dubbo Spring Boot Auto-Configure</description>
+    <name>Apache Dubbo Spring Boot :: Auto-Configure</name>
+    <description>Apache Dubbo Spring Boot Auto-Configure</description>
 
 
     <dependencies>
+
+        <!-- Spring Boot Auto-Configuration -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-autoconfigure-compatible</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,15 +63,9 @@
 
         <!-- Dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Alibaba Spring Context extension -->
-        <dependency>
-            <groupId>com.alibaba.spring</groupId>
-            <artifactId>spring-context-support</artifactId>
         </dependency>
 
         <!-- Test Dependencies -->

@@ -1,0 +1,1098 @@
+{
+  "hints": [],
+  "groups": [],
+  "properties": [
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.architecture",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.compiler",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.dump-directory",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.environment",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.logger",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.monitor",
+      "type": "org.apache.dubbo.config.MonitorConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.organization",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.owner",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.qos-accept-foreign-ip",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.qos-enable",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.qos-port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.registries",
+      "type": "java.util.List<org.apache.dubbo.config.RegistryConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.registry",
+      "type": "org.apache.dubbo.config.RegistryConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ApplicationConfig",
+      "name": "dubbo.application.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.applications",
+      "description": "Multiple {@link ApplicationConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.ApplicationConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboConfigProperties",
+      "name": "dubbo.config.multiple",
+      "description": "Indicates multiple properties binding from externalized configuration or not.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboConfigProperties",
+      "name": "dubbo.config.override",
+      "description": "Indicates override {@link ConfigUtils#getProperties() Dubbo config properties} from externalized configuration\n or not.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.actives",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.application",
+      "type": "org.apache.dubbo.config.ApplicationConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.async",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.cache",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.callbacks",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.check",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.client",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.cluster",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.connections",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.filter",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.generic",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.group",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.init",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "deprecated": true,
+      "name": "dubbo.consumer.injvm",
+      "type": "java.lang.Boolean",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.layer",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.lazy",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.listener",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.loadbalance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "deprecated": true,
+      "name": "dubbo.consumer.local",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.merger",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.mock",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.module",
+      "type": "org.apache.dubbo.config.ModuleConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.monitor",
+      "type": "org.apache.dubbo.config.MonitorConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.onconnect",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.ondisconnect",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.owner",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.proxy",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.reconnect",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.registries",
+      "type": "java.util.List<org.apache.dubbo.config.RegistryConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.registry",
+      "type": "org.apache.dubbo.config.RegistryConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.retries",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.scope",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.sent",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.sticky",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.stub",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.validation",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ConsumerConfig",
+      "name": "dubbo.consumer.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.consumers",
+      "description": "Multiple {@link ConsumerConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.ConsumerConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.monitor",
+      "type": "org.apache.dubbo.config.MonitorConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.organization",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.owner",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.registries",
+      "type": "java.util.List<org.apache.dubbo.config.RegistryConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.registry",
+      "type": "org.apache.dubbo.config.RegistryConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ModuleConfig",
+      "name": "dubbo.module.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.modules",
+      "description": "Multiple {@link ModuleConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.ModuleConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.address",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.group",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.protocol",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.MonitorConfig",
+      "name": "dubbo.monitor.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.monitors",
+      "description": "Multiple {@link MonitorConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.MonitorConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.accepts",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.accesslog",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.buffer",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.charset",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.client",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.codec",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.contextpath",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.dispatcher",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "deprecated": true,
+      "name": "dubbo.protocol.dispather",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.exchanger",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.heartbeat",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.iothreads",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.networker",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "deprecated": true,
+      "name": "dubbo.protocol.path",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.payload",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.prompt",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.queues",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.register",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.serialization",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.server",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.status",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.telnet",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.threadpool",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.threads",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProtocolConfig",
+      "name": "dubbo.protocol.transporter",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.protocols",
+      "description": "Multiple {@link ProtocolConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.ProtocolConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.accepts",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.accesslog",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.actives",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.application",
+      "type": "org.apache.dubbo.config.ApplicationConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.async",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.buffer",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.cache",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.callbacks",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.charset",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.client",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.cluster",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.codec",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.connections",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.contextpath",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "deprecated": true,
+      "name": "dubbo.provider.default",
+      "type": "java.lang.Boolean",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.delay",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.deprecated",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.dispatcher",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "deprecated": true,
+      "name": "dubbo.provider.dispather",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.document",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.dynamic",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.exchanger",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.executes",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.export",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.filter",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.group",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.iothreads",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.layer",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.listener",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.loadbalance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "deprecated": true,
+      "name": "dubbo.provider.local",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.merger",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.mock",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.module",
+      "type": "org.apache.dubbo.config.ModuleConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.monitor",
+      "type": "org.apache.dubbo.config.MonitorConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.networker",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.onconnect",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.ondisconnect",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.owner",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "deprecated": true,
+      "name": "dubbo.provider.path",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.payload",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "deprecated": true,
+      "name": "dubbo.provider.port",
+      "type": "java.lang.Integer",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.prompt",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.protocol",
+      "type": "org.apache.dubbo.config.ProtocolConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.protocols",
+      "type": "java.util.List<org.apache.dubbo.config.ProtocolConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.proxy",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.queues",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.register",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.registries",
+      "type": "java.util.List<org.apache.dubbo.config.RegistryConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.registry",
+      "type": "org.apache.dubbo.config.RegistryConfig"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.retries",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.scope",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.sent",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.serialization",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.server",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.status",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.stub",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.telnet",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.threadpool",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.threads",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.transporter",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.validation",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.wait",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.warmup",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.ProviderConfig",
+      "name": "dubbo.provider.weight",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.providers",
+      "description": "Multiple {@link ProviderConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.ProviderConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.MultipleDubboConfigBindingProperties",
+      "name": "dubbo.registries",
+      "description": "Multiple {@link RegistryConfig} property",
+      "type": "java.util.Map<java.lang.String,org.apache.dubbo.config.RegistryConfig>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.address",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.check",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.client",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.cluster",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.default",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.dynamic",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.file",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.group",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.parameters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.protocol",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.register",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.server",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.session",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.subscribe",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "deprecated": true,
+      "name": "dubbo.registry.transport",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.transporter",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "name": "dubbo.registry.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.dubbo.config.RegistryConfig",
+      "deprecated": true,
+      "name": "dubbo.registry.wait",
+      "type": "java.lang.Integer",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.apache.dubbo.spring.boot.autoconfigure.DubboScanProperties",
+      "name": "dubbo.scan.base-packages",
+      "description": "The base-packages to scan , the multiple-value is delimited by comma\n\n @see EnableDubbo#scanBasePackages()",
+      "type": "java.util.Set<java.lang.String>"
+    }
+  ]
+}

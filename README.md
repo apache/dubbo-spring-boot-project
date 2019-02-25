@@ -1,17 +1,15 @@
-# Dubbo Spring Boot Project 
+# Apache Dubbo Spring Boot Project 
 
 [![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
-![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
 
-[Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides 
+[Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
-> Apache Dubbo(incubating) is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
+> Apache Dubbo (incubating) |ˈdʌbəʊ| is a high-performance, light weight, java based RPC framework. Dubbo offers three key functionalities, which include interface based remote call, fault tolerance & load balancing, and automatic service registration & discovery.
 
 ## [中文说明](README_CN.md)
 
@@ -22,7 +20,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.6.5</dubbo.version>
+    <dubbo.version>2.7.0</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -35,14 +33,34 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-    
-        <!-- Dubbo dependencies -->
+
+        <!-- Apache Dubbo  -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
             <version>${dubbo.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -50,18 +68,14 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 <dependencies>
     <!-- Dubbo Spring Boot Starter -->
     <dependency>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.2.1.RELEASE</version>
+        <version>2.7.0</version>
     </dependency>
+    
     <dependency>
-        <groupId>com.alibaba</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo</artifactId>
-        <version>${dubbo.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-all</artifactId>
     </dependency>
 </dependencies>
 ```
@@ -70,8 +84,9 @@ If your project failed to resolve the dependency, try to add the following repos
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -83,13 +98,6 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
-## Developing Versions
-
-For now, `dubbo-spring-boot-starter` will separate two versions for Spring Boot 2.x and 1.x once release : 
-
-* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) is a main stream release version for Spring Boot 2.x
-
-* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) is a legacy version for maintaining Spring Boot 1.x
 
 
 ### Build from Source
@@ -99,13 +107,6 @@ If you'd like to attempt to experience latest features, you also can build from 
 1. Maven install current project in your local repository.
 > Maven install = `mvn install`
 
-
-### Dependencies
-
-| versions | Java  | Spring Boot | Dubbo      |
-| -------- | ----- | ----------- | ---------- |
-| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.5` + |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.5` + |
 
 
 
@@ -134,13 +135,13 @@ public interface DemoService {
     ```java
     @Service(version = "1.0.0")
     public class DefaultDemoService implements DemoService {
-
+    
         /**
-        * The default value of ${dubbo.application.name} is ${spring.application.name}
-        */
+         * The default value of ${dubbo.application.name} is ${spring.application.name}
+         */
         @Value("${dubbo.application.name}")
         private String serviceName;
-
+    
         public String sayHello(String name) {
             return String.format("[%s] : Hello, %s", serviceName, name);
         }
@@ -164,9 +165,8 @@ public interface DemoService {
     ```properties
     # Spring boot application
     spring.application.name=dubbo-auto-configuration-provider-demo
-
-    # Base packages to scan Dubbo Component: @com.alibaba.dubbo.config.annotation.Service
-    dubbo.scan.base-packages=com.alibaba.boot.dubbo.demo.provider.service
+    # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
+    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
 
     # Dubbo Application
     ## The default value of dubbo.application.name is ${spring.application.name}
@@ -188,44 +188,32 @@ public interface DemoService {
 
     ```java
     @EnableAutoConfiguration
-    public class DubboConsumerBootstrap {
-
+    public class DubboAutoConfigurationConsumerBootstrap {
+    
         private final Logger logger = LoggerFactory.getLogger(getClass());
-
-        @Reference(version = "1.0.0", url = "dubbo://localhost:12345")
+    
+        @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
         private DemoService demoService;
-
+    
+        public static void main(String[] args) {
+            SpringApplication.run(DubboAutoConfigurationConsumerBootstrap.class).close();
+        }
+    
         @Bean
         public ApplicationRunner runner() {
             return args -> {
                 logger.info(demoService.sayHello("mercyblitz"));
             };
         }
-
-        public static void main(String[] args) {
-            SpringApplication.run(DubboConsumerBootstrap.class).close();
-        }
     }
     ```
 
-2. configures `application.properties`
+2. configures `application.yml`
 
-    ```properties
-    # Spring boot application
-    spring.application.name = dubbo-consumer-demo
-    server.port = 8080
-    management.port = 8081
-
-
-    # Dubbo Config properties
-    ## ApplicationConfig Bean
-    dubbo.application.id = dubbo-consumer-demo
-    dubbo.application.name = dubbo-consumer-demo
-
-    ## ProtocolConfig Bean
-    dubbo.protocol.id = dubbo
-    dubbo.protocol.name = dubbo
-    dubbo.protocol.port = 12345
+    ```yaml
+    spring:
+      application:
+        name: dubbo-auto-configure-consumer-sample
     ```
 
 If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
@@ -238,9 +226,9 @@ More details, please refer to [Samples](dubbo-spring-boot-samples).
 
 Having trouble with Dubbo Spring Boot? We’d like to help!
 
-- If you are upgrading, read the [release notes](https://github.com/apache/incubator-dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
-- Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dev-subscribe@dubbo.apache.org).
-- Report bugs at [issues](https://github.com/apache/incubator-dubbo-spring-boot-project/issues).
+- If you are upgrading, read the [release notes](https://github.com/dubbo/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
+- Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dubbo+subscribe@googlegroups.com).
+- Report bugs at [github.com/dubbo/dubbo-spring-boot-project/issues](https://github.com/dubbo/dubbo-spring-boot-project/issues).
 
 
 
@@ -257,7 +245,7 @@ $ ./mvnw clean install
 
 ## Modules
 
-There are some modules in Dubbo Spring Boot Project, let's take a look at below overview:
+There are some modules in Apache Dubbo Spring Boot Project, let's take a look at below overview:
 
 
 
@@ -292,5 +280,3 @@ The samples project of Dubbo Spring Boot that includes:
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
-- [Registry Nacos Samples](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
-- [Sample API](dubbo-spring-boot-samples/sample-api)

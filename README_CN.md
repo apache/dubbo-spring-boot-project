@@ -2,19 +2,16 @@
 
 [![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-[![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
-![maven](https://img.shields.io/maven-central/v/com.alibaba.boot/dubbo-spring-boot-starter.svg)
 
-[Dubbo](https://github.com/alibaba/dubbo) Spring Boot 工程致力于简化 Dubbo RPC 框架在
+[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ (incubating)是一款高性能Java RPC框架。
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
 
 * [自动装配](dubbo-spring-boot-autoconfigure) (比如： 注解驱动, 自动装配等).
 * [Production-Ready](dubbo-spring-boot-actuator) (比如： 安全, 健康检查, 外部化配置等).
 
+> Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
 
-
-> Dubbo *|ˈdʌbəʊ|* is a high-performance, java based [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) framework open-sourced by Alibaba. As in many RPC systems, dubbo is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a dubbo server to handle client calls. On the client side, the client has a stub that provides the same methods as the server.
 
 ## [English README](README_CN.md)
 
@@ -25,7 +22,7 @@
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.6.5</dubbo.version>
+    <dubbo.version>2.7.0</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -38,14 +35,34 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-    
-        <!-- Dubbo dependencies -->
+
+        <!-- Aapche Dubbo  -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
             <version>${dubbo.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -53,18 +70,14 @@
 <dependencies>
     <!-- Dubbo Spring Boot Starter -->
     <dependency>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>0.2.1.RELEASE</version>
+        <version>2.7.0</version>
     </dependency>
+    
     <dependency>
-        <groupId>com.alibaba</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo</artifactId>
-        <version>${dubbo.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-all</artifactId>
     </dependency>
 </dependencies>
 ```
@@ -73,8 +86,9 @@
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -86,13 +100,6 @@
 ```
 
 
-## 开发版本
-
-从现在开始, `dubbo-spring-boot-project` 将在每个发布中发行两个版本 :
-
-* [`0.2.x`](https://github.com/apache/incubator-dubbo-spring-boot-project) 是支持 Spring Boot 2.x 的主要版本（推荐，长期维护）
-
-* [`0.1.x`](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x) 是支持 Spring Boot 1.x 的维护版本（兼容，短期维护）
 
 
 ### 源代码构建
@@ -102,12 +109,6 @@
 1. Maven install 当前工程
 > Maven install = `mvn install`
 
-### 依赖关系
-
-| versions | Java  | Spring Boot | Dubbo      |
-| -------- | ----- | ----------- | ---------- |
-| `0.2.1`  | 1.8+ | `2.1.x` | `2.6.5` + |
-| `0.1.1`  | 1.7+ | `1.5.x` | `2.6.5` + |
 
 
 
@@ -133,72 +134,57 @@ public interface DemoService {
 
 1. 实现 `DemoService` 接口
 
-```java
-@Service(
-        version = "${demo.service.version}",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
-        registry = "${dubbo.registry.id}"
-)
-public class DefaultDemoService implements DemoService {
-
-    public String sayHello(String name) {
-        return "Hello, " + name + " (from Spring Boot)";
+    ```java
+    @Service(version = "1.0.0")
+    public class DefaultDemoService implements DemoService {
+    
+        /**
+         * The default value of ${dubbo.application.name} is ${spring.application.name}
+         */
+        @Value("${dubbo.application.name}")
+        private String serviceName;
+    
+        public String sayHello(String name) {
+            return String.format("[%s] : Hello, %s", serviceName, name);
+        }
     }
-
-}
-```
+    ```
 
 
 
 2. 编写 Spring Boot 引导程序
 
-```java
-@SpringBootApplication
-public class DubboProviderDemo {
+    ```java
+    @EnableAutoConfiguration
+    public class DubboProviderDemo {
 
-    public static void main(String[] args) {
-
-        new SpringApplicationBuilder(DubboProviderDemo.class)
-                .web(false) // 非 Web 应用
-                .run(args);
-
+        public static void main(String[] args) {
+            SpringApplication.run(DubboProviderDemo.class,args);
+        }
     }
-
-}
-```
+    ```
 
 
 3. 配置 `application.properties` :
 
-```properties
-# Spring boot application
-spring.application.name = dubbo-provider-demo
-server.port = 9090
-management.port = 9091
+    ```properties
+    # Spring boot application
+    spring.application.name=dubbo-auto-configuration-provider-demo
+    # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
+    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
 
-# Service version
-demo.service.version = 1.0.0
+    # Dubbo Application
+    ## The default value of dubbo.application.name is ${spring.application.name}
+    ## dubbo.application.name=${spring.application.name}
 
-# Base packages to scan Dubbo Components (e.g @Service , @Reference)
-dubbo.scan.basePackages  = com.alibaba.boot.dubbo.demo.provider.service
+    # Dubbo Protocol
+    dubbo.protocol.name=dubbo
+    dubbo.protocol.port=12345
 
-# Dubbo Config properties
-## ApplicationConfig Bean
-dubbo.application.id = dubbo-provider-demo
-dubbo.application.name = dubbo-provider-demo
+    ## Dubbo Registry
+    dubbo.registry.address=N/A
+    ```
 
-## ProtocolConfig Bean
-dubbo.protocol.id = dubbo
-dubbo.protocol.name = dubbo
-dubbo.protocol.port = 12345
-
-## RegistryConfig Bean
-dubbo.registry.id = my-registry
-dubbo.registry.address = N/A
-```
-
-更多的实现细节 , 请参考 [Dubbo 服务提供方示例](dubbo-spring-boot-samples/dubbo-spring-boot-sample-provider).
 
 
 
@@ -207,69 +193,44 @@ dubbo.registry.address = N/A
 
 1. 通过 `@Reference` 注入 `DemoService` :
 
-```java
-@RestController
-public class DemoConsumerController {
-
-    @Reference(version = "${demo.service.version}",
-            application = "${dubbo.application.id}",
-            url = "dubbo://localhost:12345")
-    private DemoService demoService;
-
-    @RequestMapping("/sayHello")
-    public String sayHello(@RequestParam String name) {
-        return demoService.sayHello(name);
+    ```java
+    @EnableAutoConfiguration
+    public class DubboAutoConfigurationConsumerBootstrap {
+    
+        private final Logger logger = LoggerFactory.getLogger(getClass());
+    
+        @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+        private DemoService demoService;
+    
+        public static void main(String[] args) {
+            SpringApplication.run(DubboAutoConfigurationConsumerBootstrap.class).close();
+        }
+    
+        @Bean
+        public ApplicationRunner runner() {
+            return args -> {
+                logger.info(demoService.sayHello("mercyblitz"));
+            };
+        }
     }
-
-}
-```
+    ```
 
 
 
-2. 编写 Spring Boot 引导程序（Web 应用） :
+2. 配置 `application.yml` :
 
-```java
-@SpringBootApplication(scanBasePackages = "com.alibaba.boot.dubbo.demo.consumer.controller")
-public class DubboConsumerDemo {
-
-    public static void main(String[] args) {
-
-        SpringApplication.run(DubboConsumerDemo.class,args);
-
-    }
-
-}
-```
-
-
-
-3. 配置 `application.properties` :
-
-```properties
-# Spring boot application
-spring.application.name = dubbo-consumer-demo
-server.port = 8080
-management.port = 8081
-
-# Service Version
-demo.service.version = 1.0.0
-
-# Dubbo Config properties
-## ApplicationConfig Bean
-dubbo.application.id = dubbo-consumer-demo
-dubbo.application.name = dubbo-consumer-demo
-
-## ProtocolConfig Bean
-dubbo.protocol.id = dubbo
-dubbo.protocol.name = dubbo
-dubbo.protocol.port = 12345
-```
+    ```yaml
+    spring:
+      application:
+        name: dubbo-auto-configure-consumer-sample
+    ```
 
 
 请确保 Dubbo 服务提供方服务可用， `DubboProviderDemo` 运行方可正常。
 
 
-更多的实现细节，请参考 [Dubbo 服务消费方示例](dubbo-spring-boot-samples/dubbo-spring-boot-sample-consumer)
+更多的实现细节，请参考 [Dubbo 示例](dubbo-spring-boot-samples)
+
 
 
 
@@ -277,9 +238,10 @@ dubbo.protocol.port = 12345
 
 如果您在使用 Dubbo Spring Boot 中遇到任何问题或者有什么建议? 我们非常需要您的支持!
 
-- 如果您需要升级版本，请提前阅读[发布公告](https://github.com/apache/incubator-dubbo-spring-boot-project/releases)，了解最新的特性和问题修复。
-- 如果您遇到任何问题 ，您可以订阅 [Dubbo 用户邮件列表](mailto:mailto:dev-subscribe@dubbo.apache.org)。
-- 问题反馈，您可以在 [issues](https://github.com/apache/incubator-dubbo-spring-boot-project/issues) 提出您遇到的使用问题。
+- 如果您需要升级版本，请提前阅读[发布公告](https://github.com/dubbo/dubbo-spring-boot-project/releases)，了解最新的特性和问题修复。
+- 如果您遇到任何问题 ，您可以订阅 [Dubbo 用户邮件列表](mailto:dubbo+subscribe@googlegroups.com)。
+- 问题反馈，您可以在 [issues](https://github.com/dubbo/dubbo-spring-boot-project/issues) 提出您遇到的使用问题。
+
 
 
 
@@ -305,7 +267,7 @@ Dubbo Spring Boot 采用多 Maven 模块工程 , 模块如下：
 
 * [健康检查](dubbo-spring-boot-actuator#health-checks)
 * [控制断点](dubbo-spring-boot-actuator#endpoints)
-* [外部化配置](dubbo-spring-boot-actuator#externalized-configuration))
+* [外部化配置](dubbo-spring-boot-actuator#externalized-configuration)
 
 
 ### [dubbo-spring-boot-starter](dubbo-spring-boot-starter)
@@ -316,10 +278,8 @@ Dubbo Spring Boot 采用多 Maven 模块工程 , 模块如下：
 
 ### [dubbo-spring-boot-samples](dubbo-spring-boot-samples)
 
-示例工程包含以下项目:
+Dubbo Spring Boot 示例工程包括:
 
-- [自动装配示例](dubbo-spring-boot-samples/auto-configure-samples)
-- [外部化示例](dubbo-spring-boot-samples/externalized-configuration-samples)
-- [整合 Zookeeper 示例](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
-- [整合 Nacos 示例](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
-- [示例 API](dubbo-spring-boot-samples/sample-api)
+- [自动装配](dubbo-spring-boot-samples/auto-configure-samples)
+- [外部化配置](dubbo-spring-boot-samples/externalized-configuration-samples)
+- [Zookeeper 注册中心](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)

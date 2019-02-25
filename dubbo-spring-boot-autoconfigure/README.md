@@ -21,19 +21,19 @@ You can introduce the latest `dubbo-spring-boot-autoconfigure` to your project 
 
 ```xml
 <dependency>
-    <groupId>com.alibaba.boot</groupId>
+    <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-    <version>0.2.1</version>
+    <version>2.7.0</version>
 </dependency>
 ```
 
 If your project failed to resolve the dependency, try to add the following repository:
-
 ```xml
 <repositories>
     <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <id>apache.snapshots.https</id>
+        <name>Apache Development Snapshot Repository</name>
+        <url>https://repository.apache.org/content/repositories/snapshots</url>
         <releases>
             <enabled>false</enabled>
         </releases>
@@ -50,7 +50,7 @@ If your project failed to resolve the dependency, try to add the following repos
 
 Since  `2.5.7`  , Dubbo totally supports Annotation-Driven , core Dubbo's components that are registered and initialized in  Spring application context , including exterialized configuration features. However , those features need to trigger in manual configuration , e.g `@DubboComponentScan` , `@EnableDubboConfig` or `@EnableDubbo`.
 
-> If you'd like to learn more , please read [Dubbo Annotation-Driven (Chinese)](https://github.com/mercyblitz/blogs/blob/master/java/dubbo/Dubbo-Annotation-Driven.md)
+> If you'd like to learn more , please read [Dubbo Annotation-Driven (Chinese)](http://dubbo.apache.org/zh-cn/blog/dubbo-annotation-driven.html)
 
 
 
@@ -62,7 +62,7 @@ Since  `2.5.7`  , Dubbo totally supports Annotation-Driven , core Dubbo's compon
 
 Externalized Configuration is a core feature of Spring Boot , Dubbo Spring Boot not only supports it definitely , but also inherits Dubbo's Externalized Configuration, thus it provides single and multiple Dubbo's `*Config` Bindings from `PropertySources` , and `"dubbo."` is a common prefix of property name.
 
-> If you'd like to learn more , please read [Dubbo Externalized Configuration](https://github.com/mercyblitz/blogs/blob/master/java/dubbo/Dubbo-Externalized-Configuration.md)(Chinese).
+> If you'd like to learn more , please read [Dubbo Externalized Configuration](http://dubbo.apache.org/zh-cn/blog/dubbo-externalized-configuration.html)(Chinese).
 
 
 
@@ -213,13 +213,13 @@ If you used advanced IDE tools , for instance [Jetbrains IDEA Ultimate](https://
 
 #### Case 1 - Single Bindings
 
-![](../config-popup-window.png)
+![](config-popup-window.png)
 
 
 
 #### Case 2 - Mutiple Bindings
 
-![](../mconfig-popup-window.png)
+![](mconfig-popup-window.png)
 
 ​
 

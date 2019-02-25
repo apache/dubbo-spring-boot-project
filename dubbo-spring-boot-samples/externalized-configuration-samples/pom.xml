@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +19,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot.samples</groupId>
+        <groupId>org.apache.dubbo.samples</groupId>
         <artifactId>dubbo-spring-boot-samples</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -26,8 +27,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-externalized-configuration-samples</artifactId>
-    <name>Dubbo Spring Boot Samples : Externalized Configuration</name>
-    <description>Dubbo Spring Boot Externalized Configuration Samples</description>
+    <name>Apache Dubbo Spring Boot :: Samples : Externalized Configuration</name>
+    <description>Apache Dubbo Spring Boot Externalized Configuration Samples</description>
     <packaging>pom</packaging>
 
     <modules>
