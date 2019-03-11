@@ -98,6 +98,15 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
+### Legacy Versions
+
+If you still use the legacy Dubbo whose version is less than 2.7.0, please use the following Spring Boot starters:
+
+| Dubbo Spring Boot | Dubbo  | Spring Boot |
+| ----------------- | ------ | ----------- |
+| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
+| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
+
 
 
 ### Build from Source
