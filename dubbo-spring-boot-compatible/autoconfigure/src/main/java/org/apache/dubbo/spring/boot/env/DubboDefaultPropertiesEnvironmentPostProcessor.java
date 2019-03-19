@@ -19,6 +19,7 @@ package org.apache.dubbo.spring.boot.env;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.boot.env.EnvironmentPostProcessor;
@@ -73,6 +74,12 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
      */
     private static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
 
+    /**
+     * The property name of "spring.main.allow-bean-definition-overriding".
+     * Please refer to: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes#bean-overriding
+     */
+    public static final String ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY = "spring.main.allow-bean-definition-overriding";
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         MutablePropertySources propertySources = environment.getPropertySources();
@@ -92,6 +99,7 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
         setDubboApplicationNameProperty(environment, defaultProperties);
         setDubboConfigMultipleProperty(defaultProperties);
         setDubboApplicationQosEnableProperty(defaultProperties);
+        setAllowBeanDefinitionOverriding(defaultProperties);
         return defaultProperties;
     }
 
@@ -109,6 +117,18 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
 
     private void setDubboApplicationQosEnableProperty(Map<String, Object> defaultProperties) {
         defaultProperties.put(DUBBO_APPLICATION_QOS_ENABLE_PROPERTY, Boolean.FALSE.toString());
+    }
+
+    /**
+     * Set {@link #ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY "spring.main.allow-bean-definition-overriding"} to be
+     * <code>true</code> as default.
+     *
+     * @param defaultProperties the default {@link Properties properties}
+     * @see #ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY
+     * @since 2.7.1
+     */
+    private void setAllowBeanDefinitionOverriding(Map<String, Object> defaultProperties) {
+        defaultProperties.put(ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY, Boolean.TRUE.toString());
     }
 
     /**
