@@ -53,23 +53,31 @@ class DubboConfigurationProperties {
     private Scan scan = new Scan();
 
     // Single Config Bindings
-
+    @NestedConfigurationProperty
     private ApplicationConfig application = new ApplicationConfig();
 
+    @NestedConfigurationProperty
     private ModuleConfig module = new ModuleConfig();
 
+    @NestedConfigurationProperty
     private RegistryConfig registry = new RegistryConfig();
 
+    @NestedConfigurationProperty
     private ProtocolConfig protocol = new ProtocolConfig();
 
+    @NestedConfigurationProperty
     private MonitorConfig monitor = new MonitorConfig();
 
+    @NestedConfigurationProperty
     private ProviderConfig provider = new ProviderConfig();
 
+    @NestedConfigurationProperty
     private ConsumerConfig consumer = new ConsumerConfig();
 
+    @NestedConfigurationProperty
     private ConfigCenterBean configCenter = new ConfigCenterBean();
 
+    @NestedConfigurationProperty
     private MetadataReportConfig metadataReport = new MetadataReportConfig();
 
     // Multiple Config Bindings
