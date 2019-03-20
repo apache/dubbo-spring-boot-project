@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,33 +19,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.apache.dubbo.samples</groupId>
     <artifactId>dubbo-spring-boot-samples</artifactId>
     <packaging>pom</packaging>
-    <name>Dubbo Spring Boot Samples</name>
-    <description>Dubbo Spring Boot Samples</description>
+    <name>Apache Dubbo Spring Boot :: Samples</name>
+    <description>Apache Dubbo Spring Boot :: Samples</description>
+
     <modules>
-        <module>dubbo-spring-boot-sample-provider</module>
-        <module>dubbo-spring-boot-sample-consumer</module>
-        <module>dubbo-spring-boot-sample-api</module>
+        <module>sample-api</module>
+        <module>auto-configure-samples</module>
+        <module>externalized-configuration-samples</module>
+        <module>dubbo-registry-zookeeper-samples</module>
     </modules>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-    </dependencies>
 
     <build>
         <plugins>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,26 +19,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.alibaba.boot</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-parent</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
-        <relativePath>../dubbo-spring-boot-parent</relativePath>
+        <version>${revision}</version>
+        <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <name>Dubbo Spring Boot AutoConfigure</name>
-    <description>Dubbo Spring Boot AutoConfigure</description>
+    <name>Apache Dubbo Spring Boot :: Auto-Configure</name>
+    <description>Apache Dubbo Spring Boot Auto-Configure</description>
 
 
     <dependencies>
+
+        <!-- Spring Boot Auto-Configuration -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-autoconfigure-compatible</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
@@ -53,7 +63,7 @@
 
         <!-- Dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <optional>true</optional>
         </dependency>
@@ -64,5 +74,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 </project>

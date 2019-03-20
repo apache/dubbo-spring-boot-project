@@ -1,8 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.alibaba.boot.dubbo.autoconfigure.DubboAutoConfiguration
-
-
-org.springframework.context.ApplicationListener=\
-com.alibaba.boot.dubbo.context.event.OverrideDubboConfigApplicationListener,\
-com.alibaba.boot.dubbo.context.event.WelcomeLogoApplicationListener,\
-com.alibaba.boot.dubbo.context.event.AwaitingNonWebApplicationListener
+org.apache.dubbo.spring.boot.autoconfigure.DubboRelaxedBinding2AutoConfiguration

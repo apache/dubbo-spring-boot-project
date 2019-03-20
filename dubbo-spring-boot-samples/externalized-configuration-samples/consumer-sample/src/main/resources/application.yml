@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: dubbo-externalized-configuration-consumer-sample
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    dubbo:
+      enabled: true
+    dubboshutdown:
+      enabled: true
+    dubboconfigs:
+      enabled: true
+    dubboservices:
+      enabled: true
+    dubboreferences:
+      enabled: true
+    dubboproperties:
+      enabled: true
+  security:
+    ## Deprecated 2.x
+    enabled: false
+
+## For Spring Boot 1.x demo
+endpoints:
+  dubbo:
+    enabled: true
+    sensitive: false
+  dubboshutdown:
+    enabled: true
+  dubboconfigs:
+    enabled: true
+  dubboservices:
+    enabled: true
+  dubboreferences:
+    enabled: true
+  dubboproperties:
+    enabled: true
+
+demo:
+  service:
+    version: 1.0.0
+    url: dubbo://localhost:12345
