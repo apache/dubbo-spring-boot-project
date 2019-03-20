@@ -83,8 +83,6 @@ class DubboConfigurationProperties {
 
     // Multiple Config Bindings
 
-    private Map<String, ApplicationConfig> applications = new LinkedHashMap<>();
-
     private Map<String, ModuleConfig> modules = new LinkedHashMap<>();
 
     private Map<String, RegistryConfig> registrys = new LinkedHashMap<>();
@@ -187,14 +185,6 @@ class DubboConfigurationProperties {
 
     public void setMetadataReport(MetadataReportConfig metadataReport) {
         this.metadataReport = metadataReport;
-    }
-
-    public Map<String, ApplicationConfig> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(Map<String, ApplicationConfig> applications) {
-        this.applications = applications;
     }
 
     public Map<String, ModuleConfig> getModules() {

@@ -16,12 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.env;
 
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
-
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
@@ -37,6 +32,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_APPLICATION_NAME_PROPERTY;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_APPLICATION_QOS_ENABLE_PROPERTY;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_CONFIG_MULTIPLE_PROPERTY;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.SPRING_APPLICATION_NAME_PROPERTY;
+
 /**
  * The lowest precedence {@link EnvironmentPostProcessor} processes
  * {@link SpringApplication#setDefaultProperties(Properties) Spring Boot default properties} for Dubbo
@@ -47,32 +47,7 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
     /**
      * The name of default {@link PropertySource} defined in SpringApplication#configurePropertySources method.
      */
-    private static final String PROPERTY_SOURCE_NAME = "defaultProperties";
-
-    /**
-     * The property name of Spring Application
-     *
-     * @see ContextIdApplicationContextInitializer
-     */
-    private static final String SPRING_APPLICATION_NAME_PROPERTY = "spring.application.name";
-
-    /**
-     * The property name of {@link ApplicationConfig}
-     *
-     * @see EnableDubboConfig
-     * @see EnableDubboConfigBinding
-     */
-    private static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
-
-    /**
-     * The property name of {@link EnableDubboConfig#multiple() @EnableDubboConfig.multiple()}
-     */
-    private static final String DUBBO_CONFIG_MULTIPLE_PROPERTY = "dubbo.config.multiple";
-
-    /**
-     * The property name of {@link ApplicationConfig#getQosEnable() application's QOS enable}
-     */
-    private static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
+    public static final String PROPERTY_SOURCE_NAME = "defaultProperties";
 
     /**
      * The property name of "spring.main.allow-bean-definition-overriding".

@@ -16,8 +16,13 @@
  */
 package org.apache.dubbo.spring.boot.util;
 
+import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
+
+import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertyResolver;
 
@@ -125,6 +130,47 @@ public abstract class DubboUtils {
      * The bean name of {@link PropertyResolver} for {@link ServiceAnnotationBeanPostProcessor}'s base-packages
      */
     public static final String BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME = "dubboScanBasePackagesPropertyResolver";
+
+    /**
+     * The property name of Spring Application
+     *
+     * @see ContextIdApplicationContextInitializer
+     * @since 2.7.1
+     */
+    public static final String SPRING_APPLICATION_NAME_PROPERTY = "spring.application.name";
+
+    /**
+     * The property id of {@link ApplicationConfig} Bean
+     *
+     * @see EnableDubboConfig
+     * @see EnableDubboConfigBinding
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_ID_PROPERTY = "dubbo.application.id";
+
+    /**
+     * The property name of {@link ApplicationConfig}
+     *
+     * @see EnableDubboConfig
+     * @see EnableDubboConfigBinding
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
+
+    /**
+     * The property name of {@link ApplicationConfig#getQosEnable() application's QOS enable}
+     *
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
+
+    /**
+     * The property name of {@link EnableDubboConfig#multiple() @EnableDubboConfig.multiple()}
+     *
+     * @since 2.7.1
+     */
+    public static final String DUBBO_CONFIG_MULTIPLE_PROPERTY = "dubbo.config.multiple";
+
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}

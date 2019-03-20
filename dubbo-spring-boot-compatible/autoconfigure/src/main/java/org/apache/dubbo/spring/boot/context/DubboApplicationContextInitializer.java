@@ -16,24 +16,12 @@
  */
 package org.apache.dubbo.spring.boot.context;
 
-import org.apache.dubbo.config.AbstractConfig;
-import org.apache.dubbo.config.spring.context.config.NamePropertyDefaultValueDubboConfigBeanCustomizer;
+import org.apache.dubbo.spring.boot.beans.factory.config.DubboConfigBeanDefinitionConflictProcessor;
+import org.apache.dubbo.spring.boot.beans.factory.config.OverrideBeanDefinitionRegistryPostProcessor;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
-
-import java.lang.reflect.Method;
-
-import static org.apache.dubbo.config.spring.context.config.NamePropertyDefaultValueDubboConfigBeanCustomizer.BEAN_NAME;
-import static org.apache.dubbo.config.spring.util.BeanRegistrar.registerInfrastructureBean;
-import static org.springframework.util.ReflectionUtils.findMethod;
-import static org.springframework.util.ReflectionUtils.invokeMethod;
 
 /**
  * Dubbo {@link ApplicationContextInitializer} implementation
@@ -50,6 +38,7 @@ public class DubboApplicationContextInitializer implements ApplicationContextIni
 
     private void overrideBeanDefinitions(ConfigurableApplicationContext applicationContext) {
         applicationContext.addBeanFactoryPostProcessor(new OverrideBeanDefinitionRegistryPostProcessor());
+        applicationContext.addBeanFactoryPostProcessor(new DubboConfigBeanDefinitionConflictProcessor());
     }
 
     @Override
@@ -57,50 +46,4 @@ public class DubboApplicationContextInitializer implements ApplicationContextIni
         return HIGHEST_PRECEDENCE;
     }
 
-    /**
-     * {@link BeanDefinitionRegistryPostProcessor}
-     */
-    private static class OverrideBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
-
-        @Override
-        public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-            registerInfrastructureBean(registry, BEAN_NAME, DubboConfigBeanCustomizer.class);
-        }
-
-        @Override
-        public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        }
-    }
-
-    /**
-     * Current implementation will be replaced {@link NamePropertyDefaultValueDubboConfigBeanCustomizer} in Dubbo 2.7.2
-     */
-    private static class DubboConfigBeanCustomizer extends NamePropertyDefaultValueDubboConfigBeanCustomizer {
-        @Override
-        public void customize(String beanName, AbstractConfig dubboConfigBean) {
-            boolean valid = isValidPropertyName(dubboConfigBean, beanName);
-            if (valid) {
-                super.customize(beanName, dubboConfigBean);
-            }
-        }
-
-        private boolean isValidPropertyName(AbstractConfig dubboConfigBean, String propertyValue) {
-            boolean valid = true;
-            String propertyName = "name";
-            // AbstractConfig.checkName(String,String)
-            Method method = findMethod(AbstractConfig.class, "checkName", String.class, String.class);
-            try {
-                if (!method.isAccessible()) {
-                    method.setAccessible(true);
-                }
-                if (BeanUtils.getPropertyDescriptor(dubboConfigBean.getClass(), propertyName) != null) {
-                    invokeMethod(method, null, propertyName, propertyValue);
-                }
-            } catch (IllegalStateException e) {
-                valid = false;
-            }
-
-            return valid;
-        }
-    }
 }
