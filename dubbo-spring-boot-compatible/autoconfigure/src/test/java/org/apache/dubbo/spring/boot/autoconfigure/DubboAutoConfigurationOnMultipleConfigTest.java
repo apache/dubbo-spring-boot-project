@@ -23,6 +23,7 @@ import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ProviderConfig;
 import org.apache.dubbo.config.RegistryConfig;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,7 +50,6 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 @TestPropertySource(
         properties = {
                 "dubbo.applications.application1.NAME = dubbo-demo-application",
-                "dubbo.applications.application2.name = dubbo-demo-application2",
                 "dubbo.modules.module1.name = dubbo-demo-module",
                 "dubbo.registries.registry1.address = zookeeper://192.168.99.100:32770",
                 "dubbo.protocols.protocol1.name=dubbo",
@@ -155,7 +155,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     public void testMultipleDubboConfigBindingProperties() {
 
 
-        Assert.assertEquals(3, applications.size());
+        Assert.assertEquals(1, applications.size());
 
         Assert.assertEquals(1, modules.size());
 
@@ -179,7 +179,7 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
          */
         Map<String, ApplicationConfig> applications = beansOfTypeIncludingAncestors(applicationContext, ApplicationConfig.class);
 
-        Assert.assertEquals(3, applications.size());
+        Assert.assertEquals(1, applications.size());
 
         /**
          * Multiple {@link ModuleConfig}
