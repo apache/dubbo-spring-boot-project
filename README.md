@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
 
-[Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it aslo provides 
+[Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
@@ -20,7 +20,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.0</dubbo.version>
+    <dubbo.version>2.7.1</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -34,7 +34,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
             <scope>import</scope>
         </dependency>
 
-        <!-- Aapche Dubbo  -->
+        <!-- Apache Dubbo  -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
@@ -70,7 +70,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.1</version>
     </dependency>
     
     <dependency>

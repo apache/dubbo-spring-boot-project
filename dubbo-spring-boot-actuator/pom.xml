@@ -58,13 +58,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- @ConfigurationProperties annotation processing (metadata for IDEs) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!-- Dubbo autoconfigure -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

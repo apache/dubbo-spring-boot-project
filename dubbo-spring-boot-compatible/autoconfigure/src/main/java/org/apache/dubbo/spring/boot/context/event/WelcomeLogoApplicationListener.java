@@ -17,6 +17,7 @@
 package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.common.Version;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -75,7 +76,7 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
         bannerTextBuilder
                 .append(LINE_SEPARATOR)
                 .append(LINE_SEPARATOR)
-                .append(" :: Dubbo Spring Boot (v").append(Version.getVersion(getClass(), "1.0.0")).append(") : ")
+                .append(" :: Dubbo Spring Boot (v").append(Version.getVersion(getClass(), Version.getVersion())).append(") : ")
                 .append(DUBBO_SPRING_BOOT_GITHUB_URL)
                 .append(LINE_SEPARATOR)
                 .append(" :: Dubbo (v").append(Version.getVersion()).append(") : ")

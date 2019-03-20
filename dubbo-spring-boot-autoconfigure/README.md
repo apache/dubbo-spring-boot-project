@@ -23,7 +23,7 @@ You can introduce the latest `dubbo-spring-boot-autoconfigure` to your project 
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
-    <version>2.7.0</version>
+    <version>2.7.1</version>
 </dependency>
 ```
 
@@ -213,13 +213,13 @@ If you used advanced IDE tools , for instance [Jetbrains IDEA Ultimate](https://
 
 #### Case 1 - Single Bindings
 
-![](../config-popup-window.png)
+![](config-popup-window.png)
 
 
 
 #### Case 2 - Mutiple Bindings
 
-![](../mconfig-popup-window.png)
+![](mconfig-popup-window.png)
 
 ​
 

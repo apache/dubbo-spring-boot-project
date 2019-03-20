@@ -18,7 +18,6 @@ package org.apache.dubbo.spring.boot.demo.consumer.bootstrap;
 
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -43,8 +42,6 @@ public class DubboRegistryZooKeeperConsumerBootstrap {
 
     @Bean
     public ApplicationRunner runner() {
-        return args -> {
-            logger.info(demoService.sayHello("mercyblitz"));
-        };
+        return args -> logger.info(demoService.sayHello("mercyblitz"));
     }
 }
