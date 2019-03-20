@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 
 /**
@@ -266,6 +267,19 @@ class DubboConfigurationProperties {
          * Indicates multiple properties binding from externalized configuration or not.
          */
         private boolean multiple = DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE;
+
+        /**
+         * The property name of override Dubbo config
+         */
+        private boolean override = DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
+
+        public boolean isOverride() {
+            return override;
+        }
+
+        public void setOverride(boolean override) {
+            this.override = override;
+        }
 
         public boolean isMultiple() {
             return multiple;
