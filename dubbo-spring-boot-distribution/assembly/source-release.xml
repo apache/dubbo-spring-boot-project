@@ -49,6 +49,8 @@
                 <exclude>**/.mvn/**</exclude>
                 <exclude>**/*.jar</exclude>
                 <exclude>**/mvnw*</exclude>
+                <exclude>**/.flattened-pom.xml</exclude>
+                <exclude>**/.travis.yml</exclude>
             </excludes>
         </fileSet>
     </fileSets>
