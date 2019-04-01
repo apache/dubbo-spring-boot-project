@@ -289,3 +289,8 @@ The samples project of Dubbo Spring Boot that includes:
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+
+
+## License
+
+Apache Dubbo spring boot project is under the Apache 2.0 license. See the [LICENSE](https://github.com/apache/incubator-dubbo-spring-boot-project/blob/master/LICENSE) file for details.
