@@ -127,7 +127,7 @@
                             </execution>
                         </executions>
                     </plugin>
-
+                  
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>flatten-maven-plugin</artifactId>
@@ -153,7 +153,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
                 </plugins>
             </build>
         </profile>
