@@ -7,3 +7,5 @@ org.apache.dubbo.spring.boot.context.event.WelcomeLogoApplicationListener,\
 org.apache.dubbo.spring.boot.context.event.AwaitingNonWebApplicationListener
 org.springframework.boot.env.EnvironmentPostProcessor=\
 org.apache.dubbo.spring.boot.env.DubboDefaultPropertiesEnvironmentPostProcessor
+org.springframework.context.ApplicationContextInitializer=\
+org.apache.dubbo.spring.boot.context.DubboApplicationContextInitializer

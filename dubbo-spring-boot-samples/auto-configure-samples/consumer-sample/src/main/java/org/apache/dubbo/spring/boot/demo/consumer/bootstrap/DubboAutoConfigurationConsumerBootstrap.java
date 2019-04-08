@@ -44,8 +44,6 @@ public class DubboAutoConfigurationConsumerBootstrap {
 
     @Bean
     public ApplicationRunner runner() {
-        return args -> {
-            logger.info(demoService.sayHello("mercyblitz"));
-        };
+        return args -> logger.info(demoService.sayHello("mercyblitz"));
     }
 }

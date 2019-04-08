@@ -20,11 +20,13 @@ package org.apache.dubbo.spring.boot.actuate.autoconfigure;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboEndpoint;
 import org.apache.dubbo.spring.boot.autoconfigure.DubboAutoConfiguration;
 import org.apache.dubbo.spring.boot.autoconfigure.DubboRelaxedBindingAutoConfiguration;
+
 import org.springframework.boot.actuate.condition.ConditionalOnEnabledEndpoint;
 import org.springframework.boot.actuate.endpoint.Endpoint;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,6 +43,7 @@ import org.springframework.context.annotation.Configuration;
         DubboAutoConfiguration.class,
         DubboRelaxedBindingAutoConfiguration.class
 })
+@EnableConfigurationProperties(DubboEndpoint.class)
 public class DubboEndpointAutoConfiguration {
 
     @Bean

@@ -93,6 +93,7 @@ public class EmbeddedZooKeeper implements SmartLifecycle {
      * Construct an EmbeddedZooKeeper with the provided port.
      *
      * @param clientPort port for ZooKeeper server to bind to
+     * @param daemon     is daemon or not thread.
      */
     public EmbeddedZooKeeper(int clientPort, boolean daemon) {
         this.clientPort = clientPort;
