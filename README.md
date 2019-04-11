@@ -20,7 +20,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.0</dubbo.version>
+    <dubbo.version>2.7.1</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -70,7 +70,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.1</version>
     </dependency>
     
     <dependency>

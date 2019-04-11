@@ -22,13 +22,16 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotati
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.PropertyResolver;
 
 import java.util.Set;
@@ -53,6 +56,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true)
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
+@EnableConfigurationProperties(DubboConfigurationProperties.class)
 public class DubboAutoConfiguration {
 
     /**
@@ -87,7 +91,7 @@ public class DubboAutoConfiguration {
      * @see EnableDubboConfig
      * @see DubboConfigConfiguration.Single
      */
-    @EnableDubboConfig
+    @Import(DubboConfigConfiguration.Single.class)
     protected static class SingleDubboConfigConfiguration {
     }
 
@@ -98,7 +102,7 @@ public class DubboAutoConfiguration {
      * @see DubboConfigConfiguration.Multiple
      */
     @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
-    @EnableDubboConfig(multiple = true)
+    @Import(DubboConfigConfiguration.Multiple.class)
     protected static class MultipleDubboConfigConfiguration {
     }
 
