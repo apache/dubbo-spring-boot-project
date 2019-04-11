@@ -289,6 +289,8 @@ The samples project of Dubbo Spring Boot that includes:
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [Registry Nacos Samples](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+
 
 
 ## License
