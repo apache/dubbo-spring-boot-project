@@ -19,36 +19,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.apache.dubbo</groupId>
-        <artifactId>dubbo-spring-boot-parent</artifactId>
+        <artifactId>dubbo-spring-boot-samples</artifactId>
+        <groupId>org.apache.dubbo.samples</groupId>
         <version>${revision}</version>
-        <relativePath>../dubbo-spring-boot-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apache.dubbo.samples</groupId>
-    <artifactId>dubbo-spring-boot-samples</artifactId>
+    <artifactId>dubbo-spring-boot-registry-nacos-samples</artifactId>
+    <name>Apache Dubbo Spring Boot :: Samples : Registry Nacos</name>
+    <description>Apache Dubbo Spring Boot Registry Nacos Samples</description>
     <packaging>pom</packaging>
-    <name>Apache Dubbo Spring Boot :: Samples</name>
-    <description>Apache Dubbo Spring Boot :: Samples</description>
+
 
     <modules>
-        <module>sample-api</module>
-        <module>auto-configure-samples</module>
-        <module>externalized-configuration-samples</module>
-        <module>dubbo-registry-zookeeper-samples</module>
-        <module>dubbo-registry-nacos-samples</module>
+        <module>provider-sample</module>
+        <module>consumer-sample</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
