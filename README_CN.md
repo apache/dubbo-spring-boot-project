@@ -283,6 +283,8 @@ Dubbo Spring Boot 示例工程包括:
 - [自动装配](dubbo-spring-boot-samples/auto-configure-samples)
 - [外部化配置](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Zookeeper 注册中心](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [Nacos 注册中心](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+
 
 
 ## License
