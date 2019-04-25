@@ -21,7 +21,8 @@
     <parent>
         <artifactId>dubbo-spring-boot-registry-nacos-samples</artifactId>
         <groupId>org.apache.dubbo.samples</groupId>
-        <version>2.7.1</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
