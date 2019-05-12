@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.beans.factory.config;
 
+import org.apache.dubbo.config.spring.context.config.NamePropertyDefaultValueDubboConfigBeanCustomizer;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -33,7 +34,7 @@ public class OverrideBeanDefinitionRegistryPostProcessor implements BeanDefiniti
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        registerInfrastructureBean(registry, BEAN_NAME, DubboConfigBeanCustomizer.class);
+        registerInfrastructureBean(registry, BEAN_NAME, NamePropertyDefaultValueDubboConfigBeanCustomizer.class);
     }
 
     @Override
