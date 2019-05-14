@@ -64,7 +64,8 @@ public abstract class EnvironmentUtils {
 
         for (PropertySource<?> source : map.values()) {
 
-            if (source instanceof EnumerablePropertySource) {
+            if (source instanceof EnumerablePropertySource
+                    && !source.getName().equals("systemEnvironment")) {
 
                 EnumerablePropertySource propertySource = (EnumerablePropertySource) source;
 

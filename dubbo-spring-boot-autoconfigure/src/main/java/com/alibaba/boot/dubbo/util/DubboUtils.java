@@ -16,6 +16,7 @@
  */
 package com.alibaba.boot.dubbo.util;
 
+import org.springframework.boot.context.properties.bind.PropertySourcesPlaceholdersResolver;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.util.Collections;
@@ -123,6 +124,8 @@ public abstract class DubboUtils {
 
         SortedMap<String, Object> dubboProperties = new TreeMap<>();
 
+        PropertySourcesPlaceholdersResolver resolver = new PropertySourcesPlaceholdersResolver(environment);
+
         Map<String, Object> properties = EnvironmentUtils.extractProperties(environment);
 
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
@@ -130,7 +133,7 @@ public abstract class DubboUtils {
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
                     && entry.getValue() != null) {
-                dubboProperties.put(propertyName, entry.getValue().toString());
+                dubboProperties.put(propertyName, resolver.resolvePlaceholders(entry.getValue()));
             }
 
         }
