@@ -98,6 +98,15 @@ If your project failed to resolve the dependency, try to add the following repos
 ```
 
 
+### Legacy Versions
+
+If you still use the legacy Dubbo whose version is less than 2.7.0, please use the following Spring Boot starters:
+
+| Dubbo Spring Boot | Dubbo  | Spring Boot |
+| ----------------- | ------ | ----------- |
+| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
+| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
+
 
 
 ### Build from Source
@@ -280,3 +289,10 @@ The samples project of Dubbo Spring Boot that includes:
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [Registry Nacos Samples](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+
+
+
+## License
+
+Apache Dubbo spring boot project is under the Apache 2.0 license. See the [LICENSE](https://github.com/apache/incubator-dubbo-spring-boot-project/blob/master/LICENSE) file for details.

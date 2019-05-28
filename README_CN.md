@@ -98,13 +98,19 @@
     </repository>
 </repositories>
 ```
+### 历史版本
 
+如果您现在使用的Dubbo版本低于2.7.0，请使用如下对应版本的Dubbo Spring Boot：
 
+| Dubbo Spring Boot | Dubbo  | Spring Boot |
+| ----------------- | ------ | ----------- |
+| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
+| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
 
 
 ### 源代码构建
 
-如果你需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
+如果您需要尝试最新 `dubbo-spring-boot-project` 的特性，您可将当前工程手动 Maven install 到本地 Maven 仓库：
 
 1. Maven install 当前工程
 > Maven install = `mvn install`
@@ -114,7 +120,7 @@
 
 ## 快速开始
 
-如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.apache.org/ 。了解后，如果你期望更深入的探讨，可以移步[用户手册](http://dubbo.apache.org/zh-cn/docs/user/quick-start.html)。
+如果您对 Dubbo 不是非常了解，耽误您几分钟访问 http://dubbo.apache.org/ 。了解后，如果您期望更深入的探讨，可以移步[用户手册](http://dubbo.apache.org/zh-cn/docs/user/quick-start.html)。
 
 通常情况 , Dubbo 应用有两种使用场景 , 其一为 Dubbo 服务提供方 , 另外一个是 Dubbo 服务消费方，当然也允许两者混合，下面我们一起快速开始！
 
@@ -266,7 +272,7 @@ Dubbo Spring Boot 采用多 Maven 模块工程 , 模块如下：
 [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator) 提供 Production-Ready 特性：
 
 * [健康检查](dubbo-spring-boot-actuator#health-checks)
-* [控制断点](dubbo-spring-boot-actuator#endpoints)
+* [控制端点](dubbo-spring-boot-actuator#endpoints)
 * [外部化配置](dubbo-spring-boot-actuator#externalized-configuration)
 
 
@@ -283,3 +289,11 @@ Dubbo Spring Boot 示例工程包括:
 - [自动装配](dubbo-spring-boot-samples/auto-configure-samples)
 - [外部化配置](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Zookeeper 注册中心](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [Nacos 注册中心](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+
+
+
+## License
+
+Apache Dubbo spring boot project 基于Apache 2.0许可证开源，详细请参考[LICENSE](https://github.com/apache/incubator-dubbo-spring-boot-project/blob/master/LICENSE)。
+
