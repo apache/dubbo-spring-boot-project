@@ -17,12 +17,15 @@
 package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
@@ -51,5 +54,19 @@ public class DubboRelaxedBindingAutoConfiguration {
     @Scope(scopeName = SCOPE_PROTOTYPE)
     public DubboConfigBinder relaxedDubboConfigBinder() {
         return new RelaxedDubboConfigBinder();
+    }
+
+
+    /**
+     * Build a primary {@link PropertyResolver} bean to {@link Autowired @Autowired}
+     *
+     * @param environment {@link Environment}
+     * @return alias bean for {@link Environment}
+     * @since 2.7.2
+     */
+    @Bean
+    @Primary
+    public PropertyResolver primaryPropertyResolver(Environment environment) {
+        return environment;
     }
 }
