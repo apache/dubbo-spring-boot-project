@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
 
-[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ (incubating)是一款高性能Java RPC框架。
+[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ 是一款高性能Java RPC框架。
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
 
 * [自动装配](dubbo-spring-boot-autoconfigure) (比如： 注解驱动, 自动装配等).
