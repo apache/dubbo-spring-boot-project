@@ -1,8 +1,8 @@
 # Dubbo Spring Boot 工程
 
-[![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
-[![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
+[![Build Status](https://travis-ci.org/apache/dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/dubbo-spring-boot-project) 
+[![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
+![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
 [Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ 是一款高性能Java RPC框架。
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
@@ -104,8 +104,8 @@
 
 | Dubbo Spring Boot | Dubbo  | Spring Boot |
 | ----------------- | ------ | ----------- |
-| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
-| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
+| [0.2.1.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
+| [0.1.2.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
 
 
 ### 源代码构建
@@ -295,5 +295,5 @@ Dubbo Spring Boot 示例工程包括:
 
 ## License
 
-Apache Dubbo spring boot project 基于Apache 2.0许可证开源，详细请参考[LICENSE](https://github.com/apache/incubator-dubbo-spring-boot-project/blob/master/LICENSE)。
+Apache Dubbo spring boot project 基于Apache 2.0许可证开源，详细请参考[LICENSE](https://github.com/apache/dubbo-spring-boot-project/blob/master/LICENSE)。
 
