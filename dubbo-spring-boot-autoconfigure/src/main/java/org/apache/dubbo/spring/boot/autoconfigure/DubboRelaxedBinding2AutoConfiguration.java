@@ -20,6 +20,7 @@ import org.apache.dubbo.common.utils.CollectionUtils;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 import org.apache.dubbo.config.spring.util.PropertySourcesUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.source.ConfigurationPropertySources;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
@@ -63,9 +65,8 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true)
 @ConditionalOnClass(name = "org.springframework.boot.context.properties.bind.Binder")
 @AutoConfigureBefore(DubboRelaxedBindingAutoConfiguration.class)
-public class DubboRelaxedBinding2AutoConfiguration {
+public class DubboRelaxedBinding2AutoConfiguration implements ApplicationContextAware {
 
-    @Autowired
     private ApplicationContext applicationContext;
 
     @Bean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
@@ -130,4 +131,8 @@ public class DubboRelaxedBinding2AutoConfiguration {
         return null;
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 }
