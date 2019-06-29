@@ -42,7 +42,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DubboRelaxedBinding2AutoConfigurationTest.class, properties = {
-        "dubbo.scan.basePackages = org.apache.dubbo.spring.boot.autoconfigure"
+        "dubbo.scan.base-packages = org.apache.dubbo.spring.boot.autoconfigure"
 })
 @EnableAutoConfiguration
 public class DubboRelaxedBinding2AutoConfigurationTest {
