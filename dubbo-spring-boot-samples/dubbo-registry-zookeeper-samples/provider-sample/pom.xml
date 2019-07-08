@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Dubbo -->
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>org.apache.dubbo.samples</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Zookeeper dependencies -->
