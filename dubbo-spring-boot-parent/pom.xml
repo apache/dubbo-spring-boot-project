@@ -190,15 +190,6 @@
                     <include>LICENSE</include>
                 </includes>
             </resource>
-            <resource>
-                <directory>../../</directory>
-                <targetPath>META-INF/</targetPath>
-                <filtering>false</filtering>
-                <includes>
-                    <include>NOTICE</include>
-                    <include>LICENSE</include>
-                </includes>
-            </resource>
         </resources>
         <plugins>
             <plugin>
