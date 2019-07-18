@@ -46,12 +46,6 @@
             <version>${revision}</version>
         </dependency>
 
-        <!-- Dubbo -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-
         <!-- Dubbo Registry Nacos -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
