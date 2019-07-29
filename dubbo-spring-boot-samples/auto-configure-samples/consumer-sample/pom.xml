@@ -65,7 +65,7 @@
                 </executions>
                 <configuration>
                     <executable>false</executable>
-                    <finalName>${artifactId}-${spring-boot.version}</finalName>
+                    <finalName>${project.artifactId}-${spring-boot.version}</finalName>
                     <outputDirectory>${user.dir}/target</outputDirectory>
                 </configuration>
             </plugin>

@@ -54,6 +54,12 @@
             <artifactId>dubbo-dependencies-zookeeper</artifactId>
             <version>${dubbo.version}</version>
             <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
@@ -73,7 +79,7 @@
                 </executions>
                 <configuration>
                     <executable>false</executable>
-                    <finalName>${artifactId}-${spring-boot.version}</finalName>
+                    <finalName>${project.artifactId}-${spring-boot.version}</finalName>
                     <outputDirectory>${user.dir}/target</outputDirectory>
                 </configuration>
             </plugin>
