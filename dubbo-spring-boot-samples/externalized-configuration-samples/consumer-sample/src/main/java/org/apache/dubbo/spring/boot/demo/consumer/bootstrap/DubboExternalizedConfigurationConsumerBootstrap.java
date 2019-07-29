@@ -18,15 +18,18 @@ package org.apache.dubbo.spring.boot.demo.consumer.bootstrap;
 
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * Dubbo Externalized Configuration Consumer Bootstrap
@@ -44,7 +47,7 @@ public class DubboExternalizedConfigurationConsumerBootstrap {
         SpringApplication.run(DubboExternalizedConfigurationConsumerBootstrap.class);
     }
 
-    @GetMapping("/say-hello")
+    @RequestMapping(value = "/say-hello", method = GET)
     public String sayHello(@RequestParam String name) {
         return demoService.sayHello(name);
     }

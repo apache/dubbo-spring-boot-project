@@ -429,4 +429,16 @@
         </plugins>
     </build>
 
+    <profiles>
+
+        <profile>
+            <!-- Spring Boot 2.0 -->
+            <id>spring-boot-2.0</id>
+            <properties>
+                <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+    </profiles>
+
 </project>
