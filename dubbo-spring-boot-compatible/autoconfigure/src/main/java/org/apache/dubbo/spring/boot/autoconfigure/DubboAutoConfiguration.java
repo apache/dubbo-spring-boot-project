@@ -105,5 +105,4 @@ public class DubboAutoConfiguration {
     @Import(DubboConfigConfiguration.Multiple.class)
     protected static class MultipleDubboConfigConfiguration {
     }
-
 }

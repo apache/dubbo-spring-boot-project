@@ -14,7 +14,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -37,6 +37,7 @@
         <module>auto-configure-samples</module>
         <module>externalized-configuration-samples</module>
         <module>dubbo-registry-zookeeper-samples</module>
+        <module>dubbo-registry-nacos-samples</module>
     </modules>
 
     <build>
@@ -50,4 +51,32 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+
+        <profile>
+            <!-- Spring Boot 1.3 -->
+            <id>spring-boot-1.3</id>
+            <properties>
+                <spring-boot.version>1.3.8.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- Spring Boot 1.4 -->
+            <id>spring-boot-1.4</id>
+            <properties>
+                <spring-boot.version>1.4.7.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- Spring Boot 1.5 -->
+            <id>spring-boot-1.5</id>
+            <properties>
+                <spring-boot.version>1.5.21.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+    </profiles>
 </project>

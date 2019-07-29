@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: dubbo-registry-nacos-consumer-sample
+
+demo:
+  service:
+    version: 1.0.0
+
+nacos:
+  host: 127.0.0.1
+  port: 8848
+
+dubbo:
+  registry:
+    address: nacos://${nacos.host}:${nacos.port}
