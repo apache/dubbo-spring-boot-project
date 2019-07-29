@@ -23,7 +23,6 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotation
 import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -33,8 +32,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
 
 import java.util.Set;
@@ -107,18 +104,5 @@ public class DubboAutoConfiguration {
     @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
     @Import(DubboConfigConfiguration.Multiple.class)
     protected static class MultipleDubboConfigConfiguration {
-    }
-
-    /**
-     * Build a primary {@link PropertyResolver} bean to {@link Autowired @Autowired}
-     *
-     * @param environment {@link Environment}
-     * @return alias bean for {@link Environment}
-     * @since 2.7.2
-     */
-    @Bean
-    @Primary
-    public PropertyResolver primaryPropertyResolver(Environment environment) {
-        return environment;
     }
 }
