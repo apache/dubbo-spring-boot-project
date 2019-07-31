@@ -4,13 +4,13 @@
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
-[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ 是一款高性能Java RPC框架。
+[Dubbo](https://dubbo.apache.org/zh-cn/index.html) Apache Dubbo™ (incubating)是一款高性能Java RPC框架。
 [Spring Boot](https://github.com/spring-projects/spring-boot/) 应用场景的开发。同时也整合了 Spring Boot 特性：
 
 * [自动装配](dubbo-spring-boot-autoconfigure) (比如： 注解驱动, 自动装配等).
 * [Production-Ready](dubbo-spring-boot-actuator) (比如： 安全, 健康检查, 外部化配置等).
 
-> Apache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
+> Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
 
 
 ## [English README](README_CN.md)
@@ -104,13 +104,8 @@
 
 | Dubbo Spring Boot | Dubbo  | Spring Boot |
 | ----------------- | ------ | ----------- |
-<<<<<<< HEAD
-| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
-| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
-=======
 | [0.2.1.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
 | [0.1.2.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
->>>>>>> upstream/2.7.x
 
 
 ### 源代码构建
