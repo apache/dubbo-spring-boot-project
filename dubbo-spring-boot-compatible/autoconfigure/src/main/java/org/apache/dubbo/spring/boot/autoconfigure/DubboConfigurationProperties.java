@@ -19,6 +19,7 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ConsumerConfig;
 import org.apache.dubbo.config.MetadataReportConfig;
+import org.apache.dubbo.config.MetricsConfig;
 import org.apache.dubbo.config.ModuleConfig;
 import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.ProtocolConfig;
@@ -81,6 +82,9 @@ class DubboConfigurationProperties {
     @NestedConfigurationProperty
     private MetadataReportConfig metadataReport = new MetadataReportConfig();
 
+    @NestedConfigurationProperty
+    private MetricsConfig metrics = new MetricsConfig();
+
     // Multiple Config Bindings
 
     private Map<String, ModuleConfig> modules = new LinkedHashMap<>();
@@ -98,6 +102,8 @@ class DubboConfigurationProperties {
     private Map<String, ConfigCenterBean> configCenters = new LinkedHashMap<>();
 
     private Map<String, MetadataReportConfig> metadataReports = new LinkedHashMap<>();
+
+    private Map<String, MetricsConfig> metricses = new LinkedHashMap<>();
 
     public Config getConfig() {
         return config;
@@ -187,6 +193,14 @@ class DubboConfigurationProperties {
         this.metadataReport = metadataReport;
     }
 
+    public void setMetrics(MetricsConfig metrics) {
+        this.metrics = metrics;
+    }
+
+    public MetricsConfig getMetrics() {
+        return metrics;
+    }
+
     public Map<String, ModuleConfig> getModules() {
         return modules;
     }
@@ -249,6 +263,14 @@ class DubboConfigurationProperties {
 
     public void setMetadataReports(Map<String, MetadataReportConfig> metadataReports) {
         this.metadataReports = metadataReports;
+    }
+
+    public Map<String, MetricsConfig> getMetricses() {
+        return metricses;
+    }
+
+    public void setMetricses(Map<String, MetricsConfig> metricses) {
+        this.metricses = metricses;
     }
 
     static class Config {
