@@ -1,10 +1,10 @@
 # Apache Dubbo Spring Boot Project 
 
-[![Build Status](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/incubator-dubbo-spring-boot-project) 
-[![codecov](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/incubator-dubbo-spring-boot-project)
-![license](https://img.shields.io/github/license/apache/incubator-dubbo-spring-boot-project.svg)
+[![Build Status](https://travis-ci.org/apache/dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/dubbo-spring-boot-project) 
+[![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/ubbo-spring-boot-project)
+![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
-[Apache Dubbo(incubating)](https://github.com/apache/incubator-dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
+[Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
@@ -104,8 +104,8 @@ If you still use the legacy Dubbo whose version is less than 2.7.0, please use t
 
 | Dubbo Spring Boot | Dubbo  | Spring Boot |
 | ----------------- | ------ | ----------- |
-| [0.2.1.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
-| [0.1.2.RELEASE](https://github.com/apache/incubator-dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
+| [0.2.1.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.2.x)     | 2.6.5+ | 2.x         |
+| [0.1.2.RELEASE](https://github.com/apache/dubbo-spring-boot-project/tree/0.1.x)     | 2.6.5+ | 1.x         |
 
 
 
@@ -289,6 +289,8 @@ The samples project of Dubbo Spring Boot that includes:
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
 - [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
+- [Registry Nacos Samples](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+
 
 
 ## License
