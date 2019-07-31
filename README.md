@@ -1,7 +1,11 @@
 # Apache Dubbo Spring Boot Project 
 
 [![Build Status](https://travis-ci.org/apache/dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/dubbo-spring-boot-project) 
+<<<<<<< HEAD
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/ubbo-spring-boot-project)
+=======
+[![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
+>>>>>>> upstream/2.7.x
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
 [Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
@@ -20,7 +24,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.1</dubbo.version>
+    <dubbo.version>2.7.3</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -70,7 +74,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.1</version>
+        <version>2.7.3</version>
     </dependency>
     
     <dependency>
@@ -295,4 +299,4 @@ The samples project of Dubbo Spring Boot that includes:
 
 ## License
 
-Apache Dubbo spring boot project is under the Apache 2.0 license. See the [LICENSE](https://github.com/apache/incubator-dubbo-spring-boot-project/blob/master/LICENSE) file for details.
+Apache Dubbo spring boot project is under the Apache 2.0 license. See the [LICENSE](https://github.com/apache/dubbo-spring-boot-project/blob/master/LICENSE) file for details.

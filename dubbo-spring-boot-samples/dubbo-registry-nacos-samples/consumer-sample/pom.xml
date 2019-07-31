@@ -30,7 +30,11 @@
     <name>Apache Dubbo Spring Boot :: Samples : Registry Nacos :: Consumer Sample</name>
 
     <properties>
+<<<<<<< HEAD
         <nacos.version>1.0.0-RC3</nacos.version>
+=======
+        <nacos.version>1.1.1</nacos.version>
+>>>>>>> upstream/2.7.x
     </properties>
 
     <dependencies>
@@ -46,12 +50,15 @@
             <version>${revision}</version>
         </dependency>
 
+<<<<<<< HEAD
         <!-- Dubbo -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
 
+=======
+>>>>>>> upstream/2.7.x
         <!-- Dubbo Registry Nacos -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -72,4 +79,29 @@
         </dependency>
     </dependencies>
 
+<<<<<<< HEAD
+=======
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>false</executable>
+                    <finalName>${project.artifactId}-${spring-boot.version}</finalName>
+                    <outputDirectory>${user.dir}/target</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+>>>>>>> upstream/2.7.x
 </project>
