@@ -116,7 +116,9 @@ If you'd like to attempt to experience latest features, you also can build from 
 1. Maven install current project in your local repository.
 > Maven install = `mvn install`
 
-
+```bash
+./mvnw clean install -DskipTests
+```
 
 
 ## Getting Started

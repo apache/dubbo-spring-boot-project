@@ -115,6 +115,9 @@
 1. Maven install 当前工程
 > Maven install = `mvn install`
 
+```bash
+./mvnw clean install -DskipTests
+```
 
 
 
