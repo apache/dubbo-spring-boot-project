@@ -20,7 +20,6 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotati
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.ObjectProvider;
@@ -37,6 +36,9 @@ import java.util.Map;
 
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * {@link DubboRelaxedBinding2AutoConfiguration} Test
@@ -66,22 +68,29 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
     private Environment environment;
 
     @Autowired
+    private PropertyResolver primaryPropertyResolver;
+
+    @Autowired
     private Map<String, Environment> environments;
 
     @Test
     public void testBeans() {
-        Assert.assertTrue(ClassUtils.isAssignableValue(BinderDubboConfigBinder.class, dubboConfigBinder));
-        Assert.assertNotNull(serviceAnnotationBeanPostProcessor);
-        Assert.assertNotNull(serviceAnnotationBeanPostProcessor.getIfAvailable());
-        Assert.assertNotNull(referenceAnnotationBeanPostProcessor);
-        Assert.assertNotNull(referenceAnnotationBeanPostProcessor.getIfAvailable());
 
-        Assert.assertNotNull(environment);
-        Assert.assertNotNull(environments);
+        assertTrue(ClassUtils.isAssignableValue(BinderDubboConfigBinder.class, dubboConfigBinder));
 
-        Assert.assertEquals(1, environments.size());
+        assertNotNull(serviceAnnotationBeanPostProcessor);
+        assertNotNull(serviceAnnotationBeanPostProcessor.getIfAvailable());
+        assertNotNull(referenceAnnotationBeanPostProcessor);
+        assertNotNull(referenceAnnotationBeanPostProcessor.getIfAvailable());
 
-        Assert.assertTrue(environments.containsValue(environment));
+        assertNotNull(environment);
+        assertNotNull(primaryPropertyResolver);
+        assertNotNull(environments);
+
+        assertEquals(primaryPropertyResolver, environment);
+        assertEquals(2, environments.size());
+
+        assertTrue(environments.containsValue(environment));
     }
 
 }
