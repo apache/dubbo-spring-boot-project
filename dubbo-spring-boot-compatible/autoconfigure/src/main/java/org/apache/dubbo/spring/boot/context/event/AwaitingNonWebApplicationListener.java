@@ -18,22 +18,23 @@ package org.apache.dubbo.spring.boot.context.event;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.util.ClassUtils;
-import org.springframework.util.ObjectUtils;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import static java.util.concurrent.Executors.newSingleThreadExecutor;
+import static org.springframework.util.ObjectUtils.containsElement;
 
 /**
  * Awaiting Non-Web Spring Boot {@link ApplicationListener}
@@ -54,11 +55,11 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
 
     private static final AtomicBoolean awaited = new AtomicBoolean(false);
 
-    private final Lock lock = new ReentrantLock();
+    private static final Lock lock = new ReentrantLock();
 
-    private final Condition condition = lock.newCondition();
+    private static final Condition condition = lock.newCondition();
 
-    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static final ExecutorService executorService = newSingleThreadExecutor();
 
     private static <T> T[] of(T... values) {
         return values;
@@ -70,7 +71,7 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
 
     @Override
     public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
-        return ObjectUtils.containsElement(SUPPORTED_APPLICATION_EVENTS, eventType);
+        return containsElement(SUPPORTED_APPLICATION_EVENTS, eventType);
     }
 
     @Override
@@ -94,19 +95,23 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
 
     protected void onApplicationReadyEvent(ApplicationReadyEvent event) {
 
-        final SpringApplication springApplication = event.getSpringApplication();
+        final ConfigurableApplicationContext applicationContext = event.getApplicationContext();
 
-        if (isWebApplication(event.getApplicationContext(), springApplication.getClassLoader())) {
+        if (!isRootApplicationContext(applicationContext) || isWebApplication(applicationContext)) {
             return;
         }
 
         await();
     }
 
-    private static boolean isWebApplication(ApplicationContext applicationContext, ClassLoader classLoader) {
+    private boolean isRootApplicationContext(ApplicationContext applicationContext) {
+        return applicationContext.getParent() == null;
+    }
+
+    private boolean isWebApplication(ApplicationContext applicationContext) {
         boolean webApplication = false;
         for (String contextClass : WEB_APPLICATION_CONTEXT_CLASSES) {
-            if (isAssignable(contextClass, applicationContext.getClass(), classLoader)) {
+            if (isAssignable(contextClass, applicationContext.getClass(), applicationContext.getClassLoader())) {
                 webApplication = true;
                 break;
             }
@@ -134,18 +139,20 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
             return;
         }
 
-        executorService.execute(() -> executeMutually(() -> {
-            while (!awaited.get()) {
-                if (logger.isInfoEnabled()) {
-                    logger.info(" [Dubbo] Current Spring Boot Application is await...");
+        if (!executorService.isShutdown()) {
+            executorService.execute(() -> executeMutually(() -> {
+                while (!awaited.get()) {
+                    if (logger.isInfoEnabled()) {
+                        logger.info(" [Dubbo] Current Spring Boot Application is await...");
+                    }
+                    try {
+                        condition.await();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
                 }
-                try {
-                    condition.await();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }));
+            }));
+        }
     }
 
     protected void release() {

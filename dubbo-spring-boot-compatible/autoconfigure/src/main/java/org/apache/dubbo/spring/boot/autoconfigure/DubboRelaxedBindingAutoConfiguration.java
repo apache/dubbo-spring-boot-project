@@ -17,6 +17,7 @@
 package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -52,4 +53,5 @@ public class DubboRelaxedBindingAutoConfiguration {
     public DubboConfigBinder relaxedDubboConfigBinder() {
         return new RelaxedDubboConfigBinder();
     }
+
 }
