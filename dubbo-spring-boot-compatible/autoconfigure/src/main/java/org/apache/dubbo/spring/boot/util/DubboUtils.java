@@ -23,6 +23,7 @@ import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBindin
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
+import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertyResolver;
 
@@ -30,6 +31,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * The utilities class for Dubbo
@@ -194,8 +196,24 @@ public abstract class DubboUtils {
 
         }
 
-        return Collections.unmodifiableSortedMap(dubboProperties);
+        return Collections.unmodifiableSortedMap(dubboProperties.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        DubboUtils::resolvePlaceholders,
+                        (u,v) -> { throw new IllegalStateException(String.format("Duplicate key %s", u)); } ,
+                        () -> new TreeMap<>())));
 
     }
 
+    private static Object resolvePlaceholders(Map.Entry<String, Object> entry) {
+        if (entry == null) {
+            return null;
+        }
+        Object value = entry.getValue();
+        if (value != null && value instanceof String) {
+            AbstractEnvironment resolver = new AbstractEnvironment() {};
+            return resolver.resolvePlaceholders((String) value);
+        }
+        return value;
+    }
 }
