@@ -175,7 +175,7 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
     "dubbo": "2.7.3"
   },
   "urls": {
-    "dubbo": "https://github.com/apache/incubator-dubbo/",
+    "dubbo": "https://github.com/apache/dubbo/",
     "google-group": "dev@dubbo.apache.org",
     "github": "https://github.com/apache/dubbo-spring-boot-project",
     "issues": "https://github.com/apache/dubbo-spring-boot-project/issues",
