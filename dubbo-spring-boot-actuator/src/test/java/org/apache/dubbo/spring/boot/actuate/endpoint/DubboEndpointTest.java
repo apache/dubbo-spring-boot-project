@@ -65,7 +65,7 @@ public class DubboEndpointTest {
         Assert.assertEquals(getVersion(DubboUtils.class, "1.0.0"), versions.get("dubbo-spring-boot"));
         Assert.assertEquals(getVersion(), versions.get("dubbo"));
 
-        Assert.assertEquals("https://github.com/apache/incubator-dubbo", urls.get("dubbo"));
+        Assert.assertEquals("https://github.com/apache/dubbo", urls.get("dubbo"));
         Assert.assertEquals("dev@dubbo.apache.org", urls.get("mailing-list"));
         Assert.assertEquals("https://github.com/apache/dubbo-spring-boot-project", urls.get("github"));
         Assert.assertEquals("https://github.com/apache/dubbo-spring-boot-project/issues", urls.get("issues"));
