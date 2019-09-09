@@ -201,7 +201,7 @@ public interface DemoService {
         name: dubbo-auto-configure-consumer-sample
     ```
 
-If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
+If `DubboProviderDemo` doesn't work well, please make sure `DubboProviderDemo` is started.
 
 More details, please refer to [Samples](dubbo-spring-boot-samples).
 
@@ -220,7 +220,7 @@ Having trouble with Dubbo Spring Boot? We’d like to help!
 
 ## Building from Source
 
-If you want to try out thr latest features of Dubbo Spring Boot, it can be easily built with the [maven wrapper](https://github.com/takari/maven-wrapper). Your JDK is 1.8 or above.
+If you want to try out the latest features of Dubbo Spring Boot, it can be easily built with the [maven wrapper](https://github.com/takari/maven-wrapper). Your JDK is 1.8 or above.
 
 ```
 $ ./mvnw clean install
