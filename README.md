@@ -201,7 +201,7 @@ public interface DemoService {
         name: dubbo-auto-configure-consumer-sample
     ```
 
-If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
+If `DubboProviderDemo` doesn't work well, please make sure `DubboProviderDemo` is started.
 
 More details, please refer to [Samples](dubbo-spring-boot-samples).
 
