@@ -13,7 +13,7 @@
 > Apache Dubbo  |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
 
 
-## [English README](README_CN.md)
+## [English README](README.md)
 
 
 ## 已发行版本
@@ -21,7 +21,7 @@
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
 <properties>
-    <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
     <dubbo.version>2.7.3</dubbo.version>
 </properties>
     
@@ -72,7 +72,7 @@
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.3</version>
+        <version>${dubbo.version}</version>
     </dependency>
     
     <dependency>

@@ -51,7 +51,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.3</version>
+        <version>${dubbo.version}</version>
     </dependency>    
 </dependencies>
 ```
