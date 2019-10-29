@@ -36,7 +36,7 @@
             <scope>import</scope>
         </dependency>
 
-        <!-- Aapche Dubbo  -->
+        <!-- Apache Dubbo  -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
