@@ -36,7 +36,7 @@
             <scope>import</scope>
         </dependency>
 
-        <!-- Aapche Dubbo  -->
+        <!-- Apache Dubbo  -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-bom</artifactId>
@@ -72,7 +72,7 @@
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.3</version>
+        <version>2.7.4.1</version>
     </dependency>
     
     <dependency>
