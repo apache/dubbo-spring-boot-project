@@ -189,13 +189,12 @@ public abstract class DubboUtils {
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
                     && entry.getValue() != null) {
-                dubboProperties.put(propertyName, entry.getValue().toString());
+                dubboProperties.put(propertyName, environment.resolvePlaceholders(entry.getValue().toString()));
             }
 
         }
 
         return Collections.unmodifiableSortedMap(dubboProperties);
-
     }
 
 }
