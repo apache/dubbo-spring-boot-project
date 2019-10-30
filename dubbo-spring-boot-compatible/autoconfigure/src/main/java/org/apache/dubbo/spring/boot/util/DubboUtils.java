@@ -114,7 +114,7 @@ public abstract class DubboUtils {
     /**
      * The github URL of Dubbo
      */
-    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
+    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/dubbo";
 
     /**
      * The google group URL of Dubbo
