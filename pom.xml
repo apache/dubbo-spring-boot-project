@@ -36,7 +36,9 @@
     <url>https://github.com/apache/dubbo-spring-boot-project</url>
 
     <properties>
-        <revision>2.7.3</revision>
+        <maven_javadoc_version>3.0.1</maven_javadoc_version>
+        <maven_surefire_version>2.19.1</maven_surefire_version>
+        <revision>2.7.4.1</revision>
     </properties>
 
     <modules>

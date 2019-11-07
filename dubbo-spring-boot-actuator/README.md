@@ -22,7 +22,7 @@ You can introduce the latest `dubbo-spring-boot-actuator` to your project by ad
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-spring-boot-actuator</artifactId>
-    <version>2.7.3</version>
+    <version>2.7.4.1</version>
 </dependency>
 ```
 
