@@ -69,7 +69,7 @@ public class DubboUtilsTest {
         Assert.assertEquals("https://github.com/apache/dubbo-spring-boot-project.git", DUBBO_SPRING_BOOT_GIT_URL);
         Assert.assertEquals("https://github.com/apache/dubbo-spring-boot-project/issues", DUBBO_SPRING_BOOT_ISSUES_URL);
 
-        Assert.assertEquals("https://github.com/apache/incubator-dubbo", DUBBO_GITHUB_URL);
+        Assert.assertEquals("https://github.com/apache/dubbo", DUBBO_GITHUB_URL);
 
         Assert.assertEquals("dev@dubbo.apache.org", DUBBO_MAILING_LIST);
 
