@@ -37,7 +37,7 @@
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>0.2.1</revision>
+        <revision>0.2.2</revision>
     </properties>
 
     <modules>
