@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
-        <version>19</version>
+        <version>21</version>
     </parent>
 
     <groupId>org.apache.dubbo</groupId>
@@ -33,12 +33,12 @@
 
     <name>Apache Dubbo Spring Boot Project</name>
     <description>Apache Dubbo Spring Boot Project</description>
-    <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
+    <url>https://github.com/apache/dubbo-spring-boot-project</url>
 
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>2.7.1</revision>
+        <revision>2.7.4.1</revision>
     </properties>
 
     <modules>
@@ -57,15 +57,15 @@
     </organization>
 
     <scm>
-        <url>https://github.com/apache/incubator-dubbo-spring-boot-project</url>
-        <connection>scm:git:git:////github.com/apache/incubator-dubbo-spring-boot-project.git</connection>
-        <developerConnection>scm:git:ssh://git@//github.com/apache/incubator-dubbo-spring-boot-project.git
+        <url>https://github.com/apache/dubbo-spring-boot-project</url>
+        <connection>scm:git:git:////github.com/apache/dubbo-spring-boot-project.git</connection>
+        <developerConnection>scm:git:ssh://git@//github.com/apache/dubbo-spring-boot-project.git
         </developerConnection>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/apache/incubator-dubbo-spring-boot-project/issues</url>
+        <url>https://github.com/apache/dubbo-spring-boot-project/issues</url>
     </issueManagement>
 
     <mailingLists>
@@ -90,8 +90,8 @@
     </mailingLists>
     <developers>
         <developer>
-            <id>Apache Dubbo (incubating)</id>
-            <name>The Apache Dubbo (incubating) Project Contributors</name>
+            <id>Apache Dubbo </id>
+            <name>The Apache Dubbo  Project Contributors</name>
             <email>dev@dubbo.apache.org</email>
             <url>http://dubbo.apache.org</url>
         </developer>
@@ -159,31 +159,39 @@
     </profiles>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>1.1.0</version>
+                    <configuration>
+                        <updatePomFile>true</updatePomFile>
+                        <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>flatten</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>flatten</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>flatten.clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.1.0</version>
-                <configuration>
-                    <updatePomFile>true</updatePomFile>
-                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>flatten</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>flatten.clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

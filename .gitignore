@@ -24,6 +24,7 @@ hs_err_pid*
 .settings/
 .project
 .classpath
+.factorypath
 
 # idea ignore
 .idea/

@@ -55,11 +55,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.dubbo.samples</groupId>
             <artifactId>dubbo-spring-boot-sample-api</artifactId>
             <version>${revision}</version>
@@ -80,6 +75,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <executable>false</executable>
+                    <finalName>${project.artifactId}-${spring-boot.version}</finalName>
+                    <outputDirectory>${user.dir}/target</outputDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
