@@ -27,7 +27,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 /**
- * Dubbo Registry ZooKeeper Nacos Bootstrap
+ * Dubbo Registry Nacos Consumer Bootstrap
  */
 @EnableAutoConfiguration
 public class DubboRegistryNacosConsumerBootstrap {

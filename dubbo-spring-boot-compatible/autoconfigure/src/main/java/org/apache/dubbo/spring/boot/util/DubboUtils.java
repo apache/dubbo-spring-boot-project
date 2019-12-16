@@ -114,7 +114,7 @@ public abstract class DubboUtils {
     /**
      * The github URL of Dubbo
      */
-    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
+    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/dubbo";
 
     /**
      * The google group URL of Dubbo
@@ -189,13 +189,12 @@ public abstract class DubboUtils {
 
             if (propertyName.startsWith(DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR)
                     && entry.getValue() != null) {
-                dubboProperties.put(propertyName, entry.getValue().toString());
+                dubboProperties.put(propertyName, environment.resolvePlaceholders(entry.getValue().toString()));
             }
 
         }
 
         return Collections.unmodifiableSortedMap(dubboProperties);
-
     }
 
 }

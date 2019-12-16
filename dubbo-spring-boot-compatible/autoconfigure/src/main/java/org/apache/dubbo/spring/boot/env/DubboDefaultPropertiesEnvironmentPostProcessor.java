@@ -70,7 +70,7 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
     }
 
     private Map<String, Object> createDefaultProperties(ConfigurableEnvironment environment) {
-        Map<String, Object> defaultProperties = new HashMap<String, Object>();
+        Map<String, Object> defaultProperties = new HashMap<>();
         setDubboApplicationNameProperty(environment, defaultProperties);
         setDubboConfigMultipleProperty(defaultProperties);
         setDubboApplicationQosEnableProperty(defaultProperties);
