@@ -50,11 +50,13 @@ class DubboConfigBeanCustomizer extends NamePropertyDefaultValueDubboConfigBeanC
         // AbstractConfig.checkName(String,String)
         Method method = findMethod(AbstractConfig.class, "checkName", String.class, String.class);
         try {
-            if (!method.isAccessible()) {
-                method.setAccessible(true);
-            }
-            if (BeanUtils.getPropertyDescriptor(dubboConfigBean.getClass(), propertyName) != null) {
-                invokeMethod(method, null, propertyName, propertyValue);
+            if (method != null) {
+                if (!method.isAccessible()) {
+                    method.setAccessible(true);
+                }
+                if (BeanUtils.getPropertyDescriptor(dubboConfigBean.getClass(), propertyName) != null) {
+                    invokeMethod(method, null, propertyName, propertyValue);
+                }
             }
         } catch (IllegalStateException e) {
             valid = false;
