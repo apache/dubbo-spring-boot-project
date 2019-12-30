@@ -18,6 +18,7 @@ package org.apache.dubbo.spring.boot.beans.factory.config;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.dubbo.spring.boot.context.event.DubboConfigBeanDefinitionConflictApplicationListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +44,12 @@ import static org.springframework.context.ConfigurableApplicationContext.ENVIRON
  *
  * @see BeanDefinition
  * @see BeanDefinitionRegistryPostProcessor
+ * @see DubboConfigBeanDefinitionConflictApplicationListener
  * @since 2.7.1
+ * @deprecated Since 2.7.5, {@link DubboConfigBeanDefinitionConflictApplicationListener} will be a substituted
+ * implementation
  */
+@Deprecated
 public class DubboConfigBeanDefinitionConflictProcessor implements BeanDefinitionRegistryPostProcessor, Ordered {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
