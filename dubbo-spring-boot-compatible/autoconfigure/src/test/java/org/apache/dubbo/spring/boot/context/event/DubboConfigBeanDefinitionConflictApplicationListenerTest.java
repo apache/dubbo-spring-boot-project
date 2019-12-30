@@ -29,10 +29,11 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.Ordered;
 
+import java.util.Map;
+
 
 /**
  * {@link DubboConfigBeanDefinitionConflictApplicationListener} Test
- *
  * @since 2.7.5
  */
 public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
@@ -68,7 +69,7 @@ public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
         Assert.assertEquals("test-dubbo-application", applicationConfig.getName());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testDuplicatedConfigsCase() {
 
         context.register(PropertySourceConfig.class, DubboConfig.class);
@@ -76,6 +77,14 @@ public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
         context.register(XmlConfig.class);
 
         context.refresh();
+
+        Map<String, ApplicationConfig> beansMap = context.getBeansOfType(ApplicationConfig.class);
+
+        ApplicationConfig applicationConfig = beansMap.get("dubbo-consumer-2.7.x");
+
+        Assert.assertEquals(1, beansMap.size());
+
+        Assert.assertEquals("dubbo-consumer-2.7.x", applicationConfig.getName());
     }
 
     @Test(expected = IllegalStateException.class)

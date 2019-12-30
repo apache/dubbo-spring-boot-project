@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -48,6 +49,7 @@ import static org.junit.Assert.assertTrue;
         "dubbo.scan.basePackages = org.apache.dubbo.spring.boot.autoconfigure"
 })
 @EnableAutoConfiguration
+@PropertySource(value = "classpath:/dubbo.properties")
 public class DubboRelaxedBinding2AutoConfigurationTest {
 
     @Autowired
