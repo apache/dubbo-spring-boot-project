@@ -19,6 +19,9 @@ package org.apache.dubbo.spring.boot.context.event;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -28,21 +31,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
+import org.springframework.core.env.Environment;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors;
+import static org.springframework.context.ConfigurableApplicationContext.ENVIRONMENT_BEAN_NAME;
 
 /**
  * The {@link ApplicationListener} class for Dubbo Config {@link BeanDefinition Bean Definition} to resolve conflict
- *
  * @see BeanDefinition
  * @see ApplicationListener
  * @since 2.7.5
  */
 public class DubboConfigBeanDefinitionConflictApplicationListener implements ApplicationListener<ContextRefreshedEvent>,
         Ordered {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -61,8 +68,7 @@ public class DubboConfigBeanDefinitionConflictApplicationListener implements App
 
     /**
      * Resolve the unique {@link ApplicationConfig} Bean
-     *
-     * @param registry    {@link BeanDefinitionRegistry} instance
+     * @param registry {@link BeanDefinitionRegistry} instance
      * @param beanFactory {@link ConfigurableListableBeanFactory} instance
      * @see EnableDubboConfig
      */
@@ -74,6 +80,15 @@ public class DubboConfigBeanDefinitionConflictApplicationListener implements App
             return;
         }
 
+        Environment environment = beanFactory.getBean(ENVIRONMENT_BEAN_NAME, Environment.class);
+
+        // Remove ApplicationConfig Beans that are configured by "dubbo.application.*"
+        Stream.of(beansNames)
+                .filter(beansName -> isConfiguredApplicationConfigBeanName(environment, beansName))
+                .forEach(registry::removeBeanDefinition);
+
+        beansNames = beanNamesForTypeIncludingAncestors(beanFactory, ApplicationConfig.class);
+
         if (beansNames.length > 1) {
             throw new IllegalStateException(String.format("There are more than one instances of %s, whose bean definitions : %s",
                     ApplicationConfig.class.getSimpleName(),
@@ -83,6 +98,21 @@ public class DubboConfigBeanDefinitionConflictApplicationListener implements App
             );
         }
     }
+
+    private boolean isConfiguredApplicationConfigBeanName(Environment environment, String beanName) {
+        boolean removed = BeanFactoryUtils.isGeneratedBeanName(beanName)
+                // Dubbo ApplicationConfig id as bean name
+                || Objects.equals(beanName, environment.getProperty("dubbo.application.id"));
+
+        if (removed) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("The {} bean [ name : {} ] has been removed!", ApplicationConfig.class.getSimpleName(), beanName);
+            }
+        }
+
+        return removed;
+    }
+
 
     @Override
     public int getOrder() {

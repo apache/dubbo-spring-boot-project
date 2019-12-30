@@ -18,6 +18,7 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,11 +26,11 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * {@link DubboAutoConfiguration} Test
- *
  * @see DubboAutoConfiguration
  */
 @RunWith(SpringRunner.class)
@@ -39,6 +40,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         "dubbo.scan.base-packages = org.apache.dubbo.spring.boot.autoconfigure"
 })
 @EnableAutoConfiguration
+@PropertySource(value = "classpath:/META-INF/dubbo.properties")
 public class CompatibleDubboAutoConfigurationTest {
 
     @Autowired
