@@ -22,8 +22,8 @@
 You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <properties>
-    <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.4.1</dubbo.version>
+    <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+    <dubbo.version>2.7.5</dubbo.version>
 </properties>
     
 <dependencyManagement>
