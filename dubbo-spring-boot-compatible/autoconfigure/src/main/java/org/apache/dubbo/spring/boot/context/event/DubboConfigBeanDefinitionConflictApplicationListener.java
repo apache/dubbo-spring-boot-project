@@ -14,20 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.dubbo.spring.boot.beans.factory.config;
+package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.spring.boot.context.event.DubboConfigBeanDefinitionConflictApplicationListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactoryUtils;
+import org.springframework.beans.factory.ListableBeanFactory;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
 
@@ -39,46 +41,38 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTyp
 import static org.springframework.context.ConfigurableApplicationContext.ENVIRONMENT_BEAN_NAME;
 
 /**
- * Dubbo Config {@link BeanDefinition Bean Definition} {@link BeanDefinitionRegistryPostProcessor processor}
- * to resolve conflict
- *
+ * The {@link ApplicationListener} class for Dubbo Config {@link BeanDefinition Bean Definition} to resolve conflict
  * @see BeanDefinition
- * @see BeanDefinitionRegistryPostProcessor
- * @see DubboConfigBeanDefinitionConflictApplicationListener
- * @since 2.7.1
- * @deprecated Since 2.7.5, {@link DubboConfigBeanDefinitionConflictApplicationListener} will be a substituted
- * implementation
+ * @see ApplicationListener
+ * @since 2.7.5
  */
-@Deprecated
-public class DubboConfigBeanDefinitionConflictProcessor implements BeanDefinitionRegistryPostProcessor, Ordered {
+public class DubboConfigBeanDefinitionConflictApplicationListener implements ApplicationListener<ContextRefreshedEvent>,
+        Ordered {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private BeanDefinitionRegistry registry;
-
-    private Environment environment;
-
     @Override
-    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        this.registry = registry;
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        ApplicationContext applicationContext = event.getApplicationContext();
+        BeanDefinitionRegistry registry = getBeanDefinitionRegistry(applicationContext);
+        resolveUniqueApplicationConfigBean(registry, applicationContext);
     }
 
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        resolveUniqueApplicationConfigBean(registry, beanFactory);
+    private BeanDefinitionRegistry getBeanDefinitionRegistry(ApplicationContext applicationContext) {
+        AutowireCapableBeanFactory beanFactory = applicationContext.getAutowireCapableBeanFactory();
+        if (beanFactory instanceof BeanDefinitionRegistry) {
+            return (BeanDefinitionRegistry) beanFactory;
+        }
+        throw new IllegalStateException("");
     }
 
     /**
      * Resolve the unique {@link ApplicationConfig} Bean
-     *
-     * @param registry    {@link BeanDefinitionRegistry} instance
+     * @param registry {@link BeanDefinitionRegistry} instance
      * @param beanFactory {@link ConfigurableListableBeanFactory} instance
      * @see EnableDubboConfig
      */
-    private void resolveUniqueApplicationConfigBean(BeanDefinitionRegistry registry,
-                                                    ConfigurableListableBeanFactory beanFactory) {
-
-        this.environment = beanFactory.getBean(ENVIRONMENT_BEAN_NAME, Environment.class);
+    private void resolveUniqueApplicationConfigBean(BeanDefinitionRegistry registry, ListableBeanFactory beanFactory) {
 
         String[] beansNames = beanNamesForTypeIncludingAncestors(beanFactory, ApplicationConfig.class);
 
@@ -86,9 +80,11 @@ public class DubboConfigBeanDefinitionConflictProcessor implements BeanDefinitio
             return;
         }
 
+        Environment environment = beanFactory.getBean(ENVIRONMENT_BEAN_NAME, Environment.class);
+
         // Remove ApplicationConfig Beans that are configured by "dubbo.application.*"
         Stream.of(beansNames)
-                .filter(this::isConfiguredApplicationConfigBeanName)
+                .filter(beansName -> isConfiguredApplicationConfigBeanName(environment, beansName))
                 .forEach(registry::removeBeanDefinition);
 
         beansNames = beanNamesForTypeIncludingAncestors(beanFactory, ApplicationConfig.class);
@@ -103,14 +99,14 @@ public class DubboConfigBeanDefinitionConflictProcessor implements BeanDefinitio
         }
     }
 
-    private boolean isConfiguredApplicationConfigBeanName(String beanName) {
+    private boolean isConfiguredApplicationConfigBeanName(Environment environment, String beanName) {
         boolean removed = BeanFactoryUtils.isGeneratedBeanName(beanName)
                 // Dubbo ApplicationConfig id as bean name
                 || Objects.equals(beanName, environment.getProperty("dubbo.application.id"));
 
         if (removed) {
-            if (logger.isWarnEnabled()) {
-                logger.warn("The {} bean [ name : {} ] has been removed!", ApplicationConfig.class.getSimpleName(), beanName);
+            if (logger.isDebugEnabled()) {
+                logger.debug("The {} bean [ name : {} ] has been removed!", ApplicationConfig.class.getSimpleName(), beanName);
             }
         }
 

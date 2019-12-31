@@ -16,9 +16,9 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
-import org.apache.dubbo.config.AbstractConfig;
-import org.apache.dubbo.config.spring.context.properties.AbstractDubboConfigBinder;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
+
+import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.springframework.boot.context.properties.bind.BindHandler;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
@@ -27,8 +27,12 @@ import org.springframework.boot.context.properties.bind.handler.IgnoreErrorsBind
 import org.springframework.boot.context.properties.bind.handler.NoUnboundElementsBindHandler;
 import org.springframework.boot.context.properties.source.ConfigurationPropertySource;
 import org.springframework.boot.context.properties.source.UnboundElementsSourceFilter;
+import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.PropertySource;
 
+import java.util.Map;
+
+import static java.util.Arrays.asList;
 import static org.springframework.boot.context.properties.source.ConfigurationPropertySources.from;
 
 /**
@@ -37,35 +41,36 @@ import static org.springframework.boot.context.properties.source.ConfigurationPr
  *
  * @since 2.7.0
  */
-class BinderDubboConfigBinder extends AbstractDubboConfigBinder {
+class BinderDubboConfigBinder implements ConfigurationBeanBinder {
 
     @Override
-    public <C extends AbstractConfig> void bind(String prefix, C dubboConfig) {
+    public void bind(Map<String, Object> configurationProperties, boolean ignoreUnknownFields,
+                     boolean ignoreInvalidFields, Object configurationBean) {
 
-        Iterable<PropertySource<?>> propertySources = getPropertySources();
+        Iterable<PropertySource<?>> propertySources = asList(new MapPropertySource("internal", configurationProperties));
 
         // Converts ConfigurationPropertySources
         Iterable<ConfigurationPropertySource> configurationPropertySources = from(propertySources);
 
         // Wrap Bindable from DubboConfig instance
-        Bindable<C> bindable = Bindable.ofInstance(dubboConfig);
+        Bindable bindable = Bindable.ofInstance(configurationBean);
 
         Binder binder = new Binder(configurationPropertySources, new PropertySourcesPlaceholdersResolver(propertySources));
 
         // Get BindHandler
-        BindHandler bindHandler = getBindHandler();
+        BindHandler bindHandler = getBindHandler(ignoreUnknownFields, ignoreInvalidFields);
 
         // Bind
-        binder.bind(prefix, bindable, bindHandler);
-
+        binder.bind("", bindable, bindHandler);
     }
 
-    private BindHandler getBindHandler() {
+    private BindHandler getBindHandler(boolean ignoreUnknownFields,
+                                       boolean ignoreInvalidFields) {
         BindHandler handler = BindHandler.DEFAULT;
-        if (isIgnoreInvalidFields()) {
+        if (ignoreInvalidFields) {
             handler = new IgnoreErrorsBindHandler(handler);
         }
-        if (!isIgnoreUnknownFields()) {
+        if (!ignoreUnknownFields) {
             UnboundElementsSourceFilter filter = new UnboundElementsSourceFilter();
             handler = new NoUnboundElementsBindHandler(handler, filter);
         }

@@ -16,7 +16,6 @@
  */
 package org.apache.dubbo.spring.boot.context;
 
-import org.apache.dubbo.spring.boot.beans.factory.config.DubboConfigBeanDefinitionConflictProcessor;
 import org.apache.dubbo.spring.boot.beans.factory.config.OverrideBeanDefinitionRegistryPostProcessor;
 
 import org.springframework.context.ApplicationContextInitializer;
@@ -38,7 +37,9 @@ public class DubboApplicationContextInitializer implements ApplicationContextIni
 
     private void overrideBeanDefinitions(ConfigurableApplicationContext applicationContext) {
         applicationContext.addBeanFactoryPostProcessor(new OverrideBeanDefinitionRegistryPostProcessor());
-        applicationContext.addBeanFactoryPostProcessor(new DubboConfigBeanDefinitionConflictProcessor());
+        // @since 2.7.5 DubboConfigBeanDefinitionConflictProcessor has been removed
+        // @see {@link DubboConfigBeanDefinitionConflictApplicationListener}
+        // applicationContext.addBeanFactoryPostProcessor(new DubboConfigBeanDefinitionConflictProcessor());
     }
 
     @Override
