@@ -21,8 +21,8 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 
+import static com.alibaba.spring.util.BeanRegistrar.registerInfrastructureBean;
 import static org.apache.dubbo.config.spring.context.config.NamePropertyDefaultValueDubboConfigBeanCustomizer.BEAN_NAME;
-import static org.apache.dubbo.config.spring.util.BeanRegistrar.registerInfrastructureBean;
 
 /**
  * Override {@link BeanDefinitionRegistryPostProcessor}

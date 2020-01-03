@@ -16,8 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
-import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
-
+import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -34,7 +33,7 @@ import org.springframework.core.env.PropertyResolver;
 
 import java.util.Map;
 
-import static org.apache.dubbo.config.spring.util.PropertySourcesUtils.getPrefixedProperties;
+import static com.alibaba.spring.util.PropertySourcesUtils.getSubProperties;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
@@ -58,7 +57,7 @@ public class DubboRelaxedBinding2AutoConfiguration {
         ConfigurableEnvironment propertyResolver = new AbstractEnvironment() {
             @Override
             protected void customizePropertySources(MutablePropertySources propertySources) {
-                Map<String, Object> dubboScanProperties = getPrefixedProperties(environment.getPropertySources(), DUBBO_SCAN_PREFIX);
+                Map<String, Object> dubboScanProperties = getSubProperties(environment.getPropertySources(), DUBBO_SCAN_PREFIX);
                 propertySources.addLast(new MapPropertySource("dubboScanProperties", dubboScanProperties));
             }
         };
@@ -66,10 +65,10 @@ public class DubboRelaxedBinding2AutoConfiguration {
         return new DelegatingPropertyResolver(propertyResolver);
     }
 
-    @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = DubboConfigBinder.class)
+    @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = ConfigurationBeanBinder.class)
     @Bean(RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME)
     @Scope(scopeName = SCOPE_PROTOTYPE)
-    public DubboConfigBinder relaxedDubboConfigBinder() {
+    public ConfigurationBeanBinder relaxedDubboConfigBinder() {
         return new BinderDubboConfigBinder();
     }
 

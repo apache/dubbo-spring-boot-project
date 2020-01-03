@@ -32,7 +32,7 @@
     <description>Apache Dubbo Spring Boot Compatible for Spring Boot 1.x</description>
 
     <properties>
-        <spring-boot.version>1.5.21.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.22.RELEASE</spring-boot.version>
     </properties>
 
     <modules>
