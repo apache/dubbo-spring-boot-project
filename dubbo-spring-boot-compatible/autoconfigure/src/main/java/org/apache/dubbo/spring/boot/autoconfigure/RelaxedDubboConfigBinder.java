@@ -16,34 +16,32 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
-import org.apache.dubbo.config.AbstractConfig;
-import org.apache.dubbo.config.spring.context.properties.AbstractDubboConfigBinder;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
+import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.boot.bind.RelaxedDataBinder;
 
 import java.util.Map;
 
-import static org.apache.dubbo.config.spring.util.PropertySourcesUtils.getPrefixedProperties;
 
 /**
  * Spring Boot Relaxed {@link DubboConfigBinder} implementation
  *
  * @since 2.7.0
  */
-class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {
+class RelaxedDubboConfigBinder implements ConfigurationBeanBinder {
 
     @Override
-    public <C extends AbstractConfig> void bind(String prefix, C dubboConfig) {
-        RelaxedDataBinder relaxedDataBinder = new RelaxedDataBinder(dubboConfig);
+    public void bind(Map<String, Object> configurationProperties, boolean ignoreUnknownFields,
+                     boolean ignoreInvalidFields, Object configurationBean) {
+        RelaxedDataBinder relaxedDataBinder = new RelaxedDataBinder(configurationBean);
         // Set ignored*
-        relaxedDataBinder.setIgnoreInvalidFields(isIgnoreInvalidFields());
-        relaxedDataBinder.setIgnoreUnknownFields(isIgnoreUnknownFields());
+        relaxedDataBinder.setIgnoreInvalidFields(ignoreInvalidFields);
+        relaxedDataBinder.setIgnoreUnknownFields(ignoreUnknownFields);
         // Get properties under specified prefix from PropertySources
-        Map<String, Object> properties = getPrefixedProperties(getPropertySources(), prefix);
         // Convert Map to MutablePropertyValues
-        MutablePropertyValues propertyValues = new MutablePropertyValues(properties);
+        MutablePropertyValues propertyValues = new MutablePropertyValues(configurationProperties);
         // Bind
         relaxedDataBinder.bind(propertyValues);
     }

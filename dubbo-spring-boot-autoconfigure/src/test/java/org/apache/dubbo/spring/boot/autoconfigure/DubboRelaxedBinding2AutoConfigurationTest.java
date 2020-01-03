@@ -18,8 +18,8 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
-import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
+import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.ObjectProvider;
@@ -27,13 +27,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ClassUtils;
 
 import java.util.Map;
-import java.util.Collection;
 
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
@@ -49,6 +49,7 @@ import static org.junit.Assert.assertTrue;
         "dubbo.scan.basePackages = org.apache.dubbo.spring.boot.autoconfigure"
 })
 @EnableAutoConfiguration
+@PropertySource(value = "classpath:/dubbo.properties")
 public class DubboRelaxedBinding2AutoConfigurationTest {
 
     @Autowired
@@ -57,7 +58,7 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
 
     @Autowired
     @Qualifier(RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME)
-    private DubboConfigBinder dubboConfigBinder;
+    private ConfigurationBeanBinder dubboConfigBinder;
 
     @Autowired
     private ObjectProvider<ServiceAnnotationBeanPostProcessor> serviceAnnotationBeanPostProcessor;
