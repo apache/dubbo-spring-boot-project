@@ -72,7 +72,7 @@
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.4.1</version>
+        <version>2.7.5</version>
     </dependency>
     
     <dependency>
