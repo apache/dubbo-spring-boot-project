@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
+import com.sun.istack.internal.Nullable;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
@@ -30,22 +31,15 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
+import org.springframework.core.type.AnnotatedTypeMetadata;
 
 import java.util.Set;
 
 import static java.util.Collections.emptySet;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_CONFIG_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.*;
 
 /**
  * Dubbo Auto {@link Configuration}
@@ -68,13 +62,28 @@ public class DubboAutoConfiguration {
      * @param propertyResolver {@link PropertyResolver} Bean
      * @return {@link ServiceAnnotationBeanPostProcessor}
      */
-    @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
+    @Conditional(RequiresDubboScanBasePackagesPropertiesCondition.class)
     @ConditionalOnBean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
     @Bean
     public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(
             @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME) PropertyResolver propertyResolver) {
         Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
+    }
+
+    /**
+     * Determine if the dubbo-scan-base-packages attribute exists
+     */
+    public static class RequiresDubboScanBasePackagesPropertiesCondition implements Condition {
+
+        @Override
+        public boolean matches(@Nullable ConditionContext conditionContext, @Nullable AnnotatedTypeMetadata annotatedTypeMetadata) {
+            assert conditionContext != null;
+            Environment environment = conditionContext.getEnvironment();
+            return environment.containsProperty(DUBBO_SCAN_PREFIX + BASE_PACKAGES_PROPERTY_NAME)
+                    || environment.containsProperty(DUBBO_SCAN_PREFIX + BASE_PACKAGES_ARRAY_PROPERTY_NAME);
+        }
+
     }
 
     /**

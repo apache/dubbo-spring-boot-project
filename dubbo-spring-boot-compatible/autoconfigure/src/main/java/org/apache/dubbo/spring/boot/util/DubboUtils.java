@@ -72,6 +72,13 @@ public abstract class DubboUtils {
     public static final String BASE_PACKAGES_PROPERTY_NAME = "base-packages";
 
     /**
+     * The property name of base packages to scan
+     * <p>
+     * The default value is empty set.
+     */
+    public static final String BASE_PACKAGES_ARRAY_PROPERTY_NAME = "base-packages[0]";
+
+    /**
      * The property name of multiple properties binding from externalized configuration
      * <p>
      * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
