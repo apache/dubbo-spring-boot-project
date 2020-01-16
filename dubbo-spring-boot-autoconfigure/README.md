@@ -6,7 +6,7 @@
 
 ## Content
 
-1. [Main Content](https://github.com/dubbo/dubbo-spring-boot-project)
+1. [Main Content](https://github.com/apache/dubbo-spring-boot-project)
 2. [Integrate with Maven](#integrate-with-maven)
 3. [Auto Configuration](#auto-configuration)
 4. [Externalized Configuration](#externalized-configuration)
