@@ -204,7 +204,7 @@ public interface DemoService {
         name: dubbo-auto-configure-consumer-sample
     ```
 
-If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
+If `DubboProviderDemo` doesn't work well, please make sure `DubboProviderDemo` is started.
 
 More details, please refer to [Samples](dubbo-spring-boot-samples).
 
@@ -214,9 +214,9 @@ More details, please refer to [Samples](dubbo-spring-boot-samples).
 
 Having trouble with Dubbo Spring Boot? We’d like to help!
 
-- If you are upgrading, read the [release notes](https://github.com/apache/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
+- If you are upgrading, read the [release notes](https://github.com/dubbo/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
 - Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dubbo+subscribe@googlegroups.com).
-- Report bugs at [github.com/apache/dubbo-spring-boot-project/issues](https://github.com/apache/dubbo-spring-boot-project/issues).
+- Report bugs at [github.com/dubbo/dubbo-spring-boot-project/issues](https://github.com/dubbo/dubbo-spring-boot-project/issues).
 
 
 
@@ -251,7 +251,7 @@ The main usage of `dubbo-spring-boot-parent` is providing dependencies managemen
 
 ### [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator)
 
-`dubbo-spring-boot-actuator` provides production-ready features (e.g., [health checks](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#health-checks), [endpoints](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#endpoints), and [externalized configuration](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#externalized-configuration)).
+`dubbo-spring-boot-actuator` provides production-ready features (e.g., [health checks](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#health-checks), [endpoints](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#endpoints), and [externalized configuration](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#externalized-configuration)).
 
 
 
