@@ -19,7 +19,6 @@ package org.apache.dubbo.spring.boot.util;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
@@ -143,7 +142,6 @@ public abstract class DubboUtils {
      * The property id of {@link ApplicationConfig} Bean
      *
      * @see EnableDubboConfig
-     * @see EnableDubboConfigBinding
      * @since 2.7.1
      */
     public static final String DUBBO_APPLICATION_ID_PROPERTY = "dubbo.application.id";
@@ -152,7 +150,6 @@ public abstract class DubboUtils {
      * The property name of {@link ApplicationConfig}
      *
      * @see EnableDubboConfig
-     * @see EnableDubboConfigBinding
      * @since 2.7.1
      */
     public static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
