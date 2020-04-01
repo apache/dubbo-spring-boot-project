@@ -4,10 +4,7 @@
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
-[Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
-[![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/ubbo-spring-boot-project)
-![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
-
+[Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides:
 
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
