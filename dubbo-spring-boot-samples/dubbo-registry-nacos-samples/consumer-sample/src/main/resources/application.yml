@@ -14,4 +14,4 @@ nacos:
 
 dubbo:
   registry:
-    address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+    address: nacos://${nacos.host}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
