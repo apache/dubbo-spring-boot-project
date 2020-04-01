@@ -22,8 +22,8 @@
 You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <properties>
-    <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.5</dubbo.version>
+    <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+    <dubbo.version>2.7.6</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -54,7 +54,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.4.1</version>
+        <version>2.7.5</version>
     </dependency>    
 </dependencies>
 ```
@@ -204,7 +204,7 @@ public interface DemoService {
         name: dubbo-auto-configure-consumer-sample
     ```
 
-If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
+If `DubboProviderDemo` doesn't work well, please make sure `DubboProviderDemo` is started.
 
 More details, please refer to [Samples](dubbo-spring-boot-samples).
 

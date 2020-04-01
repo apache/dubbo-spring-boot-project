@@ -17,11 +17,9 @@
 package org.apache.dubbo.spring.boot.demo.provider.bootstrap;
 
 import org.apache.dubbo.spring.boot.demo.provider.service.DefaultDemoService;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.core.env.Environment;
 
 /**
  * Dubbo Registry ZooKeeper Provider Bootstrap
@@ -33,12 +31,6 @@ import org.springframework.core.env.Environment;
 public class DubboRegistryZooKeeperProviderBootstrap {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(DubboRegistryZooKeeperProviderBootstrap.class)
-                .listeners((ApplicationListener<ApplicationEnvironmentPreparedEvent>) event -> {
-                    Environment environment = event.getEnvironment();
-                    int port = environment.getProperty("embedded.zookeeper.port", int.class);
-                    new EmbeddedZooKeeper(port, false).start();
-                })
-                .run(args);
+        new SpringApplicationBuilder(DubboRegistryZooKeeperProviderBootstrap.class).run(args);
     }
 }

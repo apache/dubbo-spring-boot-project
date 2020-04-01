@@ -6,12 +6,12 @@
 
 ## Content
 
-1. [Main Content](https://github.com/dubbo/dubbo-spring-boot-project)
+1. [Main Content](https://github.com/apache/dubbo-spring-boot-project)
 2. [Integrate with Maven](#integrate-with-maven)
 3. [Auto Configuration](#auto-configuration)
 4. [Externalized Configuration](#externalized-configuration)
-5. [Dubbo Annotation-Driven (Chinese)](https://github.com/mercyblitz/blogs/blob/master/java/dubbo/Dubbo-Annotation-Driven.md)
-6. [Dubbo Externalized Configuration (Chinese)](https://github.com/mercyblitz/blogs/blob/master/java/dubbo/Dubbo-Externalized-Configuration.md)
+5. [Dubbo Annotation-Driven (Chinese)](http://dubbo.apache.org/zh-cn/blog/dubbo-annotation-driven.html)
+6. [Dubbo Externalized Configuration (Chinese)](http://dubbo.apache.org/zh-cn/blog/dubbo-externalized-configuration.html)
 
 
 

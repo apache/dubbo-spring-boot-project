@@ -85,7 +85,7 @@ class DubboConfigurationProperties {
 
     private Map<String, ModuleConfig> modules = new LinkedHashMap<>();
 
-    private Map<String, RegistryConfig> registrys = new LinkedHashMap<>();
+    private Map<String, RegistryConfig> registries = new LinkedHashMap<>();
 
     private Map<String, ProtocolConfig> protocols = new LinkedHashMap<>();
 
@@ -195,12 +195,12 @@ class DubboConfigurationProperties {
         this.modules = modules;
     }
 
-    public Map<String, RegistryConfig> getRegistrys() {
-        return registrys;
+    public Map<String, RegistryConfig> getRegistries() {
+        return registries;
     }
 
-    public void setRegistrys(Map<String, RegistryConfig> registrys) {
-        this.registrys = registrys;
+    public void setRegistries(Map<String, RegistryConfig> registries) {
+        this.registries = registries;
     }
 
     public Map<String, ProtocolConfig> getProtocols() {

@@ -90,7 +90,7 @@
             <!-- Spring Boot 2.1 -->
             <id>spring-boot-2.1</id>
             <properties>
-                <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
+                <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
             </properties>
         </profile>
       

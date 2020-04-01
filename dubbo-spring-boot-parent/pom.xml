@@ -38,7 +38,7 @@
         <java.target.version>1.8</java.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <dubbo.version>${revision}</dubbo.version>
         <!-- Build args -->
         <argline>-server -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true
@@ -125,7 +125,7 @@
         <repository>
             <id>spring-milestone</id>
             <name>Spring Milestone</name>
-            <url>http://repo.spring.io/milestone</url>
+            <url>https://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -133,7 +133,7 @@
         <repository>
             <id>spring-snapshot</id>
             <name>Spring Snapshot</name>
-            <url>http://repo.spring.io/snapshot</url>
+            <url>https://repo.spring.io/snapshot</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -159,7 +159,7 @@
         <pluginRepository>
             <id>spring-milestone</id>
             <name>Spring Milestone</name>
-            <url>http://repo.spring.io/milestone</url>
+            <url>https://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -167,7 +167,7 @@
         <pluginRepository>
             <id>spring-snapshot</id>
             <name>Spring Snapshot</name>
-            <url>http://repo.spring.io/snapshot</url>
+            <url>https://repo.spring.io/snapshot</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -443,10 +443,9 @@
             <!-- Spring Boot 2.1 -->
             <id>spring-boot-2.1</id>
             <properties>
-                <spring-boot.version>2.1.11.RELEASE</spring-boot.version>
+                <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
             </properties>
         </profile>
-
     </profiles>
 
 </project>

@@ -6,7 +6,7 @@
 
 ## Content
 
-1. [Main Content](https://github.com/dubbo/dubbo-spring-boot-project)
+1. [Main Content](https://github.com/apache/dubbo-spring-boot-project)
 2. [Integrate with Maven](#integrate-with-maven)
 3. [Health Checks](#health-checks)
 4. [Endpoints](#endpoints)
@@ -171,8 +171,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "2.7.3",
-    "dubbo": "2.7.3"
+    "dubbo-spring-boot": "2.7.5",
+    "dubbo": "2.7.5"
   },
   "urls": {
     "dubbo": "https://github.com/apache/dubbo/",

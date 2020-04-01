@@ -27,6 +27,7 @@ import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboShutdownMetad
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,7 @@ import java.util.function.Supplier;
                 "endpoints.dubboproperties.enabled = true",
         })
 @EnableAutoConfiguration
+@Ignore
 public class DubboEndpointAutoConfigurationTest {
 
     @Autowired
