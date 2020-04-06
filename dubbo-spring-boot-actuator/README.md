@@ -171,8 +171,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 {
   "timestamp": 1516623290166,
   "versions": {
-    "dubbo-spring-boot": "2.7.3",
-    "dubbo": "2.7.3"
+    "dubbo-spring-boot": "2.7.5",
+    "dubbo": "2.7.5"
   },
   "urls": {
     "dubbo": "https://github.com/apache/dubbo/",

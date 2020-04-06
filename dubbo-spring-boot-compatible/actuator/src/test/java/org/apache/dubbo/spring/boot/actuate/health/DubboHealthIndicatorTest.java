@@ -17,6 +17,7 @@
 package org.apache.dubbo.spring.boot.actuate.health;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +39,8 @@ import java.util.Map;
  */
 @RunWith(SpringRunner.class)
 @TestPropertySource(properties = {
+        "dubbo.application.id = my-application-1",
+        "dubbo.application.name = dubbo-demo-application-1",
         "dubbo.protocol.id = dubbo-protocol",
         "dubbo.protocol.name = dubbo",
         "dubbo.protocol.port = 12345",

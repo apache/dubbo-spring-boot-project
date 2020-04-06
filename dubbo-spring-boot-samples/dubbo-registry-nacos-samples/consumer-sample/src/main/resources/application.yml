@@ -9,7 +9,9 @@ demo:
 nacos:
   host: 127.0.0.1
   port: 8848
+  username: nacos
+  password: nacos
 
 dubbo:
   registry:
-    address: nacos://${nacos.host}:${nacos.port}
+    address: nacos://${nacos.host}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
