@@ -90,8 +90,8 @@
     </mailingLists>
     <developers>
         <developer>
-            <id>Apache Dubbo </id>
-            <name>The Apache Dubbo  Project Contributors</name>
+            <id>Apache Dubbo</id>
+            <name>The Apache Dubbo Project Contributors</name>
             <email>dev@dubbo.apache.org</email>
             <url>http://dubbo.apache.org</url>
         </developer>

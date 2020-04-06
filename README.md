@@ -4,11 +4,7 @@
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
 
-[Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides 
-[![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/ubbo-spring-boot-project)
-![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
-
-
+[Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides:
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
 * [production-ready features](dubbo-spring-boot-actuator) (e.g., security, health checks, externalized configuration).
 
@@ -54,7 +50,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.5</version>
+        <version>2.7.6</version>
     </dependency>    
 </dependencies>
 ```
@@ -204,7 +200,7 @@ public interface DemoService {
         name: dubbo-auto-configure-consumer-sample
     ```
 
-If `DubboProviderDemo` doesn't work well, please make sure `DubboProviderDemo` is started.
+If `DubboProviderDemo` works well, please mark sure `DubboProviderDemo` is started.
 
 More details, please refer to [Samples](dubbo-spring-boot-samples).
 
@@ -214,9 +210,9 @@ More details, please refer to [Samples](dubbo-spring-boot-samples).
 
 Having trouble with Dubbo Spring Boot? We’d like to help!
 
-- If you are upgrading, read the [release notes](https://github.com/dubbo/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
+- If you are upgrading, read the [release notes](https://github.com/apache/dubbo-spring-boot-project/releases) for upgrade instructions and "new and noteworthy" features.
 - Ask a question - You can subscribe [Dubbo User Mailling List](mailto:dubbo+subscribe@googlegroups.com).
-- Report bugs at [github.com/dubbo/dubbo-spring-boot-project/issues](https://github.com/dubbo/dubbo-spring-boot-project/issues).
+- Report bugs at [github.com/apache/dubbo-spring-boot-project/issues](https://github.com/apache/dubbo-spring-boot-project/issues).
 
 
 
@@ -251,7 +247,7 @@ The main usage of `dubbo-spring-boot-parent` is providing dependencies managemen
 
 ### [dubbo-spring-boot-actuator](dubbo-spring-boot-actuator)
 
-`dubbo-spring-boot-actuator` provides production-ready features (e.g., [health checks](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#health-checks), [endpoints](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#endpoints), and [externalized configuration](https://github.com/dubbo/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#externalized-configuration)).
+`dubbo-spring-boot-actuator` provides production-ready features (e.g., [health checks](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#health-checks), [endpoints](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#endpoints), and [externalized configuration](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-actuator#externalized-configuration)).
 
 
 

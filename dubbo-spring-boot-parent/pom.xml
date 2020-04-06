@@ -446,6 +446,7 @@
                 <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
             </properties>
         </profile>
+
     </profiles>
 
 </project>
