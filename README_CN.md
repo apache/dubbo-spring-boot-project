@@ -21,8 +21,8 @@
 您可以为您的工程引入最新 `dubbo-spring-boot-starter` 的发布，增加以下依赖到工程的 `pom.xml` 文件中：
 ```xml
 <properties>
-    <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.6</dubbo.version>
+    <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+    <dubbo.version>2.7.7</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -72,7 +72,7 @@
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.6</version>
+        <version>2.7.7</version>
     </dependency>
     
     <dependency>
