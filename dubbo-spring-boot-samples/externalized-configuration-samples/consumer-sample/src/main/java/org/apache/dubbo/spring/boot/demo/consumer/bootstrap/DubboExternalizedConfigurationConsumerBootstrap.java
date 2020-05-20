@@ -16,7 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.demo.consumer.bootstrap;
 
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
 
 import org.slf4j.Logger;
@@ -40,7 +40,7 @@ public class DubboExternalizedConfigurationConsumerBootstrap {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Reference(version = "${demo.service.version}", url = "${demo.service.url}")
+    @DubboReference(version = "${demo.service.version}", url = "${demo.service.url}")
     private DemoService demoService;
 
     public static void main(String[] args) {

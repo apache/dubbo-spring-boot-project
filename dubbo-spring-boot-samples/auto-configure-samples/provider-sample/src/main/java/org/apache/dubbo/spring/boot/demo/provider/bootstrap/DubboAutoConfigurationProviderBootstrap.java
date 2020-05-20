@@ -17,8 +17,9 @@
 package org.apache.dubbo.spring.boot.demo.provider.bootstrap;
 
 import org.apache.dubbo.spring.boot.demo.provider.service.DefaultDemoService;
+
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Dubbo Auto-Configuration Provider Bootstrap
@@ -30,7 +31,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class DubboAutoConfigurationProviderBootstrap {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(DubboAutoConfigurationProviderBootstrap.class)
-                .run(args);
+//        new SpringApplicationBuilder(DubboAutoConfigurationProviderBootstrap.class)
+//                .run(args);
+        SpringApplication.run(DubboAutoConfigurationProviderBootstrap.class,args);
     }
 }
