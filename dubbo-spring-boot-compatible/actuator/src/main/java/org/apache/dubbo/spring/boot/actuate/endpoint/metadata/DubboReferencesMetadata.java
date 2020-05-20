@@ -16,9 +16,9 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint.metadata;
 
-import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.spring.ReferenceBean;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+
 import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.stereotype.Component;
 

@@ -16,8 +16,10 @@
  */
 package org.apache.dubbo.spring.boot.demo.consumer.bootstrap;
 
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Method;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -35,7 +37,14 @@ public class DubboAutoConfigurationConsumerBootstrap {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+    @DubboReference(
+            version = "1.0.0",
+            url = "dubbo://127.0.0.1:12345",
+            timeout = 100,
+            methods = {
+                    @Method(name = "sayHello", timeout = 300)
+            }
+    )
     private DemoService demoService;
 
     public static void main(String[] args) {

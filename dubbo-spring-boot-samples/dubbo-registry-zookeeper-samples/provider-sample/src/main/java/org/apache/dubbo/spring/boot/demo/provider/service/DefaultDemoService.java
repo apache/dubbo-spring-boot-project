@@ -16,8 +16,9 @@
  */
 package org.apache.dubbo.spring.boot.demo.provider.service;
 
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
+
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -26,7 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @see DemoService
  * @since 2.7.0
  */
-@Service(version = "${demo.service.version}")
+@DubboService(version = "${demo.service.version}")
 public class DefaultDemoService implements DemoService {
 
     /**

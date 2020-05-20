@@ -16,8 +16,8 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint.metadata;
 
-import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.config.spring.ServiceBean;
+
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
