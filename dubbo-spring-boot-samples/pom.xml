@@ -38,6 +38,8 @@
         <module>externalized-configuration-samples</module>
         <module>dubbo-registry-zookeeper-samples</module>
         <module>dubbo-registry-nacos-samples</module>
+        <module>service-introspection-samples</module>
+        <module>registry-samples</module>
     </modules>
 
     <build>

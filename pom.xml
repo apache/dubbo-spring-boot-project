@@ -49,6 +49,7 @@
         <module>dubbo-spring-boot-actuator</module>
         <module>dubbo-spring-boot-compatible</module>
         <module>dubbo-spring-boot-samples</module>
+        <module>dubbo-spring-boot-samples/registry-samples/nacos-samples</module>
     </modules>
 
     <organization>
