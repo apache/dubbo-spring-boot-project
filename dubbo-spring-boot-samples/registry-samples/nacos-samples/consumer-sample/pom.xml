@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-registry-nacos-consumer-sample</artifactId>
-    <name>Apache Dubbo Spring Boot :: Samples : Registry Nacos :: Consumer Sample</name>
+    <name>Apache Dubbo Spring Boot :: Samples :: Registry Nacos :: Consumer Sample</name>
 
     <properties>
         <nacos.version>1.2.1</nacos.version>

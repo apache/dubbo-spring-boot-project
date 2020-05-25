@@ -17,6 +17,7 @@
 
     <modules>
         <module>nacos-samples</module>
+        <module>zookeeper-samples</module>
     </modules>
 
 </project>
