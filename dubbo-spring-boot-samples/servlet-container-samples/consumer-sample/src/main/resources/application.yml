@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: dubbo-servlet-container-consumer-sample
+
+demo:
+  service:
+    version: 1.0.0
+    url: dubbo://127.0.0.1:23456

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.apache.dubbo.samples</groupId>
+        <artifactId>dubbo-spring-boot-samples</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dubbo-spring-boot-servlet-container-samples</artifactId>
+    <name>Apache Dubbo Spring Boot :: Samples :: Servlet Container</name>
+    <description>Apache Dubbo Spring Boot Servlet Container Samples</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>provider-sample</module>
+        <module>consumer-sample</module>
+    </modules>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <!-- tomcat8-maven-plugin 所在仓库 -->
+            <id>Alfresco</id>
+            <name>Alfresco Repository</name>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

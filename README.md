@@ -150,7 +150,7 @@ public interface DemoService {
     # Spring boot application
     spring.application.name=dubbo-auto-configuration-provider-demo
     # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
-    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
+    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.sample.provider.service
 
     # Dubbo Application
     ## The default value of dubbo.application.name is ${spring.application.name}

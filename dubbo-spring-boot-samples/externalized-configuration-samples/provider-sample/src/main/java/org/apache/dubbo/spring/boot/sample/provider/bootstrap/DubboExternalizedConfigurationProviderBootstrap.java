@@ -14,30 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.dubbo.spring.boot.sample.provider.service;
+package org.apache.dubbo.spring.boot.sample.provider.bootstrap;
 
-import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.spring.boot.sample.consumer.DemoService;
+import org.apache.dubbo.spring.boot.sample.provider.service.DefaultDemoService;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
- * Default {@link DemoService}
+ * Dubbo Externalized Configuration Provider Bootstrap
  *
- * @see DemoService
+ * @see DefaultDemoService
  * @since 2.7.0
  */
-@DubboService(version = "${demo.service.version}")
-public class DefaultDemoService implements DemoService {
+@EnableAutoConfiguration
+public class DubboExternalizedConfigurationProviderBootstrap {
 
-    /**
-     * The default value of ${dubbo.application.name} is ${spring.application.name}
-     */
-    @Value("${dubbo.application.name}")
-    private String serviceName;
-
-    @Override
-    public String sayHello(String name) {
-        return String.format("[%s] : Hello, %s", serviceName, name);
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(DubboExternalizedConfigurationProviderBootstrap.class)
+                .run(args);
     }
 }

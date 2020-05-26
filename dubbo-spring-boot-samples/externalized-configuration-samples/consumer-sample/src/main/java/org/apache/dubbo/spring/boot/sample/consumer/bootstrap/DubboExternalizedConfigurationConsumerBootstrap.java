@@ -25,20 +25,31 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Dubbo Registry ZooKeeper Consumer Bootstrap
+ * Dubbo Externalized Configuration Consumer Bootstrap
  */
 @EnableAutoConfiguration
-public class DubboZooKeeperServiceIntrospectionConsumerBootstrap {
+@RestController
+public class DubboExternalizedConfigurationConsumerBootstrap {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @DubboReference(version = "${demo.service.version}")
+    @DubboReference(version = "${demo.service.version}", url = "${demo.service.url}")
     private DemoService demoService;
 
     public static void main(String[] args) {
-        SpringApplication.run(DubboZooKeeperServiceIntrospectionConsumerBootstrap.class).close();
+        SpringApplication.run(DubboExternalizedConfigurationConsumerBootstrap.class);
+    }
+
+    @RequestMapping(value = "/say-hello", method = GET)
+    public String sayHello(@RequestParam String name) {
+        return demoService.sayHello(name);
     }
 
     @Bean

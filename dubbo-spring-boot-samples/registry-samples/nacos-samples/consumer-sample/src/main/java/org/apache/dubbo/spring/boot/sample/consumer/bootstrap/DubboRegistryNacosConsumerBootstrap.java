@@ -27,10 +27,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 /**
- * Dubbo Registry ZooKeeper Consumer Bootstrap
+ * Dubbo Registry Nacos Consumer Bootstrap
  */
 @EnableAutoConfiguration
-public class DubboZooKeeperServiceIntrospectionConsumerBootstrap {
+public class DubboRegistryNacosConsumerBootstrap {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -38,7 +38,7 @@ public class DubboZooKeeperServiceIntrospectionConsumerBootstrap {
     private DemoService demoService;
 
     public static void main(String[] args) {
-        SpringApplication.run(DubboZooKeeperServiceIntrospectionConsumerBootstrap.class).close();
+        SpringApplication.run(DubboRegistryNacosConsumerBootstrap.class).close();
     }
 
     @Bean
