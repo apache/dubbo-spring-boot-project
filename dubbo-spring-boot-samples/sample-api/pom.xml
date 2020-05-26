@@ -28,5 +28,6 @@
 
     <artifactId>dubbo-spring-boot-sample-api</artifactId>
     <name>Apache Dubbo Spring Boot :: Samples :: API</name>
+    <description>Apache Dubbo Spring Boot Samples API</description>
 
 </project>

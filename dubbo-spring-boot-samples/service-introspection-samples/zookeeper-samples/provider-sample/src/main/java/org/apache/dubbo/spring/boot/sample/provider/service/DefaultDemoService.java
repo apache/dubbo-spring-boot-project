@@ -17,7 +17,7 @@
 package org.apache.dubbo.spring.boot.sample.provider.service;
 
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.spring.boot.demo.consumer.DemoService;
+import org.apache.dubbo.spring.boot.sample.consumer.DemoService;
 
 import org.springframework.beans.factory.annotation.Value;
 

@@ -38,6 +38,8 @@
         <module>externalized-configuration-samples</module>
         <module>registry-samples</module>
         <module>service-introspection-samples</module>
+        <module>servlet-container-samples</module>
+
     </modules>
 
     <build>
