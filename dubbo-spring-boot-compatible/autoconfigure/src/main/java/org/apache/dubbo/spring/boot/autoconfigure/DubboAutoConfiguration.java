@@ -16,8 +16,11 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 
@@ -48,9 +51,9 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 /**
  * Dubbo Auto {@link Configuration}
  *
- * @see Reference
- * @see Service
- * @see ServiceAnnotationBeanPostProcessor
+ * @see DubboReference
+ * @see DubboService
+ * @see ServiceClassPostProcessor
  * @see ReferenceAnnotationBeanPostProcessor
  * @since 2.7.0
  */

@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint.metadata;
 
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.spring.ReferenceBean;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
 
@@ -26,7 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Dubbo {@link Reference} Metadata
+ * {@link DubboReference} Metadata
  *
  * @since 2.7.0
  */

@@ -86,7 +86,7 @@ If you still use the legacy Dubbo whose version is less than 2.7.0, please use t
 
 ### Build from Source
 
-If you'd like to attempt to experience latest features, you also can build from source as follow:
+If you'd like to attempt to experience the latest features, you also can build from the source code as follow:
 
 1. Maven install current project in your local repository.
 > Maven install = `mvn install`
