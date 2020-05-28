@@ -23,6 +23,7 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotation
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.dubbo.spring.boot.beans.factory.config.ServiceBeanIdConflictProcessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -61,6 +62,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
 @EnableConfigurationProperties(DubboConfigurationProperties.class)
+@Import(ServiceBeanIdConflictProcessor.class)
 public class DubboAutoConfiguration {
 
     /**
