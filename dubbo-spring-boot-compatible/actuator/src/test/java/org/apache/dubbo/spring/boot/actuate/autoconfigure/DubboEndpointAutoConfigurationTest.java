@@ -16,7 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.actuate.autoconfigure;
 
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboEndpoint;
 import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboConfigsMetadata;
 import org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboPropertiesMetadata;
@@ -220,7 +220,7 @@ public class DubboEndpointAutoConfigurationTest {
         String sayHello(String name);
     }
 
-    @Service(
+    @DubboService(
             version = "${dubbo.service.version}",
             application = "${dubbo.application.id}",
             protocol = "${dubbo.protocol.id}",

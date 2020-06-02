@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-spring-boot-externalized-configuration-consumer-sample</artifactId>
-    <name>Apache Dubbo Spring Boot :: Samples : Externalized Configuration :: Consumer Sample</name>
+    <name>Apache Dubbo Spring Boot :: Samples :: Externalized Configuration :: Consumer Sample</name>
     <dependencies>
 
         <!-- Spring Boot dependencies -->

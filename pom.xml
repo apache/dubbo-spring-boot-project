@@ -38,7 +38,7 @@
     <properties>
         <maven_javadoc_version>3.0.1</maven_javadoc_version>
         <maven_surefire_version>2.19.1</maven_surefire_version>
-        <revision>2.7.6</revision>
+        <revision>2.7.7</revision>
     </properties>
 
     <modules>
@@ -90,8 +90,8 @@
     </mailingLists>
     <developers>
         <developer>
-            <id>Apache Dubbo</id>
-            <name>The Apache Dubbo Project Contributors</name>
+            <id>Apache Dubbo </id>
+            <name>The Apache Dubbo  Project Contributors</name>
             <email>dev@dubbo.apache.org</email>
             <url>http://dubbo.apache.org</url>
         </developer>

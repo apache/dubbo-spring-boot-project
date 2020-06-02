@@ -18,8 +18,8 @@
 You can introduce the latest `dubbo-spring-boot-starter` to your project by adding the following dependency to your pom.xml
 ```xml
 <properties>
-    <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.6</dubbo.version>
+    <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+    <dubbo.version>2.7.7</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -50,7 +50,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.6</version>
+        <version>2.7.7</version>
     </dependency>    
 </dependencies>
 ```
@@ -86,7 +86,7 @@ If you still use the legacy Dubbo whose version is less than 2.7.0, please use t
 
 ### Build from Source
 
-If you'd like to attempt to experience latest features, you also can build from source as follow:
+If you'd like to attempt to experience the latest features, you also can build from the source code as follow:
 
 1. Maven install current project in your local repository.
 > Maven install = `mvn install`
@@ -150,7 +150,7 @@ public interface DemoService {
     # Spring boot application
     spring.application.name=dubbo-auto-configuration-provider-demo
     # Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
-    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.demo.provider.service
+    dubbo.scan.base-packages=org.apache.dubbo.spring.boot.sample.provider.service
 
     # Dubbo Application
     ## The default value of dubbo.application.name is ${spring.application.name}
