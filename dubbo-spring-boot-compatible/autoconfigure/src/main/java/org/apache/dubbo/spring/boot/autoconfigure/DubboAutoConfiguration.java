@@ -19,11 +19,9 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.spring.boot.beans.factory.config.ServiceBeanIdConflictProcessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -62,22 +60,21 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
 @EnableConfigurationProperties(DubboConfigurationProperties.class)
-@Import(ServiceBeanIdConflictProcessor.class)
 public class DubboAutoConfiguration {
 
     /**
-     * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
+     * Creates {@link ServiceClassPostProcessor} Bean
      *
      * @param propertyResolver {@link PropertyResolver} Bean
-     * @return {@link ServiceAnnotationBeanPostProcessor}
+     * @return {@link ServiceClassPostProcessor}
      */
     @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
     @ConditionalOnBean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
     @Bean
-    public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(
+    public ServiceClassPostProcessor serviceClassPostProcessor(
             @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME) PropertyResolver propertyResolver) {
         Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
-        return new ServiceAnnotationBeanPostProcessor(packagesToScan);
+        return new ServiceClassPostProcessor(packagesToScan);
     }
 
     /**

@@ -50,12 +50,6 @@
 
         <!-- Dubbo Registry Nacos -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba.nacos</groupId>
             <artifactId>nacos-client</artifactId>
             <version>${nacos.version}</version>

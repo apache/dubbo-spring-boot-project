@@ -18,7 +18,6 @@ package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.spring.boot.beans.factory.config.DubboConfigBeanDefinitionConflictProcessor;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -27,7 +26,6 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.Ordered;
 
 import java.util.Map;
 
@@ -48,11 +46,6 @@ public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
     @After
     public void destroy() {
         context.close();
-    }
-
-    @Test
-    public void testOrder() {
-        Assert.assertEquals(Ordered.LOWEST_PRECEDENCE, new DubboConfigBeanDefinitionConflictProcessor().getOrder());
     }
 
     @Test
