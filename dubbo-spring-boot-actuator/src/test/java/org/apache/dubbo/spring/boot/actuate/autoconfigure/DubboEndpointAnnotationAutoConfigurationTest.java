@@ -17,6 +17,7 @@
 package org.apache.dubbo.spring.boot.actuate.autoconfigure;
 
 import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboConfigsMetadataEndpoint;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboMetadataEndpoint;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboPropertiesMetadataEndpoint;
@@ -28,6 +29,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -101,6 +104,16 @@ public class DubboEndpointAnnotationAutoConfigurationTest {
 
     @Value("http://127.0.0.1:${local.management.port}${management.endpoints.web.base-path:/actuator}")
     private String actuatorBaseURL;
+
+    @BeforeEach
+    public void init() {
+        ApplicationModel.reset();
+    }
+
+    @AfterEach
+    public void destroy() {
+        ApplicationModel.reset();
+    }
 
     @Test
     public void testShutdown() throws Exception {

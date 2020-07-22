@@ -70,12 +70,6 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 public class DubboAutoConfigurationOnMultipleConfigTest {
 
     @Autowired
-    private DubboAutoConfiguration.MultipleDubboConfigConfiguration multipleDubboConfigConfiguration;
-
-    @Autowired(required = false)
-    private DubboAutoConfiguration.SingleDubboConfigConfiguration singleDubboConfigConfiguration;
-
-    @Autowired
     private Environment environment;
 
     @Autowired
@@ -267,16 +261,4 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
         Assert.assertEquals("netty", consumer.getClient());
 
     }
-
-    @Test
-    public void testMultipleDubboConfigConfiguration() {
-        Assert.assertNotNull(multipleDubboConfigConfiguration);
-    }
-
-    @Test
-    public void testSingleDubboConfigConfiguration() {
-        Assert.assertNotNull(singleDubboConfigConfiguration);
-    }
-
-
 }

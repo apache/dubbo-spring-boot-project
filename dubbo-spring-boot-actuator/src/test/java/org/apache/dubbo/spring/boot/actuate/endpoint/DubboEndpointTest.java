@@ -16,10 +16,13 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint;
 
+import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.apache.dubbo.spring.boot.util.DubboUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,6 +43,9 @@ import static org.apache.dubbo.common.Version.getVersion;
 @SpringBootTest(
         classes = {
                 DubboMetadataEndpoint.class
+        },
+        properties = {
+                "dubbo.application.name = dubbo-demo-application"
         }
 )
 @EnableAutoConfiguration
@@ -48,6 +54,16 @@ public class DubboEndpointTest {
 
     @Autowired
     private DubboMetadataEndpoint dubboEndpoint;
+
+    @BeforeEach
+    public void init() {
+        ApplicationModel.reset();
+    }
+
+    @AfterEach
+    public void destroy() {
+        ApplicationModel.reset();
+    }
 
     @Test
     public void testInvoke() {

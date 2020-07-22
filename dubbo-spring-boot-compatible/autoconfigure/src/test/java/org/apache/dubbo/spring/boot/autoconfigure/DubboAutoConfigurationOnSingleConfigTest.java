@@ -79,12 +79,6 @@ public class DubboAutoConfigurationOnSingleConfigTest {
     @Autowired
     private ProtocolConfig protocolConfig;
 
-    @Autowired(required = false)
-    private DubboAutoConfiguration.MultipleDubboConfigConfiguration multipleDubboConfigConfiguration;
-
-    @Autowired
-    private DubboAutoConfiguration.SingleDubboConfigConfiguration singleDubboConfigConfiguration;
-
     @Autowired
     private Environment environment;
 
@@ -140,20 +134,4 @@ public class DubboAutoConfigurationOnSingleConfigTest {
         Assert.assertEquals("netty", consumerConfig.getClient());
 
     }
-
-    @Test
-    public void testMultipleDubboConfigConfiguration() {
-        Assert.assertNotNull(multipleDubboConfigConfiguration);
-    }
-
-    @Test
-    public void testSingleDubboConfigConfiguration() {
-        Assert.assertNotNull(singleDubboConfigConfiguration);
-    }
-
-    @Test
-    public void testServiceAnnotationBeanPostProcessor() {
-        Assert.assertNotNull(multipleDubboConfigConfiguration);
-    }
-
 }

@@ -60,6 +60,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
 @EnableConfigurationProperties(DubboConfigurationProperties.class)
+@EnableDubboConfig
 public class DubboAutoConfiguration {
 
     /**
@@ -86,27 +87,6 @@ public class DubboAutoConfiguration {
     @Bean(name = ReferenceAnnotationBeanPostProcessor.BEAN_NAME)
     public ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor() {
         return new ReferenceAnnotationBeanPostProcessor();
-    }
-
-    /**
-     * Single Dubbo Config Configuration
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Single
-     */
-    @Import(DubboConfigConfiguration.Single.class)
-    protected static class SingleDubboConfigConfiguration {
-    }
-
-    /**
-     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Multiple
-     */
-    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
-    @Import(DubboConfigConfiguration.Multiple.class)
-    protected static class MultipleDubboConfigConfiguration {
     }
 
     /**
