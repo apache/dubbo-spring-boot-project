@@ -12,11 +12,9 @@ embedded:
 
 dubbo:
   application:
-    ## "composite" is a new metadata type introduced since 2.7.8
     metadata-type: composite
   registry:
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port}/?registry-type=service
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
-    ## "dubbo.registry.use-as-*" property will be auto-detected since 2.7.8
-    # use-as-config-center: true
-    # use-as-metadata-center: true
+    use-as-config-center: true
+    use-as-metadata-center: true
