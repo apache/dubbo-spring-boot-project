@@ -74,10 +74,7 @@ public abstract class DubboUtils {
      * The property name of multiple properties binding from externalized configuration
      * <p>
      * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
-     *
-     * @deprecated 2.7.8
      */
-    @Deprecated
     public static final String MULTIPLE_CONFIG_PROPERTY_NAME = "multiple";
 
     /**
