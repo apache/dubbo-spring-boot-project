@@ -28,7 +28,6 @@ import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguratio
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -41,15 +40,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.PropertyResolver;
 
 import java.util.Set;
 
-import static java.util.Collections.emptySet;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
@@ -73,15 +68,14 @@ public class DubboAutoConfiguration implements ApplicationContextAware {
     /**
      * Creates {@link ServiceClassPostProcessor} Bean
      *
-     * @param propertyResolver {@link PropertyResolver} Bean
+     * @param packagesToScan the packages to scan
      * @return {@link ServiceClassPostProcessor}
      */
     @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
-    @ConditionalOnBean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
+    @ConditionalOnBean(name = BASE_PACKAGES_BEAN_NAME)
     @Bean
-    public ServiceClassPostProcessor serviceClassPostProcessor(
-            @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME) PropertyResolver propertyResolver) {
-        Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+    public ServiceClassPostProcessor serviceClassPostProcessor(@Qualifier(BASE_PACKAGES_BEAN_NAME)
+                                                                       Set<String> packagesToScan) {
         return new ServiceClassPostProcessor(packagesToScan);
     }
 
@@ -142,18 +136,5 @@ public class DubboAutoConfiguration implements ApplicationContextAware {
     @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
     @Import(DubboConfigConfiguration.Multiple.class)
     protected static class MultipleDubboConfigConfiguration {
-    }
-
-    /**
-     * Build a primary {@link PropertyResolver} bean to {@link Autowired @Autowired}
-     *
-     * @param environment {@link Environment}
-     * @return alias bean for {@link Environment}
-     * @since 2.7.3
-     */
-    @Bean
-    @Primary
-    public PropertyResolver primaryPropertyResolver(Environment environment) {
-        return environment;
     }
 }

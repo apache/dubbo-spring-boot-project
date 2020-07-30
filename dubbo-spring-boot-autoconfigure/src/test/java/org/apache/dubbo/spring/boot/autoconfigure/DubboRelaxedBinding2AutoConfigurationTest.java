@@ -34,7 +34,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ClassUtils;
 
 import java.util.Map;
+import java.util.Set;
 
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
 import static org.junit.Assert.assertEquals;
@@ -53,8 +55,8 @@ import static org.junit.Assert.assertTrue;
 public class DubboRelaxedBinding2AutoConfigurationTest {
 
     @Autowired
-    @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
-    private PropertyResolver propertyResolver;
+    @Qualifier(BASE_PACKAGES_BEAN_NAME)
+    private Set<String> packagesToScan;
 
     @Autowired
     @Qualifier(RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME)
@@ -70,9 +72,6 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
     private Environment environment;
 
     @Autowired
-    private PropertyResolver primaryPropertyResolver;
-
-    @Autowired
     private Map<String, Environment> environments;
 
     @Test
@@ -86,11 +85,10 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
         assertNotNull(referenceAnnotationBeanPostProcessor.getIfAvailable());
 
         assertNotNull(environment);
-        assertNotNull(primaryPropertyResolver);
         assertNotNull(environments);
 
-        assertEquals(primaryPropertyResolver, environment);
-        assertEquals(2, environments.size());
+
+        assertEquals(1, environments.size());
 
         assertTrue(environments.containsValue(environment));
     }

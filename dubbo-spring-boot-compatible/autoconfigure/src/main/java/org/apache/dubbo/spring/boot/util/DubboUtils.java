@@ -18,6 +18,7 @@ package org.apache.dubbo.spring.boot.util;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
@@ -27,6 +28,7 @@ import org.springframework.core.env.PropertyResolver;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -127,8 +129,18 @@ public abstract class DubboUtils {
 
     /**
      * The bean name of {@link PropertyResolver} for {@link ServiceAnnotationBeanPostProcessor}'s base-packages
+     *
+     * @deprecated 2.7.8 Please use {@link #BASE_PACKAGES_BEAN_NAME}
      */
+    @Deprecated
     public static final String BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME = "dubboScanBasePackagesPropertyResolver";
+
+    /**
+     * The bean name of {@link Set} presenting {@link ServiceClassPostProcessor}'s base-packages
+     *
+     * @since 2.7.8
+     */
+    public static final String BASE_PACKAGES_BEAN_NAME = "dubbo-service-class-base-packages";
 
     /**
      * The property name of Spring Application
