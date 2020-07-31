@@ -19,10 +19,10 @@ package org.apache.dubbo.spring.boot.actuate.endpoint;
 import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.apache.dubbo.spring.boot.util.DubboUtils;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -55,12 +55,12 @@ public class DubboEndpointTest {
     @Autowired
     private DubboMetadataEndpoint dubboEndpoint;
 
-    @BeforeEach
+    @Before
     public void init() {
         ApplicationModel.reset();
     }
 
-    @AfterEach
+    @After
     public void destroy() {
         ApplicationModel.reset();
     }

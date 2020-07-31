@@ -27,10 +27,10 @@ import org.apache.dubbo.spring.boot.actuate.endpoint.DubboShutdownEndpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -105,12 +105,12 @@ public class DubboEndpointAnnotationAutoConfigurationTest {
     @Value("http://127.0.0.1:${local.management.port}${management.endpoints.web.base-path:/actuator}")
     private String actuatorBaseURL;
 
-    @BeforeEach
+    @Before
     public void init() {
         ApplicationModel.reset();
     }
 
-    @AfterEach
+    @After
     public void destroy() {
         ApplicationModel.reset();
     }
