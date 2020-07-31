@@ -76,12 +76,18 @@ public abstract class DubboUtils {
      * The property name of multiple properties binding from externalized configuration
      * <p>
      * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
+     *
+     * @deprecated 2.7.8 It will be remove in the future, {@link EnableDubboConfig} instead
      */
+    @Deprecated
     public static final String MULTIPLE_CONFIG_PROPERTY_NAME = "multiple";
 
     /**
      * The default value of multiple properties binding from externalized configuration
+     *
+     * @deprecated 2.7.8 It will be remove in the future
      */
+    @Deprecated
     public static final boolean DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE = true;
 
     /**
@@ -130,7 +136,7 @@ public abstract class DubboUtils {
     /**
      * The bean name of {@link PropertyResolver} for {@link ServiceAnnotationBeanPostProcessor}'s base-packages
      *
-     * @deprecated 2.7.8 Please use {@link #BASE_PACKAGES_BEAN_NAME}
+     * @deprecated 2.7.8 It will be remove in the future, please use {@link #BASE_PACKAGES_BEAN_NAME}
      */
     @Deprecated
     public static final String BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME = "dubboScanBasePackagesPropertyResolver";
