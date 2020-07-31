@@ -18,6 +18,7 @@ package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -32,6 +33,7 @@ import java.util.Map;
 
 /**
  * {@link DubboConfigBeanDefinitionConflictApplicationListener} Test
+ *
  * @since 2.7.5
  */
 public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
@@ -40,12 +42,15 @@ public class DubboConfigBeanDefinitionConflictApplicationListenerTest {
 
     @Before
     public void init() {
+        ApplicationModel.reset();
         context.addApplicationListener(new DubboConfigBeanDefinitionConflictApplicationListener());
     }
 
     @After
     public void destroy() {
         context.close();
+        ApplicationModel.reset();
+
     }
 
     @Test

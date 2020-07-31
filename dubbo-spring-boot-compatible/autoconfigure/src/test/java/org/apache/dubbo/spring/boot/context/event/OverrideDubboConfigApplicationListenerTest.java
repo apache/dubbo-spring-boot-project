@@ -17,6 +17,9 @@
 package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.common.utils.ConfigUtils;
+import org.apache.dubbo.rpc.model.ApplicationModel;
+
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,7 +51,13 @@ public class OverrideDubboConfigApplicationListenerTest {
 
     @BeforeClass
     public static void init() {
+        ApplicationModel.reset();
         ConfigUtils.getProperties().clear();
+    }
+
+    @AfterClass
+    public static void destroy() {
+        ApplicationModel.reset();
     }
 
     @Test
