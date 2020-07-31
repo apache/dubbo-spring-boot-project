@@ -23,8 +23,11 @@ import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ProviderConfig;
 import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +126,16 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     @Autowired
     @Qualifier("consumer1")
     private ConsumerConfig consumer;
+
+    @Before
+    public void init() {
+        ApplicationModel.reset();
+    }
+
+    @After
+    public void destroy() {
+        ApplicationModel.reset();
+    }
 
     @Autowired
     private Map<String, ApplicationConfig> applications = new LinkedHashMap<>();
