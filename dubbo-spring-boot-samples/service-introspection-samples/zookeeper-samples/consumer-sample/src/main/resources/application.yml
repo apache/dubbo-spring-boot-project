@@ -11,6 +11,10 @@ embedded:
     port: 2181
 
 dubbo:
+  application:
+    metadata-type: composite
   registry:
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port}/?registry-type=service
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+    use-as-config-center: true
+    use-as-metadata-center: true

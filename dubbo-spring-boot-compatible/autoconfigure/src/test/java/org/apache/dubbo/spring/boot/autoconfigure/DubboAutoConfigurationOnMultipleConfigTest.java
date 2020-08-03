@@ -23,8 +23,11 @@ import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ProviderConfig;
 import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +71,6 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
 )
 @EnableAutoConfiguration
 public class DubboAutoConfigurationOnMultipleConfigTest {
-
-    @Autowired
-    private DubboAutoConfiguration.MultipleDubboConfigConfiguration multipleDubboConfigConfiguration;
-
-    @Autowired(required = false)
-    private DubboAutoConfiguration.SingleDubboConfigConfiguration singleDubboConfigConfiguration;
 
     @Autowired
     private Environment environment;
@@ -129,6 +126,16 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
     @Autowired
     @Qualifier("consumer1")
     private ConsumerConfig consumer;
+
+    @Before
+    public void init() {
+        ApplicationModel.reset();
+    }
+
+    @After
+    public void destroy() {
+        ApplicationModel.reset();
+    }
 
     @Autowired
     private Map<String, ApplicationConfig> applications = new LinkedHashMap<>();
@@ -267,16 +274,4 @@ public class DubboAutoConfigurationOnMultipleConfigTest {
         Assert.assertEquals("netty", consumer.getClient());
 
     }
-
-    @Test
-    public void testMultipleDubboConfigConfiguration() {
-        Assert.assertNotNull(multipleDubboConfigConfiguration);
-    }
-
-    @Test
-    public void testSingleDubboConfigConfiguration() {
-        Assert.assertNotNull(singleDubboConfigConfiguration);
-    }
-
-
 }

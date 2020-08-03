@@ -45,7 +45,7 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
  * @since 2.7.1
  */
 @ConfigurationProperties(DUBBO_PREFIX)
-class DubboConfigurationProperties {
+public class DubboConfigurationProperties {
 
     @NestedConfigurationProperty
     private Config config = new Config();
