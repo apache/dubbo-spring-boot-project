@@ -23,14 +23,12 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostP
 import org.apache.dubbo.config.spring.context.DubboBootstrapApplicationListener;
 import org.apache.dubbo.config.spring.context.DubboLifecycleComponentApplicationListener;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-
+import org.apache.dubbo.spring.boot.util.DubboUtils;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -38,10 +36,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
-import java.util.Set;
-
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
@@ -65,15 +61,12 @@ public class DubboAutoConfiguration implements ApplicationContextAware, BeanDefi
     /**
      * Creates {@link ServiceClassPostProcessor} Bean
      *
-     * @param packagesToScan the packages to scan
      * @return {@link ServiceClassPostProcessor}
      */
     @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
-    @ConditionalOnBean(name = BASE_PACKAGES_BEAN_NAME)
     @Bean
-    public ServiceClassPostProcessor serviceClassPostProcessor(@Qualifier(BASE_PACKAGES_BEAN_NAME)
-                                                                       Set<String> packagesToScan) {
-        return new ServiceClassPostProcessor(packagesToScan);
+    public ServiceClassPostProcessor serviceClassPostProcessor(Environment environment) {
+        return new ServiceClassPostProcessor(DubboUtils.getScanBasePackage(environment));
     }
 
     @Override
