@@ -20,16 +20,11 @@ import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.PropertyResolver;
 
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
@@ -40,11 +35,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @ConditionalOnClass(name = "org.springframework.boot.bind.RelaxedPropertyResolver")
 @Configuration
 public class DubboRelaxedBindingAutoConfiguration {
-
-    @Bean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
-    public PropertyResolver dubboScanBasePackagesPropertyResolver(Environment environment) {
-        return new RelaxedPropertyResolver(environment, DUBBO_SCAN_PREFIX);
-    }
 
     @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = ConfigurationBeanBinder.class)
     @Bean(RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME)
