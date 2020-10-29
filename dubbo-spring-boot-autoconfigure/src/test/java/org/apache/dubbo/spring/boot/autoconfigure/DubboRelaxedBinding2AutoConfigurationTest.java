@@ -17,9 +17,9 @@
 package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 
 import com.alibaba.spring.context.config.ConfigurationBeanBinder;
+import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 import org.apache.dubbo.spring.boot.util.DubboUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,13 +30,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.PropertyResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ClassUtils;
 
-import java.util.Map;
-
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -58,7 +54,7 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
     private ConfigurationBeanBinder dubboConfigBinder;
 
     @Autowired
-    private ObjectProvider<ServiceAnnotationBeanPostProcessor> serviceAnnotationBeanPostProcessor;
+    private ObjectProvider<ServiceClassPostProcessor> serviceClassPostProcessor;
 
     @Autowired
     private ObjectProvider<ReferenceAnnotationBeanPostProcessor> referenceAnnotationBeanPostProcessor;
@@ -73,8 +69,8 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
 
         assertTrue(ClassUtils.isAssignableValue(BinderDubboConfigBinder.class, dubboConfigBinder));
 
-        assertNotNull(serviceAnnotationBeanPostProcessor);
-        assertNotNull(serviceAnnotationBeanPostProcessor.getIfAvailable());
+        assertNotNull(serviceClassPostProcessor);
+        assertNotNull(serviceClassPostProcessor.getIfAvailable());
         assertNotNull(referenceAnnotationBeanPostProcessor);
         assertNotNull(referenceAnnotationBeanPostProcessor.getIfAvailable());
 
