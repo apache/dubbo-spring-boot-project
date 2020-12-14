@@ -117,7 +117,7 @@ public interface DemoService {
 1. Service Provider implements `DemoService`
 
     ```java
-    @Service(version = "1.0.0")
+    @DubboService(version = "1.0.0")
     public class DefaultDemoService implements DemoService {
     
         /**
@@ -176,7 +176,7 @@ public interface DemoService {
     
         private final Logger logger = LoggerFactory.getLogger(getClass());
     
-        @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+        @DubboReference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
         private DemoService demoService;
     
         public static void main(String[] args) {
