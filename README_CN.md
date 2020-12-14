@@ -141,7 +141,7 @@ public interface DemoService {
 1. 实现 `DemoService` 接口
 
     ```java
-    @Service(version = "1.0.0")
+    @DubboService(version = "1.0.0")
     public class DefaultDemoService implements DemoService {
     
         /**
@@ -197,7 +197,7 @@ public interface DemoService {
 ### 实现 Dubbo 服务消费方
 
 
-1. 通过 `@Reference` 注入 `DemoService` :
+1. 通过 `@DubboReference` 注入 `DemoService` :
 
     ```java
     @EnableAutoConfiguration
@@ -205,7 +205,7 @@ public interface DemoService {
     
         private final Logger logger = LoggerFactory.getLogger(getClass());
     
-        @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+        @DubboReference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
         private DemoService demoService;
     
         public static void main(String[] args) {
