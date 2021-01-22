@@ -19,7 +19,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
 ```xml
 <properties>
     <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
-    <dubbo.version>2.7.7</dubbo.version>
+    <dubbo.version>2.7.8</dubbo.version>
 </properties>
     
 <dependencyManagement>
@@ -50,7 +50,7 @@ You can introduce the latest `dubbo-spring-boot-starter` to your project by addi
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
-        <version>2.7.7</version>
+        <version>2.7.8</version>
     </dependency>    
 </dependencies>
 ```
@@ -117,7 +117,7 @@ public interface DemoService {
 1. Service Provider implements `DemoService`
 
     ```java
-    @Service(version = "1.0.0")
+    @DubboService(version = "1.0.0")
     public class DefaultDemoService implements DemoService {
     
         /**
@@ -176,7 +176,7 @@ public interface DemoService {
     
         private final Logger logger = LoggerFactory.getLogger(getClass());
     
-        @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+        @DubboReference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
         private DemoService demoService;
     
         public static void main(String[] args) {
@@ -263,8 +263,8 @@ The samples project of Dubbo Spring Boot that includes:
 
 - [Auto-Configuaration Samples](dubbo-spring-boot-samples/auto-configure-samples)
 - [Externalized Configuration Samples](dubbo-spring-boot-samples/externalized-configuration-samples)
-- [Registry Zookeeper Samples](dubbo-spring-boot-samples/dubbo-registry-zookeeper-samples)
-- [Registry Nacos Samples](dubbo-spring-boot-samples/dubbo-registry-nacos-samples)
+- [Registry Zookeeper Samples](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-samples/registry-samples/zookeeper-samples)
+- [Registry Nacos Samples](https://github.com/apache/dubbo-spring-boot-project/tree/master/dubbo-spring-boot-samples/registry-samples/nacos-samples)
 
 
 
