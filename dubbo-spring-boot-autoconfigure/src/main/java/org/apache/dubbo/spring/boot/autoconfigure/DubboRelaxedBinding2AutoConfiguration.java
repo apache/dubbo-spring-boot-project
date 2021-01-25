@@ -27,14 +27,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertyResolver;
 
 import java.util.Map;
+import java.util.Set;
 
 import static com.alibaba.spring.util.PropertySourcesUtils.getSubProperties;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
+import static java.util.Collections.emptySet;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
@@ -52,7 +56,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @AutoConfigureBefore(DubboRelaxedBindingAutoConfiguration.class)
 public class DubboRelaxedBinding2AutoConfiguration {
 
-    @Bean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
     public PropertyResolver dubboScanBasePackagesPropertyResolver(ConfigurableEnvironment environment) {
         ConfigurableEnvironment propertyResolver = new AbstractEnvironment() {
             @Override
@@ -62,7 +65,21 @@ public class DubboRelaxedBinding2AutoConfiguration {
             }
         };
         ConfigurationPropertySources.attach(propertyResolver);
-        return new DelegatingPropertyResolver(propertyResolver);
+        return propertyResolver;
+    }
+
+    /**
+     * The bean is used to scan the packages of Dubbo Service classes
+     *
+     * @param environment {@link Environment} instance
+     * @return non-null {@link Set}
+     * @since 2.7.8
+     */
+    @ConditionalOnMissingBean(name = BASE_PACKAGES_BEAN_NAME)
+    @Bean(name = BASE_PACKAGES_BEAN_NAME)
+    public Set<String> dubboBasePackages(ConfigurableEnvironment environment) {
+        PropertyResolver propertyResolver = dubboScanBasePackagesPropertyResolver(environment);
+        return propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
     }
 
     @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = ConfigurationBeanBinder.class)

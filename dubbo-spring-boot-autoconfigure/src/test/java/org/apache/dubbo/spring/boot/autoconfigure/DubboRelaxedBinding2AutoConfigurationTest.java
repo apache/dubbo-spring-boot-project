@@ -17,7 +17,7 @@
 package org.apache.dubbo.spring.boot.autoconfigure;
 
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
 
 import com.alibaba.spring.context.config.ConfigurationBeanBinder;
 import org.junit.Test;
@@ -34,7 +34,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ClassUtils;
 
 import java.util.Map;
+import java.util.Set;
 
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
 import static org.junit.Assert.assertEquals;
@@ -53,24 +55,21 @@ import static org.junit.Assert.assertTrue;
 public class DubboRelaxedBinding2AutoConfigurationTest {
 
     @Autowired
-    @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
-    private PropertyResolver propertyResolver;
+    @Qualifier(BASE_PACKAGES_BEAN_NAME)
+    private Set<String> packagesToScan;
 
     @Autowired
     @Qualifier(RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME)
     private ConfigurationBeanBinder dubboConfigBinder;
 
     @Autowired
-    private ObjectProvider<ServiceAnnotationBeanPostProcessor> serviceAnnotationBeanPostProcessor;
+    private ObjectProvider<ServiceClassPostProcessor> serviceClassPostProcessor;
 
     @Autowired
     private ObjectProvider<ReferenceAnnotationBeanPostProcessor> referenceAnnotationBeanPostProcessor;
 
     @Autowired
     private Environment environment;
-
-    @Autowired
-    private PropertyResolver primaryPropertyResolver;
 
     @Autowired
     private Map<String, Environment> environments;
@@ -80,17 +79,16 @@ public class DubboRelaxedBinding2AutoConfigurationTest {
 
         assertTrue(ClassUtils.isAssignableValue(BinderDubboConfigBinder.class, dubboConfigBinder));
 
-        assertNotNull(serviceAnnotationBeanPostProcessor);
-        assertNotNull(serviceAnnotationBeanPostProcessor.getIfAvailable());
+        assertNotNull(serviceClassPostProcessor);
+        assertNotNull(serviceClassPostProcessor.getIfAvailable());
         assertNotNull(referenceAnnotationBeanPostProcessor);
         assertNotNull(referenceAnnotationBeanPostProcessor.getIfAvailable());
 
         assertNotNull(environment);
-        assertNotNull(primaryPropertyResolver);
         assertNotNull(environments);
 
-        assertEquals(primaryPropertyResolver, environment);
-        assertEquals(2, environments.size());
+
+        assertEquals(1, environments.size());
 
         assertTrue(environments.containsValue(environment));
     }
