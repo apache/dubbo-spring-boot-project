@@ -81,12 +81,10 @@ public class DubboAutoConfiguration implements ApplicationContextAware, BeanDefi
         if (applicationContext instanceof ConfigurableApplicationContext) {
             ConfigurableApplicationContext context = (ConfigurableApplicationContext) applicationContext;
             DubboLifecycleComponentApplicationListener dubboLifecycleComponentApplicationListener
-                    = new DubboLifecycleComponentApplicationListener();
-            dubboLifecycleComponentApplicationListener.setApplicationContext(applicationContext);
+                    = new DubboLifecycleComponentApplicationListener(applicationContext);
             context.addApplicationListener(dubboLifecycleComponentApplicationListener);
 
-            DubboBootstrapApplicationListener dubboBootstrapApplicationListener = new DubboBootstrapApplicationListener();
-            dubboBootstrapApplicationListener.setApplicationContext(applicationContext);
+            DubboBootstrapApplicationListener dubboBootstrapApplicationListener = new DubboBootstrapApplicationListener(applicationContext);
             context.addApplicationListener(dubboBootstrapApplicationListener);
         }
     }
