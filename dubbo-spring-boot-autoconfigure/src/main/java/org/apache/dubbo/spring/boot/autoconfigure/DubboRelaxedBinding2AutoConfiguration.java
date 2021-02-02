@@ -17,6 +17,7 @@
 package org.apache.dubbo.spring.boot.autoconfigure;
 
 import com.alibaba.spring.context.config.ConfigurationBeanBinder;
+import org.apache.dubbo.spring.boot.util.DubboUtils;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -32,16 +33,13 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertyResolver;
 
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 import static com.alibaba.spring.util.PropertySourcesUtils.getSubProperties;
 import static java.util.Collections.emptySet;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.*;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 /**
@@ -79,7 +77,15 @@ public class DubboRelaxedBinding2AutoConfiguration {
     @Bean(name = BASE_PACKAGES_BEAN_NAME)
     public Set<String> dubboBasePackages(ConfigurableEnvironment environment) {
         PropertyResolver propertyResolver = dubboScanBasePackagesPropertyResolver(environment);
-        return propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+        Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class,emptySet());
+        if(packagesToScan.size()!=0 || !propertyResolver.containsProperty(BASE_PACKAGES_PROPERTY_CHILD0)){
+            return packagesToScan;
+        }
+        packagesToScan = new LinkedHashSet<>(1);
+        for(int index=0;index<Integer.MAX_VALUE;index++){
+            packagesToScan.add(propertyResolver.getProperty(index==0?BASE_PACKAGES_PROPERTY_CHILD0:BASE_PACKAGES_PROPERTY_CHILD_PREFIX+index));
+        }
+        return packagesToScan;
     }
 
     @ConditionalOnMissingBean(name = RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME, value = ConfigurationBeanBinder.class)

@@ -71,6 +71,9 @@ public abstract class DubboUtils {
      * The default value is empty set.
      */
     public static final String BASE_PACKAGES_PROPERTY_NAME = "base-packages";
+    public static final String BASE_PACKAGES_PROPERTY_CHILD_PREFIX = "base-packages.";
+    public static final String BASE_PACKAGES_PROPERTY_CHILD0 = "base-packages.0";
+
 
     /**
      * The property name of multiple properties binding from externalized configuration
