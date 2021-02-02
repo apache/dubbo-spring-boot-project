@@ -24,7 +24,6 @@ import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
 
@@ -56,7 +55,7 @@ public class DubboRelaxedBindingAutoConfiguration {
      */
     @ConditionalOnMissingBean(name = BASE_PACKAGES_BEAN_NAME)
     @Bean(name = BASE_PACKAGES_BEAN_NAME)
-    public Set<String> dubboBasePackages(ConfigurableEnvironment environment) {
+    public Set<String> dubboBasePackages(Environment environment) {
         PropertyResolver propertyResolver = dubboScanBasePackagesPropertyResolver(environment);
         Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class,emptySet());
         if(packagesToScan.size()!=0 || !propertyResolver.containsProperty(BASE_PACKAGES_PROPERTY_CHILD0)){
@@ -64,7 +63,11 @@ public class DubboRelaxedBindingAutoConfiguration {
         }
         packagesToScan = new LinkedHashSet<>(1);
         for(int index=0;index<Integer.MAX_VALUE;index++){
-            packagesToScan.add(propertyResolver.getProperty(index==0?BASE_PACKAGES_PROPERTY_CHILD0:BASE_PACKAGES_PROPERTY_CHILD_PREFIX+index));
+            String packageName = propertyResolver.getProperty(index==0?BASE_PACKAGES_PROPERTY_CHILD0:BASE_PACKAGES_PROPERTY_CHILD_PREFIX+index);
+            if(packageName==null){
+                break;
+            }
+            packagesToScan.add(packageName);
         }
         return packagesToScan;
     }

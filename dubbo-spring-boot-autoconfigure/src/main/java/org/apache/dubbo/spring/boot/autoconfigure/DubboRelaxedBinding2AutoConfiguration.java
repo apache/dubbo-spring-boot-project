@@ -83,7 +83,11 @@ public class DubboRelaxedBinding2AutoConfiguration {
         }
         packagesToScan = new LinkedHashSet<>(1);
         for(int index=0;index<Integer.MAX_VALUE;index++){
-            packagesToScan.add(propertyResolver.getProperty(index==0?BASE_PACKAGES_PROPERTY_CHILD0:BASE_PACKAGES_PROPERTY_CHILD_PREFIX+index));
+            String packageName = propertyResolver.getProperty(index==0?BASE_PACKAGES_PROPERTY_CHILD0:BASE_PACKAGES_PROPERTY_CHILD_PREFIX+index);
+            if(packageName==null){
+                break;
+            }
+            packagesToScan.add(packageName);
         }
         return packagesToScan;
     }
