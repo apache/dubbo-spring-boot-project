@@ -88,12 +88,11 @@
                 </configuration>
             </plugin>
 
-            <!-- Tomcat 8 Maven 插件用于构建可执行 war -->
-            <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
+            <!-- Tomcat Maven 插件用于构建可执行 war -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat8-maven-plugin</artifactId>
-                <version>3.0-r1655215</version>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <executions>
                     <execution>
                         <id>tomcat-run</id>
