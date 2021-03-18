@@ -16,10 +16,12 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint.metadata;
 
+import org.apache.dubbo.config.ReferenceConfigBase;
 import org.apache.dubbo.config.spring.ServiceBean;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -58,13 +60,11 @@ public class DubboShutdownMetadata extends AbstractDubboMetadata {
         shutdownCountData.put("services", serviceBeansMap.size());
 
         // Reference Beans
-        ReferenceAnnotationBeanPostProcessor beanPostProcessor = getReferenceAnnotationBeanPostProcessor();
-
-        int referencesCount = beanPostProcessor.getReferenceBeans().size();
-
-        beanPostProcessor.destroy();
-
-        shutdownCountData.put("references", referencesCount);
+        Collection<ReferenceConfigBase<?>> references = ApplicationModel.getConfigManager().getReferences();
+        for (ReferenceConfigBase<?> reference : references) {
+            reference.destroy();
+        }
+        shutdownCountData.put("references", references.size());
 
         // Set Result to complete
         Map<String, Object> shutdownData = new TreeMap<>();

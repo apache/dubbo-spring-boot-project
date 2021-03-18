@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.spring.boot.actuate.autoconfigure;
 
+import org.apache.dubbo.common.BaseServiceMetadata;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.apache.dubbo.spring.boot.actuate.endpoint.DubboConfigsMetadataEndpoint;
@@ -36,6 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -51,7 +54,8 @@ import java.util.function.Supplier;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         classes = {
-                DubboEndpointAnnotationAutoConfigurationTest.class
+                DubboEndpointAnnotationAutoConfigurationTest.class,
+                DubboEndpointAnnotationAutoConfigurationTest.ConsumerConfiguration.class
         },
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
@@ -184,8 +188,13 @@ public class DubboEndpointAnnotationAutoConfigurationTest {
 
         Map<String, Map<String, Object>> references = dubboReferencesMetadataEndpoint.references();
 
-        Assert.assertTrue(references.isEmpty());
-
+        Assert.assertTrue(!references.isEmpty());
+        String injectedField = "private " + DemoService.class.getName() + " " + ConsumerConfiguration.class.getName() + ".demoService";
+        Map<String, Object> referenceMap = references.get(injectedField);
+        Assert.assertNotNull(referenceMap);
+        Assert.assertEquals(DemoService.class, referenceMap.get("interfaceClass"));
+        Assert.assertEquals(BaseServiceMetadata.buildServiceKey(DemoService.class.getName(),ConsumerConfiguration.DEMO_GROUP,ConsumerConfiguration.DEMO_VERSION),
+                referenceMap.get("uniqueServiceName"));
     }
 
     @Test
@@ -241,5 +250,13 @@ public class DubboEndpointAnnotationAutoConfigurationTest {
 
     }
 
+    @Configuration
+    static class ConsumerConfiguration {
+        public static final String DEMO_GROUP = "demo";
+        public static final String DEMO_VERSION = "1.0.0";
 
+        @DubboReference(group = DEMO_GROUP, version = DEMO_VERSION)
+        private DemoService demoService;
+
+    }
 }
