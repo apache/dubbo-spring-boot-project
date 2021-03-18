@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.actuate.endpoint.metadata;
 
+import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.spring.ReferenceBean;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
@@ -57,9 +58,16 @@ public class DubboReferencesMetadata extends AbstractDubboMetadata {
             InjectionMetadata.InjectedElement injectedElement = entry.getKey();
 
             ReferenceBean<?> referenceBean = entry.getValue();
+            ReferenceConfig referenceConfig = referenceBean.getReferenceConfig();
 
-            Map<String, Object> beanMetadata = resolveBeanMetadata(referenceBean);
-            beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
+            Map<String, Object> beanMetadata = null;
+            if (referenceConfig != null) {
+                beanMetadata = resolveBeanMetadata(referenceConfig);
+                //beanMetadata.put("invoker", resolveBeanMetadata(referenceBean.get()));
+            } else {
+                // referenceBean is not initialized
+                beanMetadata = new LinkedHashMap<>();
+            }
 
             referencesMetadata.put(String.valueOf(injectedElement.getMember()), beanMetadata);
 

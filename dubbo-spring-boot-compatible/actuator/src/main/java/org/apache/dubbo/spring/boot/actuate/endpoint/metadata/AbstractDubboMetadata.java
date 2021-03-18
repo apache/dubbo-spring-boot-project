@@ -92,8 +92,9 @@ public abstract class AbstractDubboMetadata implements ApplicationContextAware, 
 
                     String name = Introspector.decapitalize(propertyDescriptor.getName());
                     Object value = readMethod.invoke(bean);
-
-                    beanMetadata.put(name, value);
+                    if (value != null) {
+                        beanMetadata.put(name, value);
+                    }
                 }
 
             }
