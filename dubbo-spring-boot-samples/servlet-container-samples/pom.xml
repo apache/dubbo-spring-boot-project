@@ -36,16 +36,30 @@
         <module>consumer-sample</module>
     </modules>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <!-- tomcat8-maven-plugin 所在仓库 -->
-            <id>Alfresco</id>
-            <name>Alfresco Repository</name>
-            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+    <profiles>
+        <!-- Spring Boot 1.5 - 1.3  -->
+        <profile>
+            <id>spring-boot-1.5</id>
+            <properties>
+                <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- Spring Boot 1.4 -->
+            <id>spring-boot-1.4</id>
+            <properties>
+                <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- Spring Boot 1.3 -->
+            <id>spring-boot-1.3</id>
+            <properties>
+                <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

@@ -19,35 +19,32 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor;
-import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
 import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostProcessor;
-import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
+import org.apache.dubbo.config.spring.context.DubboBootstrapApplicationListener;
+import org.apache.dubbo.config.spring.context.DubboLifecycleComponentApplicationListener;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.spring.boot.beans.factory.config.ServiceBeanIdConflictProcessor;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.PropertyResolver;
 
 import java.util.Set;
 
-import static java.util.Collections.emptySet;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_BEAN_NAME;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_CONFIG_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_PREFIX;
 import static org.apache.dubbo.spring.boot.util.DubboUtils.DUBBO_SCAN_PREFIX;
-import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPERTY_NAME;
 
 /**
  * Dubbo Auto {@link Configuration}
@@ -62,66 +59,52 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.MULTIPLE_CONFIG_PROPE
 @Configuration
 @AutoConfigureAfter(DubboRelaxedBindingAutoConfiguration.class)
 @EnableConfigurationProperties(DubboConfigurationProperties.class)
-@Import(ServiceBeanIdConflictProcessor.class)
-public class DubboAutoConfiguration {
+@EnableDubboConfig
+public class DubboAutoConfiguration implements ApplicationContextAware, BeanDefinitionRegistryPostProcessor {
 
     /**
-     * Creates {@link ServiceAnnotationBeanPostProcessor} Bean
+     * Creates {@link ServiceClassPostProcessor} Bean
      *
-     * @param propertyResolver {@link PropertyResolver} Bean
-     * @return {@link ServiceAnnotationBeanPostProcessor}
+     * @param packagesToScan the packages to scan
+     * @return {@link ServiceClassPostProcessor}
      */
     @ConditionalOnProperty(prefix = DUBBO_SCAN_PREFIX, name = BASE_PACKAGES_PROPERTY_NAME)
-    @ConditionalOnBean(name = BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME)
+    @ConditionalOnBean(name = BASE_PACKAGES_BEAN_NAME)
     @Bean
-    public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(
-            @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME) PropertyResolver propertyResolver) {
-        Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
-        return new ServiceAnnotationBeanPostProcessor(packagesToScan);
+    public ServiceClassPostProcessor serviceClassPostProcessor(@Qualifier(BASE_PACKAGES_BEAN_NAME)
+                                                                       Set<String> packagesToScan) {
+        return new ServiceClassPostProcessor(packagesToScan);
     }
 
-    /**
-     * Creates {@link ReferenceAnnotationBeanPostProcessor} Bean if Absent
-     *
-     * @return {@link ReferenceAnnotationBeanPostProcessor}
-     */
-    @ConditionalOnMissingBean
-    @Bean(name = ReferenceAnnotationBeanPostProcessor.BEAN_NAME)
-    public ReferenceAnnotationBeanPostProcessor referenceAnnotationBeanPostProcessor() {
-        return new ReferenceAnnotationBeanPostProcessor();
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        if (applicationContext instanceof ConfigurableApplicationContext) {
+            ConfigurableApplicationContext context = (ConfigurableApplicationContext) applicationContext;
+            DubboLifecycleComponentApplicationListener dubboLifecycleComponentApplicationListener
+                    = new DubboLifecycleComponentApplicationListener(applicationContext);
+            context.addApplicationListener(dubboLifecycleComponentApplicationListener);
+
+            DubboBootstrapApplicationListener dubboBootstrapApplicationListener = new DubboBootstrapApplicationListener(applicationContext);
+            context.addApplicationListener(dubboBootstrapApplicationListener);
+        }
     }
 
-    /**
-     * Single Dubbo Config Configuration
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Single
-     */
-    @Import(DubboConfigConfiguration.Single.class)
-    protected static class SingleDubboConfigConfiguration {
+    @Override
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+        // Remove the BeanDefinitions of ApplicationListener from DubboBeanUtils#registerCommonBeans(BeanDefinitionRegistry)
+        // TODO Refactoring in Dubbo 2.7.9
+        removeBeanDefinition(registry, DubboLifecycleComponentApplicationListener.BEAN_NAME);
+        removeBeanDefinition(registry, DubboBootstrapApplicationListener.BEAN_NAME);
     }
 
-    /**
-     * Multiple Dubbo Config Configuration , equals @EnableDubboConfig.multiple() == <code>true</code>
-     *
-     * @see EnableDubboConfig
-     * @see DubboConfigConfiguration.Multiple
-     */
-    @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
-    @Import(DubboConfigConfiguration.Multiple.class)
-    protected static class MultipleDubboConfigConfiguration {
+    private void removeBeanDefinition(BeanDefinitionRegistry registry, String beanName) {
+        if (registry.containsBeanDefinition(beanName)) {
+            registry.removeBeanDefinition(beanName);
+        }
     }
 
-    /**
-     * Build a primary {@link PropertyResolver} bean to {@link Autowired @Autowired}
-     *
-     * @param environment {@link Environment}
-     * @return alias bean for {@link Environment}
-     * @since 2.7.3
-     */
-    @Bean
-    @Primary
-    public PropertyResolver primaryPropertyResolver(Environment environment) {
-        return environment;
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        // DO NOTHING
     }
 }

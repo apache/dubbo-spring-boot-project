@@ -17,8 +17,11 @@
 package org.apache.dubbo.spring.boot.context.event;
 
 import org.apache.dubbo.common.utils.ConfigUtils;
+import org.apache.dubbo.rpc.model.ApplicationModel;
+
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,9 +49,15 @@ import java.util.Properties;
 )
 public class OverrideDubboConfigApplicationListenerDisableTest {
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         ConfigUtils.getProperties().clear();
+        ApplicationModel.reset();
+    }
+
+    @After
+    public void destroy() {
+        ApplicationModel.reset();
     }
 
     @Test

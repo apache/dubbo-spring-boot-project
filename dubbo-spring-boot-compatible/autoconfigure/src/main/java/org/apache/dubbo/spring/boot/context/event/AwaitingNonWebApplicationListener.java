@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.spring.boot.context.event;
 
+import org.apache.dubbo.common.lang.ShutdownHookCallbacks;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -29,6 +31,7 @@ import org.springframework.util.ClassUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -54,6 +57,13 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
             of(ApplicationReadyEvent.class, ContextClosedEvent.class);
 
     private static final AtomicBoolean awaited = new AtomicBoolean(false);
+
+    private static final Integer UNDEFINED_ID = Integer.valueOf(-1);
+
+    /**
+     * Target the application id
+     */
+    private static final AtomicInteger applicationContextId = new AtomicInteger(UNDEFINED_ID);
 
     private static final Lock lock = new ReentrantLock();
 
@@ -83,8 +93,6 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof ApplicationReadyEvent) {
             onApplicationReadyEvent((ApplicationReadyEvent) event);
-        } else if (event instanceof ContextClosedEvent) {
-            onContextClosedEvent((ContextClosedEvent) event);
         }
     }
 
@@ -101,7 +109,17 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
             return;
         }
 
-        await();
+        if (applicationContextId.compareAndSet(UNDEFINED_ID, applicationContext.hashCode())) {
+            await();
+            releaseOnExit();
+        }
+    }
+
+    /**
+     * @since 2.7.8
+     */
+    private void releaseOnExit() {
+        ShutdownHookCallbacks.INSTANCE.addCallback(this::release);
     }
 
     private boolean isRootApplicationContext(ApplicationContext applicationContext) {
@@ -125,11 +143,6 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         } catch (Throwable ex) {
             return false;
         }
-    }
-
-    protected void onContextClosedEvent(ContextClosedEvent event) {
-        release();
-        shutdown();
     }
 
     protected void await() {
@@ -162,6 +175,8 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
                     logger.info(" [Dubbo] Current Spring Boot Application is about to shutdown...");
                 }
                 condition.signalAll();
+                // @since 2.7.8 method shutdown() is combined into the method release()
+                shutdown();
             }
         });
     }

@@ -16,8 +16,6 @@
  */
 package org.apache.dubbo.spring.boot.context;
 
-import org.apache.dubbo.spring.boot.beans.factory.config.OverrideBeanDefinitionRegistryPostProcessor;
-
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
@@ -36,10 +34,12 @@ public class DubboApplicationContextInitializer implements ApplicationContextIni
     }
 
     private void overrideBeanDefinitions(ConfigurableApplicationContext applicationContext) {
-        applicationContext.addBeanFactoryPostProcessor(new OverrideBeanDefinitionRegistryPostProcessor());
+        // @since 2.7.8 OverrideBeanDefinitionRegistryPostProcessor has been removed
+        // applicationContext.addBeanFactoryPostProcessor(new OverrideBeanDefinitionRegistryPostProcessor());
         // @since 2.7.5 DubboConfigBeanDefinitionConflictProcessor has been removed
         // @see {@link DubboConfigBeanDefinitionConflictApplicationListener}
         // applicationContext.addBeanFactoryPostProcessor(new DubboConfigBeanDefinitionConflictProcessor());
+        // TODO Add some components in the future ( after 2.7.8 )
     }
 
     @Override

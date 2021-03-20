@@ -19,9 +19,12 @@ package org.apache.dubbo.spring.boot.autoconfigure;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.rpc.model.ApplicationModel;
 
 import com.alibaba.spring.context.config.ConfigurationBeanBinder;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,16 @@ public class RelaxedDubboConfigBinderTest {
 
     @Autowired
     private ConfigurableEnvironment environment;
+
+    @Before
+    public void init() {
+        ApplicationModel.reset();
+    }
+
+    @After
+    public void destroy() {
+        ApplicationModel.reset();
+    }
 
     @Test
     public void testBinder() {
