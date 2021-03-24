@@ -46,7 +46,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @TestPropertySource(
         properties = {
-                "dubbo.application.name = dubbo-demo-application",
+                "dubbo.application.NAME = dubbo-demo-application",
                 "dubbo.module.name = dubbo-demo-module",
                 "dubbo.registry.address = zookeeper://192.168.99.100:32770",
                 "dubbo.protocol.name=dubbo",

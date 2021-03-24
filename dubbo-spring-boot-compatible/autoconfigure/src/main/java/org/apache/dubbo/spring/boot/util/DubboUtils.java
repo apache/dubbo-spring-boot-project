@@ -22,8 +22,10 @@ import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceClassPostP
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
 
+import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertyResolver;
 
 import java.util.Collections;
@@ -31,6 +33,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import static java.util.Collections.emptySet;
 
 /**
  * The utilities class for Dubbo
@@ -212,4 +216,20 @@ public abstract class DubboUtils {
         return Collections.unmodifiableSortedMap(dubboProperties);
     }
 
+    public static Set<String> getScanBasePackage(Environment environment) {
+        // spring-boot 2.x Environment support relaxed properties
+        String name = DUBBO_SCAN_PREFIX + BASE_PACKAGES_PROPERTY_NAME;
+        Set<String> packagesToScan = environment.getProperty(name, Set.class, emptySet());
+
+        //read relaxed properties compatible with spring-boot 1.x
+        if (packagesToScan == null || packagesToScan.isEmpty()) {
+            try {
+                RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(environment, DUBBO_SCAN_PREFIX);
+                packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+            } catch (NoClassDefFoundError ex) {
+                //ignore
+            }
+        }
+        return packagesToScan;
+    }
 }
