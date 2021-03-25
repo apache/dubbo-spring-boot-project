@@ -19,15 +19,16 @@ package org.apache.dubbo.spring.boot.actuate.endpoint;
 import org.apache.dubbo.rpc.model.ApplicationModel;
 import org.apache.dubbo.spring.boot.util.DubboUtils;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Map;
 
@@ -39,7 +40,7 @@ import static org.apache.dubbo.common.Version.getVersion;
  * @see DubboMetadataEndpoint
  * @since 2.7.0
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(
         classes = {
                 DubboMetadataEndpoint.class
@@ -49,18 +50,19 @@ import static org.apache.dubbo.common.Version.getVersion;
         }
 )
 @EnableAutoConfiguration
+@Tag("Test")
 public class DubboEndpointTest {
 
 
     @Autowired
     private DubboMetadataEndpoint dubboEndpoint;
 
-    @Before
+    @BeforeEach
     public void init() {
         ApplicationModel.reset();
     }
 
-    @After
+    @AfterEach
     public void destroy() {
         ApplicationModel.reset();
     }

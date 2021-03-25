@@ -25,6 +25,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -47,6 +48,7 @@ import java.util.Properties;
 @SpringBootTest(
         classes = {OverrideDubboConfigApplicationListener.class}
 )
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class OverrideDubboConfigApplicationListenerTest {
 
     @BeforeClass
@@ -62,7 +64,6 @@ public class OverrideDubboConfigApplicationListenerTest {
 
     @Test
     public void testOnApplicationEvent() {
-
         Properties properties = ConfigUtils.getProperties();
 
         Assert.assertEquals("dubbo-demo-application", properties.get("dubbo.application.name"));
