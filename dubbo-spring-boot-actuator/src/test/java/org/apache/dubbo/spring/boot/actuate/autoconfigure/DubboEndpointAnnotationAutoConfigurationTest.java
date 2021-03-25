@@ -29,17 +29,18 @@ import org.apache.dubbo.spring.boot.actuate.endpoint.DubboShutdownEndpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
@@ -51,7 +52,7 @@ import java.util.function.Supplier;
  *
  * @since 2.7.0
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(
         classes = {
                 DubboEndpointAnnotationAutoConfigurationTest.class,
@@ -81,6 +82,7 @@ import java.util.function.Supplier;
                 "management.endpoints.web.exposure.include = *",
         })
 @EnableAutoConfiguration
+@Tag("Test")
 public class DubboEndpointAnnotationAutoConfigurationTest {
 
     @Autowired
@@ -109,12 +111,12 @@ public class DubboEndpointAnnotationAutoConfigurationTest {
     @Value("http://127.0.0.1:${local.management.port}${management.endpoints.web.base-path:/actuator}")
     private String actuatorBaseURL;
 
-    @Before
+    @BeforeEach
     public void init() {
         ApplicationModel.reset();
     }
 
-    @After
+    @AfterEach
     public void destroy() {
         ApplicationModel.reset();
     }
