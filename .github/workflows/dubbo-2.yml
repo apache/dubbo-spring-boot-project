@@ -1,0 +1,103 @@
+name: Dubbo 2
+
+on:
+  pull_request:
+    paths:
+      - "**"
+      - "!**/*.md"
+      - "!docs/**"
+  push:
+    paths:
+      - '**'
+      - "!**/*.md"
+      - "!docs/**"
+  workflow_dispatch:
+
+env:
+  DUBBO_REF: 'master'
+
+jobs:
+  build-dubbo:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    # Map a step output to a job output
+    outputs:
+      commit_id: ${{ steps.git-checker.outputs.commit_id }}
+      cache-hit: ${{ steps.dubbocache.outputs.cache-hit }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: 'apache/dubbo'
+          ref: ${{env.DUBBO_REF}}
+      - name: Get commit id and dubbo version
+        id: git-checker
+        run: |
+          #compare dubbo commit id
+          last_commit_id=`git log --format="%H" -n 1`
+          echo "::set-output name=commit_id::$last_commit_id"
+          echo "commit_id: $last_commit_id"
+          # Calculate Dubbo Version
+          REVISION=`awk '/<revision>[^<]+<\/revision>/{gsub(/<revision>|<\/revision>/,"",$1);print $1;exit;}' pom.xml`
+          mkdir dubbo-version
+          echo $REVISION > dubbo-version/dubbo-version
+          echo "dubbo version: $REVISION"
+      - name: Upload Dubbo version
+        uses: actions/upload-artifact@v2
+        with:
+          name: dubbo-version
+          path: dubbo-version
+      - name: Dubbo cache
+        id: dubbocache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository/org/apache/dubbo
+          key: ${{ runner.os }}-dubbo-snapshot-${{steps.git-checker.outputs.commit_id}}
+      - name: Cache local Maven repository
+        if: steps.dubbocache.outputs.cache-hit != 'true'
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-dubbo-${{env.DUBBO_REF}}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-dubbo-${{env.DUBBO_REF}}-maven-
+      - name: Set up JDK 8
+        if: steps.dubbocache.outputs.cache-hit != 'true'
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Build dubbo
+        if: steps.dubbocache.outputs.cache-hit != 'true'
+        run: |
+          ./mvnw -U --batch-mode --no-transfer-progress -Dmaven.wagon.http.retryHandler.count=3 clean install -Dmaven.test.skip=true -Dmaven.test.skip.exec=true
+
+  build-dubbo-spring-boot:
+    needs: [build-dubbo]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [8, 11]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-dubbo-spring-boot-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-dubbo-spring-boot-maven-
+      - name: Dubbo cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository/org/apache/dubbo
+          key: ${{ runner.os }}-dubbo-snapshot-${{needs.build-dubbo.outputs.commit_id}}
+      - name: Set up JDK ${{matrix.java}}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{matrix.java}}
+      - name: Build dubbo-spring-boot
+        run: |
+          ./mvnw -U --batch-mode --no-transfer-progress -Dmaven.wagon.http.retryHandler.count=3 clean package
+      - name: Codecov
+        run: bash <(curl -s https://codecov.io/bash)
