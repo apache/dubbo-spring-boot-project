@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.spring.boot.autoconfigure;
 
+import org.apache.curator.test.TestingServer;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ConsumerConfig;
 import org.apache.dubbo.config.ModuleConfig;
@@ -24,10 +25,11 @@ import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ProviderConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.rpc.model.ApplicationModel;
-
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.IOException;
 
 /**
  * {@link DubboAutoConfiguration} Test On single Dubbo Configuration
@@ -48,10 +52,10 @@ import org.springframework.test.context.junit4.SpringRunner;
         properties = {
                 "dubbo.application.name = dubbo-demo-application",
                 "dubbo.module.name = dubbo-demo-module",
-                "dubbo.registry.address = zookeeper://192.168.99.100:32770",
+                "dubbo.registry.address = zookeeper://127.0.0.1:"+ DubboAutoConfigurationOnSingleConfigTest.zkServerPort,
                 "dubbo.protocol.name=dubbo",
                 "dubbo.protocol.port=20880",
-                "dubbo.monitor.address=zookeeper://127.0.0.1:32770",
+                "dubbo.monitor.address=zookeeper://127.0.0.1:"+ DubboAutoConfigurationOnSingleConfigTest.zkServerPort,
                 "dubbo.provider.host=127.0.0.1",
                 "dubbo.consumer.client=netty"
         }
@@ -61,6 +65,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 )
 @EnableAutoConfiguration
 public class DubboAutoConfigurationOnSingleConfigTest {
+
+    static final int zkServerPort = 32770;
 
     @Autowired
     private ApplicationConfig applicationConfig;
@@ -89,6 +95,18 @@ public class DubboAutoConfigurationOnSingleConfigTest {
     @Autowired
     private ApplicationContext applicationContext;
 
+    private static TestingServer zkServer;
+
+    @BeforeClass
+    public static void setup() throws Exception {
+        zkServer = new TestingServer(zkServerPort, true);
+    }
+
+    @AfterClass
+    public static void shutdown() throws IOException {
+        zkServer.close();
+    }
+
     @Before
     public void init() {
         ApplicationModel.reset();
@@ -116,14 +134,14 @@ public class DubboAutoConfigurationOnSingleConfigTest {
     @Test
     public void testRegistryConfig() {
 
-        Assert.assertEquals("zookeeper://192.168.99.100:32770", registryConfig.getAddress());
+        Assert.assertEquals("zookeeper://127.0.0.1:"+ DubboAutoConfigurationOnSingleConfigTest.zkServerPort, registryConfig.getAddress());
 
     }
 
     @Test
     public void testMonitorConfig() {
 
-        Assert.assertEquals("zookeeper://127.0.0.1:32770", monitorConfig.getAddress());
+        Assert.assertEquals("zookeeper://127.0.0.1:"+ DubboAutoConfigurationOnSingleConfigTest.zkServerPort, monitorConfig.getAddress());
 
     }
 
