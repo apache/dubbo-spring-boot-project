@@ -1,5 +1,7 @@
 # Apache Dubbo Spring Boot Project 
 
+## This repo has been archived. All of the implements have been moved to [apache/dubbo](https://github.com/apache/dubbo).
+
 [![Build Status](https://travis-ci.org/apache/dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
