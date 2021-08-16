@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/apache/dubbo-spring-boot-project.svg?branch=master)](https://travis-ci.org/apache/dubbo-spring-boot-project) 
 [![codecov](https://codecov.io/gh/apache/dubbo-spring-boot-project/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/dubbo-spring-boot-project)
 ![license](https://img.shields.io/github/license/apache/dubbo-spring-boot-project.svg)
+[![Maintainability](https://cloud.quality-gate.com/dashboard/api/badge?projectName=apache_dubbo-spring-boot-project&branchName=master)](https://cloud.quality-gate.com/dashboard/branches/397351#overview)
 
 [Apache Dubbo](https://github.com/apache/dubbo) Spring Boot Project makes it easy to create [Spring Boot](https://github.com/spring-projects/spring-boot/) application using Dubbo as RPC Framework. What's more, it also provides:
 * [auto-configure features](dubbo-spring-boot-autoconfigure) (e.g., annotation-driven, auto configuration, externalized configuration).
