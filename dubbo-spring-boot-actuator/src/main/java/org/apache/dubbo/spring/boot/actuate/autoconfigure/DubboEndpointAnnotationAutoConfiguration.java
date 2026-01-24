@@ -39,8 +39,9 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource(
-        name = "Dubbo Endpoints Default Properties",
-        value = "classpath:/META-INF/dubbo-endpoints-default.properties")
+        value = "classpath:/META-INF/dubbo-endpoints-default.properties",
+        ignoreResourceNotFound = true
+)
 public class DubboEndpointAnnotationAutoConfiguration {
 
     @Bean
