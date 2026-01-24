@@ -56,7 +56,10 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @AutoConfigureBefore(DubboRelaxedBindingAutoConfiguration.class)
 public class DubboRelaxedBinding2AutoConfiguration {
 
-    public PropertyResolver dubboScanBasePackagesPropertyResolver(ConfigurableEnvironment environment) {
+
+    @Bean
+    @ConditionalOnMissingBean(DubboScanBasePackagesPropertyResolver.class)
+    public DubboScanBasePackagesPropertyResolver dubboScanBasePackagesPropertyResolver(ConfigurableEnvironment environment) {
         ConfigurableEnvironment propertyResolver = new AbstractEnvironment() {
             @Override
             protected void customizePropertySources(MutablePropertySources propertySources) {
